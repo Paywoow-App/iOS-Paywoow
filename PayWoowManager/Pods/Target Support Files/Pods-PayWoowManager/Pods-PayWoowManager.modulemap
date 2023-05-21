@@ -1,0 +1,6 @@
+framework module Pods_PayWoowManager {
+  umbrella header "Pods-PayWoowManager-umbrella.h"
+
+  export *
+  module * { export * }
+}

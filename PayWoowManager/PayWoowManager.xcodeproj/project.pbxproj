@@ -1,0 +1,900 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A73C694729C4FAFD009C1BA8 /* Remittences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73C694629C4FAFD009C1BA8 /* Remittences.swift */; };
+		A73C694929C5410E009C1BA8 /* Investories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73C694829C5410E009C1BA8 /* Investories.swift */; };
+		A73C694B29C54C4B009C1BA8 /* InvestCreater.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73C694A29C54C4B009C1BA8 /* InvestCreater.swift */; };
+		A750C68129C72F8300E169BF /* VIPPointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A750C68029C72F8300E169BF /* VIPPointManager.swift */; };
+		BF772178BE83B5D371BA0AE1 /* Pods_PayWoowManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D3D097F8DC920EEC911B2C /* Pods_PayWoowManager.framework */; };
+		CA07306F2845766700CD4A2C /* UserResearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA07306E2845766500CD4A2C /* UserResearcher.swift */; };
+		CA1F0B3D2904921A007847B7 /* PlatformSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F0B3C2904921A007847B7 /* PlatformSelector.swift */; };
+		CA3858FA27FDC70900044F59 /* hogrider.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA3858F927FDC70900044F59 /* hogrider.mp3 */; };
+		CA3A7F8929021CE2006DBC28 /* LiveDataListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3A7F8829021CE2006DBC28 /* LiveDataListener.swift */; };
+		CA4C241F29D3BDED00DB3FF4 /* BlockServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4C241E29D3BDED00DB3FF4 /* BlockServices.swift */; };
+		CA55708A2833AD40007760F1 /* pay.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA5570892833AD40007760F1 /* pay.mp3 */; };
+		CA5625B3291055CC00FBA1EA /* MyDeallers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5625B2291055CC00FBA1EA /* MyDeallers.swift */; };
+		CA5993D728458E1E0036619F /* BlockSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5993D628458E1E0036619F /* BlockSender.swift */; };
+		CA5AD00E29D4DC9E007D6C65 /* angel_white.json in Resources */ = {isa = PBXBuildFile; fileRef = CA5AD00C29D4DC9E007D6C65 /* angel_white.json */; };
+		CA5AD00F29D4DC9E007D6C65 /* angel_red.json in Resources */ = {isa = PBXBuildFile; fileRef = CA5AD00D29D4DC9E007D6C65 /* angel_red.json */; };
+		CA60B2A8284090E6004DDE4E /* TokenResearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA60B2A7284090E6004DDE4E /* TokenResearcher.swift */; };
+		CA7B30E029C3905100DE335F /* TaxFreeApplications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7B30DF29C3905100DE335F /* TaxFreeApplications.swift */; };
+		CA7B30E229C390B800DE335F /* TaxFreeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7B30E129C390B800DE335F /* TaxFreeStore.swift */; };
+		CA7B30E429C3987800DE335F /* TaxApplicationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7B30E329C3987800DE335F /* TaxApplicationContent.swift */; };
+		CA863961280724C7006D4F3B /* ListPreparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA863960280724C7006D4F3B /* ListPreparator.swift */; };
+		CA86396328081F04006D4F3B /* checkmark.json in Resources */ = {isa = PBXBuildFile; fileRef = CA86396228081F04006D4F3B /* checkmark.json */; };
+		CA8639652808622E006D4F3B /* care.json in Resources */ = {isa = PBXBuildFile; fileRef = CA8639642808622E006D4F3B /* care.json */; };
+		CA863967280863E3006D4F3B /* care2.json in Resources */ = {isa = PBXBuildFile; fileRef = CA863966280863E2006D4F3B /* care2.json */; };
+		CA8639692808741E006D4F3B /* CareControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8639682808741D006D4F3B /* CareControl.swift */; };
+		CA86A82B2911B2BC00F81CD3 /* BalanceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA86A82A2911B2BC00F81CD3 /* BalanceMaker.swift */; };
+		CA86A82D2912D36100F81CD3 /* DeallerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA86A82C2912D36100F81CD3 /* DeallerMaker.swift */; };
+		CA86A82F29146E4700F81CD3 /* BankIbanStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA86A82E29146E4700F81CD3 /* BankIbanStore.swift */; };
+		CA92152028B7FDE70094D04C /* people.json in Resources */ = {isa = PBXBuildFile; fileRef = CA92151F28B7FDE70094D04C /* people.json */; };
+		CA9513632843EC2D00976643 /* DemoPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9513622843EC2D00976643 /* DemoPreview.swift */; };
+		CA951365284408F100976643 /* Entegrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA951364284408F100976643 /* Entegrations.swift */; };
+		CAA345D7285824700058C50B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CAA345D6285824700058C50B /* GoogleService-Info.plist */; };
+		CAB810EC290600FB0002609F /* PlatformStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB810EB290600FB0002609F /* PlatformStore.swift */; };
+		CAB810EE290601280002609F /* PlatformContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB810ED290601280002609F /* PlatformContent.swift */; };
+		CAB810F2290605DA0002609F /* alert.json in Resources */ = {isa = PBXBuildFile; fileRef = CAB810F1290605D90002609F /* alert.json */; };
+		CAB810F429060A900002609F /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB810F329060A900002609F /* Notes.swift */; };
+		CABF555128EC56B70018E7ED /* External.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF555028EC56B70018E7ED /* External.swift */; };
+		CAC8B03327CD390700DFF238 /* PayWoowManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B03227CD390700DFF238 /* PayWoowManagerApp.swift */; };
+		CAC8B03727CD390800DFF238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAC8B03627CD390800DFF238 /* Assets.xcassets */; };
+		CAC8B03A27CD390800DFF238 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAC8B03927CD390800DFF238 /* Preview Assets.xcassets */; };
+		CAC8B09727CD404800DFF238 /* WaitingOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B05527CD404800DFF238 /* WaitingOrders.swift */; };
+		CAC8B09827CD404800DFF238 /* ApplicationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B05627CD404800DFF238 /* ApplicationsStore.swift */; };
+		CAC8B09927CD404800DFF238 /* OrdersSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B05727CD404800DFF238 /* OrdersSections.swift */; };
+		CAC8B09A27CD404800DFF238 /* Suggestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B05927CD404800DFF238 /* Suggestions.swift */; };
+		CAC8B09B27CD404800DFF238 /* Application-Suggest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B05A27CD404800DFF238 /* Application-Suggest.swift */; };
+		CAC8B09C27CD404800DFF238 /* Applications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B05B27CD404800DFF238 /* Applications.swift */; };
+		CAC8B09D27CD404800DFF238 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B05C27CD404800DFF238 /* Profile.swift */; };
+		CAC8B09E27CD404800DFF238 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B05D27CD404800DFF238 /* MainTabView.swift */; };
+		CAC8B09F27CD404800DFF238 /* StaticsContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B05E27CD404800DFF238 /* StaticsContent.swift */; };
+		CAC8B0A027CD404800DFF238 /* AccountConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B05F27CD404800DFF238 /* AccountConfirmation.swift */; };
+		CAC8B0A127CD404800DFF238 /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B06027CD404800DFF238 /* EditProfile.swift */; };
+		CAC8B0A227CD404800DFF238 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B06127CD404800DFF238 /* AppManager.swift */; };
+		CAC8B0A327CD404800DFF238 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B06227CD404800DFF238 /* Users.swift */; };
+		CAC8B0A427CD404800DFF238 /* AcceptedOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B06327CD404800DFF238 /* AcceptedOrders.swift */; };
+		CAC8B0A527CD404800DFF238 /* StreammerSalaryWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B06427CD404800DFF238 /* StreammerSalaryWriter.swift */; };
+		CAC8B0A627CD404800DFF238 /* ReferanceCodeMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B06527CD404800DFF238 /* ReferanceCodeMaker.swift */; };
+		CAC8B0A727CD404800DFF238 /* GiftRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B06627CD404800DFF238 /* GiftRequest.swift */; };
+		CAC8B0A827CD404800DFF238 /* AdminLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B06727CD404800DFF238 /* AdminLogin.swift */; };
+		CAC8B0A927CD404800DFF238 /* DeclinedOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B06827CD404800DFF238 /* DeclinedOrders.swift */; };
+		CAC8B0AA27CD404800DFF238 /* BankIban.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B06927CD404800DFF238 /* BankIban.swift */; };
+		CAC8B0AB27CD404800DFF238 /* AgencyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B06A27CD404800DFF238 /* AgencyRequest.swift */; };
+		CAC8B0AC27CD404800DFF238 /* ProcessedOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B06B27CD404800DFF238 /* ProcessedOrders.swift */; };
+		CAC8B0AD27CD404800DFF238 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B06D27CD404800DFF238 /* UserStore.swift */; };
+		CAC8B0AE27CD404800DFF238 /* OwnStreammerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B06E27CD404800DFF238 /* OwnStreammerStore.swift */; };
+		CAC8B0AF27CD404800DFF238 /* SuggestionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B06F27CD404800DFF238 /* SuggestionStore.swift */; };
+		CAC8B0B027CD404800DFF238 /* ConfirmationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B07027CD404800DFF238 /* ConfirmationStore.swift */; };
+		CAC8B0B127CD404800DFF238 /* ReferanceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B07127CD404800DFF238 /* ReferanceStore.swift */; };
+		CAC8B0B227CD404800DFF238 /* StaticsStore_Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B07227CD404800DFF238 /* StaticsStore_Diamond.swift */; };
+		CAC8B0B327CD404800DFF238 /* SignatureResearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B07327CD404800DFF238 /* SignatureResearcher.swift */; };
+		CAC8B0B427CD404800DFF238 /* GiftRequestAdminStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B07427CD404800DFF238 /* GiftRequestAdminStore.swift */; };
+		CAC8B0B527CD404800DFF238 /* GeneralStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B07527CD404800DFF238 /* GeneralStore.swift */; };
+		CAC8B0B627CD404800DFF238 /* SalaryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B07627CD404800DFF238 /* SalaryStore.swift */; };
+		CAC8B0B727CD404800DFF238 /* OrderStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B07727CD404800DFF238 /* OrderStore.swift */; };
+		CAC8B0B827CD404800DFF238 /* DeallerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B07827CD404800DFF238 /* DeallerStore.swift */; };
+		CAC8B0B927CD404800DFF238 /* AgencyRequestStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B07927CD404800DFF238 /* AgencyRequestStore.swift */; };
+		CAC8B0BB27CD404800DFF238 /* moon.json in Resources */ = {isa = PBXBuildFile; fileRef = CAC8B07C27CD404800DFF238 /* moon.json */; };
+		CAC8B0BC27CD404800DFF238 /* closed.json in Resources */ = {isa = PBXBuildFile; fileRef = CAC8B07D27CD404800DFF238 /* closed.json */; };
+		CAC8B0BD27CD404800DFF238 /* userAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = CAC8B07E27CD404800DFF238 /* userAnimation.json */; };
+		CAC8B0BE27CD404800DFF238 /* mappin.json in Resources */ = {isa = PBXBuildFile; fileRef = CAC8B07F27CD404800DFF238 /* mappin.json */; };
+		CAC8B0BF27CD404800DFF238 /* christmasHat.json in Resources */ = {isa = PBXBuildFile; fileRef = CAC8B08027CD404800DFF238 /* christmasHat.json */; };
+		CAC8B0C027CD404800DFF238 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B08127CD404800DFF238 /* ImagePicker.swift */; };
+		CAC8B0C127CD404800DFF238 /* LogoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8B08227CD404800DFF238 /* LogoScreen.swift */; };
+		CACAC1ED28B431DD005CD910 /* PasswordChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACAC1EC28B431DD005CD910 /* PasswordChanger.swift */; };
+		CAE0A1092815E4530055EF5E /* render.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CAE0A1082815E4530055EF5E /* render.mp4 */; };
+		CAEAD6AD286C977000CB4866 /* VIPOrderStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEAD6AC286C977000CB4866 /* VIPOrderStore.swift */; };
+		CAEAD6AF286D9FDC00CB4866 /* VIPOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEAD6AE286D9FDC00CB4866 /* VIPOrders.swift */; };
+		CAEF929228CC0B33009D8913 /* CustomerServiceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEF929128CC0B33009D8913 /* CustomerServiceStore.swift */; };
+		CAEF929428CCAD71009D8913 /* CustomerServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEF929328CCAD71009D8913 /* CustomerServices.swift */; };
+		CAF1D53029096937007149AD /* Mantis in Frameworks */ = {isa = PBXBuildFile; productRef = CAF1D52F29096937007149AD /* Mantis */; };
+		CAF1D53329096D8B007149AD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CAF1D53229096D8B007149AD /* FirebaseAuth */; };
+		CAF1D53529096D8B007149AD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CAF1D53429096D8B007149AD /* FirebaseFirestore */; };
+		CAF1D53729096D8B007149AD /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = CAF1D53629096D8B007149AD /* FirebaseMessaging */; };
+		CAF1D53929096D8B007149AD /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CAF1D53829096D8B007149AD /* FirebaseStorage */; };
+		CAF1D53C2909709D007149AD /* DeviceKit in Frameworks */ = {isa = PBXBuildFile; productRef = CAF1D53B2909709D007149AD /* DeviceKit */; };
+		CAF1D53F29097165007149AD /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = CAF1D53E29097165007149AD /* SwiftUICharts */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		20D3D097F8DC920EEC911B2C /* Pods_PayWoowManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PayWoowManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		882B6D98BCC3AF8E3C6A8219 /* Pods-PayWoowManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayWoowManager.release.xcconfig"; path = "Target Support Files/Pods-PayWoowManager/Pods-PayWoowManager.release.xcconfig"; sourceTree = "<group>"; };
+		A73C694629C4FAFD009C1BA8 /* Remittences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remittences.swift; sourceTree = "<group>"; };
+		A73C694829C5410E009C1BA8 /* Investories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Investories.swift; sourceTree = "<group>"; };
+		A73C694A29C54C4B009C1BA8 /* InvestCreater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestCreater.swift; sourceTree = "<group>"; };
+		A750C68029C72F8300E169BF /* VIPPointManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPPointManager.swift; sourceTree = "<group>"; };
+		CA07306E2845766500CD4A2C /* UserResearcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResearcher.swift; sourceTree = "<group>"; };
+		CA1F0B3C2904921A007847B7 /* PlatformSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformSelector.swift; sourceTree = "<group>"; };
+		CA3858F927FDC70900044F59 /* hogrider.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hogrider.mp3; sourceTree = "<group>"; };
+		CA3A7F8829021CE2006DBC28 /* LiveDataListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveDataListener.swift; sourceTree = "<group>"; };
+		CA4C241E29D3BDED00DB3FF4 /* BlockServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockServices.swift; sourceTree = "<group>"; };
+		CA5570892833AD40007760F1 /* pay.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pay.mp3; sourceTree = "<group>"; };
+		CA5625B2291055CC00FBA1EA /* MyDeallers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeallers.swift; sourceTree = "<group>"; };
+		CA5993D628458E1E0036619F /* BlockSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockSender.swift; sourceTree = "<group>"; };
+		CA5AD00C29D4DC9E007D6C65 /* angel_white.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = angel_white.json; sourceTree = "<group>"; };
+		CA5AD00D29D4DC9E007D6C65 /* angel_red.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = angel_red.json; sourceTree = "<group>"; };
+		CA60B2A7284090E6004DDE4E /* TokenResearcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResearcher.swift; sourceTree = "<group>"; };
+		CA7B30DF29C3905100DE335F /* TaxFreeApplications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxFreeApplications.swift; sourceTree = "<group>"; };
+		CA7B30E129C390B800DE335F /* TaxFreeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxFreeStore.swift; sourceTree = "<group>"; };
+		CA7B30E329C3987800DE335F /* TaxApplicationContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxApplicationContent.swift; sourceTree = "<group>"; };
+		CA863960280724C7006D4F3B /* ListPreparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPreparator.swift; sourceTree = "<group>"; };
+		CA86396228081F04006D4F3B /* checkmark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkmark.json; sourceTree = "<group>"; };
+		CA8639642808622E006D4F3B /* care.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = care.json; sourceTree = "<group>"; };
+		CA863966280863E2006D4F3B /* care2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = care2.json; sourceTree = "<group>"; };
+		CA8639682808741D006D4F3B /* CareControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareControl.swift; sourceTree = "<group>"; };
+		CA86A82A2911B2BC00F81CD3 /* BalanceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceMaker.swift; sourceTree = "<group>"; };
+		CA86A82C2912D36100F81CD3 /* DeallerMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeallerMaker.swift; sourceTree = "<group>"; };
+		CA86A82E29146E4700F81CD3 /* BankIbanStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankIbanStore.swift; sourceTree = "<group>"; };
+		CA92151F28B7FDE70094D04C /* people.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = people.json; sourceTree = "<group>"; };
+		CA9513622843EC2D00976643 /* DemoPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoPreview.swift; sourceTree = "<group>"; };
+		CA951364284408F100976643 /* Entegrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entegrations.swift; sourceTree = "<group>"; };
+		CAA345D6285824700058C50B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CAB810EB290600FB0002609F /* PlatformStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformStore.swift; sourceTree = "<group>"; };
+		CAB810ED290601280002609F /* PlatformContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformContent.swift; sourceTree = "<group>"; };
+		CAB810F1290605D90002609F /* alert.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = alert.json; sourceTree = "<group>"; };
+		CAB810F329060A900002609F /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
+		CABF555028EC56B70018E7ED /* External.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = External.swift; sourceTree = "<group>"; };
+		CAC8B02F27CD390700DFF238 /* PayWoowManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PayWoowManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAC8B03227CD390700DFF238 /* PayWoowManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWoowManagerApp.swift; sourceTree = "<group>"; };
+		CAC8B03627CD390800DFF238 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CAC8B03927CD390800DFF238 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CAC8B05527CD404800DFF238 /* WaitingOrders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingOrders.swift; sourceTree = "<group>"; };
+		CAC8B05627CD404800DFF238 /* ApplicationsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationsStore.swift; sourceTree = "<group>"; };
+		CAC8B05727CD404800DFF238 /* OrdersSections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersSections.swift; sourceTree = "<group>"; };
+		CAC8B05927CD404800DFF238 /* Suggestions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suggestions.swift; sourceTree = "<group>"; };
+		CAC8B05A27CD404800DFF238 /* Application-Suggest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Application-Suggest.swift"; sourceTree = "<group>"; };
+		CAC8B05B27CD404800DFF238 /* Applications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Applications.swift; sourceTree = "<group>"; };
+		CAC8B05C27CD404800DFF238 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		CAC8B05D27CD404800DFF238 /* MainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		CAC8B05E27CD404800DFF238 /* StaticsContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticsContent.swift; sourceTree = "<group>"; };
+		CAC8B05F27CD404800DFF238 /* AccountConfirmation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountConfirmation.swift; sourceTree = "<group>"; };
+		CAC8B06027CD404800DFF238 /* EditProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
+		CAC8B06127CD404800DFF238 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		CAC8B06227CD404800DFF238 /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		CAC8B06327CD404800DFF238 /* AcceptedOrders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptedOrders.swift; sourceTree = "<group>"; };
+		CAC8B06427CD404800DFF238 /* StreammerSalaryWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreammerSalaryWriter.swift; sourceTree = "<group>"; };
+		CAC8B06527CD404800DFF238 /* ReferanceCodeMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferanceCodeMaker.swift; sourceTree = "<group>"; };
+		CAC8B06627CD404800DFF238 /* GiftRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftRequest.swift; sourceTree = "<group>"; };
+		CAC8B06727CD404800DFF238 /* AdminLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminLogin.swift; sourceTree = "<group>"; };
+		CAC8B06827CD404800DFF238 /* DeclinedOrders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclinedOrders.swift; sourceTree = "<group>"; };
+		CAC8B06927CD404800DFF238 /* BankIban.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankIban.swift; sourceTree = "<group>"; };
+		CAC8B06A27CD404800DFF238 /* AgencyRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgencyRequest.swift; sourceTree = "<group>"; };
+		CAC8B06B27CD404800DFF238 /* ProcessedOrders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessedOrders.swift; sourceTree = "<group>"; };
+		CAC8B06D27CD404800DFF238 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
+		CAC8B06E27CD404800DFF238 /* OwnStreammerStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnStreammerStore.swift; sourceTree = "<group>"; };
+		CAC8B06F27CD404800DFF238 /* SuggestionStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionStore.swift; sourceTree = "<group>"; };
+		CAC8B07027CD404800DFF238 /* ConfirmationStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmationStore.swift; sourceTree = "<group>"; };
+		CAC8B07127CD404800DFF238 /* ReferanceStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferanceStore.swift; sourceTree = "<group>"; };
+		CAC8B07227CD404800DFF238 /* StaticsStore_Diamond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticsStore_Diamond.swift; sourceTree = "<group>"; };
+		CAC8B07327CD404800DFF238 /* SignatureResearcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureResearcher.swift; sourceTree = "<group>"; };
+		CAC8B07427CD404800DFF238 /* GiftRequestAdminStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftRequestAdminStore.swift; sourceTree = "<group>"; };
+		CAC8B07527CD404800DFF238 /* GeneralStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralStore.swift; sourceTree = "<group>"; };
+		CAC8B07627CD404800DFF238 /* SalaryStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SalaryStore.swift; sourceTree = "<group>"; };
+		CAC8B07727CD404800DFF238 /* OrderStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderStore.swift; sourceTree = "<group>"; };
+		CAC8B07827CD404800DFF238 /* DeallerStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeallerStore.swift; sourceTree = "<group>"; };
+		CAC8B07927CD404800DFF238 /* AgencyRequestStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgencyRequestStore.swift; sourceTree = "<group>"; };
+		CAC8B07C27CD404800DFF238 /* moon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon.json; sourceTree = "<group>"; };
+		CAC8B07D27CD404800DFF238 /* closed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = closed.json; sourceTree = "<group>"; };
+		CAC8B07E27CD404800DFF238 /* userAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userAnimation.json; sourceTree = "<group>"; };
+		CAC8B07F27CD404800DFF238 /* mappin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mappin.json; sourceTree = "<group>"; };
+		CAC8B08027CD404800DFF238 /* christmasHat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = christmasHat.json; sourceTree = "<group>"; };
+		CAC8B08127CD404800DFF238 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		CAC8B08227CD404800DFF238 /* LogoScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoScreen.swift; sourceTree = "<group>"; };
+		CAC8B0D027CD438100DFF238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CAC8B0D127CD477E00DFF238 /* PayWoowManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PayWoowManager.entitlements; sourceTree = "<group>"; };
+		CACAC1EC28B431DD005CD910 /* PasswordChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChanger.swift; sourceTree = "<group>"; };
+		CAE0A1082815E4530055EF5E /* render.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = render.mp4; sourceTree = "<group>"; };
+		CAEAD6AC286C977000CB4866 /* VIPOrderStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPOrderStore.swift; sourceTree = "<group>"; };
+		CAEAD6AE286D9FDC00CB4866 /* VIPOrders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPOrders.swift; sourceTree = "<group>"; };
+		CAEF929128CC0B33009D8913 /* CustomerServiceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerServiceStore.swift; sourceTree = "<group>"; };
+		CAEF929328CCAD71009D8913 /* CustomerServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerServices.swift; sourceTree = "<group>"; };
+		FECD3CDBD175591C8A4515EA /* Pods-PayWoowManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayWoowManager.debug.xcconfig"; path = "Target Support Files/Pods-PayWoowManager/Pods-PayWoowManager.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CAC8B02C27CD390700DFF238 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CAF1D53029096937007149AD /* Mantis in Frameworks */,
+				CAF1D53529096D8B007149AD /* FirebaseFirestore in Frameworks */,
+				CAF1D53729096D8B007149AD /* FirebaseMessaging in Frameworks */,
+				CAF1D53329096D8B007149AD /* FirebaseAuth in Frameworks */,
+				CAF1D53C2909709D007149AD /* DeviceKit in Frameworks */,
+				CAF1D53F29097165007149AD /* SwiftUICharts in Frameworks */,
+				BF772178BE83B5D371BA0AE1 /* Pods_PayWoowManager.framework in Frameworks */,
+				CAF1D53929096D8B007149AD /* FirebaseStorage in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5F3FE3A3379CC68C504E6DAD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20D3D097F8DC920EEC911B2C /* Pods_PayWoowManager.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CAC8B02627CD390600DFF238 = {
+			isa = PBXGroup;
+			children = (
+				CAC8B03127CD390700DFF238 /* PayWoowManager */,
+				CAC8B03027CD390700DFF238 /* Products */,
+				D359F74C8D648CD6713D4290 /* Pods */,
+				5F3FE3A3379CC68C504E6DAD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		CAC8B03027CD390700DFF238 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CAC8B02F27CD390700DFF238 /* PayWoowManager.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CAC8B03127CD390700DFF238 /* PayWoowManager */ = {
+			isa = PBXGroup;
+			children = (
+				CAC8B0D127CD477E00DFF238 /* PayWoowManager.entitlements */,
+				CAC8B03227CD390700DFF238 /* PayWoowManagerApp.swift */,
+				CAC8B08227CD404800DFF238 /* LogoScreen.swift */,
+				CAC8B06727CD404800DFF238 /* AdminLogin.swift */,
+				CA9513622843EC2D00976643 /* DemoPreview.swift */,
+				CAC8B08127CD404800DFF238 /* ImagePicker.swift */,
+				CA60B2A7284090E6004DDE4E /* TokenResearcher.swift */,
+				CA07306E2845766500CD4A2C /* UserResearcher.swift */,
+				CA8639682808741D006D4F3B /* CareControl.swift */,
+				CACAC1EC28B431DD005CD910 /* PasswordChanger.swift */,
+				CAEF929328CCAD71009D8913 /* CustomerServices.swift */,
+				CA3A7F8829021CE2006DBC28 /* LiveDataListener.swift */,
+				CA5625B2291055CC00FBA1EA /* MyDeallers.swift */,
+				CA86A82C2912D36100F81CD3 /* DeallerMaker.swift */,
+				CA1F0B3C2904921A007847B7 /* PlatformSelector.swift */,
+				CAB810EB290600FB0002609F /* PlatformStore.swift */,
+				CAB810ED290601280002609F /* PlatformContent.swift */,
+				CAC8B05727CD404800DFF238 /* OrdersSections.swift */,
+				CAC8B05527CD404800DFF238 /* WaitingOrders.swift */,
+				CAC8B06327CD404800DFF238 /* AcceptedOrders.swift */,
+				CAC8B06827CD404800DFF238 /* DeclinedOrders.swift */,
+				CAC8B06B27CD404800DFF238 /* ProcessedOrders.swift */,
+				CAEAD6AE286D9FDC00CB4866 /* VIPOrders.swift */,
+				CAC8B05827CD404800DFF238 /* Applications and Suggest */,
+				CAC8B05C27CD404800DFF238 /* Profile.swift */,
+				CA86A82A2911B2BC00F81CD3 /* BalanceMaker.swift */,
+				CAC8B05D27CD404800DFF238 /* MainTabView.swift */,
+				CA863960280724C7006D4F3B /* ListPreparator.swift */,
+				CAC8B05E27CD404800DFF238 /* StaticsContent.swift */,
+				CAC8B05F27CD404800DFF238 /* AccountConfirmation.swift */,
+				CAC8B06027CD404800DFF238 /* EditProfile.swift */,
+				CAC8B06127CD404800DFF238 /* AppManager.swift */,
+				CAC8B06227CD404800DFF238 /* Users.swift */,
+				CA5993D628458E1E0036619F /* BlockSender.swift */,
+				CAC8B06427CD404800DFF238 /* StreammerSalaryWriter.swift */,
+				CA4C241E29D3BDED00DB3FF4 /* BlockServices.swift */,
+				CAC8B06527CD404800DFF238 /* ReferanceCodeMaker.swift */,
+				CAC8B06627CD404800DFF238 /* GiftRequest.swift */,
+				CAC8B06927CD404800DFF238 /* BankIban.swift */,
+				CA86A82E29146E4700F81CD3 /* BankIbanStore.swift */,
+				CAC8B06A27CD404800DFF238 /* AgencyRequest.swift */,
+				CAC8B06C27CD404800DFF238 /* Store */,
+				CAC8B07A27CD404800DFF238 /* Animation */,
+				CAC8B03627CD390800DFF238 /* Assets.xcassets */,
+				CA3858F927FDC70900044F59 /* hogrider.mp3 */,
+				CA5570892833AD40007760F1 /* pay.mp3 */,
+				CAE0A1082815E4530055EF5E /* render.mp4 */,
+				CAC8B0D027CD438100DFF238 /* Info.plist */,
+				CAA345D6285824700058C50B /* GoogleService-Info.plist */,
+				CAC8B03827CD390800DFF238 /* Preview Content */,
+				CABF555028EC56B70018E7ED /* External.swift */,
+				CAB810F329060A900002609F /* Notes.swift */,
+				CA7B30DF29C3905100DE335F /* TaxFreeApplications.swift */,
+				CA7B30E329C3987800DE335F /* TaxApplicationContent.swift */,
+				CA7B30E129C390B800DE335F /* TaxFreeStore.swift */,
+				A73C694629C4FAFD009C1BA8 /* Remittences.swift */,
+				A73C694829C5410E009C1BA8 /* Investories.swift */,
+				A73C694A29C54C4B009C1BA8 /* InvestCreater.swift */,
+				A750C68029C72F8300E169BF /* VIPPointManager.swift */,
+			);
+			path = PayWoowManager;
+			sourceTree = "<group>";
+		};
+		CAC8B03827CD390800DFF238 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CAC8B03927CD390800DFF238 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CAC8B05827CD404800DFF238 /* Applications and Suggest */ = {
+			isa = PBXGroup;
+			children = (
+				CAC8B05A27CD404800DFF238 /* Application-Suggest.swift */,
+				CAC8B05927CD404800DFF238 /* Suggestions.swift */,
+				CAC8B05B27CD404800DFF238 /* Applications.swift */,
+			);
+			path = "Applications and Suggest";
+			sourceTree = "<group>";
+		};
+		CAC8B06C27CD404800DFF238 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				CAC8B06D27CD404800DFF238 /* UserStore.swift */,
+				CAC8B06E27CD404800DFF238 /* OwnStreammerStore.swift */,
+				CAC8B06F27CD404800DFF238 /* SuggestionStore.swift */,
+				CAC8B07027CD404800DFF238 /* ConfirmationStore.swift */,
+				CAC8B05627CD404800DFF238 /* ApplicationsStore.swift */,
+				CAC8B07127CD404800DFF238 /* ReferanceStore.swift */,
+				CAC8B07227CD404800DFF238 /* StaticsStore_Diamond.swift */,
+				CAC8B07327CD404800DFF238 /* SignatureResearcher.swift */,
+				CAC8B07427CD404800DFF238 /* GiftRequestAdminStore.swift */,
+				CAC8B07527CD404800DFF238 /* GeneralStore.swift */,
+				CAC8B07627CD404800DFF238 /* SalaryStore.swift */,
+				CAC8B07727CD404800DFF238 /* OrderStore.swift */,
+				CAC8B07827CD404800DFF238 /* DeallerStore.swift */,
+				CAC8B07927CD404800DFF238 /* AgencyRequestStore.swift */,
+				CA951364284408F100976643 /* Entegrations.swift */,
+				CAEAD6AC286C977000CB4866 /* VIPOrderStore.swift */,
+				CAEF929128CC0B33009D8913 /* CustomerServiceStore.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		CAC8B07A27CD404800DFF238 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				CA5AD00D29D4DC9E007D6C65 /* angel_red.json */,
+				CA5AD00C29D4DC9E007D6C65 /* angel_white.json */,
+				CA92151F28B7FDE70094D04C /* people.json */,
+				CA8639642808622E006D4F3B /* care.json */,
+				CA863966280863E2006D4F3B /* care2.json */,
+				CAC8B07C27CD404800DFF238 /* moon.json */,
+				CAC8B07D27CD404800DFF238 /* closed.json */,
+				CAC8B07E27CD404800DFF238 /* userAnimation.json */,
+				CAC8B07F27CD404800DFF238 /* mappin.json */,
+				CAC8B08027CD404800DFF238 /* christmasHat.json */,
+				CA86396228081F04006D4F3B /* checkmark.json */,
+				CAB810F1290605D90002609F /* alert.json */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		D359F74C8D648CD6713D4290 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FECD3CDBD175591C8A4515EA /* Pods-PayWoowManager.debug.xcconfig */,
+				882B6D98BCC3AF8E3C6A8219 /* Pods-PayWoowManager.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CAC8B02E27CD390700DFF238 /* PayWoowManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CAC8B03D27CD390800DFF238 /* Build configuration list for PBXNativeTarget "PayWoowManager" */;
+			buildPhases = (
+				AFF1BDEF705F51AF0F20BC5C /* [CP] Check Pods Manifest.lock */,
+				CAC8B02B27CD390700DFF238 /* Sources */,
+				CAC8B02C27CD390700DFF238 /* Frameworks */,
+				CAC8B02D27CD390700DFF238 /* Resources */,
+				531B049BCFAB499A5ADCDC33 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PayWoowManager;
+			packageProductDependencies = (
+				CAF1D52F29096937007149AD /* Mantis */,
+				CAF1D53229096D8B007149AD /* FirebaseAuth */,
+				CAF1D53429096D8B007149AD /* FirebaseFirestore */,
+				CAF1D53629096D8B007149AD /* FirebaseMessaging */,
+				CAF1D53829096D8B007149AD /* FirebaseStorage */,
+				CAF1D53B2909709D007149AD /* DeviceKit */,
+				CAF1D53E29097165007149AD /* SwiftUICharts */,
+			);
+			productName = PayWoowManager;
+			productReference = CAC8B02F27CD390700DFF238 /* PayWoowManager.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CAC8B02727CD390600DFF238 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					CAC8B02E27CD390700DFF238 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = CAC8B02A27CD390600DFF238 /* Build configuration list for PBXProject "PayWoowManager" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CAC8B02627CD390600DFF238;
+			packageReferences = (
+				CAF1D52E29096937007149AD /* XCRemoteSwiftPackageReference "Mantis" */,
+				CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CAF1D53A2909709D007149AD /* XCRemoteSwiftPackageReference "DeviceKit" */,
+				CAF1D53D29097165007149AD /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
+			productRefGroup = CAC8B03027CD390700DFF238 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CAC8B02E27CD390700DFF238 /* PayWoowManager */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CAC8B02D27CD390700DFF238 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA863967280863E3006D4F3B /* care2.json in Resources */,
+				CAC8B03A27CD390800DFF238 /* Preview Assets.xcassets in Resources */,
+				CA5AD00E29D4DC9E007D6C65 /* angel_white.json in Resources */,
+				CAC8B03727CD390800DFF238 /* Assets.xcassets in Resources */,
+				CA55708A2833AD40007760F1 /* pay.mp3 in Resources */,
+				CAC8B0BB27CD404800DFF238 /* moon.json in Resources */,
+				CA8639652808622E006D4F3B /* care.json in Resources */,
+				CAC8B0BE27CD404800DFF238 /* mappin.json in Resources */,
+				CA86396328081F04006D4F3B /* checkmark.json in Resources */,
+				CAC8B0BF27CD404800DFF238 /* christmasHat.json in Resources */,
+				CAC8B0BC27CD404800DFF238 /* closed.json in Resources */,
+				CAB810F2290605DA0002609F /* alert.json in Resources */,
+				CA3858FA27FDC70900044F59 /* hogrider.mp3 in Resources */,
+				CA5AD00F29D4DC9E007D6C65 /* angel_red.json in Resources */,
+				CA92152028B7FDE70094D04C /* people.json in Resources */,
+				CAE0A1092815E4530055EF5E /* render.mp4 in Resources */,
+				CAC8B0BD27CD404800DFF238 /* userAnimation.json in Resources */,
+				CAA345D7285824700058C50B /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		531B049BCFAB499A5ADCDC33 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PayWoowManager/Pods-PayWoowManager-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PayWoowManager/Pods-PayWoowManager-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PayWoowManager/Pods-PayWoowManager-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AFF1BDEF705F51AF0F20BC5C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PayWoowManager-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CAC8B02B27CD390700DFF238 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA7B30E429C3987800DE335F /* TaxApplicationContent.swift in Sources */,
+				CA5993D728458E1E0036619F /* BlockSender.swift in Sources */,
+				CAC8B09927CD404800DFF238 /* OrdersSections.swift in Sources */,
+				CAC8B0C127CD404800DFF238 /* LogoScreen.swift in Sources */,
+				CA07306F2845766700CD4A2C /* UserResearcher.swift in Sources */,
+				CA4C241F29D3BDED00DB3FF4 /* BlockServices.swift in Sources */,
+				A73C694929C5410E009C1BA8 /* Investories.swift in Sources */,
+				CA863961280724C7006D4F3B /* ListPreparator.swift in Sources */,
+				CAC8B0AE27CD404800DFF238 /* OwnStreammerStore.swift in Sources */,
+				CAC8B0B127CD404800DFF238 /* ReferanceStore.swift in Sources */,
+				CAEF929428CCAD71009D8913 /* CustomerServices.swift in Sources */,
+				CABF555128EC56B70018E7ED /* External.swift in Sources */,
+				CAC8B0B027CD404800DFF238 /* ConfirmationStore.swift in Sources */,
+				CAC8B0AC27CD404800DFF238 /* ProcessedOrders.swift in Sources */,
+				CAC8B0A427CD404800DFF238 /* AcceptedOrders.swift in Sources */,
+				CAC8B09A27CD404800DFF238 /* Suggestions.swift in Sources */,
+				CA3A7F8929021CE2006DBC28 /* LiveDataListener.swift in Sources */,
+				CAC8B0A327CD404800DFF238 /* Users.swift in Sources */,
+				CAB810F429060A900002609F /* Notes.swift in Sources */,
+				A750C68129C72F8300E169BF /* VIPPointManager.swift in Sources */,
+				CA1F0B3D2904921A007847B7 /* PlatformSelector.swift in Sources */,
+				CAC8B09C27CD404800DFF238 /* Applications.swift in Sources */,
+				CAC8B0A727CD404800DFF238 /* GiftRequest.swift in Sources */,
+				CAC8B0B727CD404800DFF238 /* OrderStore.swift in Sources */,
+				CAC8B0B627CD404800DFF238 /* SalaryStore.swift in Sources */,
+				CAC8B09E27CD404800DFF238 /* MainTabView.swift in Sources */,
+				CAEAD6AF286D9FDC00CB4866 /* VIPOrders.swift in Sources */,
+				CAC8B09727CD404800DFF238 /* WaitingOrders.swift in Sources */,
+				CAC8B0B427CD404800DFF238 /* GiftRequestAdminStore.swift in Sources */,
+				CAC8B09B27CD404800DFF238 /* Application-Suggest.swift in Sources */,
+				CAC8B09D27CD404800DFF238 /* Profile.swift in Sources */,
+				CAC8B09827CD404800DFF238 /* ApplicationsStore.swift in Sources */,
+				CAB810EE290601280002609F /* PlatformContent.swift in Sources */,
+				CAC8B0A227CD404800DFF238 /* AppManager.swift in Sources */,
+				CAC8B0A827CD404800DFF238 /* AdminLogin.swift in Sources */,
+				CA86A82B2911B2BC00F81CD3 /* BalanceMaker.swift in Sources */,
+				CA951365284408F100976643 /* Entegrations.swift in Sources */,
+				CAC8B0AB27CD404800DFF238 /* AgencyRequest.swift in Sources */,
+				CAC8B0A527CD404800DFF238 /* StreammerSalaryWriter.swift in Sources */,
+				CAB810EC290600FB0002609F /* PlatformStore.swift in Sources */,
+				CAC8B0A927CD404800DFF238 /* DeclinedOrders.swift in Sources */,
+				A73C694B29C54C4B009C1BA8 /* InvestCreater.swift in Sources */,
+				CAC8B0B327CD404800DFF238 /* SignatureResearcher.swift in Sources */,
+				CAC8B0AF27CD404800DFF238 /* SuggestionStore.swift in Sources */,
+				CACAC1ED28B431DD005CD910 /* PasswordChanger.swift in Sources */,
+				CA5625B3291055CC00FBA1EA /* MyDeallers.swift in Sources */,
+				CA86A82F29146E4700F81CD3 /* BankIbanStore.swift in Sources */,
+				CAC8B0C027CD404800DFF238 /* ImagePicker.swift in Sources */,
+				CAC8B03327CD390700DFF238 /* PayWoowManagerApp.swift in Sources */,
+				CAC8B0A627CD404800DFF238 /* ReferanceCodeMaker.swift in Sources */,
+				CAC8B09F27CD404800DFF238 /* StaticsContent.swift in Sources */,
+				A73C694729C4FAFD009C1BA8 /* Remittences.swift in Sources */,
+				CAC8B0AA27CD404800DFF238 /* BankIban.swift in Sources */,
+				CA7B30E229C390B800DE335F /* TaxFreeStore.swift in Sources */,
+				CA60B2A8284090E6004DDE4E /* TokenResearcher.swift in Sources */,
+				CA8639692808741E006D4F3B /* CareControl.swift in Sources */,
+				CA86A82D2912D36100F81CD3 /* DeallerMaker.swift in Sources */,
+				CAC8B0B827CD404800DFF238 /* DeallerStore.swift in Sources */,
+				CAC8B0A127CD404800DFF238 /* EditProfile.swift in Sources */,
+				CAC8B0B227CD404800DFF238 /* StaticsStore_Diamond.swift in Sources */,
+				CAC8B0B527CD404800DFF238 /* GeneralStore.swift in Sources */,
+				CAC8B0B927CD404800DFF238 /* AgencyRequestStore.swift in Sources */,
+				CAC8B0A027CD404800DFF238 /* AccountConfirmation.swift in Sources */,
+				CA9513632843EC2D00976643 /* DemoPreview.swift in Sources */,
+				CAC8B0AD27CD404800DFF238 /* UserStore.swift in Sources */,
+				CAEF929228CC0B33009D8913 /* CustomerServiceStore.swift in Sources */,
+				CA7B30E029C3905100DE335F /* TaxFreeApplications.swift in Sources */,
+				CAEAD6AD286C977000CB4866 /* VIPOrderStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CAC8B03B27CD390800DFF238 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CAC8B03C27CD390800DFF238 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CAC8B03E27CD390800DFF238 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FECD3CDBD175591C8A4515EA /* Pods-PayWoowManager.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PayWoowManager/PayWoowManager.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"PayWoowManager/Preview Content\"";
+				DEVELOPMENT_TEAM = F8426QAQ28;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PayWoowManager/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Manager;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paywoow.yonetim;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		CAC8B03F27CD390800DFF238 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 882B6D98BCC3AF8E3C6A8219 /* Pods-PayWoowManager.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PayWoowManager/PayWoowManager.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"PayWoowManager/Preview Content\"";
+				DEVELOPMENT_TEAM = F8426QAQ28;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PayWoowManager/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Manager;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paywoow.yonetim;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CAC8B02A27CD390600DFF238 /* Build configuration list for PBXProject "PayWoowManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CAC8B03B27CD390800DFF238 /* Debug */,
+				CAC8B03C27CD390800DFF238 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CAC8B03D27CD390800DFF238 /* Build configuration list for PBXNativeTarget "PayWoowManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CAC8B03E27CD390800DFF238 /* Debug */,
+				CAC8B03F27CD390800DFF238 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CAF1D52E29096937007149AD /* XCRemoteSwiftPackageReference "Mantis" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/guoyingtao/Mantis.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.7.5;
+			};
+		};
+		CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = exactVersion;
+				version = 9.6.0;
+			};
+		};
+		CAF1D53A2909709D007149AD /* XCRemoteSwiftPackageReference "DeviceKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devicekit/DeviceKit.git";
+			requirement = {
+				kind = exactVersion;
+				version = 4.7.0;
+			};
+		};
+		CAF1D53D29097165007149AD /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = exactVersion;
+				version = 1.5.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CAF1D52F29096937007149AD /* Mantis */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CAF1D52E29096937007149AD /* XCRemoteSwiftPackageReference "Mantis" */;
+			productName = Mantis;
+		};
+		CAF1D53229096D8B007149AD /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		CAF1D53429096D8B007149AD /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		CAF1D53629096D8B007149AD /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		CAF1D53829096D8B007149AD /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		CAF1D53B2909709D007149AD /* DeviceKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CAF1D53A2909709D007149AD /* XCRemoteSwiftPackageReference "DeviceKit" */;
+			productName = DeviceKit;
+		};
+		CAF1D53E29097165007149AD /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CAF1D53D29097165007149AD /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = CAC8B02727CD390600DFF238 /* Project object */;
+}
