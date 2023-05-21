@@ -1,6 +1,0 @@
-framework module CreditCardReader {
-  umbrella header "CreditCardReader-umbrella.h"
-
-  export *
-  module * { export * }
-}
