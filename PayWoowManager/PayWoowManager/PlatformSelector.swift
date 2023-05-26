@@ -26,21 +26,16 @@ struct PlatformSelector: View {
                         ZStack{
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.white)
-                            
                             Image(systemName: "arrow.left")
                                 .foregroundColor(.white)
                                 .font(.system(size: 20))
                         }
                         .frame(width: 45, height: 45)
                     }
-                    
                     Text("Platform Seç")
                         .foregroundColor(.white)
                         .font(.title2)
-                    
-                    
                     Spacer(minLength: 0)
-
                 }
                 .padding([.horizontal, .top])
                 

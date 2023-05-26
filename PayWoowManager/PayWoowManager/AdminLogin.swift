@@ -24,6 +24,7 @@ struct AdminLogin: View {
     @AppStorage("storeNick") var storeNick : String = "Nil"
     @AppStorage("storePassword") var storePassword : String = "Nil"
     @State private var isActiveSecureCode = ""
+    @StateObject var userStore = UserStore()
     
     @State private var callbackPassword : String = ""
     @State private var callbackPhoneNumber : String = ""
@@ -140,6 +141,7 @@ struct AdminLogin: View {
         }
         .fullScreenCover(isPresented: $toPanel) {
             MainTabView(dealler: self.bayiiId, oldPassword: isActiveSecureCode)
+                .environmentObject(userStore)
         }
         .onAppear{
             if self.storeNick.count > 6 {

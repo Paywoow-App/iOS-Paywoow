@@ -456,45 +456,7 @@ struct AccountManagment: View {
                         
                     }
                     
-                    Group{
-                        
-                        
-                        
-                        Button {
-                            let mailtoString = "mailto:support@paywoow.com?subject=Desteğe ihtiyacım var! &body=Merhaba\nBen \(self.userStore.firstName) \(self.userStore.lastName)\nUserId: \(Auth.auth().currentUser!.uid)\nBigoId: \(self.userStore.bigoId)\nŞu Konuda Desteğe ihtiyacım var...".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-                            let mailtoUrl = URL(string: mailtoString!)!
-                            if UIApplication.shared.canOpenURL(mailtoUrl) {
-                                UIApplication.shared.open(mailtoUrl, options: [:])
-                            }
-                        } label: {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(Color.black.opacity(0.2))
-                                
-                                HStack{
-                                    
-                                    Image(systemName: "headphones")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .foregroundColor(.white)
-                                        .frame(width: 20, height: 20)
-                                    
-                                    Text("Support")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 20))
-                                    
-                                    
-                                    Spacer()
-                                    
-                                    Text("7/24")
-                                        .foregroundColor(.white.opacity(0.7))
-                                        .font(.system(size: 15))
-                                }
-                                .padding(.horizontal)
-                            }
-                            .frame(width: UIScreen.main.bounds.width * 0.95, height: 50)
-                        }
-                        
+                    Group {
                         
                         Button {
                             self.toFAQ.toggle()

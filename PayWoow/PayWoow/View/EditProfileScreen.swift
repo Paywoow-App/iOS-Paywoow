@@ -351,6 +351,7 @@ struct EditProfileScreen: View {
                             TextField("Platform ID", text: $platformId)
                                 .foregroundColor(.white)
                                 .font(.system(size: 15))
+                                .disabled(true)
                             
                             Button {
                                 self.toPlatformSelector.toggle()
@@ -534,6 +535,8 @@ struct EditProfileScreen: View {
                     
                     
                 }
+                    
+                    
                     HStack{
                         Text("Address Informations")
                             .foregroundColor(.white)
@@ -556,6 +559,7 @@ struct EditProfileScreen: View {
                             .onChange(of: cityIndex ?? 0) { index in
                                 self.city = cityTownStore.cityList[index]
                                 cityTownStore.findTowns(cityInput: city)
+                                
                                 self.townIndex = 0
                                 self.showtownList.toggle()
                             }
@@ -577,7 +581,6 @@ struct EditProfileScreen: View {
                                     .padding(.horizontal)
                                     .onChange(of: townIndex ?? 0) { index in
                                         self.town = cityTownStore.townList[index]
-                                        
                                     }
                                     .colorScheme(.light)
                             }
@@ -588,7 +591,6 @@ struct EditProfileScreen: View {
                                     .padding(.horizontal)
                                     .onChange(of: townIndex ?? 0) { index in
                                         self.town = cityTownStore.townList[index]
-                                        
                                     }
                                     .colorScheme(.light)
                             }
@@ -669,7 +671,9 @@ struct EditProfileScreen: View {
             if self.showPhoneVerificator {
                 ZStack{
                     Color.black.opacity(0.000000005).edgesIgnoringSafeArea(.all)
-                    
+                        .onTapGesture {
+                            showPhoneVerificator.toggle()
+                        }
                     phoneVerificator
                 }
             }
@@ -830,10 +834,10 @@ struct EditProfileScreen: View {
                     .background(Color.gray)
                     .padding(.horizontal, UIScreen.main.bounds.width * 0.25)
             }
-            
+            // Phone auth problem
             if self.sendCode == true {
                 Button {
-                    if self.tempCode == Int(self.verificationCode)! {
+                    if self.tempCode == Int(self.verificationCode) {
                         let ref = Firestore.firestore()
                         ref.collection("Users").document(Auth.auth().currentUser!.uid).setData(
                             ["phoneNumber" : phoneNumber,

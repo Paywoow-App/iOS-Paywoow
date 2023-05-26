@@ -9,11 +9,36 @@ import SwiftUI
 import SDWebImageSwiftUI
 import FirebaseFirestore
 
+struct AgencyRequest_Previews: PreviewProvider {
+    static var previews: some View {
+        AgencyRequest()
+    }
+}
+
 struct AgencyRequest: View {
+    
+    // Tab view 2 section will come
+    @State private var selection = 0
     @StateObject var agencyRequests = AgencyRequestStore()
     @State private var alertTitle : String = ""
     @State private var alertBody : String = ""
     @State private var showAlert : Bool = false
+    
+    
+    var agencyyRequest: some View {
+        ScrollView(showsIndicators: false){
+            ForEach(agencyRequests.requests){ item in
+                AgencyRequestContent(agencyName: item.agencyName, firstName: item.firstName, lastName: item.lastName, isComplatedTransactions: item.isComplatedTransactions, isVerifiedAgency: item.isVerifiedAgency, level: item.level, nickname: item.nickname, pfImage: item.pfImage, phoneNumber: item.phoneNumber, platformID: item.platformID, platformName: item.platformName, streamers: item.streamers, timeDate: item.timeDate, token: item.token, totalStreamers: item.totalStreamers, totalWork: item.totalWork, docID: item.docID, showAlert: $showAlert, alertTitle: $alertTitle, alertBody: $alertBody)
+            }
+        }
+    }
+    
+    var agencyRequestAccepted: some View {
+        VStack {
+            Color.black
+        }
+    }
+    
     var body: some View {
         ZStack{
             VStack{
@@ -33,14 +58,60 @@ struct AgencyRequest: View {
                 }
                 .padding(.all)
                 
-                ScrollView(showsIndicators: false){
-                    ForEach(agencyRequests.requests){ item in
-                        AgencyRequestContent(agencyName: item.agencyName, firstName: item.firstName, lastName: item.lastName, isComplatedTransactions: item.isComplatedTransactions, isVerifiedAgency: item.isVerifiedAgency, level: item.level, nickname: item.nickname, pfImage: item.pfImage, phoneNumber: item.phoneNumber, platformID: item.platformID, platformName: item.platformName, streamers: item.streamers, timeDate: item.timeDate, token: item.token, totalStreamers: item.totalStreamers, totalWork: item.totalWork, docID: item.docID, showAlert: $showAlert, alertTitle: $alertTitle, alertBody: $alertBody)
+                HStack{
+                    if self.selection == 0 {
+                        Text("Beklemede")
+                            .foregroundColor(.white)
+                            .font(.system(size: 20))
+                            .bold()
                     }
+                    else {
+                        Button {
+                            self.selection = 0
+                        } label: {
+                            Text("Beklemede")
+                                .foregroundColor(.white)
+                                .font(.system(size: 15))
+                        }
+                        
+                    }
+                    
+                    Spacer()
+                    
+                    
+                    if self.selection == 1 {
+                        Text("Onaylandı")
+                            .foregroundColor(.white)
+                            .font(.system(size: 20))
+                            .bold()
+                    }
+                    else {
+                        Button {
+                            self.selection = 1
+                        } label: {
+                            Text("Onaylandı")
+                                .foregroundColor(.white)
+                                .font(.system(size: 15))
+                        }
+                        
+                    }
+                    
+                    Spacer()
                 }
+                .frame(width: UIScreen.main.bounds.width * 0.9)
+
+                TabView(selection: $selection){
+                    
+                    agencyyRequest
+                        .tag(0)
+                    
+                    agencyRequestAccepted
+                        .tag(1)
+                    
+                }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             }
             
-            if self.agencyRequests.requests.isEmpty == true {
+            if self.agencyRequests.requests.isEmpty == true, selection == 0 {
                 VStack(spacing: 20){
                     
                     Spacer(minLength: 0)
@@ -63,6 +134,7 @@ struct AgencyRequest: View {
                     
                     Spacer(minLength: 0)
                 }
+                .padding(.top)
             }
         }
         .alert(isPresented: $showAlert) {
@@ -93,6 +165,7 @@ struct AgencyRequestContent : View{
     @Binding var showAlert : Bool
     @Binding var alertTitle : String
     @Binding var alertBody : String
+    @Environment(\.dismiss) var dismiss
     
     //General
     @StateObject var bayiiInfoStore = DeallerStore()
@@ -100,6 +173,8 @@ struct AgencyRequestContent : View{
     @State private var showStreamers : Bool = false
     @State private var selection : Int = 0
     @State private var blur : Bool = false
+    @State private var isUserSureAbout: Bool = false
+    
     var body: some View {
         VStack(spacing: 15){
             HStack{
@@ -237,13 +312,13 @@ struct AgencyRequestContent : View{
                     if self.blur == false {
                         HStack{
                             Button {
-                                deleteRequest()
+                                // New notification
+                                isUserSureAbout.toggle()
                             } label: {
                                 ZStack{
                                     RoundedRectangle(cornerRadius: 6)
                                         .stroke(Color.white)
-                                    
-                                    Text("Sil")
+                                    Text("Kaldır")
                                         .foregroundColor(.white)
                                         .font(.system(size: 15))
                                 }
@@ -269,13 +344,11 @@ struct AgencyRequestContent : View{
                                 ZStack{
                                     RoundedRectangle(cornerRadius: 6)
                                         .fill(Color.white)
-                                    
                                     Text("Onayla")
                                         .foregroundColor(.black)
                                         .font(.system(size: 15))
                                 }
                             }
-                            
                         }
                         .frame(height: 40)
                     }
@@ -283,7 +356,6 @@ struct AgencyRequestContent : View{
             }
             
             if showStreamers {
-                
                 HStack{
                     Text("Yayıncılar")
                         .foregroundColor(.white)
@@ -311,7 +383,6 @@ struct AgencyRequestContent : View{
                     Text("Ajans Kuruluyor")
                         .foregroundColor(.white)
                         .font(.system(size: 18))
-                    
                     ProgressView()
                         .colorScheme(.dark)
                         .scaleEffect(2)
@@ -320,6 +391,52 @@ struct AgencyRequestContent : View{
                     self.showStreamers = false
                 }
             }
+            ZStack {
+                let bounds = UIScreen.main.bounds
+                Color.black.opacity(0.5).ignoresSafeArea()
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(.init(hex: "#313635")).opacity(0.8)
+                    .frame(width: bounds.width * 0.8,height: bounds.height * 0.18)
+                    .scaledToFit()
+                    .padding(.horizontal)
+                    
+                VStack(spacing: 20) {
+                    Text("Ajansı kaldırmayı onaylıyor musunuz ?")
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
+                    HStack(spacing: 20) {
+                        Button {
+                            deleteRequest()
+                        } label: {
+                            
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 6)
+                                    .stroke(Color.white)
+                                
+                                Text("Evet")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                            }
+                        }
+                        Button {
+                            isUserSureAbout.toggle()
+                        } label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 6)
+                                    .foregroundColor(.white)
+                                
+                                Text("Hayır")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: 15))
+                            }
+                        }
+                    }
+                    .padding(.horizontal)
+                    .frame(height: 40)
+                }
+                .padding(.horizontal)
+            }
+            .opacity(isUserSureAbout ? 1 : 0)
         }
         .padding(.horizontal)
     }

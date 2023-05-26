@@ -15,12 +15,15 @@ import Lottie
 
 struct Users : View {
     @State private var selection = 1
-    @StateObject var userStore = UserStore()
+    @EnvironmentObject var userStore : UserStore
     @StateObject var referanceStore = ReferanceStore()
-    @State private var showLists = false
+    @Binding var showLists: Bool
     @State private var toMaker = false
     @State private var showDetails : Bool = false
     @State private var userTypeSelection = 0
+    
+    
+    
     var body: some View {
             VStack(spacing: 15){
                 
@@ -37,6 +40,7 @@ struct Users : View {
                         .padding(.leading , 5)
                     
                     Spacer()
+
                     
                     if self.selection == 0 {
                         Button {
@@ -121,6 +125,7 @@ struct Users : View {
                         }
                     }
                     else {
+                        
                         ScrollView(.vertical, showsIndicators: false) {
                             ForEach(userStore.users){ item in
                                
@@ -143,11 +148,6 @@ struct Users : View {
                 
                 Spacer(minLength: 0)
                 
-            }
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
-                    self.showLists.toggle()
-                }
             }
             .popover(isPresented: $toMaker, content: {
                 ReferanceCodeMaker()

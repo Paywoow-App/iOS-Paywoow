@@ -52,6 +52,7 @@ struct PickerField: UIViewRepresentable {
     // MARK: - Public methods
     func makeUIView(context: UIViewRepresentableContext<PickerField>) -> UITextField {
         textField.placeholder = placeholder
+        textField.textColor = .white
         return textField
     }
 

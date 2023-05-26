@@ -109,7 +109,7 @@ struct MyOrderContent: View {
                             RoundedRectangle(cornerRadius: 4)
                                 .fill(Color.red)
                             
-                            Text("Declined")
+                            Text("Reddetdildi")
                                 .foregroundColor(.white)
                                 .font(.system(size: 14))
                         }
@@ -223,7 +223,7 @@ struct MyOrderContent: View {
                             RoundedRectangle(cornerRadius: 4)
                                 .fill(Color.red)
                             
-                            Text("Declined")
+                            Text("Red Edildi")
                                 .foregroundColor(.white)
                                 .font(.system(size: 14))
                         }

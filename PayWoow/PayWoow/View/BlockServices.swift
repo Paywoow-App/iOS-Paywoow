@@ -30,7 +30,7 @@ struct BlockServices: View {
     @State private var selectedClass : String = "A Class"
     @State private var selectedDescription : String = "Ban'ım yarın açılsın"
     @State private var selectedPoint : Int = 100
-    @State private var inputAngelPoint : String = ""
+    @State private var inputAngelPoint : String = "" 
     @State private var selectedUserID : String = "None"
     
     // MARK: User Details
@@ -176,6 +176,11 @@ struct BlockServices: View {
                                 .frame(height: 30)
                                 .padding(.horizontal, 100)
                                 .padding(.bottom)
+                                .background {
+                                    LinearGradient(gradient: Gradient(colors: [Color.init(hex: "#141414")]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                                        .edgesIgnoringSafeArea(.all)
+                                        .frame(height: 50)
+                                }
                             }
                             
                         }
@@ -229,6 +234,11 @@ struct BlockServices: View {
                                     .frame(height: 30)
                                     .padding(.horizontal, 100)
                                     .padding(.bottom)
+                                    .background {
+                                        LinearGradient(gradient: Gradient(colors: [Color.init(hex: "#141414")]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                                            .edgesIgnoringSafeArea(.all)
+                                            .frame(height: 50)
+                                    }
                                 }
                             }
                             
@@ -289,11 +299,11 @@ struct BlockServices: View {
             }
 
             if self.angelTabSelector == 0 {
-                VStack{
+                VStack(alignment: .center){
                     
                     Spacer(minLength: 0)
                     
-                    VStack(spacing: 15){
+                    VStack(alignment: .center,spacing: 15){
                         
                         Text("@"+userStore.nickname)
                             .foregroundColor(.black)
@@ -325,7 +335,13 @@ struct BlockServices: View {
                             .font(.system(size: 25))
                             .colorScheme(.light)
                             .keyboardType(.numbersAndPunctuation)
+                            .multilineTextAlignment(.center)
                             .frame(width: 65)
+                            .onChange(of: inputAngelPoint) { newValue in
+                                 if let inputAsInt = Int(newValue), inputAsInt > userStore.vipPoint {
+                                     inputAngelPoint = String(userStore.vipPoint)
+                                 }
+                             }
                         
                         Divider()
                             .colorScheme(.dark)
@@ -341,7 +357,7 @@ struct BlockServices: View {
                                 }
                                 else if Int(inputAngelPoint)! == 0 || Int(inputAngelPoint)! < 25 {
                                     self.alertTitle = "Hata"
-                                    self.alertBody = "En az 25 puan kullanabilirsiniz. Girdiğiniz değer çok az.ssssss"
+                                    self.alertBody = "En az 25 puan kullanabilirsiniz. Girdiğiniz değer çok az"
                                     self.showAlert.toggle()
                                 }
                                 else if Int(self.userStore.totalSoldDiamond / 50) < Int(inputAngelPoint)! {
@@ -419,38 +435,38 @@ struct BlockServices: View {
                                 .padding(.horizontal, 40)
                         }
                         
-                        if self.showAlert {
-                            VStack(alignment: .center, spacing: 15){
-                                Text(alertTitle)
-                                    .foregroundColor(.black)
-                                    .font(.system(size: 18))
-                                    .fontWeight(.medium)
-                                
-                                Text(alertBody)
-                                    .foregroundColor(.black)
-                                    .font(.system(size: 15))
-                                    .multilineTextAlignment(.center)
-                                
-                                
-                                Button {
-                                    self.showAlert = false
-                                } label: {
-                                    Text("Ok")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                        .padding(.horizontal, 20)
-                                        .padding(.vertical, 7)
-                                        .background(Color.black)
-                                        .cornerRadius(25)
-                                }
-                                
-                            }
-                            .padding(.all, 10)
-                            .background(Color.white)
-                            .cornerRadius(12)
-                            .shadow(radius: 3)
-                            .padding(.all, 40)
-                        }
+//                        if self.showAlert {
+//                            VStack(alignment: .center, spacing: 15){
+//                                Text(alertTitle)
+//                                    .foregroundColor(.black)
+//                                    .font(.system(size: 18))
+//                                    .fontWeight(.medium)
+//
+//                                Text(alertBody)
+//                                    .foregroundColor(.black)
+//                                    .font(.system(size: 15))
+//                                    .multilineTextAlignment(.center)
+//
+//
+//                                Button {
+//                                    self.showAlert = false
+//                                } label: {
+//                                    Text("Ok")
+//                                        .foregroundColor(.white)
+//                                        .font(.system(size: 15))
+//                                        .padding(.horizontal, 20)
+//                                        .padding(.vertical, 7)
+//                                        .background(Color.black)
+//                                        .cornerRadius(25)
+//                                }
+//
+//                            }
+//                            .padding(.all, 10)
+//                            .background(Color.white)
+//                            .cornerRadius(12)
+//                            .shadow(radius: 3)
+//                            .padding(.all, 40)
+//                        }
                         
                     }
                 }
@@ -1260,6 +1276,8 @@ struct BlockServices: View {
                 .padding(.all)
                 .zIndex(0)
                 .overlay{
+                    
+                    
                     if self.showAlert {
                         VStack(alignment: .center, spacing: 15){
                             Text(alertTitle)

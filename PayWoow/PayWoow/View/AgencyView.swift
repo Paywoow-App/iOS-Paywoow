@@ -91,7 +91,7 @@ struct AgencyView: View {
                                     .frame(width: 20, height: 20)
                                     .padding(.leading, 10)
                                 
-                                Text("My Streamers")
+                                Text("Yayıncılarım")
                                     .foregroundColor(.white)
                                     .font(.system(size: 18))
                                     .colorScheme(.dark)

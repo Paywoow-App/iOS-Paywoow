@@ -51,6 +51,7 @@ struct OrderMaker: View {
     @State var barSize : CGFloat = 0
     @State var bayiiToken : String = ""
     @State var diamondLimit : Int = 0
+    @State var isVIPCard : Bool = false
     
     //MARK: Values
     @Environment(\.presentationMode) var present
@@ -206,9 +207,15 @@ struct OrderMaker: View {
                                 HStack{
                                     TextField("Price", text: Binding(get: { self.inputPrice },
                                                                      set: { newValue in
-                                        if let intValue = Int(newValue), intValue <= 50000 {
-                                                                self.inputPrice = newValue
-                                                            }
+                                        if self.isVIPCard {
+                                            if let intValue = Int(newValue), intValue <= 50000 {
+                                                self.inputPrice = newValue
+                                            }
+                                        } else {
+                                            if let intValue = Int(newValue), intValue <= 20000 {
+                                                self.inputPrice = newValue
+                                            }
+                                        }
                                     }))
                                         .foregroundColor(.white)
                                         .font(.system(size: 20))
@@ -311,23 +318,27 @@ struct OrderMaker: View {
                                 
                                 PricePack(price: 100, change: $change, willSellDiamond: $willSellDiamond, topLeadingColor: Color.init(red: 237 / 255, green: 239 / 255, blue: 244 / 255), bottomTrailingColor: Color.init(red: 119 / 255, green: 120 / 255, blue: 122 / 255), position1: .topLeading, position2: .bottomTrailing)
                                     .tag(0)
-                                
+                                    .frame(height: 310)
+
                                 PricePack(price: 200, change: $change, willSellDiamond: $willSellDiamond, topLeadingColor: Color.init(red: 231 / 255, green: 180 / 255, blue: 227 / 255), bottomTrailingColor: Color.init(red: 210 / 255, green: 116 / 255, blue: 188 / 255), position1: .topLeading, position2: .bottomTrailing)
                                     .tag(1)
-                                
+                                    .frame(height: 310)
+
                                 PricePack(price: 500, change: $change, willSellDiamond: $willSellDiamond, topLeadingColor: Color.init(red: 235 / 255, green: 138 / 255, blue: 80 / 255), bottomTrailingColor: Color.init(red: 160 / 255, green: 57 / 255, blue: 221 / 255), position1: .topLeading, position2: .bottomTrailing)
                                     .tag(2)
+                                    .frame(height: 310)
                                 
                                 PricePack(price: 1000, change: $change, willSellDiamond: $willSellDiamond, topLeadingColor: Color.init(red: 34 / 255, green: 230 / 255, blue: 151 / 255), bottomTrailingColor: Color.init(red: 101 / 255, green: 34 / 255, blue: 117 / 255), position1: .topLeading, position2: .bottomTrailing)
                                     .tag(3)
+                                    .frame(height: 310)
                                 
                                 PricePack(price: 2000, change: $change, willSellDiamond: $willSellDiamond, topLeadingColor: Color.init(red: 193 / 255, green: 10 / 255, blue: 136 / 255), bottomTrailingColor: Color.init(red: 52 / 255, green: 126 / 255, blue: 229 / 255), position1: .topLeading, position2: .bottomTrailing)
                                     .tag(4)
-                                
+                                    .frame(height: 310)
                                 
                                 CustomPricePack(price: $price, change: change, willSellDiamond: willSellDiamond, topLeadingColor: Color.init(hex: self.savedTopHex), bottomTrailingColor: Color.init(hex: self.savedBottomHex), position1: .topLeading, position2: .bottomTrailing, hexCodeTop: $hexCodeTop, hexCodeBottom: $hexCodeBottom)
                                     .tag(5)
-                                
+                                    .frame(height: 310)
                                 
                             }
                             .frame(height: 310)
@@ -387,6 +398,7 @@ struct OrderMaker: View {
                                     else {
                                         self.paymentCardSelector = 0
                                     }
+                                    self.isVIPCard = true
                                 } label: {
                                     if self.paymentCardSelector == 0 {
                                         ZStack{
@@ -421,7 +433,7 @@ struct OrderMaker: View {
                                 let result = step1 * Double(willSellDiamond)
                                 self.diamond = "\(Int(result))"
                                 self.price = Int(inputPrice)!
-                                
+                                self.isVIPCard = false
                             } label: {
                                 if self.paymentCardSelector == 1 {
                                     ZStack{

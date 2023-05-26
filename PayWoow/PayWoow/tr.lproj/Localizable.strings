@@ -213,7 +213,7 @@
 "My Bank Card" = "Banka Kartım";
 "Reference Code (Optional)" = "Referans Kodu (Opsiyonel)";
 "Choose Bank Card" = "Banka Kartı Seç";
-"With the name on your debit card, the name must be old. Otherwise, do it." = "Banka kartınızın üzerindeki isim ile, adı eski olmalı.
+"With the name on your debit card, the name must be old. Otherwise, do it." = "Banka kartınızın üzerindeki isim ile hesabınızdaki isim aynı olmalı.
 ";
 "By placing an order, you accept the 'Distance Sales Agreement' and preliminary information. As per the Security Agreement, your card information is not stored. A single withdrawal is made securely from your card." = "Sipariş vererek ''Mesafeli Satış Sözleşmesini'' ve ön bilgileri kabul etmiş olursunuz. Güvenlik Sözleşmesi gereği kart bilgileriniz saklanmamaktadır. Kartınızdan güvenli bir şekilde tek çekim yapılır.";
 "Signature" = "İmza";

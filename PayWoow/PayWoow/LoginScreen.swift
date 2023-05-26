@@ -515,10 +515,20 @@ struct LoginScreen: View {
                         Spacer(minLength: 0)
                         
                     }
-                    
                     Button {
                         if self.signInSelection == 0 {
-                            if self.password == "" {
+//
+                            if self.phoneNumber == "" {
+                                self.alertTitle = "Eksik Alan"
+                                self.alertBody = "Telefonunuz boş olamaz!"
+                                self.showAlert.toggle()
+                            }
+                            else if self.foundPhoneNumber != true {
+                                self.alertTitle = "Telefon numaranız yanlış!"
+                                self.alertBody = "Telefon numarasını kontrol ettikten sonra tekrar deneyiniz"
+                                self.showAlert.toggle()
+                            }
+                            else if self.password == "" {
                                 self.alertTitle = "Eksik Alan"
                                 self.alertBody = "Şifreniz boş olamaz!"
                                 self.showAlert.toggle()
@@ -536,7 +546,17 @@ struct LoginScreen: View {
                             }
                         }
                         else {
-                            if self.password == "" {
+                            if self.email == "" {
+                                self.alertTitle = "Eksik Alan"
+                                self.alertBody = "Mailiniz boş olamaz!"
+                                self.showAlert.toggle()
+                            }
+                            else if self.foundEmail != email {
+                                self.alertTitle = "Mailiniz yanlış!"
+                                self.alertBody = "Mailizini kontrol ettikten sonra tekrar deneyiniz"
+                                self.showAlert.toggle()
+                            }
+                            else if self.password == "" {
                                 self.alertTitle = "Eksik Alan"
                                 self.alertBody = "Şifreniz boş olamaz!"
                                 self.showAlert.toggle()
@@ -615,41 +635,40 @@ struct LoginScreen: View {
     
     var register1 : some View {
         VStack(spacing: 15){
-            HStack{
-                
-                Button {
-                    self.bodySelection = 0
-                } label: {
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.white)
-                        
-                        Image(systemName: "arrow.left")
-                            .foregroundColor(.white)
-                            .font(.system(size: 20))
+            VStack(alignment: .leading) {
+                HStack(spacing: 20){
+                    Button {
+                        self.bodySelection = 0
+                    } label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.white)
+                            
+                            Image(systemName: "arrow.left")
+                                .foregroundColor(.white)
+                                .font(.system(size: 20))
+                        }
+                        .frame(width: 45, height: 45)
                     }
-                    .frame(width: 45, height: 45)
-                }
 
-                
-                VStack(alignment: .leading, spacing: 12){
-                    Text("Doğum günün ne zaman?")
-                        .foregroundColor(.white)
-                        .font(.system(size: 18))
-                        .fontWeight(.medium)
                     
-                    Text("Yaşını hesaplamak için gerekli bilgidir")
-                        .foregroundColor(.white)
-                        .font(.system(size: 15))
-                        .fontWeight(.medium)
+                    VStack(alignment: .leading, spacing: 12){
+                        Text("Doğum günün ne zaman?")
+                            .foregroundColor(.white)
+                            .font(.system(size: 18))
+                            .fontWeight(.medium)
+                        
+                        
+                    }
+                    Spacer(minLength: 0)
                 }
-                
-                
-                Spacer(minLength: 0)
+                Text("Yaşını hesaplamak için gerekli bilgidir")
+                    .foregroundColor(.white)
+                    .font(.system(size: 15))
+                    .fontWeight(.medium)
             }
             .padding(.horizontal, 30)
-            .padding(.top)
-            
+            .padding(.top,40)
             HStack{
                 Text("\(bDay)")
                     .foregroundColor(.white)
@@ -701,7 +720,7 @@ struct LoginScreen: View {
                 .padding(.horizontal, 30)
             }
             
-            
+            Spacer()
             Spacer()
             
             DatePicker("", selection: $date, in: ...Date(),
@@ -717,42 +736,42 @@ struct LoginScreen: View {
                 self.bDay = formatter.string(from: val)
                 calcAge(birthday: bDay)
             }
+            Spacer()
         }
     }
     
     var register2 : some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 15){
-                HStack{
-                    
-                    Button {
-                        self.registerStep = self.registerStep - 1
-                    } label: {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.white)
-                            
-                            Image(systemName: "arrow.left")
-                                .foregroundColor(.white)
-                                .font(.system(size: 20))
+                Spacer()
+                VStack(alignment: .leading, content: {
+                    HStack(spacing: 20){
+                        Button {
+                            self.registerStep = self.registerStep - 1
+                        } label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.white)
+                                
+                                Image(systemName: "arrow.left")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 20))
+                            }
+                            .frame(width: 45, height: 45)
                         }
-                        .frame(width: 45, height: 45)
-                    }
-                    
-                    VStack(alignment: .leading, spacing: 16){
-                        Text("Haydi seni biraz tanıyalım?")
-                            .foregroundColor(.white)
-                            .font(.system(size: 18))
-                            .fontWeight(.medium)
                         
-                        Text("Adın ve Soyadın nedir?")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                            .fontWeight(.medium)
-                    }
-                    
-                    Spacer(minLength: 0)
-                }
+                            Text("Haydi seni biraz tanıyalım?")
+                                .foregroundColor(.white)
+                                .font(.system(size: 18))
+                                .fontWeight(.medium)
+                        Spacer(minLength: 0)
+                        }
+                        
+                    Text("Adın ve Soyadın nedir?")
+                        .foregroundColor(.white)
+                        .font(.system(size: 15))
+                        .fontWeight(.medium)
+                })
                 .padding(.horizontal, 30)
                 .padding(.top)
                 
@@ -807,7 +826,7 @@ struct LoginScreen: View {
                     .frame(height: 43)
                     .padding(.horizontal, 30)
                 }
-                
+                Spacer()
             }
         }
     }
@@ -815,39 +834,36 @@ struct LoginScreen: View {
     var register3 : some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 15){
-                HStack{
-                    
-                    Button {
-                        self.registerStep = self.registerStep - 1
-                    } label: {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.white)
-                            
-                            Image(systemName: "arrow.left")
-                                .foregroundColor(.white)
-                                .font(.system(size: 20))
+                Spacer()
+                VStack(alignment: .leading) {
+                    HStack(spacing: 20) {
+                        Button {
+                            self.registerStep = self.registerStep - 1
+                        } label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.white)
+                                
+                                Image(systemName: "arrow.left")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 20))
+                            }
+                            .frame(width: 45, height: 45)
                         }
-                        .frame(width: 45, height: 45)
-                    }
-                    
-                    VStack(alignment: .leading, spacing: 16){
                         Text("Haydi seni biraz tanıyalım?")
                             .foregroundColor(.white)
                             .font(.system(size: 18))
                             .fontWeight(.medium)
-                        
-                        Text("Sana özel bir kullanıcı adın olsun")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                            .fontWeight(.medium)
+                        Spacer()
                     }
-                    
-                    Spacer(minLength: 0)
+                    Text("Sana özel bir kullanıcı adın olsun")
+                        .foregroundColor(.white)
+                        .font(.system(size: 15))
+                        .fontWeight(.medium)
+                        
                 }
                 .padding(.horizontal, 30)
                 .padding(.top)
-                
                 ZStack{
                     RoundedRectangle(cornerRadius: 8)
                         .fill(Color.black.opacity(0.2))
@@ -899,7 +915,6 @@ struct LoginScreen: View {
                     .frame(height: 43)
                     .padding(.horizontal, 30)
                 }
-                
                 Spacer(minLength: 0)
             }
         }
@@ -910,7 +925,7 @@ struct LoginScreen: View {
             VStack(spacing: 15){
                 Spacer()
                 
-                VStack {
+                VStack(alignment: .leading) {
                     HStack(spacing: 20) {
                         Button {
                             self.registerStep = self.registerStep - 1
@@ -930,6 +945,7 @@ struct LoginScreen: View {
                             .foregroundColor(.white)
                             .font(.system(size: 18))
                             .fontWeight(.medium)
+                        Spacer()
                     }
                     Text("Seçeceğin platform için devam edeceğiz!")
                         .foregroundColor(.white)

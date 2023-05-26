@@ -344,7 +344,7 @@ struct AddBankCard: View {
                         }
                         else {
                             HStack{
-                                TextField("4543 **** **** 0001", text: $cardNo)
+                                TextField("4543 **** **** 0001", text: $cardNo.limit(16))
                                     .foregroundColor(.white)
                                     .font(.system(size: 20))
                                     .padding(.horizontal)

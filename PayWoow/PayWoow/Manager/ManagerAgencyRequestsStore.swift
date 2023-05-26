@@ -86,6 +86,7 @@ struct ManagerAgencyRequest: View {
     @State private var alertTitle : String = ""
     @State private var alertBody : String = ""
     @State private var showAlert : Bool = false
+    
     var body: some View {
         ZStack{
             general.backgroundColor.edgesIgnoringSafeArea(.all)

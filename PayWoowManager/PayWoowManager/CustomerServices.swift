@@ -18,7 +18,7 @@ struct CustomerServices: View {
     var body: some View {
         ZStack{
             LinearGradient(gradient: Gradient(colors: [Color.init(red: 52 / 255 , green: 58 / 255, blue: 58 / 255), Color.init(red: 16 / 255, green: 16 / 255, blue: 16 / 255)]), startPoint: .topLeading, endPoint: .bottomTrailing).edgesIgnoringSafeArea(.all)
-            
+
             
             VStack(alignment: .leading, spacing: 15){
                 HStack(spacing: 15){

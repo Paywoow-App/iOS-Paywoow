@@ -222,8 +222,6 @@ struct BlockTransactionContent: View {
                                 .frame(width: 80, height: 80)
                                 .shadow(radius: 11)
                         }
-                        
-                        
                         LottieView(name: "angel_red", loopMode: .loop, speed: 2.0)
                             .scaleEffect(1.5)
                             .frame(width: 95, height: 95)
@@ -680,7 +678,7 @@ struct BlockTransactionContent: View {
             }
             
             if step == 4 {
-                Text("Konu mevzu olan ban kaldırma talebi olumsuz sonuçlanmıştur")
+                Text("Konu mevzu olan ban kaldırma talebi olumsuz sonuçlanmıştur\n Bu mesaj 72 saat içinde kaybolacaktır.")
                     .foregroundColor(.white)
                     .font(.system(size: 15))
                     .multilineTextAlignment(.center)
@@ -704,7 +702,7 @@ struct BlockTransactionContent: View {
             }
             
             if step == 5{
-                Text("ihlal bildirildi! Hesaplarınız kontrol edilecek ve usulsüzlük tespit edildiği taktirde hesaplarınız askıya alınacaktır.")
+                Text("ihlal bildirildi! Hesaplarınız kontrol edilecek ve usulsüzlük tespit edildiği taktirde hesaplarınız askıya alınacaktır.\n Bu mesaj 72 saat içinde kaybolacaktır.")
                     .foregroundColor(.white)
                     .font(.system(size: 15))
                     .multilineTextAlignment(.center)
@@ -733,7 +731,7 @@ struct BlockTransactionContent: View {
             
             
             if step == 3 && self.angelID == Auth.auth().currentUser!.uid{
-                Text("Sizlere teşekür ederiz!\nŞeytanımız artık kurtuldu!")
+                Text("Sizlere teşekkür ederiz!\nŞeytanımız artık kurtuldu!\n Bu mesaj 72 saat içinde kaybolacaktır.")
                     .foregroundColor(.white)
                     .font(.system(size: 15))
                     .multilineTextAlignment(.center)
@@ -741,7 +739,7 @@ struct BlockTransactionContent: View {
             }
             
             if step == 3 && self.devilID == Auth.auth().currentUser!.uid{
-                Text("Tebrikler! Artık özgürsün!\nMeleğimiz seni kurtardı")
+                Text("Tebrikler! Artık özgürsün!\nMeleğimiz seni kurtardı\n Bu mesaj 72 saat içinde kaybolacaktır.")
                     .foregroundColor(.white)
                     .font(.system(size: 15))
                     .multilineTextAlignment(.center)

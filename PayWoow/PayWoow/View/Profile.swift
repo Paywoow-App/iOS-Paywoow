@@ -498,15 +498,60 @@ struct Profile: View {
                                     .frame(width: 80, height: 80)
                                 
                                 VStack(alignment: .leading, spacing: 12) {
-                                    Text(item.agencyName)
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                        .bold()
-                                    
-                                    Text("\(item.firstName) \(item.lastName)")
-                                        .foregroundColor(.gray)
-                                        .font(.system(size: 15))
-                                    
+                                    HStack {
+                                        
+                                        Text(item.agencyName)
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .bold()
+                                        
+                                        Text("\(item.firstName) \(item.lastName)")
+                                            .foregroundColor(.gray)
+                                            .font(.system(size: 15))
+                                        
+                                        Button {
+                                            let ref = Firestore.firestore()
+                                            ref.collection("AgencyRequests").document(item.userId).collection("Streamers").document(Auth.auth().currentUser!.uid).setData(["isAccepted" : 1], merge: true)
+                                            
+                                            sendPushNotify(title: "\(userStore.nickname), teyiti reddetti", body: "Sizin ajansınızda olmadıını bildirdi!", userToken: item.token, sound: "pay.mp3")
+                                            
+                                            ref.collection("Users").document(Auth.auth().currentUser!.uid).collection("AgencyApplicationQuestion").document(item.userId).delete()
+                                        } label: {
+                                            ZStack{
+                                                Circle()
+                                                    .fill(Color.black.opacity(0.5))
+                                                
+                                                Circle()
+                                                    .stroke(Color.white)
+                                                
+                                                Image(systemName: "xmark")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .foregroundColor(.white)
+                                                    .frame(width: 15, height: 15)
+                                            }
+                                            .frame(width: 35, height: 35)
+                                        }
+                                        
+                                        Button {
+                                            let ref = Firestore.firestore()
+                                            ref.collection("AgencyRequests").document(item.userId).collection("Streamers").document(Auth.auth().currentUser!.uid).setData(["isAccepted" : 2], merge: true)
+                                            sendPushNotify(title: "Tebrikler!", body: "\(userStore.nickname)' sizin ajansınızda, yayıncı olduğunu doğruladı!", userToken: item.token, sound: "pay.mp3")
+                                            ref.collection("Users").document(Auth.auth().currentUser!.uid).collection("AgencyApplicationQuestion").document(item.userId).delete()
+                                        } label: {
+                                            ZStack{
+                                                Circle()
+                                                    .fill(Color.white)
+                                                
+                                                Image(systemName: "checkmark")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .foregroundColor(.black)
+                                                    .frame(width: 15, height: 15)
+                                            }
+                                            .frame(width: 35, height: 35)
+                                        }
+                                    }
                                     Text("Bu ajanta yayinci misin?")
                                         .foregroundColor(.white)
                                         .font(.system(size: 15))
@@ -514,48 +559,7 @@ struct Profile: View {
                                 
                                 Spacer(minLength: 0)
                                 
-                                Button {
-                                    let ref = Firestore.firestore()
-                                    ref.collection("AgencyRequests").document(item.userId).collection("Streamers").document(Auth.auth().currentUser!.uid).setData(["isAccepted" : 1], merge: true)
-                                    
-                                    sendPushNotify(title: "\(userStore.nickname), teyiti reddetti", body: "Sizin ajansınızda olmadıını bildirdi!", userToken: item.token, sound: "pay.mp3")
-                                    
-                                    ref.collection("Users").document(Auth.auth().currentUser!.uid).collection("AgencyApplicationQuestion").document(item.userId).delete()
-                                } label: {
-                                    ZStack{
-                                        Circle()
-                                            .fill(Color.black.opacity(0.5))
-                                        
-                                        Circle()
-                                            .stroke(Color.white)
-                                        
-                                        Image(systemName: "xmark")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .foregroundColor(.white)
-                                            .frame(width: 15, height: 15)
-                                    }
-                                    .frame(width: 35, height: 35)
-                                }
-                                
-                                Button {
-                                    let ref = Firestore.firestore()
-                                    ref.collection("AgencyRequests").document(item.userId).collection("Streamers").document(Auth.auth().currentUser!.uid).setData(["isAccepted" : 2], merge: true)
-                                    sendPushNotify(title: "Tebrikler!", body: "\(userStore.nickname)' sizin ajansınızda, yayıncı olduğunu doğruladı!", userToken: item.token, sound: "pay.mp3")
-                                    ref.collection("Users").document(Auth.auth().currentUser!.uid).collection("AgencyApplicationQuestion").document(item.userId).delete()
-                                } label: {
-                                    ZStack{
-                                        Circle()
-                                            .fill(Color.white)
-                                        
-                                        Image(systemName: "checkmark")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .foregroundColor(.black)
-                                            .frame(width: 15, height: 15)
-                                    }
-                                    .frame(width: 35, height: 35)
-                                }
+                    
                                 
                             }
                             .padding(10)

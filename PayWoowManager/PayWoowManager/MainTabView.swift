@@ -19,6 +19,7 @@ struct MainTabView: View {
     @State var oldPassword : String = ""
     @State private var careMode = false
     @State private var toPasswordChager = false
+    @EnvironmentObject var userStore: UserStore
     var body: some View {
         ZStack{
             LinearGradient(gradient: Gradient(colors: [Color.init(red: 52 / 255 , green: 58 / 255, blue: 58 / 255), Color.init(red: 16 / 255, green: 16 / 255, blue: 16 / 255)]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
@@ -42,7 +43,8 @@ struct MainTabView: View {
                 }
 
                 if self.selection == 3 {
-                    Users()
+                    Users(showLists: .constant(true))
+                        .environmentObject(userStore)
                 }
 
                 if self.selection == 4 {
@@ -344,6 +346,11 @@ struct MainTabView: View {
                 .padding(.bottom, 25)
                 .padding(.horizontal)
                 
+            }
+            .onAppear{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    userStore.getUser()
+                }
             }
             .fullScreenCover(isPresented: $toPasswordChager) {
                 PasswordChanger(dealler: self.dealler, oldPasswrod: oldPassword)

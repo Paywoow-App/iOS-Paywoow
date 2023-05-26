@@ -136,7 +136,7 @@ struct SalaryBankCreater: View {
                             .fill(Color.black.opacity(0.2))
                         
                         HStack{
-                            TextField("Yatırılacak IBAN", text: $iban)
+                            TextField("Yatırılacak IBAN", text: $iban.limit(24))
                                 .foregroundColor(.white)
                                 .font(.system(size: 15))
                                 .colorScheme(.dark)

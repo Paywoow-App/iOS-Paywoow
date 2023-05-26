@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseFirestore
 import SDWebImageSwiftUI
+import Firebase
 
 struct Profile: View {
     @AppStorage("storeNick") var storeNick : String = ""
@@ -18,21 +19,13 @@ struct Profile: View {
     @State private var bodySelection : Int = 0
     
     //Buttons
-    @State private var toCustomerServices : Bool = false
-    @State private var toLiveData : Bool = false
     @State private var signOut : Bool = false
-    @State private var toConfirmation : Bool = false
-    @State private var toListPreparator : Bool = false
+
     @State private var toStreammerSalaries : Bool = false
-    @State private var toAppManager : Bool = false
     @State private var toGiftRequest : Bool = false
     @State private var toTaxFree : Bool = false
     @State private var toAgencyRequests : Bool = false
     @State private var toEditProfile : Bool = false
-    @State private var toPasswordChager : Bool = false
-    @State private var toBankIbans : Bool = false
-    @State private var toDeallerChanger : Bool = false
-    @State private var toBalanceMaker : Bool = false
     @State private var toInvest : Bool = false
     @State private var toVIPPoints : Bool = false
     @State private var toRemittence : Bool = false
@@ -40,6 +33,8 @@ struct Profile: View {
     //Data
     @State private var inputPrice : Int = 0
     @State private var dollar : Double = 0
+    @State private var isNavigateToAccountManager: Bool = false
+    
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15){
@@ -48,242 +43,35 @@ struct Profile: View {
                 
                 VStack(alignment: .leading, spacing: 10) {
                     
-                    Group {
-                        Button {
-                            self.toCustomerServices.toggle()
-                        } label: {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 6)
-                                    .fill(Color.black.opacity(0.2))
-                                
-                                
-                                HStack{
-                                    
-                                    Image(systemName: "headphones")
-                                        .foregroundColor(.white)
-                                        .frame(width: 20)
-                                    
-                                    Text("Müşteri Hizmetleri")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                    
-                                    Spacer(minLength: 0)
-                                    
-                                    Image(systemName: "chevron.right")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                }
-                                .padding(.horizontal)
-                            }
-                            .frame(height: 45)
-                            .padding(.horizontal)
-                        }
-                        
-                        Button {
-                            self.toDeallerChanger.toggle()
-                        } label: {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 6)
-                                    .fill(Color.black.opacity(0.2))
-                                
-                                HStack{
-                                    
-                                    Image(systemName: "arrow.2.squarepath")
-                                        .foregroundColor(.white)
-                                        .frame(width: 20)
-                                    
-                                    Text("Bayiliği Değiştir")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                    
-                                    Spacer(minLength: 0)
-                                    
-                                    Image(systemName: "chevron.right")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                }
-                                .padding(.horizontal)
-                            }
-                            .frame(height: 45)
-                            .padding(.horizontal)
-                        }
-                        
-                        
-                            Button {
-                                self.toBalanceMaker.toggle()
-                            } label: {
-                                ZStack{
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .fill(Color.black.opacity(0.2))
-                                    
-                                    HStack{
-                                        
-                                        Image(systemName: "dollarsign")
-                                            .foregroundColor(.white)
-                                            .frame(width: 20)
-                                        
-                                        Text("Bakiye Güncelle")
-                                            .foregroundColor(.white)
-                                            .font(.system(size: 15))
-                                        
-                                        Spacer(minLength: 0)
-                                        
-                                        Image(systemName: "chevron.right")
-                                            .foregroundColor(.white)
-                                            .font(.system(size: 15))
-                                    }
-                                    .padding(.horizontal)
-                                }
-                                .frame(height: 45)
-                                .padding(.horizontal)
-                            }
+                    Button {
+                        isNavigateToAccountManager.toggle()
+                    } label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 6)
+                                .fill(Color.black.opacity(0.2))
                             
-                            Button {
-                                self.toLiveData.toggle()
-                            } label: {
-                                ZStack{
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .fill(Color.black.opacity(0.2))
-                                    
-                                    HStack{
-                                        
-                                        Image(systemName: "arrow.triangle.merge")
-                                            .foregroundColor(.white)
-                                            .frame(width: 20)
-                                        
-                                        Text("Canlı Veri Bilgileri")
-                                            .foregroundColor(.white)
-                                            .font(.system(size: 15))
-                                        
-                                        Spacer(minLength: 0)
-                                        
-                                        Image(systemName: "chevron.right")
-                                            .foregroundColor(.white)
-                                            .font(.system(size: 15))
-                                    }
-                                    .padding(.horizontal)
-                                }
-                                .frame(height: 45)
-                                .padding(.horizontal)
+                            HStack{
+                                
+                                Image(systemName: "person.crop.circle")
+                                    .foregroundColor(.white)
+                                    .frame(width: 20)
+                                
+                                Text("Hesap Yönetimi")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                                
+                                Spacer(minLength: 0)
+                                
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
                             }
+                            .padding(.horizontal)
+                        }
+                        .frame(height: 45)
+                        .padding(.horizontal)
                     }
-                        
-                        Button {
-                            self.toConfirmation.toggle()
-                        } label: {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 6)
-                                    .fill(Color.black.opacity(0.2))
-                                
-                                HStack{
-                                    
-                                    Image(systemName: "lanyardcard")
-                                        .foregroundColor(.white)
-                                        .frame(width: 20)
-                                    
-                                    Text("Hesap Onayı Bekleyenler")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                    
-                                    Spacer(minLength: 0)
-                                    
-                                    Image(systemName: "chevron.right")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                }
-                                .padding(.horizontal)
-                            }
-                            .frame(height: 45)
-                            .padding(.horizontal)
-                        }
-                        
-                        Button {
-                            self.toAppManager.toggle()
-                        } label: {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 6)
-                                    .fill(Color.black.opacity(0.2))
-                                
-                                HStack{
-                                    
-                                    Image(systemName: "gearshape.arrow.triangle.2.circlepath")
-                                        .foregroundColor(.white)
-                                        .frame(width: 20)
-                                    
-                                    Text("Müşteri Paneli Ayarları")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                    
-                                    Spacer(minLength: 0)
-                                    
-                                    Image(systemName: "chevron.right")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                }
-                                .padding(.horizontal)
-                            }
-                            .frame(height: 45)
-                            .padding(.horizontal)
-                        }
-                        
-                        Button {
-                            self.toListPreparator.toggle()
-                        } label: {
-                            ZStack{
-                                
-                                RoundedRectangle(cornerRadius: 6)
-                                    .fill(Color.black.opacity(0.2))
-                                
-                                HStack{
-                                    
-                                    Image(systemName: "square.and.pencil")
-                                        .foregroundColor(.white)
-                                        .frame(width: 20)
-                                    
-                                    Text("Satış Listesi Hazırla")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                    
-                                    Spacer(minLength: 0)
-                                    
-                                    Image(systemName: "chevron.right")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                }
-                                .padding(.horizontal)
-                            }
-                            .frame(height: 45)
-                            .padding(.horizontal)
-                        }
-                        
-                        Button {
-                            self.toBankIbans.toggle()
-                        } label: {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 6)
-                                    .fill(Color.black.opacity(0.2))
-                                
-                                HStack{
-                                    
-                                    Image(systemName: "building.2.crop.circle")
-                                        .foregroundColor(.white)
-                                        .frame(width: 20)
-                                    
-                                    Text("Havale EFT Bankaları")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                    
-                                    Spacer(minLength: 0)
-                                    
-                                    Image(systemName: "chevron.right")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                }
-                                .padding(.horizontal)
-                            }
-                            .frame(height: 45)
-                            .padding(.horizontal)
-                        }
+
                     
                     Button {
                         self.toTaxFree.toggle()
@@ -315,7 +103,9 @@ struct Profile: View {
                     }
                         
                         Button {
-                            self.toGiftRequest.toggle()
+                            storeNick = ""
+                            
+                            self.toGiftRequest.toggle() // 
                         } label: {
                             ZStack{
                                 RoundedRectangle(cornerRadius: 6)
@@ -489,130 +279,28 @@ struct Profile: View {
                             .frame(height: 45)
                             .padding(.horizontal)
                         }
-                        
-                        Button {
-                            toPasswordChager.toggle()
-                        } label: {
-                            ZStack{
-                                
-                                
-                                RoundedRectangle(cornerRadius: 6)
-                                    .fill(Color.black.opacity(0.2))
-                                
-                                HStack{
-                                    
-                                    Image(systemName: "key.icloud")
-                                        .foregroundColor(.white)
-                                        .frame(width: 20)
-                                    
-                                    
-                                    Text("Şifre Güncelleme")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                    
-                                    Spacer(minLength: 0)
-                                    
-                                    Image(systemName: "chevron.right")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                }
-                                .padding(.horizontal)
-                            }
-                            .frame(height: 45)
-                            .padding(.horizontal)
-                        }
-                        
-                    
-                        Button {
-                            
-                        } label: {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 6)
-                                    .fill(Color.black.opacity(0.2))
-                                
-                                HStack{
-                                    
-                                    Image(systemName: "hand.point.up.braille")
-                                        .foregroundColor(.white)
-                                        .frame(width: 20)
-                                    
-                                    Text("Destek")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                    
-                                    Spacer(minLength: 0)
-                                    
-                                    Image(systemName: "chevron.right")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                }
-                                .padding(.horizontal)
-                            }
-                            .frame(height: 45)
-                            .padding(.horizontal)
-                        }
-                        
-                        Button {
-                            
-                        } label: {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 6)
-                                    .fill(Color.black.opacity(0.2))
-                                
-                                HStack{
-                                    
-                                    Image(systemName: "rectangle.portrait.and.arrow.right")
-                                        .foregroundColor(.white)
-                                        .frame(width: 20)
-                                    
-                                    Text("Çıkış Yap")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                    
-                                    Spacer(minLength: 0)
-                                    
-                                    Image(systemName: "chevron.right")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                }
-                                .padding(.horizontal)
-                            }
-                            .frame(height: 45)
-                            .padding(.horizontal)
-                        }
                     }
-                    
-                    
                 }
             }
         }
+        .fullScreenCover(isPresented: $isNavigateToAccountManager, content: {
+            AccountManager()
+        })
         .fullScreenCover(isPresented: $isNavigateToBackService, content: {
             BlockServices()
         })
-        .fullScreenCover(isPresented: $toCustomerServices, content: {
-            CustomerServices(dealler: storeNick)
-        })
-        .fullScreenCover(isPresented: $toLiveData, content: {
-            LiveDataListener()
-        })
+
         .fullScreenCover(isPresented: $signOut) {
             AdminLogin()
         }
-        .popover(isPresented: $toConfirmation) {
-            AccountConfirmation()
-        }
-        .popover(isPresented: $toListPreparator) {
-            ListPreparator()
-        }
+
         .fullScreenCover(isPresented: $toStreammerSalaries) {
             StreammerSalaryWriter()
         }
         .fullScreenCover(isPresented: $toRemittence) {
             Remittences()
         }
-        .popover(isPresented: $toAppManager, content: {
-            AppManager(dealler: storeNick)
-        })
+
         .popover(isPresented: $toGiftRequest, content: {
             GiftRequest(dealler: storeNick)
         })
@@ -622,15 +310,6 @@ struct Profile: View {
         .fullScreenCover(isPresented: $toEditProfile, content: {
             EditProfile(dealler: storeNick)
         })
-        .popover(isPresented: $toPasswordChager, content: {
-            PasswordChanger(dealler: storeNick)
-        })
-        .fullScreenCover(isPresented: $toDeallerChanger) {
-            MyDeallers(selectedDeallerID: storeSelectedApp)
-        }
-        .fullScreenCover(isPresented: $toBalanceMaker) {
-            BalanceMaker()
-        }
         .fullScreenCover(isPresented: $toTaxFree, content: {
             TaxFreeApplications()
         })
@@ -640,11 +319,6 @@ struct Profile: View {
         .popover(isPresented: $toInvest, content: {
             Investories()
         })
-        .fullScreenCover(isPresented: $toBankIbans) {
-            if #available(iOS 16.0, *) {
-                BankIbans()
-            }
-        }
     }
 }
 
@@ -1096,5 +770,423 @@ struct LevelAdmin: View{
         }
         .frame(width: 30, height: 20, alignment: Alignment.center)
         .offset(x: 35, y: -35)
+    }
+}
+
+
+struct AccountManager: View {
+    
+    @AppStorage("storeNick") var storeNick : String = ""
+    @AppStorage("storePassword") var storePassword : String = ""
+    @AppStorage("storeSelectedApp") var storeSelectedApp : String = ""
+    
+    @State private var toDeallerChanger : Bool = false
+    @State private var toBalanceMaker : Bool = false
+    @State private var toCustomerServices : Bool = false
+    @State private var toLiveData : Bool = false
+    @State private var isNavigateToLogin: Bool = false
+
+    @State private var toPasswordChager : Bool = false
+    @State private var toAppManager : Bool = false
+    @State private var toConfirmation : Bool = false
+    @State private var toListPreparator : Bool = false
+    @State private var toBankIbans : Bool = false
+    
+    @Environment(\.presentationMode) var present
+    
+    var body: some View {
+        ZStack {
+            LinearGradient(gradient: Gradient(colors: [Color.init(red: 52 / 255 , green: 58 / 255, blue: 58 / 255), Color.init(red: 16 / 255, green: 16 / 255, blue: 16 / 255)]), startPoint: .topLeading, endPoint: .bottomTrailing).edgesIgnoringSafeArea(.all)
+            VStack {
+                HStack(spacing: 15){
+                    Button {
+                        self.present.wrappedValue.dismiss()
+                    } label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.white)
+                            
+                            Image(systemName: "arrow.left")
+                                .foregroundColor(.white)
+                                .font(.system(size: 18))
+                        }
+                        .frame(width: 40, height: 40)
+                    }
+                    
+                    Text("Hesap Yönetimi")
+                        .foregroundColor(.white)
+                        .font(.system(size: 18))
+                        .bold()
+                    
+                    Spacer(minLength: 0)
+                    
+                }
+                .padding(.all)
+                ScrollView(.vertical, showsIndicators: false) {
+                    Group {
+                        // Dips First
+                        Button {
+                            self.toCustomerServices.toggle()
+                        } label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 6)
+                                    .fill(Color.black.opacity(0.2))
+                                
+                                
+                                HStack{
+                                    
+                                    Image(systemName: "headphones")
+                                        .foregroundColor(.white)
+                                        .frame(width: 20)
+                                    
+                                    Text("Müşteri Hizmetleri")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 15))
+                                    
+                                    Spacer(minLength: 0)
+                                    
+                                    Image(systemName: "chevron.right")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 15))
+                                }
+                                .padding(.horizontal)
+                            }
+                            .frame(height: 45)
+                            .padding(.horizontal)
+                        }
+                        
+                        Button {
+                            self.toDeallerChanger.toggle()
+                        } label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 6)
+                                    .fill(Color.black.opacity(0.2))
+                                
+                                HStack{
+                                    
+                                    Image(systemName: "arrow.2.squarepath")
+                                        .foregroundColor(.white)
+                                        .frame(width: 20)
+                                    
+                                    Text("Bayiliği Değiştir")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 15))
+                                    
+                                    Spacer(minLength: 0)
+                                    
+                                    Image(systemName: "chevron.right")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 15))
+                                }
+                                .padding(.horizontal)
+                            }
+                            .frame(height: 45)
+                            .padding(.horizontal)
+                        }
+                        
+                            Button {
+                                self.toBalanceMaker.toggle()
+                            } label: {
+                                ZStack{
+                                    RoundedRectangle(cornerRadius: 6)
+                                        .fill(Color.black.opacity(0.2))
+                                    
+                                    HStack{
+                                        
+                                        Image(systemName: "dollarsign")
+                                            .foregroundColor(.white)
+                                            .frame(width: 20)
+                                        
+                                        Text("Bakiye Güncelle")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                        
+                                        Spacer(minLength: 0)
+                                        
+                                        Image(systemName: "chevron.right")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                    }
+                                    .padding(.horizontal)
+                                }
+                                .frame(height: 45)
+                                .padding(.horizontal)
+                            }
+                        
+                            Button {
+                                self.toLiveData.toggle()
+                            } label: {
+                                ZStack{
+                                    RoundedRectangle(cornerRadius: 6)
+                                        .fill(Color.black.opacity(0.2))
+                                    
+                                    HStack{
+                                        
+                                        Image(systemName: "arrow.triangle.merge")
+                                            .foregroundColor(.white)
+                                            .frame(width: 20)
+                                        
+                                        Text("Canlı Veri Bilgileri")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                        
+                                        Spacer(minLength: 0)
+                                        
+                                        Image(systemName: "chevron.right")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                    }
+                                    .padding(.horizontal)
+                                }
+                                .frame(height: 45)
+                                .padding(.horizontal)
+                            }
+                        
+                        Button {
+                            self.toConfirmation.toggle()
+                        } label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 6)
+                                    .fill(Color.black.opacity(0.2))
+                                
+                                HStack{
+                                    
+                                    Image(systemName: "lanyardcard")
+                                        .foregroundColor(.white)
+                                        .frame(width: 20)
+                                    
+                                    Text("Hesap Onayı Bekleyenler")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 15))
+                                    
+                                    Spacer(minLength: 0)
+                                    
+                                    Image(systemName: "chevron.right")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 15))
+                                }
+                                .padding(.horizontal)
+                            }
+                            .frame(height: 45)
+                            .padding(.horizontal)
+                        }
+
+                        Button {
+                            self.toAppManager.toggle()
+                        } label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 6)
+                                    .fill(Color.black.opacity(0.2))
+                                
+                                HStack{
+                                    
+                                    Image(systemName: "gearshape.arrow.triangle.2.circlepath")
+                                        .foregroundColor(.white)
+                                        .frame(width: 20)
+                                    
+                                    Text("Müşteri Paneli Ayarları")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 15))
+                                    
+                                    Spacer(minLength: 0)
+                                    
+                                    Image(systemName: "chevron.right")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 15))
+                                }
+                                .padding(.horizontal)
+                            }
+                            .frame(height: 45)
+                            .padding(.horizontal)
+                        }
+                        
+                        Button {
+                            self.toListPreparator.toggle()
+                        } label: {
+                            ZStack{
+                                
+                                RoundedRectangle(cornerRadius: 6)
+                                    .fill(Color.black.opacity(0.2))
+                                
+                                HStack{
+                                    
+                                    Image(systemName: "square.and.pencil")
+                                        .foregroundColor(.white)
+                                        .frame(width: 20)
+                                    
+                                    Text("Satış Listesi Hazırla")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 15))
+                                    
+                                    Spacer(minLength: 0)
+                                    
+                                    Image(systemName: "chevron.right")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 15))
+                                }
+                                .padding(.horizontal)
+                            }
+                            .frame(height: 45)
+                            .padding(.horizontal)
+                        }
+                        
+                        Button {
+                            self.toBankIbans.toggle()
+                        } label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 6)
+                                    .fill(Color.black.opacity(0.2))
+                                
+                                HStack{
+                                    
+                                    Image(systemName: "building.2.crop.circle")
+                                        .foregroundColor(.white)
+                                        .frame(width: 20)
+                                    
+                                    Text("Havale EFT Bankaları")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 15))
+                                    
+                                    Spacer(minLength: 0)
+                                    
+                                    Image(systemName: "chevron.right")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 15))
+                                }
+                                .padding(.horizontal)
+                            }
+                            .frame(height: 45)
+                            .padding(.horizontal)
+                        }
+                    }
+                    
+                    Button {
+                        toPasswordChager.toggle()
+                    } label: {
+                        ZStack{
+                            
+                            
+                            RoundedRectangle(cornerRadius: 6)
+                                .fill(Color.black.opacity(0.2))
+                            
+                            HStack{
+                                
+                                Image(systemName: "key.icloud")
+                                    .foregroundColor(.white)
+                                    .frame(width: 20)
+                                
+                                
+                                Text("Şifre Güncelleme")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                                
+                                Spacer(minLength: 0)
+                                
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                            }
+                            .padding(.horizontal)
+                        }
+                        .frame(height: 45)
+                        .padding(.horizontal)
+                    }
+                    
+                
+                    Button {
+                        
+                    } label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 6)
+                                .fill(Color.black.opacity(0.2))
+                            
+                            HStack{
+                                
+                                Image(systemName: "hand.point.up.braille")
+                                    .foregroundColor(.white)
+                                    .frame(width: 20)
+                                
+                                Text("Destek")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                                
+                                Spacer(minLength: 0)
+                                
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                            }
+                            .padding(.horizontal)
+                        }
+                        .frame(height: 45)
+                        .padding(.horizontal)
+                    }
+                    
+                    Button {
+                        storeNick = ""
+                        storePassword = ""
+                        isNavigateToLogin.toggle()
+                    } label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 6)
+                                .fill(Color.black.opacity(0.2))
+                            
+                            HStack{
+                                
+                                Image(systemName: "rectangle.portrait.and.arrow.right")
+                                    .foregroundColor(.white)
+                                    .frame(width: 20)
+                                
+                                Text("Çıkış Yap")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                                
+                                Spacer(minLength: 0)
+                                
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                            }
+                            .padding(.horizontal)
+                        }
+                        .frame(height: 45)
+                        .padding(.horizontal)
+                    }
+                }
+            }
+            .padding(.vertical)
+        }
+        .fullScreenCover(isPresented: $toBankIbans) {
+            if #available(iOS 16.0, *) {
+                BankIbans()
+            }
+        }
+        .popover(isPresented: $toPasswordChager, content: {
+            PasswordChanger(dealler: storeNick)
+        })
+        .fullScreenCover(isPresented: $toDeallerChanger) {
+            MyDeallers(selectedDeallerID: storeSelectedApp)
+        }
+        .fullScreenCover(isPresented: $toBalanceMaker) {
+            BalanceMaker()
+        }
+        .fullScreenCover(isPresented: $isNavigateToLogin, content: {
+            AdminLogin()
+        })
+        .fullScreenCover(isPresented: $toCustomerServices, content: {
+            CustomerServices(dealler: storeNick)
+        })
+        .fullScreenCover(isPresented: $toLiveData, content: {
+            LiveDataListener()
+        })
+        .popover(isPresented: $toConfirmation) {
+            AccountConfirmation()
+        }
+        .popover(isPresented: $toListPreparator) {
+            ListPreparator()
+        }
+        .popover(isPresented: $toAppManager, content: {
+            AppManager(dealler: storeNick)
+        })
     }
 }

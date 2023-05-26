@@ -147,7 +147,13 @@ struct Swap: View {
                                 
                                 LottieView(name: "eye", loopMode: .loop, speed: 1.5)
                                 
-                            }.frame(width: 45, height: 45)
+                            }
+                            .frame(width: 45, height: 45)
+                            .background {
+                                    LinearGradient(gradient: Gradient(colors: [Color.init(hex: "#141414")]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                                        .edgesIgnoringSafeArea(.all)
+                                        .frame(height: 50)
+                                }
                         }
                         .padding([.bottom, .trailing])
                     }

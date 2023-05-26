@@ -30,7 +30,7 @@ struct LogoScreen: View {
         }
         .animation(.spring())
         .fullScreenCover(isPresented: $toSignIn) {
-            AdminLogin()
+            
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
