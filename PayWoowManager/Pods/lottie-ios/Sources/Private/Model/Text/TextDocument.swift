@@ -43,10 +43,10 @@ final class TextDocument: Codable {
   let baseline: Double?
 
   /// Fill Color data
-  let fillColorData: LottieColor?
+  let fillColorData: Color?
 
   /// Scroke Color data
-  let strokeColorData: LottieColor?
+  let strokeColorData: Color?
 
   /// Stroke Width
   let strokeWidth: Double?

@@ -826,7 +826,7 @@ struct AccountType: View {
             }
             .padding([.horizontal, .top])
             
-            ScrollView(.vertical, showsIndicators: false) {
+            ScrollView(.vertical, showsIndicators: true) {
                 
                 VStack(alignment: .leading, spacing: 15){
                     Text("Tebrikler! Başvurunuz neredeyse bitti.\nEn son olarak tarafımızca bir güvenlik doğrulaması yapılacaktır. En kısa sürede Ajansınız hesabınıza tanımlanacaktır.")
@@ -840,7 +840,6 @@ struct AccountType: View {
                         .font(.system(size: 18))
                         .fontWeight(.medium)
                         .padding(.leading)
-                    
                     
                     ForEach(streamers.streamers) { item in
                         HStack(spacing: 12){

@@ -12,7 +12,24 @@ import LocalAuthentication
 import FirebaseAuth
 import CreditCardReader
 
+
+extension View {
+    func splitAndJoin(_ string: String, by chunkSize: Int, separator: String) -> String {
+        // String'i belirli boyutta parçalara ayırıyoruz
+        let chunks = stride(from: 0, to: string.count, by: chunkSize).map {
+            String(string[string.index(string.startIndex, offsetBy: $0)..<string.index(string.startIndex, offsetBy: min($0 + chunkSize, string.count))])
+        }
+        // Parçaları belirli bir ayırıcı ile birleştiriyoruz
+        return chunks.joined(separator: separator)
+    }
+}
+
 struct AddBankCard: View {
+    
+  
+    
+    @State private var newCardNo: String = ""
+
     @StateObject var selectedCard = SelectedBankStore()
     @StateObject var general = GeneralStore()
     @StateObject var onlinePaymentSystem = OnlinePaymentSystem()
@@ -36,6 +53,10 @@ struct AddBankCard: View {
     @State private var showBankCodeInfo = false
     @State private var openScanner = false
     @State private  var numberArray = [1,2,3,4,5,6,7,8,9,10,11,12]
+    @State private var cardNumber1 = ""
+    @State private var cardNumber2 = ""
+    @State private var cardNumber3 = ""
+    @State private var cardNumber4 = ""
     
     @State private var showAlert : Bool = false
     @State private var alertTitle : String = ""
@@ -45,6 +66,7 @@ struct AddBankCard: View {
     @State private var htmlCode : String = ""
     @State private var isSuccess = false
     @State private var merchantoid = ""
+    
     var body: some View {
         ZStack{
             general.backgroundColor.edgesIgnoringSafeArea(.all)
@@ -344,20 +366,30 @@ struct AddBankCard: View {
                         }
                         else {
                             HStack{
+                                //MARK: Card Number Textfields
                                 TextField("4543 **** **** 0001", text: $cardNo.limit(16))
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.clear)
                                     .font(.system(size: 20))
-                                    .padding(.horizontal)
+                                    .padding(.trailing)
                                     .keyboardType(.numbersAndPunctuation)
+                                    .padding(.trailing)
                                     .onTapGesture{
                                         self.selection = 0
                                     }
-                                    .onChange(of: cardNo) { val in
-                                        if val == " " {
-                                            self.cardNo.removeLast()
-                                        }
+                                    .onChange(of: cardNo) { card in
+                                                                            
+                                        self.newCardNo = splitAndJoin(card, by: 4, separator: " ")
                                     }
-
+                                    .overlay {
+                                        HStack(spacing: 10) {
+                                            Text(newCardNo)
+                                            Spacer()
+                                        }
+                                        .frame(width: UIScreen.main.bounds.width * 0.6, height: 40)
+                                        .padding(.leading)
+                                    }
+                                    .frame(width: UIScreen.main.bounds.width * 0.6, height: 40)
+                                
                                 Button {
                                     openScanner.toggle()
                                 } label: {
@@ -368,6 +400,7 @@ struct AddBankCard: View {
                                 }
                                 .padding(.trailing)
                             }
+                            .frame(width: UIScreen.main.bounds.width * 0.8, height: 40)
                         }
                     }
 

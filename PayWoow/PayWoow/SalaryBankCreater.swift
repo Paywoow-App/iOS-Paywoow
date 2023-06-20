@@ -17,6 +17,7 @@ struct SalaryBankCreater: View {
     @State private var selectedBank : String = ""
     @State private var fullName : String = ""
     @State private var iban : String = ""
+    @State private var newIbanNo: String = ""
 
     @State private var alertTitle : String = ""
     @State private var alertBody : String = ""
@@ -134,13 +135,24 @@ struct SalaryBankCreater: View {
                     ZStack{
                         RoundedRectangle(cornerRadius: 8)
                             .fill(Color.black.opacity(0.2))
-                        
+                        //MERK Kullanıcı boşluklu girer ise boşluksuz şekilde ayarla
                         HStack{
-                            TextField("Yatırılacak IBAN", text: $iban.limit(24))
+                            TextField("Yatırılacak IBAN", text: $iban.limit(29))
                                 .foregroundColor(.white)
                                 .font(.system(size: 15))
                                 .colorScheme(.dark)
                                 .keyboardType(.numbersAndPunctuation)
+                                .onChange(of: iban) { iban in
+                                                                        
+                                    self.newIbanNo = splitAndJoin(iban, by: 4, separator: " ")
+                                }
+                                .overlay {
+                                    HStack(spacing: 10) {
+                                        Text(newIbanNo)
+                                        Spacer()
+                                    }
+                                    .padding(.leading)
+                                }
                             
                             Button {
                                 self.iban = UIPasteboard.general.string ?? ""

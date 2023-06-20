@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - Color + Codable
 
-extension LottieColor: Codable {
+extension Color: Codable {
 
   // MARK: Lifecycle
 
@@ -68,7 +68,7 @@ extension LottieColor: Codable {
 
 }
 
-extension LottieColor {
+extension Color {
 
   static var clearColor: CGColor {
     CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0, 0, 0, 0])!
@@ -77,6 +77,6 @@ extension LottieColor {
   var cgColorValue: CGColor {
     // TODO: Fix color spaces
     let colorspace = CGColorSpaceCreateDeviceRGB()
-    return CGColor(colorSpace: colorspace, components: [CGFloat(r), CGFloat(g), CGFloat(b), CGFloat(a)]) ?? LottieColor.clearColor
+    return CGColor(colorSpace: colorspace, components: [CGFloat(r), CGFloat(g), CGFloat(b), CGFloat(a)]) ?? Color.clearColor
   }
 }

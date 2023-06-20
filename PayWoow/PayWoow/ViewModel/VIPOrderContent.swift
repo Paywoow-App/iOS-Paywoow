@@ -108,7 +108,7 @@ struct VIPOrderContent: View {
                                 RoundedRectangle(cornerRadius: 4)
                                     .fill(Color.red)
                                 
-                                Text("Reddetdildi")
+                                Text("Reddedildi")
                                     .foregroundColor(.white)
                                     .font(.system(size: 14))
                             }

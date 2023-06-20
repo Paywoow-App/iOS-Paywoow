@@ -96,6 +96,16 @@ struct Profile: View {
     @State private var showAnimation = false
     @State private var toManagerGroup = false
     @State private var toTaxFreeApplications : Bool = false
+    @State private var tabBar: Int = 0
+    @State var isUserFirstSeenProfile: Bool = false
+    @State var logout: Bool = false
+    
+    init(signOutBlur : Binding<Bool>) {
+        self.isUserFirstSeenProfile = UserDefaults.standard.bool(forKey: "isUserFirstSeenProfile")
+        self._signOutBlur = signOutBlur
+        print("I am Gay \(isUserFirstSeenProfile)")
+    }
+    
     @AppStorage("mainTabViewSelection") var mainTabViewSelection = 0
     //Swap
     @AppStorage("swap_takenUserId") var swap_takenUserId  : String = ""
@@ -107,6 +117,7 @@ struct Profile: View {
     @AppStorage("swap_takenDiamond") var swap_takenDiamond : Int = 0
     @AppStorage("swap_takenPfImage") var swap_takenPfImage  : String = ""
     @AppStorage("showSwap") var showMatchSwap : Bool = false
+    
     var body: some View{
         ZStack{
             VStack{
@@ -402,7 +413,7 @@ struct Profile: View {
         VStack{
             ScrollView(.vertical, showsIndicators: false) {
                 
-                TabView{
+                TabView(selection: $tabBar){
                     profileContent
                         .tag(0)
                     
@@ -411,6 +422,27 @@ struct Profile: View {
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .frame(height: 390)
+                .onAppear {
+                    isUserFirstSeenProfile = false
+                    UserDefaults.standard.setValue(isUserFirstSeenProfile, forKey: "isUserFirstSeenProfile")
+                    if !isUserFirstSeenProfile {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            withAnimation(.linear) {
+                                if self.tabBar == 0 {
+                                    self.tabBar = 1
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                                        withAnimation(.linear) {
+                                            self.tabBar = 0
+                                            isUserFirstSeenProfile = false
+                                            UserDefaults.standard.setValue(isUserFirstSeenProfile, forKey: "isUserFirstSeenProfile")
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                       
+                    }
+                }
                 
                 
                 Group{
@@ -498,17 +530,18 @@ struct Profile: View {
                                     .frame(width: 80, height: 80)
                                 
                                 VStack(alignment: .leading, spacing: 12) {
-                                    HStack {
-                                        
-                                        Text(item.agencyName)
-                                            .foregroundColor(.white)
-                                            .font(.system(size: 15))
-                                            .bold()
-                                        
-                                        Text("\(item.firstName) \(item.lastName)")
-                                            .foregroundColor(.gray)
-                                            .font(.system(size: 15))
-                                        
+                                    HStack(spacing: 10) {
+                                        VStack(alignment: .leading) {
+                                            Text(item.agencyName)
+                                                .foregroundColor(.white)
+                                                .font(.system(size: 15))
+                                                .bold()
+                                            
+                                            Text("\(item.firstName) \(item.lastName)")
+                                                .foregroundColor(.gray)
+                                                .font(.system(size: 15))
+                                        }
+                                        Spacer()
                                         Button {
                                             let ref = Firestore.firestore()
                                             ref.collection("AgencyRequests").document(item.userId).collection("Streamers").document(Auth.auth().currentUser!.uid).setData(["isAccepted" : 1], merge: true)
@@ -552,7 +585,7 @@ struct Profile: View {
                                             .frame(width: 35, height: 35)
                                         }
                                     }
-                                    Text("Bu ajanta yayinci misin?")
+                                    Text("Bu ajansta yayinci mısın?")
                                         .foregroundColor(.white)
                                         .font(.system(size: 15))
                                 }

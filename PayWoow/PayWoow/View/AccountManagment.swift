@@ -39,6 +39,8 @@ struct AccountManagment: View {
     @State private var toFAQ = false
     @State private var toSecurity = false
     @State private var blur = false
+    @State private var isUserSignOut = false
+    @State private var navigateLogout = false
     
     @State private var currentDate : String = ""
     @State private var currentLanguege = Locale.autoupdatingCurrent.languageCode
@@ -724,13 +726,24 @@ struct AccountManagment: View {
                             Spacer(minLength: 0)
                             
                             Button {
-                                self.present.wrappedValue.dismiss()
-                                Task {
-                                    do {
-                                      try! Auth.auth().signOut()
-                                        self.signOutBlur = true
+                                if userStore.accountLevel == 3 {
+                                    self.present.wrappedValue.dismiss()
+                                    Task {
+                                        do {
+                                          try! Auth.auth().signOut()
+                                            self.signOutBlur = true
+                                        }
                                     }
-                                    catch {}
+                                    self.navigateLogout.toggle()
+                                } else {
+                                    self.present.wrappedValue.dismiss()
+                                    Task {
+                                        do {
+                                            try! Auth.auth().signOut()
+                                            self.signOutBlur = true
+                                        }
+                                    }
+                                    self.logout.toggle()
                                 }
                             } label: {
                                 Text("Evet")
@@ -749,9 +762,8 @@ struct AccountManagment: View {
             }
         }
         
-        
         .fullScreenCover(isPresented: $logout, content: {
-            SignIn()
+            LoginScreen()
         })
         .fullScreenCover(isPresented: $openIDShot, onDismiss: {
             verifyAccount1()

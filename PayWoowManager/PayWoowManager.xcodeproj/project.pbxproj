@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		615190E088108A1B097D94D4 /* Pods_PayWoowManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7878AFF11AC35B0580E3AF69 /* Pods_PayWoowManager.framework */; };
 		A73C694729C4FAFD009C1BA8 /* Remittences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73C694629C4FAFD009C1BA8 /* Remittences.swift */; };
 		A73C694929C5410E009C1BA8 /* Investories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73C694829C5410E009C1BA8 /* Investories.swift */; };
 		A73C694B29C54C4B009C1BA8 /* InvestCreater.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73C694A29C54C4B009C1BA8 /* InvestCreater.swift */; };
 		A750C68129C72F8300E169BF /* VIPPointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A750C68029C72F8300E169BF /* VIPPointManager.swift */; };
-		BF772178BE83B5D371BA0AE1 /* Pods_PayWoowManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D3D097F8DC920EEC911B2C /* Pods_PayWoowManager.framework */; };
 		CA07306F2845766700CD4A2C /* UserResearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA07306E2845766500CD4A2C /* UserResearcher.swift */; };
 		CA1F0B3D2904921A007847B7 /* PlatformSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F0B3C2904921A007847B7 /* PlatformSelector.swift */; };
 		CA3858FA27FDC70900044F59 /* hogrider.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA3858F927FDC70900044F59 /* hogrider.mp3 */; };
@@ -104,8 +104,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		20D3D097F8DC920EEC911B2C /* Pods_PayWoowManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PayWoowManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		882B6D98BCC3AF8E3C6A8219 /* Pods-PayWoowManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayWoowManager.release.xcconfig"; path = "Target Support Files/Pods-PayWoowManager/Pods-PayWoowManager.release.xcconfig"; sourceTree = "<group>"; };
+		0AE986D5E8332283E843B86A /* Pods-PayWoowManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayWoowManager.release.xcconfig"; path = "Target Support Files/Pods-PayWoowManager/Pods-PayWoowManager.release.xcconfig"; sourceTree = "<group>"; };
+		391BF3B09DB8B058DD7E4BB2 /* Pods-PayWoowManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayWoowManager.debug.xcconfig"; path = "Target Support Files/Pods-PayWoowManager/Pods-PayWoowManager.debug.xcconfig"; sourceTree = "<group>"; };
+		7878AFF11AC35B0580E3AF69 /* Pods_PayWoowManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PayWoowManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A73C694629C4FAFD009C1BA8 /* Remittences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remittences.swift; sourceTree = "<group>"; };
 		A73C694829C5410E009C1BA8 /* Investories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Investories.swift; sourceTree = "<group>"; };
 		A73C694A29C54C4B009C1BA8 /* InvestCreater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestCreater.swift; sourceTree = "<group>"; };
@@ -195,7 +196,6 @@
 		CAEAD6AE286D9FDC00CB4866 /* VIPOrders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPOrders.swift; sourceTree = "<group>"; };
 		CAEF929128CC0B33009D8913 /* CustomerServiceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerServiceStore.swift; sourceTree = "<group>"; };
 		CAEF929328CCAD71009D8913 /* CustomerServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerServices.swift; sourceTree = "<group>"; };
-		FECD3CDBD175591C8A4515EA /* Pods-PayWoowManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayWoowManager.debug.xcconfig"; path = "Target Support Files/Pods-PayWoowManager/Pods-PayWoowManager.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,18 +209,18 @@
 				CAF1D53329096D8B007149AD /* FirebaseAuth in Frameworks */,
 				CAF1D53C2909709D007149AD /* DeviceKit in Frameworks */,
 				CAF1D53F29097165007149AD /* SwiftUICharts in Frameworks */,
-				BF772178BE83B5D371BA0AE1 /* Pods_PayWoowManager.framework in Frameworks */,
 				CAF1D53929096D8B007149AD /* FirebaseStorage in Frameworks */,
+				615190E088108A1B097D94D4 /* Pods_PayWoowManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5F3FE3A3379CC68C504E6DAD /* Frameworks */ = {
+		8BDCF9D3718B023DF26D7C0A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				20D3D097F8DC920EEC911B2C /* Pods_PayWoowManager.framework */,
+				7878AFF11AC35B0580E3AF69 /* Pods_PayWoowManager.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -231,7 +231,7 @@
 				CAC8B03127CD390700DFF238 /* PayWoowManager */,
 				CAC8B03027CD390700DFF238 /* Products */,
 				D359F74C8D648CD6713D4290 /* Pods */,
-				5F3FE3A3379CC68C504E6DAD /* Frameworks */,
+				8BDCF9D3718B023DF26D7C0A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -373,8 +373,8 @@
 		D359F74C8D648CD6713D4290 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FECD3CDBD175591C8A4515EA /* Pods-PayWoowManager.debug.xcconfig */,
-				882B6D98BCC3AF8E3C6A8219 /* Pods-PayWoowManager.release.xcconfig */,
+				391BF3B09DB8B058DD7E4BB2 /* Pods-PayWoowManager.debug.xcconfig */,
+				0AE986D5E8332283E843B86A /* Pods-PayWoowManager.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -386,11 +386,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CAC8B03D27CD390800DFF238 /* Build configuration list for PBXNativeTarget "PayWoowManager" */;
 			buildPhases = (
-				AFF1BDEF705F51AF0F20BC5C /* [CP] Check Pods Manifest.lock */,
+				7BFB1DFAB37D898661C25F2A /* [CP] Check Pods Manifest.lock */,
 				CAC8B02B27CD390700DFF238 /* Sources */,
 				CAC8B02C27CD390700DFF238 /* Frameworks */,
 				CAC8B02D27CD390700DFF238 /* Resources */,
-				531B049BCFAB499A5ADCDC33 /* [CP] Embed Pods Frameworks */,
+				574E3B15A1CC4B0F311E2203 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -435,9 +435,9 @@
 			);
 			mainGroup = CAC8B02627CD390600DFF238;
 			packageReferences = (
-				CAF1D52E29096937007149AD /* XCRemoteSwiftPackageReference "Mantis" */,
-				CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				CAF1D53A2909709D007149AD /* XCRemoteSwiftPackageReference "DeviceKit" */,
+				CAF1D52E29096937007149AD /* XCRemoteSwiftPackageReference "Mantis.git" */,
+				CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
+				CAF1D53A2909709D007149AD /* XCRemoteSwiftPackageReference "DeviceKit.git" */,
 				CAF1D53D29097165007149AD /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = CAC8B03027CD390700DFF238 /* Products */;
@@ -478,7 +478,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		531B049BCFAB499A5ADCDC33 /* [CP] Embed Pods Frameworks */ = {
+		574E3B15A1CC4B0F311E2203 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -495,7 +495,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PayWoowManager/Pods-PayWoowManager-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AFF1BDEF705F51AF0F20BC5C /* [CP] Check Pods Manifest.lock */ = {
+		7BFB1DFAB37D898661C25F2A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -716,7 +716,7 @@
 		};
 		CAC8B03E27CD390800DFF238 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FECD3CDBD175591C8A4515EA /* Pods-PayWoowManager.debug.xcconfig */;
+			baseConfigurationReference = 391BF3B09DB8B058DD7E4BB2 /* Pods-PayWoowManager.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -759,7 +759,7 @@
 		};
 		CAC8B03F27CD390800DFF238 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 882B6D98BCC3AF8E3C6A8219 /* Pods-PayWoowManager.release.xcconfig */;
+			baseConfigurationReference = 0AE986D5E8332283E843B86A /* Pods-PayWoowManager.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -824,7 +824,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CAF1D52E29096937007149AD /* XCRemoteSwiftPackageReference "Mantis" */ = {
+		CAF1D52E29096937007149AD /* XCRemoteSwiftPackageReference "Mantis.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/guoyingtao/Mantis.git";
 			requirement = {
@@ -832,7 +832,7 @@
 				version = 1.7.5;
 			};
 		};
-		CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -840,7 +840,7 @@
 				version = 9.6.0;
 			};
 		};
-		CAF1D53A2909709D007149AD /* XCRemoteSwiftPackageReference "DeviceKit" */ = {
+		CAF1D53A2909709D007149AD /* XCRemoteSwiftPackageReference "DeviceKit.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devicekit/DeviceKit.git";
 			requirement = {
@@ -861,32 +861,32 @@
 /* Begin XCSwiftPackageProductDependency section */
 		CAF1D52F29096937007149AD /* Mantis */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CAF1D52E29096937007149AD /* XCRemoteSwiftPackageReference "Mantis" */;
+			package = CAF1D52E29096937007149AD /* XCRemoteSwiftPackageReference "Mantis.git" */;
 			productName = Mantis;
 		};
 		CAF1D53229096D8B007149AD /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseAuth;
 		};
 		CAF1D53429096D8B007149AD /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseFirestore;
 		};
 		CAF1D53629096D8B007149AD /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseMessaging;
 		};
 		CAF1D53829096D8B007149AD /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseStorage;
 		};
 		CAF1D53B2909709D007149AD /* DeviceKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CAF1D53A2909709D007149AD /* XCRemoteSwiftPackageReference "DeviceKit" */;
+			package = CAF1D53A2909709D007149AD /* XCRemoteSwiftPackageReference "DeviceKit.git" */;
 			productName = DeviceKit;
 		};
 		CAF1D53E29097165007149AD /* SwiftUICharts */ = {

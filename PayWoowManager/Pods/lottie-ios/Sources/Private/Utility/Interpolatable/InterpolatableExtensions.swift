@@ -54,7 +54,7 @@ extension Vector3D: Interpolatable {
 
 // MARK: - Color + Interpolatable
 
-extension LottieColor: Interpolatable {
+extension Color: Interpolatable {
 
   // MARK: Lifecycle
 
@@ -142,8 +142,8 @@ extension LottieColor: Interpolatable {
     return (y: y, u: u, v: v, a: a)
   }
 
-  func interpolateTo(_ to: LottieColor, amount: CGFloat, spatialOutTangent _: CGPoint?, spatialInTangent _: CGPoint?) -> LottieColor {
-    LottieColor(
+  func interpolateTo(_ to: Color, amount: CGFloat, spatialOutTangent _: CGPoint?, spatialInTangent _: CGPoint?) -> Color {
+    Color(
       r: r.interpolateTo(to.r, amount: amount),
       g: g.interpolateTo(to.g, amount: amount),
       b: b.interpolateTo(to.b, amount: amount),

@@ -19,7 +19,7 @@ struct PayWoowApp: App {
         WindowGroup {
             LoginScreen()
                 .onAppear{
-                    print("current user \(Auth.auth().currentUser?.uid)")
+                    print("current user \(String(describing: Auth.auth().currentUser?.uid))")
                 }
         }
     }

@@ -25,7 +25,7 @@ final class Fill: ShapeItem {
   required init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: Fill.CodingKeys.self)
     opacity = try container.decode(KeyframeGroup<Vector1D>.self, forKey: .opacity)
-    color = try container.decode(KeyframeGroup<LottieColor>.self, forKey: .color)
+    color = try container.decode(KeyframeGroup<Color>.self, forKey: .color)
     fillRule = try container.decodeIfPresent(FillRule.self, forKey: .fillRule) ?? .nonZeroWinding
     try super.init(from: decoder)
   }
@@ -36,7 +36,7 @@ final class Fill: ShapeItem {
   let opacity: KeyframeGroup<Vector1D>
 
   /// The color keyframes for the fill
-  let color: KeyframeGroup<LottieColor>
+  let color: KeyframeGroup<Color>
 
   let fillRule: FillRule
 

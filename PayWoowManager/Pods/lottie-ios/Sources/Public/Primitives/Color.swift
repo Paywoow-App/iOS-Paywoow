@@ -28,7 +28,7 @@ public enum ColorFormatDenominator {
 
 // MARK: - Color
 
-public struct LottieColor {
+public struct Color {
 
   public var r: Double
   public var g: Double

@@ -15,8 +15,8 @@ final class TextAnimator: Codable {
     let container = try decoder.container(keyedBy: TextAnimator.CodingKeys.self)
     name = try container.decodeIfPresent(String.self, forKey: .name) ?? ""
     let animatorContainer = try container.nestedContainer(keyedBy: TextAnimatorKeys.self, forKey: .textAnimator)
-    fillColor = try animatorContainer.decodeIfPresent(KeyframeGroup<LottieColor>.self, forKey: .fillColor)
-    strokeColor = try animatorContainer.decodeIfPresent(KeyframeGroup<LottieColor>.self, forKey: .strokeColor)
+    fillColor = try animatorContainer.decodeIfPresent(KeyframeGroup<Color>.self, forKey: .fillColor)
+    strokeColor = try animatorContainer.decodeIfPresent(KeyframeGroup<Color>.self, forKey: .strokeColor)
     strokeWidth = try animatorContainer.decodeIfPresent(KeyframeGroup<Vector1D>.self, forKey: .strokeWidth)
     tracking = try animatorContainer.decodeIfPresent(KeyframeGroup<Vector1D>.self, forKey: .tracking)
     anchor = try animatorContainer.decodeIfPresent(KeyframeGroup<Vector3D>.self, forKey: .anchor)
@@ -55,10 +55,10 @@ final class TextAnimator: Codable {
   let opacity: KeyframeGroup<Vector1D>?
 
   /// Stroke Color
-  let strokeColor: KeyframeGroup<LottieColor>?
+  let strokeColor: KeyframeGroup<Color>?
 
   /// Fill Color
-  let fillColor: KeyframeGroup<LottieColor>?
+  let fillColor: KeyframeGroup<Color>?
 
   /// Stroke Width
   let strokeWidth: KeyframeGroup<Vector1D>?

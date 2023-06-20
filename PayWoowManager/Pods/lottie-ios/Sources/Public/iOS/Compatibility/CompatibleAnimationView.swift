@@ -243,7 +243,7 @@ public final class CompatibleAnimationView: UIView {
       color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
     }
 
-    let valueProvider = ColorValueProvider(LottieColor(r: Double(red), g: Double(green), b: Double(blue), a: Double(alpha)))
+    let valueProvider = ColorValueProvider(Color(r: Double(red), g: Double(green), b: Double(blue), a: Double(alpha)))
     animationView.setValueProvider(valueProvider, keypath: keypath.animationKeypath)
   }
 
@@ -251,7 +251,7 @@ public final class CompatibleAnimationView: UIView {
   public func getColorValue(for keypath: CompatibleAnimationKeypath, atFrame: CGFloat) -> UIColor?
   {
     let value = animationView.getValue(for: keypath.animationKeypath, atFrame: atFrame)
-    guard let colorValue = value as? LottieColor else {
+    guard let colorValue = value as? Color else {
       return nil;
     }
 

@@ -491,7 +491,7 @@ struct LoginScreen: View {
                             .background(Color.white)
                             .frame(height: 22)
                         
-                        SecureField("En az 8 karakter", text: $password)
+                        SecureField("En az 6 karakter", text: $password)
                             .foregroundColor(.white)
                             .font(.system(size: 20))
                     }

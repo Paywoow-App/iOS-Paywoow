@@ -35,7 +35,7 @@ struct MyStreamers: View{
                         .frame(width: 45, height: 45, alignment: Alignment.center)
                     }
                     
-                    Text("My Streammers")
+                    Text("Benim Ajanslarım")
                         .foregroundColor(.white)
                         .font(.title2)
                         .padding(.leading , 5)

@@ -66,12 +66,14 @@ struct AgencyApplication: View {
                 }
                 .padding([.top, .horizontal])
                 
-                ScrollView(.vertical, showsIndicators: false) {
-                    if self.bodySelection == 0 {
-                        promotion
-                    }
-                    else if self.bodySelection == 1{
-                        apply
+                ScrollView(.vertical, showsIndicators: true) {
+                    VStack {
+                        if self.bodySelection == 0 {
+                            promotion
+                        }
+                        else if self.bodySelection == 1{
+                            apply
+                        }
                     }
                 }
                 
@@ -131,7 +133,7 @@ struct AgencyApplication: View {
                         }
                         else if self.selectedStremers.count < 5 {
                             self.alertTitle = "Eksik Alan"
-                            self.alertBody = "En az 5 yayıncı seçmelisin!"
+                            self.alertBody = "En az \(totalStreamer) yayıncı seçmelisin!"
                             self.showAlert.toggle()
                         }
                         else {
@@ -151,6 +153,14 @@ struct AgencyApplication: View {
                     }
                     .padding()
                 }
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                
+                self.agencyOwnerName = userStore.nickname
+                self.agencyPlatformId = userStore.bigoId
+                self.phoneNumber = userStore.phoneNumber
             }
         }
         .alert(isPresented: $showAlert) {

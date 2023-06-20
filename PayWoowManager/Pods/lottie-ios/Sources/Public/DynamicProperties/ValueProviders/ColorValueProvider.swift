@@ -16,11 +16,11 @@ public final class ColorValueProvider: AnyValueProvider {
   /// Initializes with a block provider
   public init(block: @escaping ColorValueBlock) {
     self.block = block
-    color = LottieColor(r: 0, g: 0, b: 0, a: 1)
+    color = Color(r: 0, g: 0, b: 0, a: 1)
   }
 
   /// Initializes with a single color.
-  public init(_ color: LottieColor) {
+  public init(_ color: Color) {
     self.color = color
     block = nil
     hasUpdate = true
@@ -29,10 +29,10 @@ public final class ColorValueProvider: AnyValueProvider {
   // MARK: Public
 
   /// Returns a Color for a CGColor(Frame Time)
-  public typealias ColorValueBlock = (CGFloat) -> LottieColor
+  public typealias ColorValueBlock = (CGFloat) -> Color
 
   /// The color value of the provider.
-  public var color: LottieColor {
+  public var color: Color {
     didSet {
       hasUpdate = true
     }
@@ -41,7 +41,7 @@ public final class ColorValueProvider: AnyValueProvider {
   // MARK: ValueProvider Protocol
 
   public var valueType: Any.Type {
-    LottieColor.self
+    Color.self
   }
 
   public func hasUpdate(frame _: CGFloat) -> Bool {
@@ -53,7 +53,7 @@ public final class ColorValueProvider: AnyValueProvider {
 
   public func value(frame: CGFloat) -> Any {
     hasUpdate = false
-    let newColor: LottieColor
+    let newColor: Color
     if let block = block {
       newColor = block(frame)
     } else {

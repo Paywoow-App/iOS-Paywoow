@@ -12,6 +12,7 @@ import SDWebImageSwiftUI
 import FirebaseStorage
 import Mantis
 import NSFWDetector
+import Firebase
 
 struct EditProfileScreen: View {
     
@@ -47,6 +48,7 @@ struct EditProfileScreen: View {
     @State private var birthdayTimeStamp : Int = 0
     @State private var birthday : String = ""
     @State private var birthdayDate = Date()
+    @State private var isStillUsingPhone: Bool = false
     
     // External
     @State private var bodySelection : Int = 0
@@ -430,10 +432,39 @@ struct EditProfileScreen: View {
                             .foregroundColor(.white)
                             .font(.system(size: 15))
                             .padding(.trailing)
-                        
+                            .keyboardType(.numberPad)
+                            .onChange(of: phoneNumber) { newValue in
+                                if newValue.count == 10 {
+                                    Firestore.firestore().collection("users").whereField("phoneNumber", isEqualTo: phoneNumber)
+                                            .getDocuments { (querySnapshot, err) in
+                                                if let err = err {
+                                                    print("Error getting documents: \(err)")
+                                                } else {
+                                                    if querySnapshot!.documents.count > 0 {
+                                                        // Telefon numarası zaten var
+                                                        self.isStillUsingPhone = true
+                                                        print("Bu telefon numarası zaten kullanılıyor!")
+                                                    } else {
+                                                        // Telefon numarası kullanılmıyor
+                                                        self.isStillUsingPhone = false
+                                                        print("Bu telefon numarası kullanılabilir!")
+                                                    }
+                                                }
+                                            }
+                                }
+                            }
+                                                
                         if self.phoneNumber.count == 10 && self.userStore.isVerifiedNumber == false{
                             Button {
-                                self.showPhoneVerificator.toggle()
+                                if isStillUsingPhone {
+                                    
+                                    self.alertTitle = "Telefon numarası kullanılıyor"
+                                    self.alertBody = "Bu telefon numarası sistemlerimizde kayıtlı"
+                                    self.showAlert = true
+                                    
+                                } else {
+                                    self.showPhoneVerificator.toggle()
+                                }
                             } label: {
                                 Text("Verifiy")
                                     .foregroundColor(.blue)
@@ -829,7 +860,7 @@ struct EditProfileScreen: View {
                     .preferredColorScheme(.dark)
                     .padding(.horizontal)
                     .keyboardType(.numberPad)
-                
+
                 Divider()
                     .background(Color.gray)
                     .padding(.horizontal, UIScreen.main.bounds.width * 0.25)
