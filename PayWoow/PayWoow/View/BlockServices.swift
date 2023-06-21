@@ -150,6 +150,8 @@ struct BlockServices: View {
                                 }
                             }
                         }
+                            .frame(height: UIScreen.main.bounds.height * 0.68)
+                            .padding(.bottom, 50)
                         }
 
                         else {
@@ -176,11 +178,6 @@ struct BlockServices: View {
                                 .frame(height: 30)
                                 .padding(.horizontal, 100)
                                 .padding(.bottom)
-                                .background {
-                                    LinearGradient(gradient: Gradient(colors: [Color.init(hex: "#141414")]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                                        .edgesIgnoringSafeArea(.all)
-                                        .frame(height: 50)
-                                }
                             }
                             
                         }
@@ -190,25 +187,29 @@ struct BlockServices: View {
                 else if self.angelSelection == 1 {
                     ZStack{
                         if !self.store.devils.isEmpty {
-                            ScrollView(.vertical, showsIndicators: false) {
-                                ForEach(store.devils) { item in
-                                    DevilContent(userID: item.userID, timeStamp: item.timeStamp, selectedUserID: $selectedUserID, selectedClass: $selectedClass, selectedDescription: $selectedDescription, selectedPoint: $selectedPoint, showBottomBar: $showBottomBar, showDevilRequestMaker: $showDevilRequestMaker, iAmAngel: $iAmAngel)
-                                        .onChange(of: selectedUserID) { val in
-                                            findSelectedUserDetails(userID: val)
-                                        }
-                                        .onAppear{
-                                            if item.userID == Auth.auth().currentUser!.uid {
-                                                self.isAnDevil = true
+                            VStack {
+                                ScrollView(.vertical, showsIndicators: false) {
+                                    ForEach(store.devils) { item in
+                                        DevilContent(userID: item.userID, timeStamp: item.timeStamp, selectedUserID: $selectedUserID, selectedClass: $selectedClass, selectedDescription: $selectedDescription, selectedPoint: $selectedPoint, showBottomBar: $showBottomBar, showDevilRequestMaker: $showDevilRequestMaker, iAmAngel: $iAmAngel)
+                                            .onChange(of: selectedUserID) { val in
+                                                findSelectedUserDetails(userID: val)
                                             }
-                                        }
-                                        .onChange(of: store.devils.count) { newValue in
-                                            self.isAnDevil = false
-                                        }
-                                        .onTapGesture {
-                                            print("BURASIII ::\(item.userID)")
-                                        }
+                                            .onAppear{
+                                                if item.userID == Auth.auth().currentUser!.uid {
+                                                    self.isAnDevil = true
+                                                }
+                                            }
+                                            .onChange(of: store.devils.count) { newValue in
+                                                self.isAnDevil = false
+                                            }
+                                            .onTapGesture {
+                                                print("BURASIII ::\(item.userID)")
+                                            }
+                                    }
                                 }
                             }
+                            .frame(height: UIScreen.main.bounds.height * 0.68)
+                            .padding(.bottom, 50)
                         }
                         else {
                             Spacer(minLength: 0)
@@ -234,11 +235,6 @@ struct BlockServices: View {
                                     .frame(height: 30)
                                     .padding(.horizontal, 100)
                                     .padding(.bottom)
-                                    .background {
-                                        LinearGradient(gradient: Gradient(colors: [Color.init(hex: "#141414")]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                                            .edgesIgnoringSafeArea(.all)
-                                            .frame(height: 50)
-                                    }
                                 }
                             }
                             

@@ -70,174 +70,191 @@ struct InvestContent : View {
     @State private var fullname : String = ""
     @State private var nickname : String = ""
     @State private var dateTime : String = ""
+    @State var platformID: String = ""
     @State private var showDetails : Bool = false
     var body: some View {
         ZStack{
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.black.opacity(0.2))
-            
-            VStack(spacing: 15){
-                HStack(spacing: 15){
-                    AsyncImage(url: URL(string: pfImage)) { image in
-                        image
-                            .resizable()
-                            .scaledToFill()
-                            .clipShape(Circle())
-                            .frame(width: 60, height: 60)
-                    } placeholder: {
-                        Image("defRefPF")
-                            .resizable()
-                            .scaledToFill()
-                            .clipShape(Circle())
-                            .frame(width: 60, height: 60)
-                    }
-                    
-                    VStack(alignment: .leading, spacing: 10){
-                        Text(fullname)
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                            .fontWeight(.medium)
-                        
-                        Text(nickname)
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                    }
-                    
-                    Spacer(minLength: 0)
-                    
-                    Toggle("", isOn: $isActive)
-                        .labelsHidden()
-                        .onChange(of: isActive) { val in
-                            let ref = Firestore.firestore()
-                            ref.collection("Investories").document(userID).setData([
-                                "isActive" : val
-                            ], merge: true)
+            if !platformID.isEmpty {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 8)
+                                   .fill(Color.black.opacity(0.2))
+                    VStack(spacing: 15){
+                        HStack(spacing: 15){
+                            AsyncImage(url: URL(string: pfImage)) { image in
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                                    .clipShape(Circle())
+                                    .frame(width: 60, height: 60)
+                            } placeholder: {
+                                Image("defRefPF")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .clipShape(Circle())
+                                    .frame(width: 60, height: 60)
+                            }
+                            
+                            VStack(alignment: .leading, spacing: 10){
+                                Text(fullname)
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                                    .fontWeight(.medium)
+                                
+                                HStack(spacing: 5) {
+                                    Text(nickname)
+                                        .foregroundColor(.white)
+                                        .fontWeight(.light)
+                                        .font(.system(size: 15))
+                                    
+                                    Text("(ID: \(platformID))")
+                                        .foregroundColor(.white)
+                                        .fontWeight(.ultraLight)
+                                        .font(.system(size: 13))
+                                }
+                            }
+                            .onAppear {
+                                print("GAYY : \(userID)")
+                            }
+                            
+                            Spacer(minLength: 0)
+                            
+        //                    Toggle("", isOn: $isActive)
+        //                        .labelsHidden()
+        //                        .onChange(of: isActive) { val in
+        //                            let ref = Firestore.firestore()
+        //                            ref.collection("Investories").document(userID).setData([
+        //                                "isActive" : val
+        //                            ], merge: true)
+        //                        }
                         }
+                        
+                        if showDetails {
+                            HStack{
+                                Text("Yatırım Miktarı")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                                    .fontWeight(.medium)
+                                
+                                Spacer(minLength: 0)
+                                
+                                Text("TL \(totalPrice)")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                            }
+                            
+                            HStack{
+                                Text("Oluşturulma Tarihi")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                                    .fontWeight(.medium)
+                                
+                                Spacer(minLength: 0)
+                                
+                                Text(dateTime)
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                            }
+                            
+                            
+                            HStack{
+                                Text("Kur")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                                    .fontWeight(.medium)
+                                
+                                Spacer(minLength: 0)
+                                
+                                Text("\(currencySymbol)\(currency)")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                            }
+                            
+                            
+                            HStack{
+                                Text("Yüzde")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                                    .fontWeight(.medium)
+                                
+                                Spacer(minLength: 0)
+                                
+                                Text("% \(totalPrice)")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                            }
+                            
+                            
+                            HStack{
+                                Text("Satış Miktarı")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                                    .fontWeight(.medium)
+                                
+                                Spacer(minLength: 0)
+                                
+                                Text("TL \(totalSold)")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                            }
+                            
+                            
+                            HStack{
+                                Text("Bloke Süresi")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                                    .fontWeight(.medium)
+                                
+                                Spacer(minLength: 0)
+                                
+                                Text("\(blockLimit) Ay")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                            }
+                            
+                            HStack{
+                                Text("Kalan Bloke Süresi")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                                    .fontWeight(.medium)
+                                
+                                Spacer(minLength: 0)
+                                
+                                Text("TL \(totalPrice)")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                            }
+                            
+                            HStack{
+                                Text("Uygulama")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                                    .fontWeight(.medium)
+                                
+                                Spacer(minLength: 0)
+                                
+                                Text(selectedPlatforms.first!)
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 15))
+                            }
+                        }
+                    }
+                    .padding(.all, 15)
+                    .onTapGesture {
+                        self.showDetails.toggle()
                 }
-                
-                if showDetails {
-                    HStack{
-                        Text("Yatırım Miktarı")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                            .fontWeight(.medium)
-                        
-                        Spacer(minLength: 0)
-                        
-                        Text("TL \(totalPrice)")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                    }
-                    
-                    HStack{
-                        Text("Oluşturulma Tarihi")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                            .fontWeight(.medium)
-                        
-                        Spacer(minLength: 0)
-                        
-                        Text(dateTime)
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                    }
-                    
-                    
-                    HStack{
-                        Text("Kur")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                            .fontWeight(.medium)
-                        
-                        Spacer(minLength: 0)
-                        
-                        Text("\(currencySymbol)\(currency)")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                    }
-                    
-                    
-                    HStack{
-                        Text("Yüzde")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                            .fontWeight(.medium)
-                        
-                        Spacer(minLength: 0)
-                        
-                        Text("% \(totalPrice)")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                    }
-                    
-                    
-                    HStack{
-                        Text("Satış Miktarı")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                            .fontWeight(.medium)
-                        
-                        Spacer(minLength: 0)
-                        
-                        Text("TL \(totalSold)")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                    }
-                    
-                    
-                    HStack{
-                        Text("Bloke Süresi")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                            .fontWeight(.medium)
-                        
-                        Spacer(minLength: 0)
-                        
-                        Text("\(blockLimit) Ay")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                    }
-                    
-                    HStack{
-                        Text("Kalan Bloke Süresi")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                            .fontWeight(.medium)
-                        
-                        Spacer(minLength: 0)
-                        
-                        Text("TL \(totalPrice)")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                    }
-                    
-                    HStack{
-                        Text("Uygulama")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                            .fontWeight(.medium)
-                        
-                        Spacer(minLength: 0)
-                        
-                        Text(selectedPlatforms.first!)
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                    }
                 }
-            }
-            .padding(.all, 15)
-            .onTapGesture {
-                self.showDetails.toggle()
+                .padding(.vertical)
             }
         }
         .padding(.horizontal)
         .onAppear{
+            getData()
+            
             let date = Date(timeIntervalSince1970: TimeInterval(createdDate))
             let formatter = DateFormatter()
             formatter.dateFormat = "dd.MM.yyyy"
             formatter.locale = Locale(identifier: "tr_TRPOSIX")
             self.dateTime = formatter.string(from: date)
-            getData()
         }
     }
     
@@ -249,9 +266,12 @@ struct InvestContent : View {
                     if let lastName = doc?.get("lastName") as? String {
                         if let pfImage = doc?.get("pfImage") as? String {
                             if let nickname = doc?.get("nickname") as? String {
-                                self.fullname = "\(firstName) \(lastName)"
-                                self.pfImage = pfImage
-                                self.nickname = nickname
+                                if let platformid = doc?.get("platformID") as? String {
+                                    self.platformID = platformid
+                                    self.fullname = "\(firstName) \(lastName)"
+                                    self.pfImage = pfImage
+                                    self.nickname = nickname
+                                }
                             }
                         }
                     }

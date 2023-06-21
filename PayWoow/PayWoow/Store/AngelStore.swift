@@ -16,33 +16,52 @@ class AngelStore: ObservableObject {
     let ref = Firestore.firestore()
     
     init(){
-        ref.collection("Users").getDocuments { (querySnapshot, error) in
+        self.getAngels()
+        self.getDevils()
+    }
+    
+    func getAngels() {
+        ref.collection("Angels").getDocuments { snapchat, error in
             if let error = error {
                 print("Error getting documents: \(error.localizedDescription)")
-            } else {
-                guard let querySnapshot = querySnapshot else {
-                    print("Error fetching documents.")
-                    return
-                }
-                for document in querySnapshot.documents {
+            }else {
+                guard let snapchat = snapchat else { return }
+                
+                for document in snapchat.documents {
                     let data = document.data()
-                    let accountLevel = data["accountLevel"] as? Int ?? 0
-                    
                     let timeStamp = data["timeStamp"] as? Int ?? 0
-                    if accountLevel == 1 {
-                        DispatchQueue.main.async {
-                            let angalData = AngelModel(userID: document.documentID, timeStamp: timeStamp)
-                            self.angels.append(angalData)
-                        }
-                    } else if accountLevel == 0 {
-                        let devilData = DevilModel(userID: document.documentID, timeStamp: timeStamp)
-                        self.devils.append(devilData)
-                    }                    
+                    
+                    DispatchQueue.main.async {
+                        let angelData = AngelModel(userID: document.documentID, timeStamp: timeStamp)
+                        self.angels.append(angelData)
+                    }
                 }
             }
         }
-        //++++++++++++++++++++++++++++++ Devils ++++++++++++++++++++++++++++++++//
-        
+    }
+    
+    //++++++++++++++++++++++++++++++ Devils ++++++++++++++++++++++++++++++++//
+    func getDevils() {
+        ref.collection("Devils").getDocuments { snapchat, error in
+            if let error = error {
+                print("Error getting documents: \(error.localizedDescription)")
+            } else {
+                guard let snapchat = snapchat else { return }
+                
+                
+                for document in snapchat.documents {
+                    let data = document.data()
+                    let timeStamp = data["timeStamp"] as? Int ?? 0
+                    
+                    DispatchQueue.main.async {
+                        let devilData = DevilModel(userID: document.documentID, timeStamp: timeStamp)
+                        self.devils.append(devilData)
+                    }
+                    
+                
+                }
+            }
+        }
     }
 
 }

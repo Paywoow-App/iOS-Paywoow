@@ -152,7 +152,7 @@ struct OrdersSections: View {
     var waitingOrders : some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack{
-                ForEach(orderStore.list) { item in
+                ForEach(orderStore.list, id: \.timeStamp) { item in
                     if item.result == 0 {
                         OrderContent(userID: item.userID, platformID: item.platformID, platform: item.platform, price: item.price, timeStamp: item.timeStamp, transferType: item.transferType, signatureURL: item.signatureURL, hexCodeTop: item.hexCodeTop, hexCodeBottom: item.hexCodeBottom, refCode: item.refCode, result: item.result, product: item.product, streamerGivenGift: item.streamerGivenGift, month: item.month, year: item.year, deallerID: item.deallerID, docID: item.docId)
                     }
@@ -164,7 +164,7 @@ struct OrdersSections: View {
     var proccesedOrders : some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack{
-                ForEach(orderStore.list) { item in
+                ForEach(orderStore.list, id: \.timeStamp) { item in
                     if item.result == 1 {
                         OrderContent(userID: item.userID, platformID: item.platformID, platform: item.platform, price: item.price, timeStamp: item.timeStamp, transferType: item.transferType, signatureURL: item.signatureURL, hexCodeTop: item.hexCodeTop, hexCodeBottom: item.hexCodeBottom, refCode: item.refCode, result: item.result, product: item.product, streamerGivenGift: item.streamerGivenGift, month: item.month, year: item.year, deallerID: item.deallerID, docID: item.docId)
                     }
@@ -176,7 +176,7 @@ struct OrdersSections: View {
     var acceptedOrders : some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack{
-                ForEach(orderStore.list) { item in
+                ForEach(orderStore.list, id: \.timeStamp) { item in
                     if item.result == 2 {
                         OrderContent(userID: item.userID, platformID: item.platformID, platform: item.platform, price: item.price, timeStamp: item.timeStamp, transferType: item.transferType, signatureURL: item.signatureURL, hexCodeTop: item.hexCodeTop, hexCodeBottom: item.hexCodeBottom, refCode: item.refCode, result: item.result, product: item.product, streamerGivenGift: item.streamerGivenGift, month: item.month, year: item.year, deallerID: item.deallerID, docID: item.docId)
                     }
@@ -188,7 +188,7 @@ struct OrdersSections: View {
     var declinedOrders : some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack{
-                ForEach(orderStore.list) { item in
+                ForEach(orderStore.list, id: \.timeStamp) { item in
                     if item.result == 3 {
                         OrderContent(userID: item.userID, platformID: item.platformID, platform: item.platform, price: item.price, timeStamp: item.timeStamp, transferType: item.transferType, signatureURL: item.signatureURL, hexCodeTop: item.hexCodeTop, hexCodeBottom: item.hexCodeBottom, refCode: item.refCode, result: item.result, product: item.product, streamerGivenGift: item.streamerGivenGift, month: item.month, year: item.year, deallerID: item.deallerID, docID: item.docId)
                     }
