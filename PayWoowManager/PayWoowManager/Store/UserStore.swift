@@ -44,7 +44,7 @@ class UserStore: ObservableObject{
     let ref = Firestore.firestore()
     
     init() {
-
+        self.users = []
     }
     
     func getUser() {

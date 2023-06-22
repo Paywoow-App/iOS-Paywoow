@@ -721,12 +721,12 @@ struct AccountType: View {
                             .frame(width: 60, height: 60)
                         
                         VStack(alignment: .leading, spacing: 7){
-                            Text(item.nickname)
+                            Text(item.platformID)
                                 .foregroundColor(.white)
                                 .font(.system(size: 15))
                                 .fontWeight(.medium)
                             
-                            Text("\(item.firstName) \(item.lastName)")
+                            Text(item.nickname)
                                 .foregroundColor(.gray)
                                 .font(.system(size: 14))
                                 .fontWeight(.light)

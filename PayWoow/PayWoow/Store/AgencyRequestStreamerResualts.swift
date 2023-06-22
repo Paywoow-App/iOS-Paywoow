@@ -19,6 +19,7 @@ struct AgencyRequestStreamerResultsModel: Identifiable{
     var level : Int
     var userId : String
     var nickname : String
+    var platformID: String
 }
 
 class AgencyRequestStreamerResultStore: ObservableObject{
@@ -41,15 +42,18 @@ class AgencyRequestStreamerResultStore: ObservableObject{
                                             if let token = docc?.get("token") as? String {
                                                 if let level = docc?.get("level") as? Int {
                                                     if let nickname = docc?.get("nickname") as? String {
-                                                        let data = [
-                                                            "firstName" : firstName,
-                                                            "lastName" : lastName,
-                                                            "pfImage" : pfImage,
-                                                            "token" : token,
-                                                            "level" : level,
-                                                            "nickname" : nickname
-                                                        ] as [String : Any]
-                                                        self.ref.collection("AgencyRequests").document(Auth.auth().currentUser!.uid).collection("Streamers").document(userId).setData(data, merge: true)
+                                                        if let platformID = docc?.get("platformID") as? String {
+                                                            let data = [
+                                                                "firstName" : firstName,
+                                                                "lastName" : lastName,
+                                                                "pfImage" : pfImage,
+                                                                "token" : token,
+                                                                "level" : level,
+                                                                "nickname" : nickname,
+                                                                "platformID" : platformID
+                                                            ] as [String : Any]
+                                                            self.ref.collection("AgencyRequests").document(Auth.auth().currentUser!.uid).collection("Streamers").document(userId).setData(data, merge: true)
+                                                        }
                                                     }
                                                 }
                                             }
@@ -67,12 +71,14 @@ class AgencyRequestStreamerResultStore: ObservableObject{
                                             if let userId = doc.get("userId") as? String {
                                                 if let isAccepted = doc.get("isAccepted") as? Int {
                                                     if let nickname = doc.get("nickname") as? String {
-                                                        let data = AgencyRequestStreamerResultsModel(firstName: firstName, lastName: lastName, pfImage: pfImage, token: token, isAccepted: isAccepted, level: level, userId: userId, nickname: nickname)
+                                                        if let platformID = doc.get("platformID") as? String {
+                                                            let data = AgencyRequestStreamerResultsModel(firstName: firstName, lastName: lastName, pfImage: pfImage, token: token, isAccepted: isAccepted, level: level, userId: userId, nickname: nickname, platformID: platformID)
                                                         self.streamers.append(data)
                                                         
                                                         if isAccepted == 2 {
                                                             self.acceptedCount = self.acceptedCount + 1
                                                         }
+                                                    }
                                                     }
                                                 }
                                             }

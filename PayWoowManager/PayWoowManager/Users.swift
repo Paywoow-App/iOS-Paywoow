@@ -12,6 +12,7 @@ import MapKit
 import CoreLocation
 import Combine
 import Lottie
+import FirebaseFirestore
 
 struct Users : View {
     @State private var selection = 1
@@ -21,8 +22,17 @@ struct Users : View {
     @State private var toMaker = false
     @State private var showDetails : Bool = false
     @State private var userTypeSelection = 0
+    @State private var users : [UserContentModel] = []
     
-    
+    func dataHandler(firstData: [UserContentModel]) {
+        for i in stride(from: 0, to: firstData.count, by: 10) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(i/10)) {
+                let end = min(i+10, firstData.count)
+                let chunk = Array(firstData[i..<end])
+                self.users.append(contentsOf: chunk)
+            }
+        }
+    }
     
     var body: some View {
             VStack(spacing: 15){
@@ -127,14 +137,14 @@ struct Users : View {
                     else {
                         
                         ScrollView(.vertical, showsIndicators: false) {
-                            ForEach(userStore.users){ item in
+                            ForEach(users, id: \.id){ item in
                                
                                 if self.userTypeSelection == 0 {
                                     if item.block == false {
-                                        UsersContent(firstName: item.firstName, lastName: item.lastName, pfImage: item.pfImage, level: item.level, accountCreatedDate: item.accountCreatedDate, city: item.city, town: item.town, platform: item.platform, platformId: item.platformId, gender: item.gender, email: item.email, isOnline: item.isOnline, totalSoldDiamond: item.totalSoldDiamond, phoneNumber: item.phoneNumber, gift: item.gift, lat: "\(item.lat)", long: "\(item.long)", userid: item.userId, block: item.block)
+                                            UsersContent(firstName: item.firstName, lastName: item.lastName, pfImage: item.pfImage, level: item.level, accountCreatedDate: item.accountCreatedDate, city: item.city, town: item.town, platform: item.platform, platformId: item.platformId, gender: item.gender, email: item.email, isOnline: item.isOnline, totalSoldDiamond: item.totalSoldDiamond, phoneNumber: item.phoneNumber, gift: item.gift, lat: "\(item.lat)", long: "\(item.long)", userid: item.userId, block: item.block)
                                     }
-                                    
                                 }
+                                
                                 else {
                                     if item.block == true {
                                         UsersContent(firstName: item.firstName, lastName: item.lastName, pfImage: item.pfImage, level: item.level, accountCreatedDate: item.accountCreatedDate, city: item.city, town: item.town, platform: item.platform, platformId: item.platformId, gender: item.gender, email: item.email, isOnline: item.isOnline, totalSoldDiamond: item.totalSoldDiamond, phoneNumber: item.phoneNumber, gift: item.gift, lat: "\(item.lat)", long: "\(item.long)", userid: item.userId, block: item.block)
@@ -142,6 +152,20 @@ struct Users : View {
                                 }
                                 
                             }
+                            .onAppear {
+                                print("Gay \(userStore.users.count)")
+                                print("Gayy \(self.users)")
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                    print("Gayy \(self.users.count)")
+                                }
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                                    print("Gayy \(self.users.count)")
+                                }
+                                
+                                dataHandler(firstData: userStore.users)
+                            }
+
                         }
                     }
                 }
@@ -149,6 +173,7 @@ struct Users : View {
                 Spacer(minLength: 0)
                 
             }
+
             .popover(isPresented: $toMaker, content: {
                 ReferanceCodeMaker()
             })
@@ -355,13 +380,7 @@ struct ReferanceContent: View{
                                         .font(.system(size: 12))
                                 }
                                 .frame(width: UIScreen.main.bounds.width * 0.225)
-                                
-                                
-                                
-                                
-                                
-                                
-                                
+
                             }
                             .frame(height: 80)
                             .padding(.top, 5)

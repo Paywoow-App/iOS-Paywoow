@@ -20,6 +20,8 @@ struct MainTabView: View {
     @State private var careMode = false
     @State private var toPasswordChager = false
     @EnvironmentObject var userStore: UserStore
+    
+    
     var body: some View {
         ZStack{
             LinearGradient(gradient: Gradient(colors: [Color.init(red: 52 / 255 , green: 58 / 255, blue: 58 / 255), Color.init(red: 16 / 255, green: 16 / 255, blue: 16 / 255)]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
