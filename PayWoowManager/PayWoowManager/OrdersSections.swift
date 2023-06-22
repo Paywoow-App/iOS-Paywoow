@@ -15,7 +15,7 @@ struct OrdersSections: View {
     @State var dealler : String = ""
     @AppStorage("selectedPlatform") var selectedPlatform : String = "BigoLive"
     @State private var toPlatformSelector : Bool = false
-    @StateObject var orderStore = OrderStore()
+    @EnvironmentObject var orderStore: OrderStore
     
     var body: some View {
         VStack{

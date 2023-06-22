@@ -6,14 +6,80 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseFirestore
+
+
+class MainTabViewViewModel: ObservableObject {
+    
+    
+    @Published var bayiOrderlistCount = 0
+    @Published var bayifuckingOrderArray: [OrderModel] = []
+    
+    init() {
+        Firestore.firestore().collection("Orders").addSnapshotListener { snap, err in
+            if err == nil {
+                for doc in snap!.documents {
+                    if let deallerID = doc.get("deallerID") as? String {
+                        if let userID = doc.get("userID") as? String {
+                            if let platformID = doc.get("platformID") as? String {
+                                if let platform = doc.get("platform") as? String {
+                                    if let price = doc.get("price") as? Int {
+                                        if let timeStamp = doc.get("timeStamp") as? Int {
+                                            if let transferType = doc.get("transferType") as? String {
+                                                if let signatureURL = doc.get("signatureURL") as? String {
+                                                    if let hexCodeTop = doc.get("hexCodeTop") as? String {
+                                                        if let hexCodeBottom = doc.get("hexCodeBottom") as? String {
+                                                            if let refCode = doc.get("refCode") as? String {
+                                                                if let product = doc.get("product") as? Int {
+                                                                    if let stremaerGivenGift = doc.get("streamerGivenGift") as? Int {
+                                                                        if let month = doc.get("month") as? String {
+                                                                            if let year = doc.get("year") as? String {
+                                                                                if let result = doc.get("result") as? Int {
+                                                                                        let data = OrderModel(userID: userID, platformID: platformID, platform: platform, price: price, timeStamp: timeStamp, transferType: transferType, signatureURL: signatureURL, hexCodeTop: hexCodeTop, hexCodeBottom: hexCodeBottom, refCode: refCode, result: result, product: product, streamerGivenGift: stremaerGivenGift, month: month, year: year, deallerID: deallerID, docId: doc.documentID)
+                                                                                        self.bayifuckingOrderArray.append(data)
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            dump("HAYYY \(self.bayiOrderlistCount)")
+
+        }
+        
+    }
+    
+    func convertArrayToCount() {
+        self.bayiOrderlistCount = self.bayifuckingOrderArray.map { $0.result == 0 }.count
+    }
+    
+}
 
 struct MainTabView: View {
+    @StateObject var viewModel = MainTabViewViewModel()
     @StateObject var bayiiOrder = OrderStore()
     @StateObject var agencyRequests = AgencyRequestStore()
     @StateObject var deallerApply = SupporterDeallerApplicationsStore()
     @StateObject var streamerApply = StreamerApplicationsStore()
     @StateObject var confirmationStore = ConfirmationStore()
     @StateObject var mainStore = DeallerStore()
+    @State var counting = 0
     @State private var selection = 5
     @State var dealler : String = ""
     @State var oldPassword : String = ""
@@ -21,19 +87,30 @@ struct MainTabView: View {
     @State private var toPasswordChager = false
     @EnvironmentObject var userStore: UserStore
     
+
+    
+    
     
     var body: some View {
         ZStack{
             LinearGradient(gradient: Gradient(colors: [Color.init(red: 52 / 255 , green: 58 / 255, blue: 58 / 255), Color.init(red: 16 / 255, green: 16 / 255, blue: 16 / 255)]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
             
-           
+
+            ForEach(bayiiOrder.list, id: \.id) { int in
+                if int.result == 0 {
+                    Text("\(int.id)")
+                        .onAppear {
+                            self.counting += 1
+                        }
+                }
+            }
+            .opacity(0)
          
             VStack{
-                
-                
-                
+                                
                 if self.selection == 0 {
                     OrdersSections(dealler: self.dealler)
+                        .environmentObject(bayiiOrder)
                 }
                 
                 if self.selection == 1 {
@@ -67,18 +144,18 @@ struct MainTabView: View {
                                     .foregroundColor(.white)
                                     .frame(width: 25, height: 25, alignment: Alignment.center)
                                
-//                                if self.bayiiOrder.waitingOrders.count != 0 {
-//                                    Circle()
-//                                        .fill(Color.red)
-//                                        .frame(width: 23, height: 23)
-//                                        .offset(x: 12, y: -12)
-//
-//
-//                                    Text("\(bayiiOrder.waitingOrders.count)")
-//                                        .foregroundColor(.white)
-//                                        .font(.system(size: 15))
-//                                        .offset(x: 12, y: -12)
-//                                }
+                                if (counting != 0) {
+                                    Circle()
+                                        .fill(Color.red)
+                                        .frame(width: 23, height: 23)
+                                        .offset(x: 12, y: -12)
+
+
+                                    Text("\(counting)")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 15))
+                                        .offset(x: 12, y: -12)
+                                }
                             }
                             
                             RoundedRectangle(cornerRadius: 10)
@@ -97,18 +174,18 @@ struct MainTabView: View {
                                     .foregroundColor(.white)
                                     .frame(width: 25, height: 25, alignment: Alignment.center)
                                 
-//                                if self.bayiiOrder.waitingOrders.count != 0 {
-//                                    Circle()
-//                                        .fill(Color.red)
-//                                        .frame(width: 23, height: 23)
-//                                        .offset(x: 12, y: -12)
-//
-//
-//                                    Text("\(bayiiOrder.waitingOrders.count)")
-//                                        .foregroundColor(.white)
-//                                        .font(.system(size: 15))
-//                                        .offset(x: 12, y: -12)
-//                                }
+                                if (counting != 0) {
+                                    Circle()
+                                        .fill(Color.red)
+                                        .frame(width: 23, height: 23)
+                                        .offset(x: 12, y: -12)
+
+
+                                    Text("\(counting)")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 15))
+                                        .offset(x: 12, y: -12)
+                                }
                             }
                         }
 
@@ -415,7 +492,6 @@ struct MainTabView: View {
                     }
                 }
             }
-            
         }
         .onAppear{
             let date = Date()
@@ -425,6 +501,7 @@ struct MainTabView: View {
             if formatter.string(from: date) == "Aralık" {
                 self.careMode = true
             }
+            print("HAYYY \(counting)")
         }
         .onChange(of: mainStore.isActiveSecure) { val in
             if val == true {
