@@ -1107,7 +1107,7 @@ struct OrderMaker: View {
     func sendOrder(transferType : String){
         let orderID = UUID().uuidString
         
-        let timeStamp = Date().timeIntervalSince1970
+        let timeStamp = Date().formatted(date: .abbreviated, time: .complete)
         
         let date = Date()
         let monthFormatter = DateFormatter()

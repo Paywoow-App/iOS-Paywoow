@@ -435,9 +435,9 @@
 			);
 			mainGroup = CAC8B02627CD390600DFF238;
 			packageReferences = (
-				CAF1D52E29096937007149AD /* XCRemoteSwiftPackageReference "Mantis.git" */,
-				CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
-				CAF1D53A2909709D007149AD /* XCRemoteSwiftPackageReference "DeviceKit.git" */,
+				CAF1D52E29096937007149AD /* XCRemoteSwiftPackageReference "Mantis" */,
+				CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CAF1D53A2909709D007149AD /* XCRemoteSwiftPackageReference "DeviceKit" */,
 				CAF1D53D29097165007149AD /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = CAC8B03027CD390700DFF238 /* Products */;
@@ -747,7 +747,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paywoow.yonetim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -790,7 +790,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paywoow.yonetim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -824,7 +824,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CAF1D52E29096937007149AD /* XCRemoteSwiftPackageReference "Mantis.git" */ = {
+		CAF1D52E29096937007149AD /* XCRemoteSwiftPackageReference "Mantis" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/guoyingtao/Mantis.git";
 			requirement = {
@@ -832,7 +832,7 @@
 				version = 1.7.5;
 			};
 		};
-		CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+		CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -840,7 +840,7 @@
 				version = 9.6.0;
 			};
 		};
-		CAF1D53A2909709D007149AD /* XCRemoteSwiftPackageReference "DeviceKit.git" */ = {
+		CAF1D53A2909709D007149AD /* XCRemoteSwiftPackageReference "DeviceKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devicekit/DeviceKit.git";
 			requirement = {
@@ -861,32 +861,32 @@
 /* Begin XCSwiftPackageProductDependency section */
 		CAF1D52F29096937007149AD /* Mantis */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CAF1D52E29096937007149AD /* XCRemoteSwiftPackageReference "Mantis.git" */;
+			package = CAF1D52E29096937007149AD /* XCRemoteSwiftPackageReference "Mantis" */;
 			productName = Mantis;
 		};
 		CAF1D53229096D8B007149AD /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
 		CAF1D53429096D8B007149AD /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
 		CAF1D53629096D8B007149AD /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
 		};
 		CAF1D53829096D8B007149AD /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
 		};
 		CAF1D53B2909709D007149AD /* DeviceKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CAF1D53A2909709D007149AD /* XCRemoteSwiftPackageReference "DeviceKit.git" */;
+			package = CAF1D53A2909709D007149AD /* XCRemoteSwiftPackageReference "DeviceKit" */;
 			productName = DeviceKit;
 		};
 		CAF1D53E29097165007149AD /* SwiftUICharts */ = {

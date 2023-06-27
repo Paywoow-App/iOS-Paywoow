@@ -26,8 +26,6 @@ extension View {
 
 struct AddBankCard: View {
     
-  
-    
     @State private var newCardNo: String = ""
 
     @StateObject var selectedCard = SelectedBankStore()
@@ -385,11 +383,9 @@ struct AddBankCard: View {
                                             Text(newCardNo)
                                             Spacer()
                                         }
-                                        .frame(width: UIScreen.main.bounds.width * 0.6, height: 40)
-                                        .padding(.leading)
                                     }
-                                    .frame(width: UIScreen.main.bounds.width * 0.6, height: 40)
-                                
+                                    .frame(width: UIScreen.main.bounds.width * 0.7, height: 40)
+                                    .padding(.leading, 5)
                                 Button {
                                     openScanner.toggle()
                                 } label: {
@@ -400,7 +396,7 @@ struct AddBankCard: View {
                                 }
                                 .padding(.trailing)
                             }
-                            .frame(width: UIScreen.main.bounds.width * 0.8, height: 40)
+                            .frame(width: UIScreen.main.bounds.width * 0.78, height: 40)
                         }
                     }
 

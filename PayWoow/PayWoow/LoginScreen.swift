@@ -1028,25 +1028,28 @@ struct LoginScreen: View {
     var register5 : some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 15){
-                HStack{
-                    Button {
-                        self.registerStep = self.registerStep - 1
-                    } label: {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.white)
-                            
-                            Image(systemName: "arrow.left")
-                                .foregroundColor(.white)
-                                .font(.system(size: 20))
+                Spacer()
+                VStack(alignment: .leading) {
+                    HStack(spacing: 20) {
+                        Button {
+                            self.registerStep = self.registerStep - 1
+                        } label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.white)
+                                
+                                Image(systemName: "arrow.left")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 20))
+                            }
+                            .frame(width: 45, height: 45)
                         }
-                        .frame(width: 45, height: 45)
+                            Text("Mail adresin nedir?")
+                                .foregroundColor(.white)
+                                .font(.system(size: 18))
+                                .fontWeight(.medium)
+                        Spacer()
                     }
-                    VStack(alignment: .leading, spacing: 16){
-                        Text("Mail adresin nedir?")
-                            .foregroundColor(.white)
-                            .font(.system(size: 18))
-                            .fontWeight(.medium)
                         
                         Text("Mail adresin ile hesabını doğrulamam için")
                             .foregroundColor(.white)
@@ -1054,7 +1057,6 @@ struct LoginScreen: View {
                             .fontWeight(.medium)
                         
                         
-                    }
                     
                     
                     Spacer(minLength: 0)
@@ -1129,40 +1131,37 @@ struct LoginScreen: View {
     var register6 : some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 15){
-                HStack{
-                    Button {
-                        self.registerStep = self.registerStep - 1
-                    } label: {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.white)
-                            
-                            Image(systemName: "arrow.left")
-                                .foregroundColor(.white)
-                                .font(.system(size: 20))
+                Spacer()
+                VStack(alignment: .leading) {
+                    HStack(spacing: 20) {
+                        Button {
+                            self.registerStep = self.registerStep - 1
+                        } label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.white)
+                                
+                                Image(systemName: "arrow.left")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 20))
+                            }
+                            .frame(width: 45, height: 45)
                         }
-                        .frame(width: 45, height: 45)
+                            Text("Biraz da güvenlik!")
+                                .foregroundColor(.white)
+                                .font(.system(size: 18))
+                                .fontWeight(.medium)
+                        Spacer()
                     }
-                    VStack(alignment: .leading, spacing: 16){
-                        Text("Biraz da güvenlik!")
-                            .foregroundColor(.white)
-                            .font(.system(size: 18))
-                            .fontWeight(.medium)
-                        
                         Text("Bir şifre oluşturalım")
                             .foregroundColor(.white)
                             .font(.system(size: 15))
                             .fontWeight(.medium)
-                        
-                        
-                    }
-                    
-                    
                     Spacer(minLength: 0)
                 }
                 .padding(.horizontal, 30)
                 .padding(.top)
-                
+
                 ZStack{
                     RoundedRectangle(cornerRadius: 8)
                         .fill(Color.black.opacity(0.2))
@@ -1189,7 +1188,7 @@ struct LoginScreen: View {
                                 .font(.system(size: 20))
                         }
                         
-                        
+                        Spacer()
                     }
                     .padding(.horizontal, 15)
                 }

@@ -46,12 +46,10 @@ struct SalaryBankCreater: View {
                         .foregroundColor(.white)
                         .font(.title2)
                     
-                    
                     Spacer(minLength: 0)
 
                 }
                 .padding(.all)
-                
                 
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack{
@@ -135,15 +133,14 @@ struct SalaryBankCreater: View {
                     ZStack{
                         RoundedRectangle(cornerRadius: 8)
                             .fill(Color.black.opacity(0.2))
-                        //MERK Kullanıcı boşluklu girer ise boşluksuz şekilde ayarla
+
                         HStack{
-                            TextField("Yatırılacak IBAN", text: $iban.limit(29))
-                                .foregroundColor(.white)
+                            TextField("Yatırılacak IBAN", text: $iban.limit(24))
+                                .foregroundColor(.clear)
                                 .font(.system(size: 15))
                                 .colorScheme(.dark)
                                 .keyboardType(.numbersAndPunctuation)
                                 .onChange(of: iban) { iban in
-                                                                        
                                     self.newIbanNo = splitAndJoin(iban, by: 4, separator: " ")
                                 }
                                 .overlay {
@@ -151,7 +148,6 @@ struct SalaryBankCreater: View {
                                         Text(newIbanNo)
                                         Spacer()
                                     }
-                                    .padding(.leading)
                                 }
                             
                             Button {
@@ -204,7 +200,7 @@ struct SalaryBankCreater: View {
                                 self.alertBody = "Hesap sahibinin edını eirdiğinizden emin olun!"
                                 self.showAlert.toggle()
                             }
-                            else if iban.count != 26 {
+                            else if iban.count != 24 {
                                 self.alertTitle = "Geçersiz Bilgi"
                                 self.alertBody = "IBAN Bilgisi 24 karakertden oluşmalıdır"
                                 self.showAlert.toggle()

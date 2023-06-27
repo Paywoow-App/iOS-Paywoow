@@ -31,6 +31,7 @@ struct AgencyApplication: View {
     @State private var alertBody : String = ""
     @State private var showAlert : Bool = false
     @State private var alertFunc : Int = 0
+        
     var body: some View {
         ZStack{
             LinearGradient(colors: [Color.init(red: 52 / 255, green: 56 / 255, blue: 56 / 255), Color.init(red: 16 / 255, green: 16 / 255, blue: 16 / 255)], startPoint: .topLeading, endPoint: .bottomTrailing).edgesIgnoringSafeArea(.all)
@@ -130,15 +131,18 @@ struct AgencyApplication: View {
                             self.alertTitle = "Eksik Alan"
                             self.alertBody = "Telefon numaranızın doğruluğunu kontrol edin"
                             self.showAlert.toggle()
+                        } else if totalStreamer == 0 {
+                            self.alertTitle = "Toplan Kaç yayıncınız var "
+                            self.alertBody = "Kaç adet yayıncı olduğunu belirtir misiniz ?"
+                            self.showAlert.toggle()
                         }
-                        else if self.selectedStremers.count < 5 {
+                        else if selectedStremers.count != totalStreamer {
                             self.alertTitle = "Eksik Alan"
                             self.alertBody = "En az \(totalStreamer) yayıncı seçmelisin!"
                             self.showAlert.toggle()
                         }
                         else {
                             sendApplication()
-                            
                         }
                     } label: {
                         ZStack{
@@ -157,11 +161,12 @@ struct AgencyApplication: View {
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
-                
                 self.agencyOwnerName = userStore.nickname
                 self.agencyPlatformId = userStore.bigoId
                 self.phoneNumber = userStore.phoneNumber
             }
+            
+            print("MErto BUraya bakasmdı \(self.selectedStremers.count)")
         }
         .alert(isPresented: $showAlert) {
             Alert(title: Text(alertTitle), message: Text(alertBody), dismissButton: Alert.Button.default(Text("Ok")){
@@ -264,7 +269,7 @@ struct AgencyApplication: View {
                             .foregroundColor(.white)
                             .font(.system(size: 15))
                         
-                        TextField("532 XXX XX XX", text: $phoneNumber)
+                        TextField("532 XXX XX XX", text: $phoneNumber.limit(10))
                             .foregroundColor(.white)
                             .font(.system(size: 15))
                             .colorScheme(.dark)
@@ -356,7 +361,6 @@ struct AgencyApplication: View {
                                     self.finder.getData(pid: val)
                                 }
                             }
-                            
                     }.padding(.horizontal)
                 }
                 .frame(height: 50)
@@ -365,7 +369,7 @@ struct AgencyApplication: View {
                     ZStack{
                         RoundedRectangle(cornerRadius: 8)
                             .fill(Color.black.opacity(0.2))
-                        
+
                         HStack(spacing: 15){
                             WebImage(url: URL(string: finder.pfImage))
                                 .resizable()
@@ -391,13 +395,21 @@ struct AgencyApplication: View {
                                 
                                 if selectedStremersUserIDList.contains(where: {$0 == finder.userId}) {
                                     
-                                } else {
-                                    let data = SelectedStreamerModel(firstName: finder.firstName, lastName: finder.lastName, pfImage: finder.pfImage, level: finder.level, token: finder.token, platformID: finder.platformID, userId: finder.userId)
-                                    self.selectedStremers.append(data)
-                                    self.selectedStremersUserIDList.append(finder.userId)
-                                    self.selectedStremersToken.append(finder.token)
-                                    self.search = ""
-                                    self.finder.userId = ""
+                                    } else {
+                                        if finder.accountLevel != 2 {
+                                            let data = SelectedStreamerModel(firstName: finder.firstName, lastName: finder.lastName, pfImage: finder.pfImage, level: finder.level, token: finder.token, platformID: finder.platformID, userId: finder.userId, accountLevel: finder.accountLevel )
+                                        self.selectedStremers.append(data)
+                                        self.selectedStremersUserIDList.append(finder.userId)
+                                        self.selectedStremersToken.append(finder.token)
+                                        self.search = ""
+                                        self.finder.userId = ""
+                                        print("HEYYOO \(finder.accountLevel)")
+                                        } else {
+                                            alertBody = "Bu bir ajans kurucusu olduğundan ekleyemezsiniz."
+                                            alertTitle = "Dikkat bu bir ajans kurucusudur"
+                                            alertFunc = 1
+                                        }
+
                                 }
                             } label: {
                                 Text("Ekle")
@@ -405,7 +417,6 @@ struct AgencyApplication: View {
                                     .font(.system(size: 15))
                                     .fontWeight(.medium)
                             }
-
                         }.padding(10)
                     }
                     .frame(height: 50)
@@ -419,7 +430,6 @@ struct AgencyApplication: View {
                     
                     ForEach(selectedStremers) { item in
                         SelectedStreamerContent(firstName: item.firstName, lastName: item.lastName, pfImage: item.pfImage, level: item.level, token: item.token, platformID: item.platformID, userId: item.userId, list: $selectedStremers)
-                        
                     }
                 }
                 
@@ -463,7 +473,6 @@ struct AgencyApplication: View {
         
         
         //MARK: Seçilen Yayıncılara Bildirim Gönder ve Ajansı Teyit al
-        
         let streamerQuestionData = [
             "userId" : Auth.auth().currentUser!.uid,
             "pfImage" : userStore.pfImage,
@@ -492,16 +501,12 @@ struct AgencyApplication: View {
                 "isAccepted" : 0,
                 "nickname" : ""
             ] as [String : Any]
-            
             ref.collection("AgencyRequests").document(Auth.auth().currentUser!.uid).collection("Streamers").document(item).setData(streamerSaveData, merge: true)
-            
         }
-        
         self.alertTitle = "Tebrikler 🥳"
         self.alertBody = "Ajans Bildirimin elimize ulaştı. Şimdi yayıncılarından teyit bekliyoruz. En yakın sürede ajans başvurunu onaylamak için sabırsızlanıyoruz!"
         self.alertFunc = 1
         self.showAlert.toggle()
-        
     }
 }
 
@@ -527,12 +532,13 @@ struct SelectedStreamerContent: View {
                     .frame(width: 52, height: 52)
                 
                 VStack(alignment: .leading, spacing: 10){
-                    Text(platformID)
+                    
+                    Text("\(firstName) \(lastName)")
                         .foregroundColor(.white)
                         .font(.system(size: 15))
                         .bold()
                     
-                    Text("\(firstName) \(lastName)")
+                    Text(platformID)
                         .foregroundColor(.gray)
                         .font(.system(size: 15))
                 }
@@ -557,6 +563,7 @@ struct SelectedStreamerModel: Identifiable {
     var token : String
     var platformID : String
     var userId : String
+    var accountLevel: Int
 }
 
 class FindStreamers: ObservableObject {
@@ -569,6 +576,7 @@ class FindStreamers: ObservableObject {
     @Published var platformID : String = ""
     @Published var userId : String = ""
     @Published var nickname : String = ""
+    @Published var accountLevel : Int = 0
     
     func getData(pid : String){
         ref.collection("Users").addSnapshotListener { snap, err in
@@ -587,18 +595,21 @@ class FindStreamers: ObservableObject {
                                 if let lastName = doc.get("lastName") as? String {
                                     if let pfImage = doc.get("pfImage") as? String {
                                         if let level = doc.get("level") as? Int {
-                                            if let token = doc.get("token") as? String {
-                                                if let isSupporter = doc.get("accountLevel") as? Int {
-                                                    if let nickname = doc.get("nickname") as? String {
-                                                        if isSupporter == 1 {
-                                                            self.firstName = firstName
-                                                            self.lastName = lastName
-                                                            self.pfImage = pfImage
-                                                            self.level = level
-                                                            self.token = token
-                                                            self.platformID = platformID
-                                                            self.userId = doc.documentID
-                                                            self.nickname = nickname
+                                            if let accountLevel = doc.get("accountLevel") as? Int {
+                                                if let token = doc.get("token") as? String {
+                                                    if let isSupporter = doc.get("accountLevel") as? Int {
+                                                        if let nickname = doc.get("nickname") as? String {
+                                                            if isSupporter == 1 {
+                                                                self.firstName = firstName
+                                                                self.lastName = lastName
+                                                                self.pfImage = pfImage
+                                                                self.level = level
+                                                                self.token = token
+                                                                self.platformID = platformID
+                                                                self.userId = doc.documentID
+                                                                self.nickname = nickname
+                                                                self.accountLevel = accountLevel
+                                                            }
                                                         }
                                                     }
                                                 }
