@@ -190,10 +190,18 @@ struct AccountType: View {
                 }
                 ref.collection("Users").document(Auth.auth().currentUser!.uid).setData(["isSentAgencyApplication" : false, "agencyRequest" : false], merge: true)
                 ref.collection("AgencyRequests").document(Auth.auth().currentUser!.uid).delete()
+                ref.collection("AgencyRequests").document(Auth.auth().currentUser!.uid).collection("Streamers").getDocuments { snap, error in
+                    if let error = error {}
+                    
+                    guard let documents = snap?.documents else { return }
+                    
+                    for document in documents {
+                        document.reference.delete() 
+                    }
+                }
+                streamers.streamers = []
             })
         }
-        
-        
     }
     
     var accountTypes : some View {
@@ -662,7 +670,6 @@ struct AccountType: View {
                     .frame(width: 45, height: 45)
                 }
                 
-                
                 Text("Başvurunuz Devam Ediyor")
                     .foregroundColor(.white)
                     .font(.title2)
@@ -670,6 +677,9 @@ struct AccountType: View {
                 Spacer(minLength: 0)
             }
             .padding([.horizontal, .top])
+            .onAppear {
+                print("DATA ID  \(Auth.auth().currentUser?.uid)")
+            }
             
             ScrollView(.vertical, showsIndicators: false) {
                

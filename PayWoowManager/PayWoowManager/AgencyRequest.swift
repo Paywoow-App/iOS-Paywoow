@@ -26,7 +26,7 @@ struct AgencyRequest: View {
     
     
     var agencyyRequest: some View {
-        ScrollView(showsIndicators: false){
+        ScrollView(showsIndicators: false) {
             ForEach(agencyRequests.requests){ item in
                 AgencyRequestContent(agencyName: item.agencyName, firstName: item.firstName, lastName: item.lastName, isComplatedTransactions: item.isComplatedTransactions, isVerifiedAgency: item.isVerifiedAgency, level: item.level, nickname: item.nickname, pfImage: item.pfImage, phoneNumber: item.phoneNumber, platformID: item.platformID, platformName: item.platformName, streamers: item.streamers, timeDate: item.timeDate, token: item.token, totalStreamers: item.totalStreamers, totalWork: item.totalWork, docID: item.docID, showAlert: $showAlert, alertTitle: $alertTitle, alertBody: $alertBody)
             }
@@ -144,21 +144,21 @@ struct AgencyRequest: View {
 }
 
 
-struct AgencyRequestContent : View{
-    @State var agencyName : String
-    @State var firstName : String
-    @State var lastName : String
-    @State var isComplatedTransactions : Bool
-    @State var isVerifiedAgency : Bool
-    @State var level : Int
-    @State var nickname : String
-    @State var pfImage : String
-    @State var phoneNumber : String
-    @State var platformID : String
-    @State var platformName : String
-    @State var streamers : [String]
-    @State var timeDate : String
-    @State var token : String
+struct AgencyRequestContent : View {
+    @State var agencyName: String
+    @State var firstName: String
+    @State var lastName: String
+    @State var isComplatedTransactions: Bool
+    @State var isVerifiedAgency: Bool
+    @State var level: Int
+    @State var nickname: String
+    @State var pfImage: String
+    @State var phoneNumber: String
+    @State var platformID: String
+    @State var platformName: String
+    @State var streamers: [String]
+    @State var timeDate: String
+    @State var token: String
     @State var totalStreamers : Int
     @State var totalWork : Int
     @State var docID : String //same userID
@@ -206,13 +206,10 @@ struct AgencyRequestContent : View{
                         .foregroundColor(.white)
                         .font(.system(size: 15))
                 }
-                
-                
             }
             .onTapGesture {
                 self.showDetails.toggle()
             }
-            
             
             if showDetails {
                 VStack(spacing: 10){
@@ -369,7 +366,8 @@ struct AgencyRequestContent : View{
                         .font(.system(size: 15))
                 }
                 ForEach(streamers, id: \.self) { item in
-                    AgencyRequestStreamerContent(userID: item)
+                    AgencyRequestStreamerContent(model: AgencyRequestStreamerContentModel(userID: item))
+                    
                 }
             }
         }
@@ -511,7 +509,7 @@ struct AgencyRequestContent : View{
             ], merge: true)
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
             self.blur = false
             ref.collection("AgencyRequests").document(docID).delete()
             self.alertTitle = "Ajans Kurulumu Tamamlandı"
@@ -521,41 +519,80 @@ struct AgencyRequestContent : View{
         
         sendPushNotify(title: "Tebrikler!", body: "Ajansınız kurulmuştur. Artık hem yönetim grupları ile hemde kendi yayıncıların ile tek bir yerde konuşma imkanın olacak. Emeklerinden dolayı teşekkür ederiz!", userToken: token, sound: "pay.mp3")
     }
+    
+
+}
+
+class AgencyRequestStreamerContentModel: ObservableObject {
+    @Published var firstName: String = ""
+    @Published var lastName: String = ""
+    @Published var pfImage: String = ""
+    @Published var level: Int = 0
+    @Published var platformName: String = ""
+    @Published var platformID: String = ""
+    @Published var token: String = ""
+    @Published var email: String = ""
+    @Published var nickname: String = ""
+    @Published var phoneNumber: String = ""
+    
+    var userID: String {
+        didSet {
+            fetchUser()
+        }
+    }
+
+    init(userID: String) {
+        self.userID = userID
+        fetchUser()
+    }
+
+    
+    private func fetchUser() {
+         Firestore.firestore().collection("Users").document(self.userID).addSnapshotListener { snap, error in
+             if let error = error {
+                 print(error.localizedDescription)
+             } else {
+                 guard let snap = snap else { return }
+                 self.firstName = (snap.get("firstName") as? String) ?? ""
+                 self.lastName = (snap.get("lastName") as? String) ?? ""
+                 self.pfImage = (snap.get("pfImage") as? String) ?? ""
+                 self.level = (snap.get("level") as? Int) ?? 0
+                 self.platformName = (snap.get("firstName") as? String) ?? ""
+                 self.platformID = (snap.get("platformID") as? String ) ?? ""
+                 self.token = (snap.get("token") as? String ) ?? ""
+                 self.email = (snap.get("email") as? String ) ?? ""
+                 self.nickname = (snap.get("nickname") as? String ) ?? ""
+                 self.phoneNumber = (snap.get("phoneNumber") as? String ) ?? ""
+             }
+         }
+     }
+    
 }
 
 struct AgencyRequestStreamerContent: View{
-    @State var userID : String
-    @State private var firstName : String = ""
-    @State private var lastName : String = ""
-    @State private var pfImage : String = ""
-    @State private var level : Int = 0
-    @State private var platformName : String = ""
-    @State private var platformID : String = ""
-    @State private var token : String = ""
-    @State private var email : String = ""
-    @State private var nickname : String = ""
-    @State private var phoneNumber : String = ""
+    
+    @ObservedObject var model: AgencyRequestStreamerContentModel
     
     @State private var showDetails : Bool = false
+    
     var body : some View {
         VStack{
             HStack{
-                WebImage(url: URL(string: pfImage))
+                WebImage(url: URL(string: model.pfImage))
                     .resizable()
                     .scaledToFill()
                     .clipShape(Circle())
                     .frame(width: 50, height: 50)
                 
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("\(firstName) \(lastName)")
+                    Text("\(model.firstName) \(model.lastName)")
                         .foregroundColor(.white)
                         .font(.system(size: 15))
                         .fontWeight(.medium)
                     
-                    Text("\(nickname)")
+                    Text("\(model.nickname)")
                         .foregroundColor(.white)
                         .font(.system(size: 15))
-                    
                 }
                 
                 Spacer(minLength: 0)
@@ -583,7 +620,7 @@ struct AgencyRequestStreamerContent: View{
                         
                         Spacer(minLength: 0)
                         
-                        Text(email)
+                        Text(model.email)
                             .foregroundColor(.white)
                             .font(.system(size: 15))
                     }
@@ -596,7 +633,7 @@ struct AgencyRequestStreamerContent: View{
                         
                         Spacer(minLength: 0)
                         
-                        Text(phoneNumber)
+                        Text(model.phoneNumber)
                             .foregroundColor(.white)
                             .font(.system(size: 15))
                     }
@@ -609,7 +646,7 @@ struct AgencyRequestStreamerContent: View{
                         
                         Spacer(minLength: 0)
                         
-                        Text(platformName)
+                        Text(model.platformName)
                             .foregroundColor(.white)
                             .font(.system(size: 15))
                     }
@@ -622,7 +659,7 @@ struct AgencyRequestStreamerContent: View{
                         
                         Spacer(minLength: 0)
                         
-                        Text(platformID)
+                        Text(model.platformID)
                             .foregroundColor(.white)
                             .font(.system(size: 15))
                     }
@@ -635,46 +672,9 @@ struct AgencyRequestStreamerContent: View{
                         
                         Spacer(minLength: 0)
                         
-                        Text("\(level).Lv")
+                        Text("\(model.level).Lv")
                             .foregroundColor(.white)
                             .font(.system(size: 15))
-                    }
-                }
-            }
-        }
-        .onAppear{
-            let ref = Firestore.firestore()
-            ref.collection("Users").document(userID).addSnapshotListener { doc, err in
-                if err == nil {
-                    if let firstName = doc?.get("firstName") as? String {
-                        if let lastName = doc?.get("lastName") as? String {
-                            if let pfImage =  doc?.get("pfImage") as? String {
-                                if let platformName = doc?.get("selectedPlatform") as? String {
-                                    if let platformID = doc?.get("bigoId") as? String {
-                                        if let level = doc?.get("level") as? Int {
-                                            if let token = doc?.get("token") as? String {
-                                                if let email = doc?.get("email") as? String {
-                                                    if let nickname = doc?.get("nickname") as? String {
-                                                        if let phoneNumber = doc?.get("phoneNumber") as? String {
-                                                            self.firstName = firstName
-                                                            self.lastName = lastName
-                                                            self.pfImage = pfImage
-                                                            self.platformName = platformName
-                                                            self.platformID = platformID
-                                                            self.level = level
-                                                            self.token = token
-                                                            self.email = email
-                                                            self.nickname = nickname
-                                                            self.phoneNumber = phoneNumber
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
                     }
                 }
             }
