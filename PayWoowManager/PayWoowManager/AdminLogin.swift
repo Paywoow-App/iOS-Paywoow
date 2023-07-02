@@ -9,6 +9,7 @@ import SwiftUI
 import LocalAuthentication
 import SDWebImageSwiftUI
 import FirebaseFirestore
+import FirebaseAuth
 
 struct AdminLogin: View {
     @State private var selection = true
@@ -26,6 +27,7 @@ struct AdminLogin: View {
     @State private var isActiveSecureCode = ""
     @StateObject var userStore = UserStore()
     
+    
     @State private var callbackPassword : String = ""
     @State private var callbackPhoneNumber : String = ""
     var body: some View {
@@ -36,16 +38,13 @@ struct AdminLogin: View {
             VStack{
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 20){
+                        Spacer()
                         ZStack{
-
                             Image("logoWhite")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 150, height: 150)
                                 .offset(y: -50)
-
-                            LottieView(name: "people", loopMode: .loop)
-                                .frame(height: 200)
                         }
                         .padding(.top, 60)
 
@@ -131,6 +130,7 @@ struct AdminLogin: View {
                                 .font(.system(size: 15))
                                 .fontWeight(.medium)
                         }
+                        Spacer()
                     }
                 }
             }
@@ -141,6 +141,9 @@ struct AdminLogin: View {
         }
         .fullScreenCover(isPresented: $toPanel) {
             MainTabView(dealler: self.bayiiId, oldPassword: isActiveSecureCode)
+                .onAppear{
+                    secureAuth()
+                }
                 .environmentObject(userStore)
         }
         .onAppear{
@@ -166,6 +169,7 @@ struct AdminLogin: View {
                     DispatchQueue.main.async {
                         if success {
                             self.toPanel.toggle()
+                            
                         } else {
                             
                         }
@@ -181,6 +185,75 @@ struct AdminLogin: View {
             
         }
     }
+    
+    func checkAuthisNill(completion: @escaping (Bool) -> Void) {
+        Firestore.firestore().collection("bayii").document(storeNick).collection("isBeforeSignIn").getDocuments { snap, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            guard let docs = snap?.documents else { return }
+            
+            for doc in docs {
+                let phone = doc.get("whoSignInPhone") as? String
+                
+                if !(phone == "") {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            }
+        }
+    }
+    
+    func secureAuth() {
+        checkAuthisNill { isNil in
+            if !isNil {
+                
+            } else {
+                let phone = getDeviceModel()
+                
+                let data : [String: Any] = [
+                    "whoSignInPhone" : phone
+                ]
+                Firestore.firestore().collection("bayii").document(storeNick).collection("isBeforeSignIn").setValuesForKeys(data)
+            }
+        }
+    }
+    
+    func getDeviceModel() -> String {
+          let device = UIDevice.current
+          var deviceModel = ""
+          
+          if device.userInterfaceIdiom == .phone {
+              switch UIScreen.main.nativeBounds.height {
+              case 1136:
+                  deviceModel = "iPhone 5 or 5S or 5C"
+              case 1334:
+                  deviceModel = "iPhone 6/6S/7/8"
+              case 1920, 2208:
+                  deviceModel = "iPhone 6+/6S+/7+/8+"
+              case 2436:
+                  deviceModel = "iPhone X/XS/11 Pro"
+              case 2688:
+                  deviceModel = "iPhone XS Max/11 Pro Max"
+              case 1792:
+                  deviceModel = "iPhone XR/11"
+              case 2340:
+                  deviceModel = "iPhone 12/12 Pro"
+              case 2532:
+                  deviceModel = "iPhone 12 Mini/13 Mini"
+              case 2778:
+                  deviceModel = "iPhone 12 Pro Max/13 Pro Max"
+              default:
+                  deviceModel = "Unknown"
+              }
+          } else {
+              deviceModel = "Not an iPhone"
+          }
+          
+          return deviceModel
+      }
     
     func getDeallerData(bayiiID: String){
         if bayiiID != "" {

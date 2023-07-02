@@ -11,7 +11,7 @@ import FirebaseFirestore
 import LocalAuthentication
 import FirebaseAuth
 import CreditCardReader
-
+import UIKit
 
 extension View {
     func splitAndJoin(_ string: String, by chunkSize: Int, separator: String) -> String {
@@ -337,6 +337,7 @@ struct AddBankCard: View {
                         .foregroundColor(.white)
                         .font(.system(size: 20))
                         .padding(.horizontal)
+                        .keyboardType(.default)
                         .onTapGesture{
                             self.selection = 0
                         }
@@ -369,13 +370,13 @@ struct AddBankCard: View {
                                     .foregroundColor(.clear)
                                     .font(.system(size: 20))
                                     .padding(.trailing)
-                                    .keyboardType(.numbersAndPunctuation)
+                                    .keyboardType(.numberPad)
                                     .padding(.trailing)
+                                    .tint(.clear)
                                     .onTapGesture{
                                         self.selection = 0
                                     }
                                     .onChange(of: cardNo) { card in
-                                                                            
                                         self.newCardNo = splitAndJoin(card, by: 4, separator: " ")
                                     }
                                     .overlay {
@@ -383,6 +384,9 @@ struct AddBankCard: View {
                                             Text(newCardNo)
                                             Spacer()
                                         }
+                                    }
+                                    .onAppear {
+                                        
                                     }
                                     .frame(width: UIScreen.main.bounds.width * 0.7, height: 40)
                                     .padding(.leading, 5)

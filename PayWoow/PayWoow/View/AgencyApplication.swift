@@ -578,9 +578,7 @@ class FindStreamers: ObservableObject {
             
             guard let docs = snap?.documents else { return }
             
-            for doc in docs {
-                guard doc.get("accountLevel") as! Int != 2 else { return }
-                
+            for doc in docs {                
                 let id = doc.documentID
                 let firstName = doc.get("firstName") as? String ?? ""
                 let lastName = doc.get("lastName") as? String ?? ""

@@ -139,6 +139,7 @@ struct SalaryBankCreater: View {
                                 .foregroundColor(.clear)
                                 .font(.system(size: 15))
                                 .colorScheme(.dark)
+                                .tint(.clear)
                                 .keyboardType(.numbersAndPunctuation)
                                 .onChange(of: iban) { iban in
                                     self.newIbanNo = splitAndJoin(iban, by: 4, separator: " ")

@@ -64,7 +64,7 @@ struct AccountType: View {
                 accountTypes
             }
             
-
+            
             if self.showAlertStreamer {
                 ZStack{
                     Color.black.opacity(0.00000005).edgesIgnoringSafeArea(.all)
@@ -122,7 +122,7 @@ struct AccountType: View {
                     .padding(.all)
                 }
             }
-            
+            if self.userStore.accountLevel != 0 {
             if self.externalShowAlert {
                 
                 ZStack{
@@ -143,6 +143,7 @@ struct AccountType: View {
                             Button {
                                 self.externalShowAlert = false
                                 self.blur = false
+                                switchAcountToStreamer()
                             } label: {
                                 ZStack{
                                     RoundedRectangle(cornerRadius: 6)
@@ -154,7 +155,6 @@ struct AccountType: View {
                                         .fontWeight(.medium)
                                 }
                             }
-                            
                             
                         }
                         .frame(height: 45)
@@ -168,7 +168,7 @@ struct AccountType: View {
                 }
                 
             }
-            
+        }
         }
         .onAppear{
             self.getAgencyRequestData()
@@ -202,6 +202,14 @@ struct AccountType: View {
                 streamers.streamers = []
             })
         }
+    }
+    
+    func switchAcountToStreamer() {
+        
+        let data: [String:Any] = [
+            "accountLevel" : 0
+        ]
+        Firestore.firestore().collection("Users").document(Auth.auth().currentUser!.uid).updateData(data)
     }
     
     var accountTypes : some View {
@@ -246,7 +254,7 @@ struct AccountType: View {
                     }
                     else if userStore.accountLevel == 1 {
                         self.externalAlertTitle = "Uyarı"
-                        self.externalAlertBody = "Yayinci olabilmek için bir ajansa talep göndermelisiniz"
+                        self.externalAlertBody = "Yayinci olabilmek için bir ajansa talep göndermelisiniz. Eğer göndermezseniz özellikleri görebilir ama kullanamazsınız."
                         self.externalShowAlert = true
                         self.blur = true
                         self.selection = 0
