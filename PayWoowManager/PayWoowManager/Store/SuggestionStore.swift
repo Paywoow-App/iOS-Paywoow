@@ -19,7 +19,7 @@ struct SuggestionModel : Identifiable{
     var userId : String
     var title : String
     var timeDate : String
-    var bigoId : String
+    var platformID: String
 }
 
 
@@ -34,29 +34,18 @@ class SuggestionStore: ObservableObject {
             }
             else {
                 for doc in snap!.documents {
-                    if let img1 = doc.get("img1") as? String {
-                        if let img2 = doc.get("img2") as? String {
-                            if let img3 = doc.get("img3") as? String {
-                                if let pfImage = doc.get("pfImage") as? String {
-                                    if let fullname = doc.get("fullname") as? String {
-                                        if let desc = doc.get("description") as? String {
-                                            if let userId = doc.get("userId") as? String {
-                                                if let title = doc.get("title") as? String {
-                                                    if let timeDate = doc.get("timeDate") as? String {
-                                                        if let bigoId = doc.get("bigoId") as? String {
-                                                            let data = SuggestionModel(img1: img1, img2: img2, img3: img3, pfImage: pfImage, fullname: fullname, desc: desc, userId: userId, title: title, timeDate: timeDate, bigoId: bigoId)
-                                                            self.suggest.append(data)
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    
+                    let userId = doc.documentID
+                    let img1 = doc.get("img1") as? String ?? ""
+                    let img2 = doc.get("img2") as? String ?? ""
+                    let img3 = doc.get("img3") as? String ?? ""
+                    let pfImage = doc.get("pfImage") as? String ?? ""
+                    let fullname = doc.get("fullname") as? String ?? ""
+                    let desc = doc.get("description") as? String ?? ""
+                    let platformID = doc.get("platformID") as? String ?? ""
+                    let title = doc.get("title") as? String ?? ""
+                    let timeDate = doc.get("timeDate") as? String ?? ""
+                    let data = SuggestionModel(img1: img1, img2: img2, img3: img3, pfImage: pfImage, fullname: fullname, desc: desc, userId: userId, title: title, timeDate: timeDate,platformID: platformID)
+                    self.suggest.append(data)
                 }
             }
         }

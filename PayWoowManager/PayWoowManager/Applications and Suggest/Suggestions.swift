@@ -16,8 +16,8 @@ struct Suggestions: View {
         VStack{
             if !self.suggest.suggest.isEmpty {
                 ScrollView(showsIndicators: false){
-                    ForEach(suggest.suggest){ item in
-                        SuggestionContent(img1: item.img1, img2: item.img2, img3: item.img3, pfImage: item.pfImage, fullname: item.fullname, desc: item.desc, userId: item.userId, title: item.title, timeDate: item.timeDate, bigoId: item.bigoId)
+                    ForEach(suggest.suggest, id: \.timeDate ){ item in
+                        SuggestionContent(img1: item.img1, img2: item.img2, img3: item.img3, pfImage: item.pfImage, fullname: item.fullname, desc: item.desc, userId: item.userId, title: item.title, timeDate: item.timeDate,platformID: item.platformID)
                             .padding(.vertical)
                     }
                 }
@@ -46,7 +46,6 @@ struct Suggestions: View {
     }
 }
 
-
 struct SuggestionContent: View{
     @State var img1 : String = ""
     @State var img2 : String = ""
@@ -57,8 +56,8 @@ struct SuggestionContent: View{
     @State var userId : String = ""
     @State var title : String = ""
     @State var timeDate : String = ""
-    @State var bigoId : String = ""
-    @State private var ht : CGFloat = CGFloat(100)
+    @State var platformID : String = ""
+    @State private var ht : CGFloat = CGFloat(80)
     var body: some View{
         ZStack{
             RoundedRectangle(cornerRadius: 8)
@@ -77,23 +76,20 @@ struct SuggestionContent: View{
                             .font(.system(size: 20))
                             .fontWeight(.bold)
                         
-                        Text("ID : \(bigoId)")
+                        Text("ID : \(platformID)")
                             .foregroundColor(.gray)
                             .font(.system(size: 15))
                     }
-                    
-                    
                     Spacer(minLength: 0)
-                    
                     Button {
-                        if self.ht == 100 {
-                            self.ht = 500
+                        if self.ht == 80 {
+                            self.ht = 400
                         }
                         else {
-                            self.ht = 100
+                            self.ht = 80
                         }
                     } label: {
-                        if self.ht == 100 {
+                        if self.ht == 80 {
                             Image(systemName: "chevron.down")
                                 .resizable()
                                 .scaledToFit()
@@ -112,67 +108,64 @@ struct SuggestionContent: View{
                 }
                 .padding(.all)
                 
-                if self.ht == 500 {
+                if self.ht == 400 {
                     VStack(alignment: .leading, spacing: 10){
                         Text(title)
                             .foregroundColor(.white)
                             .font(.system(size: 18))
                             .fontWeight(.semibold)
                         
-                        TabView{
-                            ScrollView(showsIndicators: false){
+                            ScrollView(showsIndicators: true){
                                 Text(desc)
                                     .foregroundColor(.white.opacity(0.7))
                                     .font(.system(size: 15))
                                     .multilineTextAlignment(.leading)
                             }
+                            .frame(height: 150)
                             
-                            
+                        Text("Fotoğraflar")
+                            .foregroundColor(.white)
+                            .font(.system(size: 12))
+                            .fontWeight(.medium)
+                        HStack {
                             if self.img1 != "" {
                                 VStack{
                                     WebImage(url: URL(string: img1))
                                         .resizable()
-                                        .scaledToFill()
-                                        .frame(height: 400)
+                                        .scaledToFit()
                                     
                                     
                                 }
                                 .clipped()
                                 .cornerRadius(8)
                             }
-                            
                             
                             if self.img2 != "" {
                                 VStack{
                                     WebImage(url: URL(string: img2))
                                         .resizable()
-                                        .scaledToFill()
-                                        .frame(height: 400)
-                                    
+                                        .scaledToFit()
                                 }
                                 .clipped()
                                 .cornerRadius(8)
                             }
-                            
                             
                             if self.img3 != "" {
                                 VStack{
                                     WebImage(url: URL(string: img3))
                                         .resizable()
-                                        .scaledToFill()
-                                        .frame(height: 400)
-                                    
+                                        .scaledToFit()
                                 }
                                 .clipped()
                                 .cornerRadius(8)
                             }
-                        }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                        
+                        }
+                        .frame(height: 70)
                     }
-                    .padding(.horizontal)
-                    .padding(.bottom)
+                    .padding(.horizontal,5)
+                    .padding(.vertical,2)
+                    .padding(.bottom,5)
                 }
-                
             }
         }
         .frame(width: UIScreen.main.bounds.width * 0.9, height: ht)

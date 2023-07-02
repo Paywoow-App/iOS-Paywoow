@@ -567,6 +567,7 @@ struct Feedback: View {
             "timeDate" : "\(timeDate)",
             "title" : self.title,
             "description" : self.descripton,
+            "platformID": self.userStore.bigoId,
             "img1" : "",
             "img2" : "",
             "img3" : ""
