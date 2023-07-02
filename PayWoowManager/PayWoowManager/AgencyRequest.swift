@@ -371,6 +371,9 @@ struct AgencyRequestContent : View {
                 }
             }
         }
+        .onAppear {
+            print("Ajans IDsi BUğ \(docID)")
+        }
         .padding(.all, 10)
         .background(Color.black.opacity(0.2))
         .cornerRadius(8)
@@ -451,8 +454,33 @@ struct AgencyRequestContent : View {
     
     func deleteRequest(){
         let ref = Firestore.firestore()
+        let usersCollection = ref.collection("Users").document(docID)
+        usersCollection.updateData([
+            "isSentAgencyApplication": false,
+            "agencyApplicationUserId":"",
+            "myAgencyId":""
+        ])
+        
+        ref.collection("AgencyRequests").document(docID).collection("Streamers").getDocuments { snap, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            guard let docs = snap?.documents else { return }
+            
+            for doc in docs {
+                ref.collection("Users").document(doc.description).setData(
+                    ["streamerAgencyID" : "",
+                      "agencyApplicationUserId": ""]
+                )
+                
+                doc.reference.delete()
+            }
+        }
+        
         ref.collection("AgencyRequests").document(docID).delete()
         print("debuggg \(docID)")
+        
         self.alertTitle = "Ajans Reddedildi"
         self.alertBody = "Bu ajans kurulumu reddedildi. Ajans isteklerinden silindi. "
         self.showAlert.toggle()

@@ -195,7 +195,7 @@ struct AgencyApplication: View {
             .padding(.horizontal)
     }
     
-    
+    @ViewBuilder
     var apply: some View {
         VStack(alignment: .leading, spacing: 15){
             Group{
@@ -204,11 +204,11 @@ struct AgencyApplication: View {
                     .font(.system(size: 15))
                     .fontWeight(.medium)
                     .padding(.top, 15)
-                
+
                 ZStack{
                     RoundedRectangle(cornerRadius: 6)
                         .fill(Color.black.opacity(0.12))
-                    
+
                     TextField("Ajans Adı", text: $agencyName)
                         .foregroundColor(.white)
                         .font(.system(size: 15))
@@ -216,16 +216,16 @@ struct AgencyApplication: View {
                         .colorScheme(.dark)
                 }
                 .frame(height: 50)
-                
+
                 Text("Ajans Sahibinin Ad ve Soyadı")
                     .foregroundColor(.white)
                     .font(.system(size: 15))
                     .fontWeight(.medium)
-                
+
                 ZStack{
                     RoundedRectangle(cornerRadius: 6)
                         .fill(Color.black.opacity(0.12))
-                    
+
                     TextField("Ör: Ahmet Yılmaz", text: $agencyOwnerName)
                         .foregroundColor(.white)
                         .font(.system(size: 15))
@@ -236,16 +236,16 @@ struct AgencyApplication: View {
                         }
                 }
                 .frame(height: 50)
-                
+
                 Text("Platform ID")
                     .foregroundColor(.white)
                     .font(.system(size: 15))
                     .fontWeight(.medium)
-                
+
                 ZStack{
                     RoundedRectangle(cornerRadius: 6)
                         .fill(Color.black.opacity(0.12))
-                    
+
                     TextField("Ör: 94786565465", text: $agencyPlatformId)
                         .foregroundColor(.white)
                         .font(.system(size: 15))
@@ -253,40 +253,40 @@ struct AgencyApplication: View {
                         .colorScheme(.dark)
                 }
                 .frame(height: 50)
-                
+
                 Text("İletişim Numaranız")
                     .foregroundColor(.white)
                     .font(.system(size: 15))
                     .fontWeight(.medium)
-                
+
                 ZStack{
                     RoundedRectangle(cornerRadius: 6)
                         .fill(Color.black.opacity(0.12))
-                    
+
                     HStack(spacing: 15){
-                        
+
                         Text("+90")
                             .foregroundColor(.white)
                             .font(.system(size: 15))
-                        
+
                         TextField("532 XXX XX XX", text: $phoneNumber.limit(10))
                             .foregroundColor(.white)
                             .font(.system(size: 15))
                             .colorScheme(.dark)
-                            
+
                     }.padding(.horizontal)
                 }
                 .frame(height: 50)
-                
+
                 Text("Kaç Yıldır Faliyet Gösteriyorsunuz?")
                     .foregroundColor(.white)
                     .font(.system(size: 15))
                     .fontWeight(.medium)
-                
+
                 ZStack{
                     RoundedRectangle(cornerRadius: 6)
                         .fill(Color.black.opacity(0.12))
-                   
+
                     HStack{
                         Menu("\(totalYear) Yıl Faliyet"){
                             ForEach(1 ... 20, id: \.self){ item in
@@ -299,73 +299,64 @@ struct AgencyApplication: View {
                             }
                         }
                         .foregroundColor(.white)
-                        
+
                         Spacer(minLength: 0)
                     }
                     .padding(.horizontal)
                 }
                 .frame(height: 50)
             }
-            Group{
-                
+            Group {
                 Text("Toplam Kaç Yayıncınız Var?")
-                    .foregroundColor(.white)
-                    .font(.system(size: 15))
-                    .fontWeight(.medium)
-                
-                ZStack{
-                    RoundedRectangle(cornerRadius: 6)
-                        .fill(Color.black.opacity(0.12))
-                   
-                    HStack{
-                        Menu("\(totalStreamer) yayıncıya sahibim"){
-                            ForEach(5 ... 100, id: \.self){ item in
-                                Button {
-                                    self.totalStreamer = item
-                                } label: {
-                                    Text("\(item) kişi")
-                                }
+                            .foregroundColor(.white)
+                            .font(.system(size: 15))
+                            .fontWeight(.medium)
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 6)
+                                .fill(Color.black.opacity(0.12))
 
-                            }
-                        }
-                        .foregroundColor(.white)
-                        
-                        Spacer(minLength: 0)
-                    }
-                    .padding(.horizontal)
-                }
-                .frame(height: 50)
-                
-                
-                Text("Yayıncılarınızı Seçin")
-                    .foregroundColor(.white)
-                    .font(.system(size: 15))
-                    .fontWeight(.medium)
-                
-                ZStack{
-                    RoundedRectangle(cornerRadius: 6)
-                        .fill(Color.black.opacity(0.12))
-                    
-                    HStack(spacing: 15){
-                        
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                        
-                        TextField("Platform ID", text: $search)
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                            .colorScheme(.dark)
-                            .onChange(of: search) { val in
-                                if val != "" {
-                                    self.finder.getData(pid: val)
+                            HStack{
+                                Menu("\(totalStreamer) yayıncıya sahibim"){
+                                    ForEach(5 ... 100, id: \.self){ item in
+                                        Button {
+                                            self.totalStreamer = item
+                                        } label: {
+                                            Text("\(item) kişi")
+                                        }
+                                    }
                                 }
+                                .foregroundColor(.white)
+
+                                Spacer(minLength: 0)
                             }
-                    }.padding(.horizontal)
-                }
-                .frame(height: 50)
-                
-                if self.finder.userId != "" {
+                            .padding(.horizontal)
+                        }
+                        .frame(height: 50)
+
+                    Text("Yayıncılarınızı Seçin")
+                        .foregroundColor(.white)
+                        .font(.system(size: 15))
+                        .fontWeight(.medium)
+
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(Color.black.opacity(0.12))
+
+                        HStack(spacing: 15){
+
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(.white)
+                                .font(.system(size: 15))
+
+                            TextField("Platform ID", text: $search)
+                                .foregroundColor(.white)
+                                .font(.system(size: 15))
+                                .colorScheme(.dark)
+                        }.padding(.horizontal)
+                    }
+                    .frame(height: 50)
+                let filteredModel = finder.model.filter({ $0.platformID.contains(search)}).prefix(5)
+                ForEach(filteredModel.filter{ !selectedStremers.map{$0.platformID}.contains($0.platformID) }) { finder in
                     ZStack{
                         RoundedRectangle(cornerRadius: 8)
                             .fill(Color.black.opacity(0.2))
@@ -376,40 +367,44 @@ struct AgencyApplication: View {
                                 .scaledToFill()
                                 .clipShape(Circle())
                                 .frame(width: 52, height: 52)
-                            
+
                             VStack(alignment: .leading, spacing: 10){
-                                
+
                                 Text(finder.nickname)
                                     .foregroundColor(.white)
                                     .font(.system(size: 15))
                                     .bold()
-                                
+
                                 Text("PID : \(finder.platformID)")
                                     .foregroundColor(.white)
                                     .font(.system(size: 15))
                             }
-                            
+
                             Spacer(minLength: 0)
-                            
+
                             Button {
+//                                if selectedStremersUserIDList.contains(where: {$0 == finder.userId}) {
+//
+//                                }
                                 
-                                if selectedStremersUserIDList.contains(where: {$0 == finder.userId}) {
-                                    
-                                    } else {
+                                 if true {
                                         if finder.accountLevel != 2 {
-                                            let data = SelectedStreamerModel(firstName: finder.firstName, lastName: finder.lastName, pfImage: finder.pfImage, level: finder.level, token: finder.token, platformID: finder.platformID, userId: finder.userId, accountLevel: finder.accountLevel )
+                                            let data = SelectedStreamerModel(id: finder.id, firstName: finder.firstName, lastName: finder.lastName, pfImage: finder.pfImage, level: finder.level, token: finder.token, platformID: finder.platformID, userId: finder.userId, nickname: finder.nickname, accountLevel: finder.accountLevel)
                                         self.selectedStremers.append(data)
-                                        self.selectedStremersUserIDList.append(finder.userId)
+                                        self.selectedStremersUserIDList.append(finder.id)
+                                            print("Count \(selectedStremersUserIDList.count)")
+                                            print("streamer ID \(finder.id)")
                                         self.selectedStremersToken.append(finder.token)
                                         self.search = ""
-                                        self.finder.userId = ""
-                                        print("HEYYOO \(finder.accountLevel)")
+                                
+//                                        self.finder.userId = ""
+                                        print("I am Added")
                                         } else {
                                             alertBody = "Bu bir ajans kurucusu olduğundan ekleyemezsiniz."
                                             alertTitle = "Dikkat bu bir ajans kurucusudur"
+                                            showAlert.toggle()
                                             alertFunc = 1
                                         }
-
                                 }
                             } label: {
                                 Text("Ekle")
@@ -419,20 +414,19 @@ struct AgencyApplication: View {
                             }
                         }.padding(10)
                     }
-                    .frame(height: 50)
                 }
-                
                 if !self.selectedStremers.isEmpty {
-                    Text("Seçilen Yayıncılar")
-                        .foregroundColor(.white)
-                        .font(.system(size: 15))
-                        .fontWeight(.medium)
-                    
-                    ForEach(selectedStremers) { item in
-                        SelectedStreamerContent(firstName: item.firstName, lastName: item.lastName, pfImage: item.pfImage, level: item.level, token: item.token, platformID: item.platformID, userId: item.userId, list: $selectedStremers)
+                        Text("Seçilen Yayıncılar")
+                            .foregroundColor(.white)
+                            .font(.system(size: 15))
+                            .fontWeight(.medium)
+
+                        ForEach(selectedStremers) { item in
+                            SelectedStreamerContent(firstName: item.firstName, lastName: item.lastName, pfImage: item.pfImage, level: item.level, token: item.token, platformID: item.platformID, userId: item.userId, list: $selectedStremers)
+                        }
                     }
-                }
-                
+
+
             }
         }
         .padding(.horizontal)
@@ -490,7 +484,7 @@ struct AgencyApplication: View {
         
         for item in selectedStremersUserIDList {
             ref.collection("Users").document(item).collection("AgencyApplicationQuestion").document(Auth.auth().currentUser!.uid).setData(streamerQuestionData, merge: true)
-            
+
             let streamerSaveData = [
                 "firstName" : "",
                 "lastName" : "",
@@ -555,7 +549,7 @@ struct SelectedStreamerContent: View {
 
 
 struct SelectedStreamerModel: Identifiable {
-    var id = UUID()
+    var id: String
     var firstName : String
     var lastName : String
     var pfImage : String
@@ -563,65 +557,103 @@ struct SelectedStreamerModel: Identifiable {
     var token : String
     var platformID : String
     var userId : String
+    var nickname: String
     var accountLevel: Int
 }
 
 class FindStreamers: ObservableObject {
     let ref = Firestore.firestore()
-    @Published var firstName : String = ""
-    @Published var lastName : String = ""
-    @Published var pfImage : String = ""
-    @Published var level : Int = 0
-    @Published var token : String = ""
-    @Published var platformID : String = ""
-    @Published var userId : String = ""
-    @Published var nickname : String = ""
-    @Published var accountLevel : Int = 0
+    @Published var model: [SelectedStreamerModel] = []
+   
+    init() {
+        
+        self.getData()
+    }
     
-    func getData(pid : String){
-        ref.collection("Users").addSnapshotListener { snap, err in
-            if err == nil {
-                self.firstName = ""
-                self.lastName = ""
-                self.pfImage = ""
-                self.level = 0
-                self.token = ""
-                self.platformID = ""
-                self.userId = ""
-                for doc in snap!.documents {
-                    if let platformID = doc.get("platformID") as? String {
-                        if pid == platformID {
-                            if let firstName = doc.get("firstName") as? String {
-                                if let lastName = doc.get("lastName") as? String {
-                                    if let pfImage = doc.get("pfImage") as? String {
-                                        if let level = doc.get("level") as? Int {
-                                            if let accountLevel = doc.get("accountLevel") as? Int {
-                                                if let token = doc.get("token") as? String {
-                                                    if let isSupporter = doc.get("accountLevel") as? Int {
-                                                        if let nickname = doc.get("nickname") as? String {
-                                                            if isSupporter == 1 {
-                                                                self.firstName = firstName
-                                                                self.lastName = lastName
-                                                                self.pfImage = pfImage
-                                                                self.level = level
-                                                                self.token = token
-                                                                self.platformID = platformID
-                                                                self.userId = doc.documentID
-                                                                self.nickname = nickname
-                                                                self.accountLevel = accountLevel
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+    func getData(){
+        ref.collection("Users").addSnapshotListener { snap, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            guard let docs = snap?.documents else { return }
+            
+            for doc in docs {
+                guard doc.get("accountLevel") as! Int != 2 else { return }
+                
+                let id = doc.documentID
+                let firstName = doc.get("firstName") as? String ?? ""
+                let lastName = doc.get("lastName") as? String ?? ""
+                let pfImage = doc.get("pfImage") as? String ?? ""
+                let level = doc.get("level") as? Int ?? 0
+                let token = doc.get("token") as? String ?? ""
+                let platformID = doc.get("platformID") as? String ?? ""
+                let userId = doc.get("userId") as? String ?? ""
+                let nickname = doc.get("nickname") as? String ?? ""
+                let accountLevel = doc.get("accountLevel") as? Int ?? 0
+                                
+                let modelData = SelectedStreamerModel(id: id, firstName: firstName, lastName: lastName, pfImage: pfImage, level: level, token: token, platformID: platformID, userId: userId, nickname: nickname, accountLevel: accountLevel)
+                
+                self.model.append(modelData)
             }
         }
     }
 }
+
+
+
+//ForEach(filteredModel, \.platformID) { finder in
+//    ZStack{
+//        RoundedRectangle(cornerRadius: 8)
+//            .fill(Color.black.opacity(0.2))
+//
+//        HStack(spacing: 15){
+//            WebImage(url: URL(string: finder.pfImage))
+//                .resizable()
+//                .scaledToFill()
+//                .clipShape(Circle())
+//                .frame(width: 52, height: 52)
+//
+//            VStack(alignment: .leading, spacing: 10){
+//
+//                Text(finder.nickname)
+//                    .foregroundColor(.white)
+//                    .font(.system(size: 15))
+//                    .bold()
+//
+//                Text("PID : \(finder.platformID)")
+//                    .foregroundColor(.white)
+//                    .font(.system(size: 15))
+//            }
+//
+//            Spacer(minLength: 0)
+//
+//            Button {
+//
+//                if selectedStremersUserIDList.contains(where: {$0 == finder.userId}) {
+//
+//                    } else {
+//                        if finder.accountLevel != 2 {
+//                            let data = SelectedStreamerModel(id: finder.id, firstName: finder.firstName, lastName: finder.lastName, pfImage: finder.pfImage, level: finder.level, token: finder.token, platformID: finder.platformID, userId: finder.userID, nickname: finder.userName, accountLevel: finder.accountLevel)
+//                        self.selectedStremers.append(data)
+//                        self.selectedStremersUserIDList.append(finder.userId)
+//                        self.selectedStremersToken.append(finder.token)
+//                        self.search = ""
+//                        self.finder.userId = ""
+//                        print("HEYYOO \(finder.accountLevel)")
+//                        } else {
+//                            alertBody = "Bu bir ajans kurucusu olduğundan ekleyemezsiniz."
+//                            alertTitle = "Dikkat bu bir ajans kurucusudur"
+//                            alertFunc = 1
+//                        }
+//
+//                }
+//            } label: {
+//                Text("Ekle")
+//                    .foregroundColor(.white)
+//                    .font(.system(size: 15))
+//                    .fontWeight(.medium)
+//            }
+//        }.padding(10)
+//    }
+//}
