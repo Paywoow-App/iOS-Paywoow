@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34FE984F2A52F1E400140DF9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 34FE984E2A52F1E400140DF9 /* SDWebImageSwiftUI */; };
 		615190E088108A1B097D94D4 /* Pods_PayWoowManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7878AFF11AC35B0580E3AF69 /* Pods_PayWoowManager.framework */; };
 		A73C694729C4FAFD009C1BA8 /* Remittences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73C694629C4FAFD009C1BA8 /* Remittences.swift */; };
 		A73C694929C5410E009C1BA8 /* Investories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73C694829C5410E009C1BA8 /* Investories.swift */; };
@@ -206,6 +207,7 @@
 				CAF1D53029096937007149AD /* Mantis in Frameworks */,
 				CAF1D53529096D8B007149AD /* FirebaseFirestore in Frameworks */,
 				CAF1D53729096D8B007149AD /* FirebaseMessaging in Frameworks */,
+				34FE984F2A52F1E400140DF9 /* SDWebImageSwiftUI in Frameworks */,
 				CAF1D53329096D8B007149AD /* FirebaseAuth in Frameworks */,
 				CAF1D53C2909709D007149AD /* DeviceKit in Frameworks */,
 				CAF1D53F29097165007149AD /* SwiftUICharts in Frameworks */,
@@ -405,6 +407,7 @@
 				CAF1D53829096D8B007149AD /* FirebaseStorage */,
 				CAF1D53B2909709D007149AD /* DeviceKit */,
 				CAF1D53E29097165007149AD /* SwiftUICharts */,
+				34FE984E2A52F1E400140DF9 /* SDWebImageSwiftUI */,
 			);
 			productName = PayWoowManager;
 			productReference = CAC8B02F27CD390700DFF238 /* PayWoowManager.app */;
@@ -439,6 +442,7 @@
 				CAF1D53129096D8B007149AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				CAF1D53A2909709D007149AD /* XCRemoteSwiftPackageReference "DeviceKit" */,
 				CAF1D53D29097165007149AD /* XCRemoteSwiftPackageReference "ChartView" */,
+				34FE984D2A52F1E300140DF9 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = CAC8B03027CD390700DFF238 /* Products */;
 			projectDirPath = "";
@@ -824,6 +828,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		34FE984D2A52F1E300140DF9 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		CAF1D52E29096937007149AD /* XCRemoteSwiftPackageReference "Mantis" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/guoyingtao/Mantis.git";
@@ -859,6 +871,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		34FE984E2A52F1E400140DF9 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34FE984D2A52F1E300140DF9 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
 		CAF1D52F29096937007149AD /* Mantis */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CAF1D52E29096937007149AD /* XCRemoteSwiftPackageReference "Mantis" */;

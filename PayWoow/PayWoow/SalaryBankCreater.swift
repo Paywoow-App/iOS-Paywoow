@@ -22,6 +22,8 @@ struct SalaryBankCreater: View {
     @State private var alertTitle : String = ""
     @State private var alertBody : String = ""
     @State private var showAlert : Bool = false
+    @State private var lockedSalaryBankCreater: Bool = false
+    
     var body: some View {
         ZStack{
             general.backgroundColor.edgesIgnoringSafeArea(.all)
@@ -47,46 +49,18 @@ struct SalaryBankCreater: View {
                         .font(.title2)
                     
                     Spacer(minLength: 0)
-
+                    
                 }
                 .padding(.all)
                 
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack{
-                            ForEach(bankList) { item in
-                                Button {
-                                    self.selectedBank = item.bankName
-                                } label: {
-                                    if self.selectedBank == item.bankName {
-                                        VStack{
-                                            AsyncImage(url: URL(string: item.coverImage)) { img in
-                                                img
-                                                    .resizable()
-                                                    .scaledToFill()
-                                                    .frame(width: 58, height: 58)
-                                                    .clipped()
-                                                    .cornerRadius(5)
-                                            } placeholder: {
-                                                ZStack{
-                                                    Rectangle()
-                                                        .fill(Color.black.opacity(0.5))
-                                                        .frame(width: 58, height: 58)
-                                                        .cornerRadius(5)
-                                                    
-                                                    ProgressView()
-                                                        .colorScheme(.dark)
-                                                        .scaleEffect(1.5)
-                                                    
-                                                }    .frame(width: 58, height: 58)
-                                            }
-                                            
-                                            RoundedRectangle(cornerRadius: 5)
-                                                .fill(Color.white)
-                                                .frame(width: 30, height: 2)
-                                        }
-
-                                    }
-                                    else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack{
+                        ForEach(bankList) { item in
+                            Button {
+                                self.selectedBank = item.bankName
+                            } label: {
+                                if self.selectedBank == item.bankName {
+                                    VStack{
                                         AsyncImage(url: URL(string: item.coverImage)) { img in
                                             img
                                                 .resizable()
@@ -94,7 +68,6 @@ struct SalaryBankCreater: View {
                                                 .frame(width: 58, height: 58)
                                                 .clipped()
                                                 .cornerRadius(5)
-                                                .opacity(0.5)
                                         } placeholder: {
                                             ZStack{
                                                 Rectangle()
@@ -108,135 +81,168 @@ struct SalaryBankCreater: View {
                                                 
                                             }    .frame(width: 58, height: 58)
                                         }
+                                        
+                                        RoundedRectangle(cornerRadius: 5)
+                                            .fill(Color.white)
+                                            .frame(width: 30, height: 2)
+                                    }
+                                    
+                                }
+                                else {
+                                    AsyncImage(url: URL(string: item.coverImage)) { img in
+                                        img
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 58, height: 58)
+                                            .clipped()
+                                            .cornerRadius(5)
+                                            .opacity(0.5)
+                                    } placeholder: {
+                                        ZStack{
+                                            Rectangle()
+                                                .fill(Color.black.opacity(0.5))
+                                                .frame(width: 58, height: 58)
+                                                .cornerRadius(5)
+                                            
+                                            ProgressView()
+                                                .colorScheme(.dark)
+                                                .scaleEffect(1.5)
+                                            
+                                        }    .frame(width: 58, height: 58)
                                     }
                                 }
-
                             }
-                        }
-                    }
-                    .frame(height: 75)
-                    .padding(.horizontal)
-                    
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.black.opacity(0.2))
-                        
-                        TextField("Hesap Sahibinin Tam Adı", text: $fullName)
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                            .padding(.horizontal)
-                            .colorScheme(.dark)
-                    }
-                    .frame(height: 50)
-                    .padding(.horizontal)
-                    
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.black.opacity(0.2))
-
-                        HStack{
-                            TextField("Yatırılacak IBAN", text: $iban.limit(26))
-                                .foregroundColor(.clear)
-                                .tint(.clear)
-                                .font(.system(size: 15))
-                                .colorScheme(.dark)
-                                .keyboardType(.numbersAndPunctuation)
-                                .onChange(of: iban) { iban in
-                                    self.newIbanNo = splitAndJoin(iban, by: 4, separator: " ")
-                                }
-                                .overlay {
-                                    HStack(spacing: 10) {
-                                        Text(newIbanNo)
-                                            .font(.callout)
-                                            .fontWeight(.medium)
-                                            .foregroundColor(.white)
-                                        Spacer()
-                                    }
-                                }
                             
-                            Button {
-                                self.iban = UIPasteboard.general.string ?? ""
-                            } label: {
-                                Image(systemName: "doc.on.doc")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 20))
-                            }
-
                         }
-                        .padding(.horizontal)
+                        .disabled(self.lockedSalaryBankCreater ? true : false)
                     }
-                    .frame(height: 50)
-                    .padding(.horizontal)
+                }
+                .frame(height: 75)
+                .padding(.horizontal)
+                
+                ZStack{
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.black.opacity(0.2))
                     
-                    Text("Bu banka bilgilerinizin güncelliği ve doğrulu önemlidir. Maaşınız bundan sonra buradan sizlere gönderilecektir.")
+                    TextField("Hesap Sahibinin Tam Adı", text: $fullName)
                         .foregroundColor(.white)
                         .font(.system(size: 15))
-                        .multilineTextAlignment(.center)
                         .padding(.horizontal)
+                        .colorScheme(.dark)
+                        .disabled(self.lockedSalaryBankCreater ? true : false)
+                }
+                .frame(height: 50)
+                .padding(.horizontal)
+                
+                ZStack{
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.black.opacity(0.2))
+                    
+                    HStack{
+                        TextField("Yatırılacak IBAN", text: $iban.limit(26))
+                            .foregroundColor(.clear)
+                            .tint(.clear)
+                            .font(.system(size: 15))
+                            .colorScheme(.dark)
+                            .keyboardType(.numbersAndPunctuation)
+                            .disabled(self.lockedSalaryBankCreater ? true : false)
+                            .onChange(of: iban) { iban in
+                                self.newIbanNo = splitAndJoin(iban, by: 4, separator: " ")
+                            }
+                            .overlay {
+                                HStack(spacing: 10) {
+                                    Text(newIbanNo)
+                                        .font(.callout)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.white)
+                                    Spacer()
+                                }
+                            }
+                        
+                        Button {
+                            self.iban = UIPasteboard.general.string ?? ""
+                        } label: {
+                            Image(systemName: "doc.on.doc")
+                                .foregroundColor(.white)
+                                .font(.system(size: 20))
+                        }
+                        .disabled(self.lockedSalaryBankCreater ? true : false)
+                    }
+                    .padding(.horizontal)
+                }
+                .frame(height: 50)
+                .padding(.horizontal)
+                
+                Text("Bu banka bilgilerinizin güncelliği ve doğrulu önemlidir. Maaşınız bundan sonra buradan sizlere gönderilecektir.")
+                    .foregroundColor(.white)
+                    .font(.system(size: 15))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
                 
                 Spacer(minLength: 0)
-                    
-                    HStack(spacing: 15){
-                        Button {
-                            self.present.wrappedValue.dismiss()
-                        } label: {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.white)
-                                
-                                
-                                Text("İptal")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 15))
-                                    .fontWeight(.medium)
-                            }
-                        }
-                        
-                        
-                        Button {
-                            if self.selectedBank == "" {
-                                self.alertTitle = "Geçersiz Bilgi"
-                                self.alertBody = "Bankanızı Seçiniz!"
-                                self.showAlert.toggle()
-                            }
-                            else if self.fullName == "" {
-                                self.alertTitle = "Geçersiz Bilgi"
-                                self.alertBody = "Hesap sahibinin edını eirdiğinizden emin olun!"
-                                self.showAlert.toggle()
-                            }
-                            else if iban.count != 26 {
-                                self.alertTitle = "Geçersiz Bilgi"
-                                self.alertBody = "IBAN Bilgisi 24 karakertden oluşmalıdır"
-                                self.showAlert.toggle()
-                            }
-                            else {
-                                saveData()
-                            }
-                        } label: {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(Color.white)
-                                
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.white)
-                                
-                                Text("Kaydet")
-                                    .foregroundColor(.black)
-                                    .font(.system(size: 15))
-                                    .fontWeight(.medium)
-                            }
+                
+                HStack(spacing: 15){
+                    Button {
+                        self.present.wrappedValue.dismiss()
+                    } label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.white)
+                            
+                            
+                            Text("İptal")
+                                .foregroundColor(.white)
+                                .font(.system(size: 15))
+                                .fontWeight(.medium)
                         }
                     }
-                    .frame(height: 50)
-                    .padding(.all)
-                    .ignoresSafeArea(.keyboard)
                     
+                    
+                    Button {
+                        if self.selectedBank == "" {
+                            self.alertTitle = "Geçersiz Bilgi"
+                            self.alertBody = "Bankanızı Seçiniz!"
+                            self.showAlert.toggle()
+                        }
+                        else if self.fullName == "" {
+                            self.alertTitle = "Geçersiz Bilgi"
+                            self.alertBody = "Hesap sahibinin edını eirdiğinizden emin olun!"
+                            self.showAlert.toggle()
+                        }
+                        else if iban.count != 26 {
+                            self.alertTitle = "Geçersiz Bilgi"
+                            self.alertBody = "IBAN Bilgisi 24 karakertden oluşmalıdır"
+                            self.showAlert.toggle()
+                        }
+                        else {
+                            saveData()
+                        }
+                    } label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.white)
+                            
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.white)
+                            
+                            Text("Kaydet")
+                                .foregroundColor(.black)
+                                .font(.system(size: 15))
+                                .fontWeight(.medium)
+                        }
+                    }
+                }
+                .frame(height: 50)
+                .padding(.all)
+                .ignoresSafeArea(.keyboard)
+                
                 
             }
             .ignoresSafeArea(.keyboard, edges: .bottom)
         }
         .ignoresSafeArea(.keyboard)
         .onAppear{
+            
             getCurrentBankAccount()
             
             Firestore.firestore().collection("Users").document(Auth.auth().currentUser!.uid).getDocument { snaps, error in
@@ -272,27 +278,40 @@ struct SalaryBankCreater: View {
                     }
                 }
             }
-            
-            ref.collection("Users").document(Auth.auth().currentUser!.uid).collection("SalaryBankDetails").document(Auth.auth().currentUser!.uid).addSnapshotListener { doc, err in
-                if err == nil {
-                    if let bankName = doc?.get("bankName") as? String {
-                        if let fullName = doc?.get("fullName") as? String {
-                            if let iban = doc?.get("iban") as? String {
-                                self.selectedBank = bankName
-                                self.fullName = fullName
-                                self.iban = iban
-                            }
-                        }
-                    }
-                }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                print("asdoaskod \(self.userStore.bigoId)")
+                getIbanInformation()
             }
-            
-            
         }
         .alert(isPresented: $showAlert) {
             Alert(title: Text(alertTitle), message: Text(alertBody), dismissButton: Alert.Button.default(Text("Ok")))
         }
     }
+    
+    func getIbanInformation() {
+        let ref = Firestore.firestore()
+        ref.collection("Users").document(Auth.auth().currentUser!.uid).collection("BankInformations").document(userStore.bigoId).addSnapshotListener { snap, erro in
+            if let erro = erro {
+                print(erro.localizedDescription)
+            }
+
+            guard let doc = snap else { return }
+
+            let bankName = doc.get("bankName") as? String ?? ""
+            let iban = doc.get("iban") as? String ?? ""
+            let fullName = doc.get("fullName") as? String ?? ""
+            let platformID = doc.get("platformID") as? String ?? ""
+            let timeStamp =  doc.get("timeStamp") as? String ?? ""
+
+            if !platformID.isEmpty {
+                self.iban = iban
+                self.fullName = fullName
+                self.selectedBank = bankName
+                self.lockedSalaryBankCreater = true
+            }
+        }
+    }
+    
     //TODO: Collection problems
     func saveData(){
         let ref = Firestore.firestore()

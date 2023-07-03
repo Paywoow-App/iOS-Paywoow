@@ -98,7 +98,7 @@ struct StreammerSalaryWriter: View {
                     }
                     else {
                         ForEach(salaryStore.list) { item in
-//                            StreamerSalaryContent(price: item.price, userID: item.userID, model: getDataAtNow(userID: item.userID))
+                            StreamerSalaryContent(fullname: item.fullname , platformID: item.platformID, price: item.price, timeStamp: item.timeStamp, userID: item.userID, pfImage: item.pfImage,IBAN: item.IBAN, bankName: item.bankName)
                         }
                     }
                 }
@@ -130,6 +130,7 @@ struct StreammerSalaryWriter: View {
 }
 
 
+
 struct StreamerBankAccounts : View {
     @State var fullname : String
     @State var bankName : String
@@ -148,19 +149,11 @@ struct StreamerBankAccounts : View {
                 .fill(Color.black.opacity(0.2))
             
             HStack{
-                AsyncImage(url: URL(string: pfImage)) { image in
-                    image
-                        .resizable()
-                        .scaledToFill()
-                        .clipShape(Circle())
-                        .frame(width: 60, height: 60)
-                } placeholder: {
-                    Image("defRefPF")
-                        .resizable()
-                        .scaledToFill()
-                        .clipShape(Circle())
-                        .frame(width: 60, height: 60)
-                }
+                WebImage(url: URL(string: pfImage))
+                    .resizable()
+                    .scaledToFill()
+                    .clipShape(Circle())
+                    .frame(width: 60, height: 60)
                 
                 VStack(alignment: .leading, spacing: 7) {
                     Text(fullname)
@@ -223,91 +216,68 @@ struct StreamerBankAccounts : View {
 }
 
 
-extension StreammerSalaryWriter {
+
+struct StreamerSalaryContent : View {
+    @State var fullname: String
+    @State var platformID: String
+    @State var price : Int
+    @State var timeStamp : Int
+    @State var userID : String
+    @State var pfImage: String
+    @State var IBAN: String
+    @State var bankName: String
     
-//    func getDataAtNow(userID: String) -> StreamerSalaryContentModel {
-//        var model = StreamerSalaryContentModel()
-//
-//        Firestore.firestore().collection("Users").document(userID).addSnapshotListener { snap, error in
-//            if let error = error {
-//                print("ERORRUU \(error.localizedDescription)")
-//            }
-//
-//            let firstName = snap?.get("firstName") as? String ?? ""
-//            let lastName = snap?.get("lastName") as? String ?? ""
-//            let platformID = snap?.get("platformID") as? String ?? ""
-//            let pfImage = snap?.get("pfImage") as? String ?? ""
-//
-//            model = StreamerSalaryContentModel(platformID: platformID, pfImage: pfImage, fullname: "\(firstName) \(lastName)")
-//
-//            print("I am workin\(userID) \(firstName)")
-//        }
-//
-//        return model
-//    }
-    
+    var body: some View {
+        ZStack{
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color.black.opacity(0.2))
+
+            HStack(spacing: 12){
+                AsyncImage(url: URL(string: pfImage)) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                        .clipShape(Circle())
+                        .frame(width: 60, height: 60)
+                } placeholder: {
+                    Image("defRefPF")
+                        .resizable()
+                        .scaledToFill()
+                        .clipShape(Circle())
+                        .frame(width: 60, height: 60)
+                }
+
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(fullname)
+                        .foregroundColor(.white)
+                        .font(.system(size: 15))
+                        .fontWeight(.medium)
+
+                    Text("PID : \(platformID)")
+                        .foregroundColor(.white.opacity(0.5))
+                        .font(.system(size: 15))
+                    
+                    Text(self.IBAN)
+                        .foregroundColor(.white.opacity(0.3))
+                        .font(.system(size: 15))
+                    Text(self.bankName)
+                        .foregroundColor(.white.opacity(0.3))
+                        .font(.system(size: 15))
+                }
+
+                Spacer(minLength: 0)
+
+                Text("$\(price)")
+                    .foregroundColor(.white)
+                    .font(.system(size: 18))
+                    .fontWeight(.medium)
+
+            }
+            .padding(.all, 15)
+        }
+        .padding(.horizontal)
+    }
 }
-
-
-//struct StreamerSalaryContent : View {
-////    @State var IBAN : String
-////    @State var bankName : String
-////    @State var currency : String
-////    @State var day : String
-////    @State var month : String
-////    @State var year : String
-//    @State var price : Int
-////    @State var progress : Int
-////    @State var timeStamp : Int
-//    @State var userID : String
-////    @State var docID : String
-//    
-////    @State var model: StreamerSalaryContentModel
-//    
-//    var body: some View {
-//        ZStack{
-//            RoundedRectangle(cornerRadius: 8)
-//                .fill(Color.black.opacity(0.2))
-//            
-//            HStack(spacing: 12){
-//                AsyncImage(url: URL(string: model.pfImage)) { image in
-//                    image
-//                        .resizable()
-//                        .scaledToFill()
-//                        .clipShape(Circle())
-//                        .frame(width: 60, height: 60)
-//                } placeholder: {
-//                    Image("defRefPF")
-//                        .resizable()
-//                        .scaledToFill()
-//                        .clipShape(Circle())
-//                        .frame(width: 60, height: 60)
-//                }
-//                
-//                VStack(alignment: .leading, spacing: 10) {
-//                    Text(model.fullname)
-//                        .foregroundColor(.white)
-//                        .font(.system(size: 15))
-//                        .fontWeight(.medium)
-//                    
-//                    Text("PID : \(model.platformID)")
-//                        .foregroundColor(.white.opacity(0.5))
-//                        .font(.system(size: 15))
-//                }
-//                
-//                Spacer(minLength: 0)
-//                
-//                Text("$\(price)")
-//                    .foregroundColor(.white)
-//                    .font(.system(size: 18))
-//                    .fontWeight(.medium)
-//
-//            }
-//            .padding(.all, 15)
-//        }
-//        .padding(.horizontal)
-//    }
-//}
 
 
 struct StreamerSalaryModel : Identifiable {
@@ -323,6 +293,9 @@ struct StreamerSalaryModel : Identifiable {
     var timeStamp : Int
     var userID : String
     var docID : String
+    var fullname : String
+    var platformID: String
+    var pfImage: String
 }
 
 class StreamerSalaryStore : ObservableObject {
@@ -330,35 +303,46 @@ class StreamerSalaryStore : ObservableObject {
     
     init(){
         let ref = Firestore.firestore()
-        ref.collection("StreammerSalaries").order(by: "timeStamp", descending: true).addSnapshotListener { snap, err in
-            if err == nil {
-                self.list.removeAll()
-                for doc in snap!.documents {
-                    if let userID = doc.get("userID") as? String {
-                    if let IBAN = doc.get("IBAN") as? String{
-                        if let bankName = doc.get("bankName") as? String {
-                            if let currency = doc.get("currency") as? String {
-                                if let day = doc.get("day") as? String {
-                                    if let month = doc.get("month") as? String {
-                                        if let year = doc.get("year") as? String {
-                                            if let price = doc.get("price") as? Int {
-                                                if let progress = doc.get("progress") as? Int {
-                                                    if let timeStamp = doc.get("timeStamp") as? Int {
-                                                        let data = StreamerSalaryModel(IBAN: IBAN, bankName: bankName, currency: currency, day: day, month: month, year: year, price: price, progress: progress, timeStamp: timeStamp, userID: userID, docID: doc.documentID)
-                                                        self.list.append(data)
-                                                        print("IDOLSKİ \(userID)")
-                                                    }
-                                                }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+        ref.collection("StreammerSalaries").addSnapshotListener { snap, error in
+            if let error = error {
+                print(error.localizedDescription)
             }
+            
+            guard let docs = snap?.documents else { return }
+            
+            for doc in docs {
+                let IBAN = doc.get("IBAN") as? String ?? ""
+                let bankName = doc.get("bankName") as? String ?? ""
+                let currency = doc.get("currency") as? String ?? ""
+                let day = doc.get("day") as? String ?? ""
+                let month = doc.get("month") as? String ?? ""
+                let year = doc.get("year") as? String ?? ""
+                let price = doc.get("price") as? Int ?? 0
+                let progress = doc.get("progress") as? Int ?? 0
+                let timestamp = doc.get("timeStamp") as? Int ?? 0
+                let userID = doc.get("userID") as? String ?? ""
+                print("BUĞ USERIDDİR HAĞ \(userID)")
+                
+                guard userID.isEmpty != true else { return }
+                ref.collection("Users").document(userID).addSnapshotListener { snap, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                    guard let doc = snap else { return }
+
+                    let firstName = doc.get("firstName") as? String ?? ""
+                    let lastName = doc.get("lastName") as? String ?? ""
+                    let platformID = doc.get("platformID") as? String  ?? ""
+                    let pfImage = doc.get("pfImage") as? String ?? ""
+
+                    let data = StreamerSalaryModel(IBAN: IBAN, bankName: bankName, currency: currency, day: day, month: month, year: year, price: price, progress: progress, timeStamp: timestamp, userID: userID, docID: "", fullname: "\(firstName) \(lastName)" , platformID: platformID, pfImage: pfImage )
+
+                    self.list.append(data)
+
+                }
+                
+            }
+            
         }
     }
 }
@@ -698,7 +682,7 @@ struct SalaryMaker: View {
                                         if let pfImage = doc.get("pfImage") as? String {
                                             self.fullname = "\(firstName) \(lastName)"
                                             self.userPf = pfImage
-                                            ref.collection("Users").document(doc.documentID).collection("SalaryBankDetails").document(doc.documentID).addSnapshotListener { snp, er in
+                                            ref.collection("Users").document(doc.documentID).collection("BankInformations").document(platformID).addSnapshotListener { snp, er in
                                                 if er == nil {
                                                     if let iban = snp?.get("iban") as? String {
                                                         if let bankName = snp?.get("bankName") as? String {

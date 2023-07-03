@@ -899,6 +899,7 @@ struct EditProfileScreen: View {
                 Button {
                     self.sendCode = true
                     sendCode(code: "\(tempCode)", number: phoneNumber, header: self.netgsmStore.header, usercode: self.netgsmStore.usercode, password: self.netgsmStore.password)
+                    print("temporaryCode === \(self.netgsmStore.usercode)")
                     print("temporaryCode = \(tempCode)")
                     
                 } label: {
@@ -925,15 +926,15 @@ struct EditProfileScreen: View {
             Alert(title: Text("Incorrect Code"), message: Text(self.alertBody), dismissButton: Alert.Button.default(Text("Ok")))
         }
     }
-    
+    // Send COde
     func sendCode(code: String, number: String, header: String, usercode: String, password: String){
         guard let url = URL(string: "https://api.netgsm.com.tr/sms/send/otp") else {return}
         var xml = ""
         if number.first == "5" {
-            xml = "<mainbody><header><usercode>\(usercode)</usercode><password>\(password)</password><msgheader>\(header)</msgheader></header><body><msg><![CDATA[Bu iki faktörlü doğrulama kodunu kimse ile paylaşmayınız. Verification Code :  \(code)]]></msg><no>0\(number)</no></body></mainbody>"
+            xml = "<mainbody><header><usercode>\(usercode)</usercode><password>\(password)</password><msgheader>\(header)</msgheader></header><body><msg><![CDATA[Bu iki faktörlü doğrulama kodunu kimse ile paylaşmayınız. Verification Code :  \(code)]]></msg><no>\(number)</no></body></mainbody>"
         }
         else {
-            xml = "<mainbody><header><usercode>\(usercode)</usercode><password>\(password)</password><msgheader>\(header)</msgheader></header><body><msg><![CDATA[Bu iki faktörlü doğrulama kodunu kimse ile paylaşmayınız. Verification Code :  \(code)]]></msg><no>\(number)</no></body></mainbody>"
+            xml = "<mainbody><header><usercode>\(usercode)</usercode><password>\(password)</password><msgheader>\(header)</msgheader></header><body><msg><![CDATA[Bu iki faktörlü doğrulama kodunu kimse ile paylaşmayınız. Verification Code : \(code)]]></msg><no>\(number)</no></body></mainbody>"
         }
         
         
@@ -941,7 +942,7 @@ struct EditProfileScreen: View {
         request.httpMethod = "POST"
         request.httpBody = xml.data(using: .utf8)
         request.setValue("text/xml", forHTTPHeaderField:  "Content-Type")
-        
+        print("temporaryCode xml \(xml)")
         let session = URLSession(configuration: .default)
         session.dataTask(with: request) { dat, res, err in
             print(String(data: dat!, encoding: .utf8)!)

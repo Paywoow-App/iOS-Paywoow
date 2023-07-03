@@ -77,3 +77,55 @@ class AgencyRequestStore : ObservableObject {
         }
     }
 }
+
+class AgencyCompletedStore : ObservableObject {
+    let ref = Firestore.firestore()
+    @Published var completed : [AgencyRequestModel] = []
+    
+    init(){
+        ref.collection("Agencies").addSnapshotListener { snap, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            guard let docs = snap?.documents else { return }
+            
+            for doc in docs {
+                let agencyName = doc.get("agencyName") as? String ?? ""
+                let pfImage = doc.get("coverImage") as? String ?? ""
+                let streamers = doc.get("streamers") as? [String] ?? []
+                let platformName = doc.get("platformName") as? String ?? ""
+                let ownerID = doc.get("owner") as? String ?? ""
+                
+                self.ref.collection("Users").document(ownerID).getDocument { snap, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                    
+                    guard let doc = snap else { return }
+                    
+                    let platformID = doc.get("platformID") as? String ?? ""
+                    let firstName = doc.get("firstName") as? String ?? ""
+                    let lastName = doc.get("lastName")  as? String ?? ""
+                    let isComplatedTransactions = doc.get("isComplatedTransactions") as? Bool ?? false
+                    let isVerifiedAgency = doc.get("isVerifiedAgency") as? Bool ?? false
+                    let level = doc.get("level") as? Int ?? 0
+                    let nickname = doc.get("nickname") as? String ?? ""
+                    let phoneNumber = doc.get("phoneNumber") as? String ?? ""
+                    let token = doc.get("token") as? String ?? ""
+                    
+                    
+                    let data = AgencyRequestModel(agencyName: agencyName, firstName: firstName, lastName: lastName, isComplatedTransactions: isComplatedTransactions, isVerifiedAgency: isVerifiedAgency, level: level, nickname: nickname, pfImage: pfImage, phoneNumber: phoneNumber, platformID: platformID, platformName: platformName, streamers: streamers , timeDate: "", token: token, totalStreamers: streamers.count, totalWork: 0, docID: ownerID)
+                    
+                    self.completed.append(data)
+
+                    
+                }
+            }
+        }
+    }
+}
+
+
+
+
