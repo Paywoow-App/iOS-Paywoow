@@ -401,7 +401,7 @@ struct AgencyApplication: View {
                                         print("I am Added")
                                         } else {
                                             alertBody = "Bu bir ajans kurucusu olduğundan ekleyemezsiniz."
-                                            alertTitle = "Dikkat bu bir ajans kurucusudur"
+                                            alertTitle = "Dikkat"
                                             showAlert.toggle()
                                             alertFunc = 1
                                         }
@@ -578,7 +578,7 @@ class FindStreamers: ObservableObject {
             
             guard let docs = snap?.documents else { return }
             
-            for doc in docs {                
+            for doc in docs {
                 let id = doc.documentID
                 let firstName = doc.get("firstName") as? String ?? ""
                 let lastName = doc.get("lastName") as? String ?? ""

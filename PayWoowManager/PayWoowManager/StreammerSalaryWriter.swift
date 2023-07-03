@@ -88,12 +88,17 @@ struct StreammerSalaryWriter: View {
                 ScrollView(.vertical, showsIndicators: false){
                     if self.selection == 0 {
                         ForEach(streamerBankAccounts.list) { item in
-                            StreamerBankAccounts(fullname: item.fullname, bankName: item.bankName, iban: item.iban, userID: item.userID, model: getDataAtNow(userID: item.userID))
+                            StreamerBankAccounts(fullname: item.fullname,
+                                                 bankName: item.bankName,
+                                                 iban: item.iban,
+                                                 userID: item.userID,
+                                                 platformID: item.platformID,
+                                                 pfImage: item.pfImage)
                         }
                     }
                     else {
                         ForEach(salaryStore.list) { item in
-                            StreamerSalaryContent(price: item.price, userID: item.userID, model: getDataAtNow(userID: item.userID))
+//                            StreamerSalaryContent(price: item.price, userID: item.userID, model: getDataAtNow(userID: item.userID))
                         }
                     }
                 }
@@ -130,8 +135,9 @@ struct StreamerBankAccounts : View {
     @State var bankName : String
     @State var iban : String
     @State var userID : String
+    @State var platformID : String
+    @State var pfImage : String
     
-    @State var model: StreamerSalaryContentModel
 
     @State private var showAction : Bool = false
     
@@ -142,7 +148,7 @@ struct StreamerBankAccounts : View {
                 .fill(Color.black.opacity(0.2))
             
             HStack{
-                AsyncImage(url: URL(string: model.pfImage)) { image in
+                AsyncImage(url: URL(string: pfImage)) { image in
                     image
                         .resizable()
                         .scaledToFill()
@@ -162,7 +168,7 @@ struct StreamerBankAccounts : View {
                         .font(.system(size: 15))
                         .fontWeight(.medium)
                     
-                    Text("PID : \(model.platformID)")
+                    Text("PID : \(platformID)")
                         .foregroundColor(.white)
                         .font(.system(size: 15))
                     
@@ -194,7 +200,7 @@ struct StreamerBankAccounts : View {
                     UIPasteboard.general.string = iban
                 }),
                 ActionSheet.Button.default(Text("Platform ID"), action: {
-                    UIPasteboard.general.string = model.platformID
+                    UIPasteboard.general.string = platformID
                 }),
                 ActionSheet.Button.cancel(Text("Kapat"))
             ])
@@ -216,96 +222,92 @@ struct StreamerBankAccounts : View {
 //    }
 }
 
-struct StreamerSalaryContentModel {
-    var platformID : String = ""
-    var pfImage : String = ""
-    var fullname : String = ""
-}
 
 extension StreammerSalaryWriter {
     
-    func getDataAtNow(userID: String) -> StreamerSalaryContentModel {
-        var model = StreamerSalaryContentModel()
-        
-        Firestore.firestore().collection("Users").document(userID).addSnapshotListener { snap, error in
-            if let error = error {
-                print("ERORRUU \(error.localizedDescription)")
-            }
-                
-            let firstName = snap?.get("firstName") as? String ?? ""
-            let lastName = snap?.get("lastName") as? String ?? ""
-            let platformID = snap?.get("platformID") as? String ?? ""
-            let pfImage = snap?.get("pfImage") as? String ?? ""
-            
-            model = StreamerSalaryContentModel(platformID: platformID, pfImage: pfImage, fullname: "\(firstName) \(lastName)")
-            
-            print("I am workin\(userID) \(firstName)")
-        }
-        
-        return model
-    }
+//    func getDataAtNow(userID: String) -> StreamerSalaryContentModel {
+//        var model = StreamerSalaryContentModel()
+//
+//        Firestore.firestore().collection("Users").document(userID).addSnapshotListener { snap, error in
+//            if let error = error {
+//                print("ERORRUU \(error.localizedDescription)")
+//            }
+//
+//            let firstName = snap?.get("firstName") as? String ?? ""
+//            let lastName = snap?.get("lastName") as? String ?? ""
+//            let platformID = snap?.get("platformID") as? String ?? ""
+//            let pfImage = snap?.get("pfImage") as? String ?? ""
+//
+//            model = StreamerSalaryContentModel(platformID: platformID, pfImage: pfImage, fullname: "\(firstName) \(lastName)")
+//
+//            print("I am workin\(userID) \(firstName)")
+//        }
+//
+//        return model
+//    }
+    
 }
 
 
-struct StreamerSalaryContent : View {
-//    @State var IBAN : String
-//    @State var bankName : String
-//    @State var currency : String
-//    @State var day : String
-//    @State var month : String
-//    @State var year : String
-    @State var price : Int
-//    @State var progress : Int
-//    @State var timeStamp : Int
-    @State var userID : String
-//    @State var docID : String
-    
-    @State var model: StreamerSalaryContentModel
-    
-    var body: some View {
-        ZStack{
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.black.opacity(0.2))
-            
-            HStack(spacing: 12){
-                AsyncImage(url: URL(string: model.pfImage)) { image in
-                    image
-                        .resizable()
-                        .scaledToFill()
-                        .clipShape(Circle())
-                        .frame(width: 60, height: 60)
-                } placeholder: {
-                    Image("defRefPF")
-                        .resizable()
-                        .scaledToFill()
-                        .clipShape(Circle())
-                        .frame(width: 60, height: 60)
-                }
-                
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(model.fullname)
-                        .foregroundColor(.white)
-                        .font(.system(size: 15))
-                        .fontWeight(.medium)
-                    
-                    Text("PID : \(model.platformID)")
-                        .foregroundColor(.white.opacity(0.5))
-                        .font(.system(size: 15))
-                }
-                
-                Spacer(minLength: 0)
-                
-                Text("$\(price)")
-                    .foregroundColor(.white)
-                    .font(.system(size: 18))
-                    .fontWeight(.medium)
-
-            }
-            .padding(.all, 15)
-        }
-        .padding(.horizontal)
-    }
-}
+//struct StreamerSalaryContent : View {
+////    @State var IBAN : String
+////    @State var bankName : String
+////    @State var currency : String
+////    @State var day : String
+////    @State var month : String
+////    @State var year : String
+//    @State var price : Int
+////    @State var progress : Int
+////    @State var timeStamp : Int
+//    @State var userID : String
+////    @State var docID : String
+//    
+////    @State var model: StreamerSalaryContentModel
+//    
+//    var body: some View {
+//        ZStack{
+//            RoundedRectangle(cornerRadius: 8)
+//                .fill(Color.black.opacity(0.2))
+//            
+//            HStack(spacing: 12){
+//                AsyncImage(url: URL(string: model.pfImage)) { image in
+//                    image
+//                        .resizable()
+//                        .scaledToFill()
+//                        .clipShape(Circle())
+//                        .frame(width: 60, height: 60)
+//                } placeholder: {
+//                    Image("defRefPF")
+//                        .resizable()
+//                        .scaledToFill()
+//                        .clipShape(Circle())
+//                        .frame(width: 60, height: 60)
+//                }
+//                
+//                VStack(alignment: .leading, spacing: 10) {
+//                    Text(model.fullname)
+//                        .foregroundColor(.white)
+//                        .font(.system(size: 15))
+//                        .fontWeight(.medium)
+//                    
+//                    Text("PID : \(model.platformID)")
+//                        .foregroundColor(.white.opacity(0.5))
+//                        .font(.system(size: 15))
+//                }
+//                
+//                Spacer(minLength: 0)
+//                
+//                Text("$\(price)")
+//                    .foregroundColor(.white)
+//                    .font(.system(size: 18))
+//                    .fontWeight(.medium)
+//
+//            }
+//            .padding(.all, 15)
+//        }
+//        .padding(.horizontal)
+//    }
+//}
 
 
 struct StreamerSalaryModel : Identifiable {

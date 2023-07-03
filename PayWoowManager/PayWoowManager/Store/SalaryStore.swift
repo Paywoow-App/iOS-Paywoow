@@ -14,6 +14,8 @@ struct StreamerBanksModel : Identifiable {
     var bankName : String
     var iban : String
     var userID : String
+    var platformID: String
+    var pfImage: String
 }
 
 class StreamerBanksStore: ObservableObject{
@@ -21,6 +23,7 @@ class StreamerBanksStore: ObservableObject{
     
     init(){
         let ref = Firestore.firestore()
+        
         ref.collection("Users").addSnapshotListener { users, err in
             if err == nil {
                 self.list.removeAll()
@@ -29,15 +32,29 @@ class StreamerBanksStore: ObservableObject{
                     if let isCompletedTax = doc.get("isComplatedTax") as? Bool {
                         if isCompletedTax {
                             let userID = doc.documentID
-                            let firstName = doc.get("firstName") as? String
-                            let lastName = doc.get("lastName") as? String
+                            let firstName = doc.get("firstName") as? String ?? ""
+                            let lastName = doc.get("lastName") as? String ?? ""
+                            let platfomID = doc.get("platformID") as? String ?? ""
+                            let pfImage = doc.get("pfImage") as? String ?? ""
                             
-                            
-                            
-                            
-                            let data = StreamerBanksModel(fullname: "\(firstName!) \(lastName!)", bankName: "", iban: "", userID: userID)
-                            self.list.append(data)
-                            
+                            ref.collection("Users").document(userID).collection("BankInformations").document(platfomID).addSnapshotListener { snap, error in
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                }
+                                
+                                let bankName = snap?.get("bankName") as? String ?? ""
+                                let iban = snap?.get("iban") as? String ?? ""
+                                
+                                let data = StreamerBanksModel(fullname: "\(firstName) \(lastName)",
+                                                              bankName: bankName,
+                                                              iban: iban,
+                                                              userID: userID,
+                                                              platformID: platfomID,
+                                                              pfImage: pfImage)
+                                print("IDLOSKİ \(userID)")
+                                guard iban.isEmpty != true else { print("ERROR HEREYO"); return }
+                                self.list.append(data)
+                            }
                         }
                     }
                 }

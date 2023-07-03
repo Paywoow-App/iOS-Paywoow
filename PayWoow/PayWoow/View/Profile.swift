@@ -1149,7 +1149,7 @@ struct Profile: View {
                                 .font(.system(size: 20))
                                 .fontWeight(.medium)
                                 .padding(.leading, 30)
-                            
+                      //VIP CARD
                             Spacer()
                         }
                         .padding(.bottom, 50)
