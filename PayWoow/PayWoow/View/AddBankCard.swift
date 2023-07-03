@@ -660,6 +660,27 @@ struct AddBankCard: View {
                     .padding(.bottom)
             }
         }
+        .onAppear {
+           
+            
+            Firestore.firestore().collection("Users").document(Auth.auth().currentUser!.uid).getDocument { snaps, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                
+                guard let snap = snaps else { return }
+                
+                let firstName = snap.get("firstName")
+                let lastName = snap.get("lastName")
+                
+                holderName = "\(firstName!) \(lastName!)"
+            }
+            
+        }
+    }
+    
+    func getUserNameAndSurname() {
+        
     }
     
     var paymentBody: some View {

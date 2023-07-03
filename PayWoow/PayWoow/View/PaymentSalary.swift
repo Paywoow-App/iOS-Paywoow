@@ -24,6 +24,12 @@ struct PaymentSalary: View {
     @State private var selectedYear : String = ""
     @State private var selectedProgress : Int = 0
     @State private var toEditBankAccount : Bool = false
+    @State private var isBeforeAdded: Bool = false
+    
+    init() {
+        print("is Before Added \(self.isBeforeAdded)")
+    }
+    
     var body: some View {
         ZStack{
             
@@ -41,14 +47,15 @@ struct PaymentSalary: View {
                     
                     Spacer(minLength: 0)
                     
-                    Button {
-                        self.toEditBankAccount.toggle()
-                    } label: {
-                        Image(systemName: "rectangle.badge.plus")
-                            .foregroundColor(.white)
-                            .font(.system(size: 20))
+                    if !(self.isBeforeAdded) {
+                        Button {
+                            self.toEditBankAccount.toggle()
+                        } label: {
+                            Image(systemName: "rectangle.badge.plus")
+                                .foregroundColor(.white)
+                                .font(.system(size: 20))
+                        }
                     }
-                    
                 }.padding([.top, .horizontal])
                 
                 salaryBody
@@ -68,9 +75,28 @@ struct PaymentSalary: View {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy"
             self.selectedYear = formatter.string(from: date)
+            self.checkBankInfo()
         }
         .fullScreenCover(isPresented: $toEditBankAccount) {
             SalaryBankCreater()
+        }
+    }
+    
+    func checkBankInfo() {
+        Firestore.firestore().collection("Users").document((Auth.auth().currentUser?.uid)!).collection("BankInformations").getDocuments { snap, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            guard let docs = snap?.documents else { return }
+            
+            for doc in docs {
+                if doc.documentID == self.userStore.bigoId {
+                    isBeforeAdded = true
+                } else {
+                    isBeforeAdded = false
+                }
+            }
         }
     }
     

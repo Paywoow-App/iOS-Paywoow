@@ -9,6 +9,7 @@ import SwiftUI
 import FirebaseFirestore
 import SDWebImageSwiftUI
 
+
 struct StreammerSalaryWriter: View {
     @StateObject var streamerBankAccounts = StreamerBanksStore()
     @StateObject var salaryStore = StreamerSalaryStore()
@@ -17,6 +18,9 @@ struct StreammerSalaryWriter: View {
     @State private var showSearch : Bool = false
     @State private var search : String = ""
     @State private var toMaker : Bool = false
+    
+
+    
     var body: some View {
         ZStack{
             LinearGradient(gradient: Gradient(colors: [Color.init(red: 52 / 255 , green: 58 / 255, blue: 58 / 255), Color.init(red: 16 / 255, green: 16 / 255, blue: 16 / 255)]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
@@ -84,12 +88,12 @@ struct StreammerSalaryWriter: View {
                 ScrollView(.vertical, showsIndicators: false){
                     if self.selection == 0 {
                         ForEach(streamerBankAccounts.list) { item in
-                            StreamerBankAccounts(fullname: item.fullname, bankName: item.bankName, iban: item.iban, userID: item.userID)
+                            StreamerBankAccounts(fullname: item.fullname, bankName: item.bankName, iban: item.iban, userID: item.userID, model: getDataAtNow(userID: item.userID))
                         }
                     }
                     else {
                         ForEach(salaryStore.list) { item in
-                            StreamerSalaryContent(IBAN: item.IBAN, bankName: item.bankName, currency: item.currency, day: item.day, month: item.month, year: item.year, price: item.price, progress: item.progress, timeStamp: item.timeStamp, userID: item.userID, docID: item.docID)
+                            StreamerSalaryContent(price: item.price, userID: item.userID, model: getDataAtNow(userID: item.userID))
                         }
                     }
                 }
@@ -127,9 +131,8 @@ struct StreamerBankAccounts : View {
     @State var iban : String
     @State var userID : String
     
-    @State private var pfImage : String = ""
-    @State private var platformID : String = ""
-    
+    @State var model: StreamerSalaryContentModel
+
     @State private var showAction : Bool = false
     
     var body: some View {
@@ -139,7 +142,7 @@ struct StreamerBankAccounts : View {
                 .fill(Color.black.opacity(0.2))
             
             HStack{
-                AsyncImage(url: URL(string: pfImage)) { image in
+                AsyncImage(url: URL(string: model.pfImage)) { image in
                     image
                         .resizable()
                         .scaledToFill()
@@ -159,7 +162,7 @@ struct StreamerBankAccounts : View {
                         .font(.system(size: 15))
                         .fontWeight(.medium)
                     
-                    Text("PID : \(platformID)")
+                    Text("PID : \(model.platformID)")
                         .foregroundColor(.white)
                         .font(.system(size: 15))
                     
@@ -182,9 +185,6 @@ struct StreamerBankAccounts : View {
             .padding(.all, 15)
         }
         .padding(.horizontal)
-        .onAppear{
-            getData()
-        }
         .actionSheet(isPresented: $showAction) {
             ActionSheet(title: Text("Kopayala"), message: Text("Kopyalanacak veri türünü seçiniz"), buttons: [
                 ActionSheet.Button.default(Text("Ad Soyad"), action: {
@@ -194,45 +194,73 @@ struct StreamerBankAccounts : View {
                     UIPasteboard.general.string = iban
                 }),
                 ActionSheet.Button.default(Text("Platform ID"), action: {
-                    UIPasteboard.general.string = platformID
+                    UIPasteboard.general.string = model.platformID
                 }),
                 ActionSheet.Button.cancel(Text("Kapat"))
             ])
         }
     }
     
-    func getData(){
-        let ref = Firestore.firestore()
-        ref.collection("Users").document(userID).addSnapshotListener { doc, err in
-            if err == nil {
-                if let pfImage = doc?.get("pfImage") as? String {
-                    if let platformID = doc?.get("platformID") as? String{
-                        self.pfImage = pfImage
-                        self.platformID = platformID
-                    }
-                }
+//    func getData(userID: String){
+//        let ref = Firestore.firestore()
+//        ref.collection("Users").document(userID).addSnapshotListener { doc, err in
+//            if err == nil {
+//                if let pfImage = doc?.get("pfImage") as? String {
+//                    if let platformID = doc?.get("platformID") as? String{
+//                        self.pfImage = pfImage
+//                        self.platformID = platformID
+//                    }
+//                }
+//            }
+//        }
+//    }
+}
+
+struct StreamerSalaryContentModel {
+    var platformID : String = ""
+    var pfImage : String = ""
+    var fullname : String = ""
+}
+
+extension StreammerSalaryWriter {
+    
+    func getDataAtNow(userID: String) -> StreamerSalaryContentModel {
+        var model = StreamerSalaryContentModel()
+        
+        Firestore.firestore().collection("Users").document(userID).addSnapshotListener { snap, error in
+            if let error = error {
+                print("ERORRUU \(error.localizedDescription)")
             }
+                
+            let firstName = snap?.get("firstName") as? String ?? ""
+            let lastName = snap?.get("lastName") as? String ?? ""
+            let platformID = snap?.get("platformID") as? String ?? ""
+            let pfImage = snap?.get("pfImage") as? String ?? ""
+            
+            model = StreamerSalaryContentModel(platformID: platformID, pfImage: pfImage, fullname: "\(firstName) \(lastName)")
+            
+            print("I am workin\(userID) \(firstName)")
         }
+        
+        return model
     }
 }
 
 
 struct StreamerSalaryContent : View {
-    @State var IBAN : String
-    @State var bankName : String
-    @State var currency : String
-    @State var day : String
-    @State var month : String
-    @State var year : String
+//    @State var IBAN : String
+//    @State var bankName : String
+//    @State var currency : String
+//    @State var day : String
+//    @State var month : String
+//    @State var year : String
     @State var price : Int
-    @State var progress : Int
-    @State var timeStamp : Int
+//    @State var progress : Int
+//    @State var timeStamp : Int
     @State var userID : String
-    @State var docID : String
+//    @State var docID : String
     
-    @State private var platformID : String = ""
-    @State private var pfImage : String = ""
-    @State private var fullname : String = ""
+    @State var model: StreamerSalaryContentModel
     
     var body: some View {
         ZStack{
@@ -240,7 +268,7 @@ struct StreamerSalaryContent : View {
                 .fill(Color.black.opacity(0.2))
             
             HStack(spacing: 12){
-                AsyncImage(url: URL(string: pfImage)) { image in
+                AsyncImage(url: URL(string: model.pfImage)) { image in
                     image
                         .resizable()
                         .scaledToFill()
@@ -255,12 +283,12 @@ struct StreamerSalaryContent : View {
                 }
                 
                 VStack(alignment: .leading, spacing: 10) {
-                    Text(fullname)
+                    Text(model.fullname)
                         .foregroundColor(.white)
                         .font(.system(size: 15))
                         .fontWeight(.medium)
                     
-                    Text("PID : \(platformID)")
+                    Text("PID : \(model.platformID)")
                         .foregroundColor(.white.opacity(0.5))
                         .font(.system(size: 15))
                 }
@@ -275,29 +303,7 @@ struct StreamerSalaryContent : View {
             }
             .padding(.all, 15)
         }
-        .onAppear{
-            getData()
-        }
         .padding(.horizontal)
-    }
-    
-    func getData(){
-        let ref = Firestore.firestore()
-        ref.collection("Users").document(userID).addSnapshotListener { doc, err in
-            if err == nil {
-                if let firstName = doc?.get("firstName") as? String {
-                    if let lastName = doc?.get("lastName") as? String {
-                        if let pfImage = doc?.get("pfImage") as? String {
-                            if let platformID = doc?.get("platformID") as? String {
-                                self.fullname = "\(firstName) \(lastName)"
-                                self.pfImage = pfImage
-                                self.platformID = platformID
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }
 
@@ -326,6 +332,7 @@ class StreamerSalaryStore : ObservableObject {
             if err == nil {
                 self.list.removeAll()
                 for doc in snap!.documents {
+                    if let userID = doc.get("userID") as? String {
                     if let IBAN = doc.get("IBAN") as? String{
                         if let bankName = doc.get("bankName") as? String {
                             if let currency = doc.get("currency") as? String {
@@ -335,11 +342,11 @@ class StreamerSalaryStore : ObservableObject {
                                             if let price = doc.get("price") as? Int {
                                                 if let progress = doc.get("progress") as? Int {
                                                     if let timeStamp = doc.get("timeStamp") as? Int {
-                                                        if let userID = doc.get("userID") as? String {
-                                                            let data = StreamerSalaryModel(IBAN: IBAN, bankName: bankName, currency: currency, day: day, month: month, year: year, price: price, progress: progress, timeStamp: timeStamp, userID: userID, docID: doc.documentID)
-                                                            self.list.append(data)
-                                                        }
+                                                        let data = StreamerSalaryModel(IBAN: IBAN, bankName: bankName, currency: currency, day: day, month: month, year: year, price: price, progress: progress, timeStamp: timeStamp, userID: userID, docID: doc.documentID)
+                                                        self.list.append(data)
+                                                        print("IDOLSKİ \(userID)")
                                                     }
+                                                }
                                                 }
                                             }
                                         }

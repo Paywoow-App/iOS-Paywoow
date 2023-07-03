@@ -562,6 +562,7 @@ class AgencyRequestStreamerContentModel: ObservableObject {
     @Published var email: String = ""
     @Published var nickname: String = ""
     @Published var phoneNumber: String = ""
+    @Published var selectedPlatform: String = ""
     
     var userID: String {
         didSet {
@@ -591,6 +592,7 @@ class AgencyRequestStreamerContentModel: ObservableObject {
                  self.email = (snap.get("email") as? String ) ?? ""
                  self.nickname = (snap.get("nickname") as? String ) ?? ""
                  self.phoneNumber = (snap.get("phoneNumber") as? String ) ?? ""
+                 self.selectedPlatform = (snap.get("selectedPlatform") as? String) ?? ""
              }
          }
      }
@@ -613,12 +615,12 @@ struct AgencyRequestStreamerContent: View{
                     .frame(width: 50, height: 50)
                 
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("\(model.firstName) \(model.lastName)")
+                    Text("\(model.nickname)")
                         .foregroundColor(.white)
                         .font(.system(size: 15))
                         .fontWeight(.medium)
                     
-                    Text("\(model.nickname)")
+                    Text("\(model.platformID)")
                         .foregroundColor(.white)
                         .font(.system(size: 15))
                 }
@@ -674,20 +676,20 @@ struct AgencyRequestStreamerContent: View{
                         
                         Spacer(minLength: 0)
                         
-                        Text(model.platformName)
+                        Text(model.selectedPlatform)
                             .foregroundColor(.white)
                             .font(.system(size: 15))
                     }
                     
                     HStack{
-                        Text("Platform ID :")
+                        Text("Kullanıcı Adı :")
                             .foregroundColor(.white)
                             .font(.system(size: 15))
                             .fontWeight(.medium)
                         
                         Spacer(minLength: 0)
                         
-                        Text(model.platformID)
+                        Text("\(model.firstName) \(model.lastName)")
                             .foregroundColor(.white)
                             .font(.system(size: 15))
                     }

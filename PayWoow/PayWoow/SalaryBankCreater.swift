@@ -135,11 +135,11 @@ struct SalaryBankCreater: View {
                             .fill(Color.black.opacity(0.2))
 
                         HStack{
-                            TextField("Yatırılacak IBAN", text: $iban.limit(24))
+                            TextField("Yatırılacak IBAN", text: $iban.limit(26))
                                 .foregroundColor(.clear)
+                                .tint(.clear)
                                 .font(.system(size: 15))
                                 .colorScheme(.dark)
-                                .tint(.clear)
                                 .keyboardType(.numbersAndPunctuation)
                                 .onChange(of: iban) { iban in
                                     self.newIbanNo = splitAndJoin(iban, by: 4, separator: " ")
@@ -147,6 +147,9 @@ struct SalaryBankCreater: View {
                                 .overlay {
                                     HStack(spacing: 10) {
                                         Text(newIbanNo)
+                                            .font(.callout)
+                                            .fontWeight(.medium)
+                                            .foregroundColor(.white)
                                         Spacer()
                                     }
                                 }
@@ -201,7 +204,7 @@ struct SalaryBankCreater: View {
                                 self.alertBody = "Hesap sahibinin edını eirdiğinizden emin olun!"
                                 self.showAlert.toggle()
                             }
-                            else if iban.count != 24 {
+                            else if iban.count != 26 {
                                 self.alertTitle = "Geçersiz Bilgi"
                                 self.alertBody = "IBAN Bilgisi 24 karakertden oluşmalıdır"
                                 self.showAlert.toggle()
@@ -235,6 +238,19 @@ struct SalaryBankCreater: View {
         .ignoresSafeArea(.keyboard)
         .onAppear{
             getCurrentBankAccount()
+            
+            Firestore.firestore().collection("Users").document(Auth.auth().currentUser!.uid).getDocument { snaps, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                
+                guard let snap = snaps else { return }
+                
+                let firstName = snap.get("firstName")
+                let lastName = snap.get("lastName")
+                
+                fullName = "\(firstName!) \(lastName!)"
+            }
             
             let ref = Firestore.firestore()
             ref.collection("BankIBANs").addSnapshotListener { snap, err in
@@ -280,12 +296,18 @@ struct SalaryBankCreater: View {
     //TODO: Collection problems
     func saveData(){
         let ref = Firestore.firestore()
-        ref.collection("Users").document(Auth.auth().currentUser!.uid).collection("BankInformations").document(Auth.auth().currentUser!.uid).setData([
+        
+        let data : [String: Any] = [
             "bankName" : selectedBank,
             "iban" : iban,
             "fullName" : fullName,
-            "listener" : userStore
-        ], merge: true)
+            "platformID" : userStore.bigoId,
+            "timeStamp": String(Date().formatted(date: .long, time: .standard))
+        ]
+        
+        dump("Dataloşski \(data)")
+        
+        ref.collection("Users").document(Auth.auth().currentUser!.uid).collection("BankInformations").document(userStore.bigoId).setData(data)
         
         ref.collection("Users").document(Auth.auth().currentUser!.uid).setData(["isComplatedTax" : true], merge: true)
         
