@@ -99,6 +99,8 @@ struct EditProfileScreen: View {
             
         }
         .onAppear{
+            
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
                 self.firstName = userStore.firstName
                 self.lastName = userStore.lastName
@@ -120,11 +122,23 @@ struct EditProfileScreen: View {
                 self.cityTownStore.findTowns(cityInput: self.city)
                 self.townList = self.cityTownStore.townList
                 
-                let bd = Date(timeIntervalSince1970: TimeInterval(Int(userStore.birthday) ?? 0))
-                let formatter = DateFormatter()
-                formatter.dateFormat = "dd.MM.yyyy"
-                self.birthday = formatter.string(from: bd)
+                let birthdayString = userStore.birthday // "21.11.2000"
+
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd.MM.yyyy"
+
+                if let birthdayDate = dateFormatter.date(from: birthdayString) {
+                    // Eğer birthdayString geçerli bir tarih stringiyse
+                    self.birthday = dateFormatter.string(from: birthdayDate)
+                    self.birthdayDate = birthdayDate
+                } else {
+                    // Eğer birthdayString geçerli bir tarih stringi değilse
+                    print("Invalid date: \(birthdayString)")
+                }
+                print("Bunlar nedür \(birthday) -- \(userStore.birthday) -- \(birthdayDate) -- \(birthdayDate.description.prefix(4))")
             }
+            
+            
         }
         .alert(isPresented: $showAlert) {
             Alert(title: Text(alertTitle), message: Text(alertBody), dismissButton: Alert.Button.default(Text("Ok")))
@@ -1024,15 +1038,15 @@ struct EditProfileScreen: View {
     }
     
     func checkTCID(){
-        
-            let xml = """
+
+        let xml = """
             <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
               <soap12:Body>
                 <TCKimlikNoDogrula xmlns="http://tckimlik.nvi.gov.tr/WS">
                   <TCKimlikNo>\(tcKimlikNo)</TCKimlikNo>
                   <Ad>\(firstName)</Ad>
                   <Soyad>\(lastName)</Soyad>
-                  <DogumYili>2000</DogumYili>
+                  <DogumYili>\(birthdayDate.description.prefix(4))</DogumYili>
                 </TCKimlikNoDogrula>
               </soap12:Body>
             </soap12:Envelope>
