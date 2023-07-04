@@ -25,7 +25,7 @@ class MainTabViewViewModel: ObservableObject {
                             if let platformID = doc.get("platformID") as? String {
                                 if let platform = doc.get("platform") as? String {
                                     if let price = doc.get("price") as? Int {
-                                        if let timeStamp = doc.get("timeStamp") as? Int {
+                                        if let timeStamp = doc.get("timeStamp") as? String {
                                             if let transferType = doc.get("transferType") as? String {
                                                 if let signatureURL = doc.get("signatureURL") as? String {
                                                     if let hexCodeTop = doc.get("hexCodeTop") as? String {

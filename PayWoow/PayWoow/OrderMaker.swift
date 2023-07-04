@@ -139,7 +139,7 @@ struct OrderMaker: View {
                 self.platformID = userStore.bigoId
                 let step1 = Double(inputPrice)! / self.change
                 let result = step1 * Double(willSellDiamond)
-                self.diamond = "\(Int(result))"
+                self.diamond = "\(Double(result))"
                 self.price = Int(inputPrice)!
             }
         }
@@ -1107,7 +1107,7 @@ struct OrderMaker: View {
     func sendOrder(transferType : String){
         let orderID = UUID().uuidString
         
-        let timeStamp = Date().formatted(date: .abbreviated, time: .complete)
+        let timeStamp = Date().formatted(date: .numeric, time: .standard)
         
         let date = Date()
         let monthFormatter = DateFormatter()
@@ -1124,7 +1124,7 @@ struct OrderMaker: View {
             "platformID" : platformID,
             "platform" : userStore.selectedPlatform,
             "price" : price,
-            "timeStamp" : Int(timeStamp),
+            "timeStamp" : timeStamp,
             "transferType" : transferType,
             "signatureURL" : "",
             "hexCodeTop" : hexCodeTop,

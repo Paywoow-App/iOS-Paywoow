@@ -1026,7 +1026,7 @@ struct Profile: View {
                         self.toRequestGiftScreen.toggle()
                     }
                     else if ( self.userStore.vipType == "VIPGOLD" || self.userStore.vipType == "VIPBLACK" ) && self.userStore.gift < 10000 && self.userStore.referanceCode == ""{
-                        self.alertBody = "VIP GOLD veya VIP BLACK olarak çekim talebinde bulunabilmek için en az 10000 hediyeye shaip olmalısın"
+                        self.alertBody = "VIP GOLD veya VIP BLACK olarak çekim talebinde bulunabilmek için en az 10000 hediyeye sahip olmalısın"
                         self.showAlert = true
                     }
                     else if ( self.userStore.vipType == "VIPGOLD" || self.userStore.vipType == "VIPBLACK" ) && self.userStore.gift >= 10000 && self.userStore.referanceCode == ""{

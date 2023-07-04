@@ -25,6 +25,7 @@ struct Feedback: View {
     @State private var img2String = ""
     @State private var img3String = ""
     
+    @State private var isCanSendFeedback = false
     @State private var open1 = false
     @State private var open2 = false
     @State private var open3 = false
@@ -384,7 +385,7 @@ struct Feedback: View {
                                         RoundedRectangle(cornerRadius: 8)
                                             .fill(Color.init(red: 66 / 255, green: 140 / 255, blue: 134 / 255))
                                         
-                                        Text("Share Us")
+                                        Text(isCanSendFeedback ? "Share Us" : "Zaten incelleniyor lütfen bekleyin")
                                             .foregroundColor(.white)
                                             .font(.system(size: 20))
                                             .bold()
@@ -393,7 +394,8 @@ struct Feedback: View {
                                 .frame(width: UIScreen.main.bounds.width * 0.9, height: 50)
                                 .padding(.bottom)
                             }
-
+                            .disabled(isCanSendFeedback ? false : true)
+                            .opacity(isCanSendFeedback ? 1 : 0.5)
                         }
                     }
                 
@@ -440,6 +442,9 @@ struct Feedback: View {
                 
                 Spacer(minLength: 0)
             }
+        }
+        .onAppear{
+            checkFeedback()
         }
         .fullScreenCover(isPresented: $open1) {
             ImagePicker(sourceType: .photoLibrary, selectedImage: $img1)
@@ -550,6 +555,23 @@ struct Feedback: View {
         }
     }
     
+    func checkFeedback() {
+        
+        let ref = Firestore.firestore()
+        
+        ref.collection("Suggestions").document(Auth.auth().currentUser!.uid).addSnapshotListener { snap, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            guard let doc = snap else { self.isCanSendFeedback = true; return }
+            
+            let timestamp = doc.get("timeDate")
+            print("Timestamppp \(timestamp)" )
+            
+            
+        }
+    }
     
     func sendFeedback(){
         var timeDate = ""

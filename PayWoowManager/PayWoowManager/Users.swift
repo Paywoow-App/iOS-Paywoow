@@ -797,7 +797,7 @@ struct UsersContent: View {
                     ref.collection("Users").document(userid).setData([
                         "managerPlatform" : platform,
                         "managerType" : "Demo Yöneticisi",
-                        "isSupporter" : 3
+                        "accountLevel" : 3
                     ], merge: true)
                 }),
                 ActionSheet.Button.default(Text("Ajans Yöneticisi"), action: {
@@ -805,7 +805,7 @@ struct UsersContent: View {
                     ref.collection("Users").document(userid).setData([
                         "managerPlatform" : platform,
                         "managerType" : "Ajans Yöneticisi",
-                        "isSupporter" : 3
+                        "accountLevel" : 3
                     ], merge: true)
                 }),
                 ActionSheet.Button.default(Text("Etkinlik Yöneticisi"), action: {
@@ -813,7 +813,7 @@ struct UsersContent: View {
                     ref.collection("Users").document(userid).setData([
                         "managerPlatform" : platform,
                         "managerType" : "Etkinlik Yöneticisi",
-                        "isSupporter" : 3
+                        "accountLevel" : 3
                     ], merge: true)
                 }),
                 ActionSheet.Button.default(Text("Ban Yöneticisi"), action: {
@@ -821,7 +821,7 @@ struct UsersContent: View {
                     ref.collection("Users").document(userid).setData([
                         "managerPlatform" : platform,
                         "managerType" : "Ban Yöneticisi",
-                        "isSupporter" : 3
+                        "accountLevel" : 3
                     ], merge: true)
                 }),
                 ActionSheet.Button.default(Text("Aile Yöneticisi"), action: {
@@ -829,7 +829,23 @@ struct UsersContent: View {
                     ref.collection("Users").document(userid).setData([
                         "managerPlatform" : platform,
                         "managerType" : "Aile Yöneticisi",
-                        "isSupporter" : 3
+                        "accountLevel" : 3
+                    ], merge: true)
+                }),
+                ActionSheet.Button.default(Text("İçerik Yöneticisi"), action: {
+                    let ref = Firestore.firestore()
+                    ref.collection("Users").document(userid).setData([
+                        "managerPlatform" : platform,
+                        "managerType" : "İçerik Yöneticisi",
+                        "accountLevel" : 3
+                    ], merge: true)
+                }),
+                ActionSheet.Button.default(Text("VIP Yöneticisi"), action: {
+                    let ref = Firestore.firestore()
+                    ref.collection("Users").document(userid).setData([
+                        "managerPlatform" : platform,
+                        "managerType" : "VIP Yöneticisi",
+                        "accountLevel" : 3
                     ], merge: true)
                 }),
                 ActionSheet.Button.default(Text("Yöneticilikten Çıkar"), action: {
@@ -837,7 +853,7 @@ struct UsersContent: View {
                     ref.collection("Users").document(userid).setData([
                         "managerPlatform" : "",
                         "managerType" : "",
-                        "isSupporter" : 1
+                        "accountLevel" : 1
                     ], merge: true)
                 }),
                 ActionSheet.Button.cancel(Text("İptal"))

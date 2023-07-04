@@ -303,9 +303,13 @@ struct RemittenceMaker: View {
                                 TextField("TC Kimlik Son 6 Hanesi", text: $tcLast6Number)
                                     .foregroundColor(.white)
                                     .font(.system(size: 15))
+                                    .disabled(true)
                                     .keyboardType(.numbersAndPunctuation)
                             }
                             .padding(.horizontal)
+                        }
+                        .onAppear {
+                            self.tcLast6Number = String(userStore.tcNo.suffix(6))
                         }
                         .frame(height: 45)
                         .padding(.horizontal)
@@ -400,8 +404,8 @@ struct RemittenceMaker: View {
                     self.showAlert.toggle()
                 }
                 else if self.tcLast6Number.count != 6 {
-                    self.alertTitle = "Eksik Alan"
-                    self.alertBody = "TC kimlik numarnızın son 6 hanesini giriniz."
+                    self.alertTitle = "TC Son 6 Hanesi Girinizdollarsign"
+                    self.alertBody = "Kişisel bilgilerinizden T.C kimlik alanı doldurmanız gerekiyor."
                     self.showAlert.toggle()
                 }
                 else if self.price == "" {
@@ -510,7 +514,8 @@ struct RemittenceMaker: View {
             let decodedData = Data(base64Encoded: base64Encoded!)
             let decodedString = String(data: decodedData!, encoding: .utf8)!
             let jsonDecode =  try? JSONDecoder().decode(RemittenceResponseModel.self, from: decodedData!)
-            print(decodedString)
+            print("I MA SOFWTASDASW\ndat \(dat)\ndata \(data)\nbase64Encoded \(base64Encoded)\ndecodedString \(decodedString)\njsonDecode \(jsonDecode)")
+            
             self.responseCall.append(jsonDecode!)
             
             ref.collection("OnlineOrder").document(merchant_oid).setData(["result" : 0])

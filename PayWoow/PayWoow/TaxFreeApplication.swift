@@ -91,9 +91,29 @@ struct TaxFreeApplication: View {
                     }
                     .padding([.horizontal, .top])
                 }
-                
+                    // BURAĞISSS
                 if self.userStore.taxapplicationId == "" {
-                    applicationBody
+                    if userStore.accountLevel == 0 && self.userStore.myAgencyId.isEmpty {
+                        applicationBody
+                            .disabled(true)
+                            .opacity(0.4)
+                            .onAppear {
+                                self.showAlert.toggle()
+                            }
+                            .alert(Text("Dikkat"), isPresented: $showAlert) {
+                                Button("Tamam") {
+                                    present.wrappedValue.dismiss()
+                                }
+                            } message: {
+                                Text("Bu özelliği kullanabilmek için herhangi bir ajansa bağlı olabilmeniz gerekmektedir.")
+                            }
+
+                            
+                            
+                    } else {
+                        applicationBody
+                    }
+                    
                 }
                 else {
                     if progres == 0 {

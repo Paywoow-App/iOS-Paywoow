@@ -50,8 +50,7 @@ struct PaymentSalary: View {
                                 .font(.system(size: 20))
                         }
                 }.padding([.top, .horizontal])
-                
-                salaryBody
+                    salaryBody
             }
         }
         .fullScreenCover(isPresented: $toTaxFreeApplications) {

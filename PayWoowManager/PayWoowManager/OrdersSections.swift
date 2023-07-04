@@ -152,7 +152,7 @@ struct OrdersSections: View {
     var waitingOrders : some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack{
-                ForEach(orderStore.list, id: \.timeStamp) { item in
+                ForEach(orderStore.list.sorted { $0.timeStamp > $1.timeStamp }, id: \.timeStamp) { item in
                     if item.result == 0 {
                         OrderContent(userID: item.userID, platformID: item.platformID, platform: item.platform, price: item.price, timeStamp: item.timeStamp, transferType: item.transferType, signatureURL: item.signatureURL, hexCodeTop: item.hexCodeTop, hexCodeBottom: item.hexCodeBottom, refCode: item.refCode, result: item.result, product: item.product, streamerGivenGift: item.streamerGivenGift, month: item.month, year: item.year, deallerID: item.deallerID, docID: item.docId)
                     }
@@ -204,7 +204,7 @@ struct OrderContent: View {
     @State var platformID : String = ""
     @State var platform : String = ""
     @State var price : Int = 0
-    @State var timeStamp : Int = 0
+    @State var timeStamp : String = ""
     @State var transferType : String = ""
     @State var signatureURL : String = ""
     @State var hexCodeTop : String = ""
@@ -224,7 +224,6 @@ struct OrderContent: View {
     @State private var token : String = ""
     @State private var totalSoldDiamond : Int = 0
     @State private var gift : Int = 0
-    @State private var timeDate : String = ""
     @State private var ref = Firestore.firestore()
     
     @State private var alertTitle : String = ""
@@ -274,7 +273,7 @@ struct OrderContent: View {
             }
             
             HStack{
-                Text(timeDate)
+                Text(timeStamp)
                     .foregroundColor(.black)
                     .font(.system(size: 13))
                 
@@ -330,12 +329,6 @@ struct OrderContent: View {
         .cornerRadius(8)
         .padding(.horizontal)
         .onAppear{
-            let date = Date(timeIntervalSince1970: TimeInterval(timeStamp))
-            let formatter = DateFormatter()
-            formatter.locale = Locale(identifier: "tr_TRPOSIX")
-            formatter.dateFormat = "dd MMMM yyyy"
-            self.timeDate = formatter.string(from: date)
-            
             let ref = Firestore.firestore()
             ref.collection("Users").document(userID).addSnapshotListener { doc, err in
                 if let firstName = doc?.get("firstName") as? String {

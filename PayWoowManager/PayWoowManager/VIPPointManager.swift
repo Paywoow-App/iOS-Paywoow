@@ -137,7 +137,9 @@ struct VIPPointManager: View {
             if err == nil {
                 self.list.removeAll()
                 for doc in snap!.documents {
+                    print("I amworkinggss")
                     self.list.append(doc.documentID)
+                    
                 }
             }
         }
@@ -334,10 +336,10 @@ struct VIPointUserContent: View {
                 if err == nil {
                     self.currentUpload = 0
                     if let currentUpload = doc?.get("\(currentMonth)") as? Int {
+                        print("printttts = \(userID)")
                         if currentUpload > 1000 {
                             let k = currentUpload / 1000
                             self.currentUpload = k
-                            print("printttt = \(userID)")
                             
                             if currentUpload >= 30000 && currentUpload < 150000 {
                                 self.point = 250

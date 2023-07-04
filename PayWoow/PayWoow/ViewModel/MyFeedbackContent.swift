@@ -45,8 +45,8 @@ struct MyFeedbacks: View {
             
             ZStack{
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.init(red: 97 / 255, green: 163 / 255, blue: 145 / 255))
-                
+                    .fill(Color.black.opacity(0.5))
+
                 VStack(alignment: .leading){
                     HStack{
                         Text(desc)

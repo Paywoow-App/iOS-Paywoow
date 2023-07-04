@@ -25,7 +25,7 @@ class GeneralStore: ObservableObject{
     @Published var ferinaToken : String = ""
     @Published var streamerPriceField: String = ""
     @Published var userCount : Int = 0
-    @Published var groupSelectionList : [String] = ["Ajans", "Etkinlik", "VIP", "Ban", "Aile", "İçerik"]
+    @Published var groupSelectionList : [String] = ["Ajans","Demo","Etkinlik", "VIP", "Ban", "Aile", "İçerik"]
     @Published var yearList : [String] = ["2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"]
     @Published var monthList = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"]
     @Published var diamondArray : [Int] = [5000,10000,15000,20000,25000,30000,35000,40000, 45000, 50000, 55000, 60000, 65000, 70000, 75000, 80000, 85000,90000,95000, 100000, 150000, 200000]
