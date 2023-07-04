@@ -556,9 +556,8 @@ struct Feedback: View {
     }
     
     func checkFeedback() {
-        
         let ref = Firestore.firestore()
-        
+
         ref.collection("Suggestions").document(Auth.auth().currentUser!.uid).addSnapshotListener { snap, error in
             if let error = error {
                 print(error.localizedDescription)
@@ -566,12 +565,30 @@ struct Feedback: View {
             
             guard let doc = snap else { self.isCanSendFeedback = true; return }
             
-            let timestamp = doc.get("timeDate")
-            print("Timestamppp \(timestamp)" )
-            
-            
+            let timeDate = doc.get("timeDate") as? String ?? ""
+
+            // Hem tarih hem de saat bilgisini döndüren bir formatter oluşturun
+            let dateTimeFormatter = DateFormatter()
+            dateTimeFormatter.dateFormat = "M/d/yy a h:mm" // 7/4/23 ÖS 2:56
+
+            // Yalnızca tarih bilgisini döndüren bir formatter oluşturun
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "M/d/yy"
+
+            // Şimdi, timeDate'in bir gün sonrası olup olmadığını kontrol edelim
+            let oneDayLater = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
+            let oneDayLaterString = dateFormatter.string(from: oneDayLater)
+
+            if dateFormatter.string(from: dateTimeFormatter.date(from: timeDate)!) == oneDayLaterString {
+                // Eğer timeDate bir gün sonrasıysa, feedback gönderme yeteneğini kapat
+                self.isCanSendFeedback = true
+            } else {
+                // Eğer timeDate bir gün sonrası değilse, feedback gönderme yeteneğini aç
+                self.isCanSendFeedback = false
+            }
         }
     }
+
     
     func sendFeedback(){
         var timeDate = ""
