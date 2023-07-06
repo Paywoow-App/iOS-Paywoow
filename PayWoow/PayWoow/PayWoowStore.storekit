@@ -1,0 +1,119 @@
+{
+  "identifier" : "C30BEC01",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_applicationInternalID" : "1629336404",
+    "_developerTeamID" : "F8426QAQ28",
+    "_lastSynchronizedDate" : 710180987.25320804
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "20978767",
+      "localizations" : [
+
+      ],
+      "name" : "Subs",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "7.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "1633664307",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Şimdi bir VIP olmaya hazırsın!",
+              "displayName" : "Siyah Abonelik",
+              "locale" : "tr"
+            },
+            {
+              "description" : "Now you are a real VIP!",
+              "displayName" : "Black Subscription",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.paywoow.musteri.black",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Black Subscription",
+          "subscriptionGroupID" : "20978767",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "11.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "1633233003",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Ready to turn on all features?",
+              "displayName" : "Gold Subscription",
+              "locale" : "en_US"
+            },
+            {
+              "description" : "Tüm özellikleri kullanmaya hazır mısın?",
+              "displayName" : "Altın Abonelik",
+              "locale" : "tr"
+            }
+          ],
+          "productID" : "com.paywoow.musteri.gold",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Gold Subscription",
+          "subscriptionGroupID" : "20978767",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "3.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "1633665079",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Starter Pack Services",
+              "displayName" : "Silver Subscription",
+              "locale" : "en_US"
+            },
+            {
+              "description" : "Başlangıç Seviyesi Hizmeti",
+              "displayName" : "Gümüş Abonelik",
+              "locale" : "tr"
+            }
+          ],
+          "productID" : "com.paywoow.musteri.silver",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Silver Subscription",
+          "subscriptionGroupID" : "20978767",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}

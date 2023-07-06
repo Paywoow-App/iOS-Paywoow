@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		20FC5ABCD80A52A564EF4D62 /* Pods_PayWoow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63AA2EC658EE84298755070 /* Pods_PayWoow.framework */; };
+		34306E0D2A54808300D337B9 /* PayWoowStore.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 34306E0C2A54807400D337B9 /* PayWoowStore.storekit */; };
 		343B3CF12A042A0100E0A536 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 343B3CF02A042A0100E0A536 /* Lottie */; };
 		34B50D3C2A01756B0049D054 /* Binding+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B50D3B2A01756B0049D054 /* Binding+Extension.swift */; };
 		34C774A32A02639800CFB74F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C774A22A02639800CFB74F /* String+Extension.swift */; };
@@ -353,6 +354,7 @@
 
 /* Begin PBXFileReference section */
 		019A535D9C53884341A4C47C /* Pods-PayWoow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayWoow.debug.xcconfig"; path = "Target Support Files/Pods-PayWoow/Pods-PayWoow.debug.xcconfig"; sourceTree = "<group>"; };
+		34306E0C2A54807400D337B9 /* PayWoowStore.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = PayWoowStore.storekit; sourceTree = "<group>"; };
 		34B50D3B2A01756B0049D054 /* Binding+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Extension.swift"; sourceTree = "<group>"; };
 		34C774A22A02639800CFB74F /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		3522FFF1F46E66ABAACAF0E0 /* Pods-PayWoow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayWoow.release.xcconfig"; path = "Target Support Files/Pods-PayWoow/Pods-PayWoow.release.xcconfig"; sourceTree = "<group>"; };
@@ -865,6 +867,7 @@
 				CABC2BBF283D15F3004C9A4F /* Animations */,
 				CABC2C47283D15F4004C9A4F /* bubble.mov */,
 				CABC2C44283D15F4004C9A4F /* click.mp3 */,
+				34306E0C2A54807400D337B9 /* PayWoowStore.storekit */,
 				CA2520A728E86E69009F561B /* coin.mp3 */,
 				CABC2C46283D15F4004C9A4F /* confetti.mp3 */,
 				CAEF3C01285C8E1B008A286B /* Localizable.strings */,
@@ -1350,6 +1353,7 @@
 				CAE2CE8D2888201E00EA777B /* rosette_gold.json in Resources */,
 				CABC2CA8283D15F5004C9A4F /* hamburger.json in Resources */,
 				CABC2CC5283D15F5004C9A4F /* christmasHat.json in Resources */,
+				34306E0D2A54808300D337B9 /* PayWoowStore.storekit in Resources */,
 				CABC2CA9283D15F5004C9A4F /* live.json in Resources */,
 				CABC2D3A283D15F6004C9A4F /* il-ilce.json in Resources */,
 				CABC2D19283D15F6004C9A4F /* CountryCodes.json in Resources */,
