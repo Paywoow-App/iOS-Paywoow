@@ -49,6 +49,33 @@ struct BlockServices: View {
     
     @State private var lock : Bool = true
     @State private var toRules : Bool = false
+        
+    func checkUserBlockServicer() -> Bool {
+        
+        var isBlockServied = false
+        
+        Firestore.firestore().collection("Devils").document(Auth.auth().currentUser!.uid).getDocument { snap, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            guard snap != nil else { print("not devil"); isBlockServied = false ; return }
+            isBlockServied = true
+        }
+        
+        Firestore.firestore().collection("Angels").document(Auth.auth().currentUser!.uid).getDocument { snap, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            guard snap != nil else { print("not evil"); isBlockServied = false; return }
+            isBlockServied = true
+        }
+        
+        return isBlockServied
+        
+    }
+    
     var body : some View {
         ZStack{
             
@@ -162,30 +189,31 @@ struct BlockServices: View {
                             
                             Spacer(minLength: 0)
                             
-                            Button {
-                                showAngelMaker.toggle()
-                                self.showBottomBar = false
-                                
-                            } label: {
-                                ZStack{
-                                    RoundedRectangle(cornerRadius: 25)
-                                        .fill(Color.white)
+                            if checkUserBlockServicer() {
+                                Button {
+                                    showAngelMaker.toggle()
+                                    self.showBottomBar = false
                                     
-                                    Text("Melek Ol")
-                                        .foregroundColor(.black)
-                                        .font(.system(size: 15))
+                                } label: {
+                                    ZStack{
+                                        RoundedRectangle(cornerRadius: 25)
+                                            .fill(Color.white)
+                                        
+                                        Text("Melek Ol")
+                                            .foregroundColor(.black)
+                                            .font(.system(size: 15))
+                                    }
+                                    .frame(height: 30)
+                                    .padding(.horizontal, 100)
+                                    .padding(.bottom)
                                 }
-                                .frame(height: 30)
-                                .padding(.horizontal, 100)
-                                .padding(.bottom)
                             }
-                            
                         }
                     }
                 }
                 //MARK: BlockServices - Devil List View
                 else if self.angelSelection == 1 {
-                    ZStack{
+                    ZStack {
                         if !self.store.devils.isEmpty {
                             VStack {
                                 ScrollView(.vertical, showsIndicators: false) {
@@ -219,7 +247,7 @@ struct BlockServices: View {
                             
                             Spacer(minLength: 0)
                             
-                            if !isAnDevil {
+                            if checkUserBlockServicer() {
                                 Button {
                                     showDevilMaker.toggle()
                                     self.showBottomBar = false
@@ -253,7 +281,6 @@ struct BlockServices: View {
                 }
             }
             
-            
             if showDevilMaker {
                 devilMaker
                     .onAppear{
@@ -272,8 +299,6 @@ struct BlockServices: View {
                         print(showAngelRequestMaker)
                     }
             }
-            
-            
         }
         .alert(alertBody, isPresented: $showAlert) {
             Button {
@@ -772,35 +797,35 @@ struct BlockServices: View {
                             .font(.system(size: 15))
                             .fontWeight(.medium)
                         
-                        Button {
-                            
-                            if self.userStore.vipType != "Casper" {
-                                if selectedPoint > (((userStore.totalMoney / 21) * 50) / 50) {
-                                    self.alertBody = "Sadece paunınız kadar işlem yapabilirsiniz"
-                                    self.showAlert = true
+                            Button {
+                                
+                                if self.userStore.vipType != "Casper" {
+                                    if selectedPoint > (((userStore.totalMoney / 21) * 50) / 50) {
+                                        self.alertBody = "Sadece paunınız kadar işlem yapabilirsiniz"
+                                        self.showAlert = true
+                                    }
+                                    else {
+                                        makeDevil()
+                                    }
                                 }
                                 else {
-                                    makeDevil()
+                                    self.alertBody = "Şeytan olabilmeniz için öncelikle VIP olmalısınız"
+                                    self.showAlert = true
                                 }
-                            }
-                            else {
-                                self.alertBody = "Şeytan olabilmeniz için öncelikle VIP olmalısınız"
-                                self.showAlert = true
-                            }
-                            
-                            
-                        } label: {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(Color.black)
                                 
-                                Text("Şeytan Ol")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 15))
                                 
+                            } label: {
+                                ZStack{
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .fill(Color.black)
+                                    
+                                    Text("Şeytan Ol")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 15))
+                                    
+                                }
+                                .frame(height: 45)
                             }
-                            .frame(height: 45)
-                        }
                     }
                     .padding(.all)
                     .background(Color.white)
