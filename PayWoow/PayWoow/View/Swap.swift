@@ -43,7 +43,37 @@ struct Swap: View {
     @State private var alertTitle : String = ""
     @State private var alertBody : String = ""
     @State private var showAlert : Bool = false
+    
+    @State private var isAlreadyAgency: Bool = false
+    
     var body: some View {
+        if userStore.streamerAgencyID.isEmpty {
+            ZStack {
+                swapBody
+                    .disabled(true)
+                    .overlay {
+                        Rectangle()
+                            .foregroundColor(.black)
+                            .opacity(0.3)
+                            .ignoresSafeArea()
+                    }
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.isAlreadyAgency = true
+                        }
+                    }
+                    .alert("Bir Ajansta Ol", isPresented: $isAlreadyAgency) {
+                        
+                    } message: {
+                        Text("Lütfen Bir ajansta olun")
+                    }
+            }
+        } else {
+            swapBody
+        }
+    }
+    
+    var swapBody: some View {
         ZStack{
             
             

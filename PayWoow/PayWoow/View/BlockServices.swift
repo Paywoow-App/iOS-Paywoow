@@ -49,18 +49,21 @@ struct BlockServices: View {
     
     @State private var lock : Bool = true
     @State private var toRules : Bool = false
+    
+    @State private var blockServicesed: Bool = false
+    @State private var blockServicesed2: Bool = false
         
     func checkUserBlockServicer() -> Bool {
         
-        var isBlockServied = false
+        var isBlockServied = true
         
         Firestore.firestore().collection("Devils").document(Auth.auth().currentUser!.uid).getDocument { snap, error in
             if let error = error {
                 print(error.localizedDescription)
             }
             
-            guard snap != nil else { print("not devil"); isBlockServied = false ; return }
-            isBlockServied = true
+            guard snap != nil else { print("not devil"); isBlockServied = true ; return }
+            isBlockServied = false
         }
         
         Firestore.firestore().collection("Angels").document(Auth.auth().currentUser!.uid).getDocument { snap, error in
@@ -68,8 +71,8 @@ struct BlockServices: View {
                 print(error.localizedDescription)
             }
             
-            guard snap != nil else { print("not evil"); isBlockServied = false; return }
-            isBlockServied = true
+            guard snap != nil else { print("not evil"); isBlockServied = true; return }
+            isBlockServied = false
         }
         
         return isBlockServied
@@ -77,7 +80,58 @@ struct BlockServices: View {
     }
     
     var body : some View {
-        ZStack{
+        if userStore.accountLevel == 0 {
+            if userStore.streamerAgencyID.isEmpty {
+                ZStack(content: {
+                    blockServiesView
+                        .overlay(content: {
+                            Rectangle()
+                                .ignoresSafeArea()
+                                .foregroundColor(.black)
+                                .opacity(0.2)
+                        })
+                        .disabled(true)
+                })
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 ) {
+                            blockServicesed = true
+                        }
+                    }
+                    .alert("Ajansa Bağlı Kal", isPresented: $blockServicesed) {
+                        
+                    } message: {
+                        Text("Ajansda olman gerekiyor.")
+                    }
+            } else if  !(userStore.vipType == "VIPBLACK") {
+                ZStack {
+                    blockServiesView
+                        .overlay {
+                            Rectangle()
+                                .ignoresSafeArea()
+                                .foregroundColor(.black)
+                                .opacity(0.2)
+                        }
+                        .disabled(true)
+                }
+                .onAppear{
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 ) {
+                        blockServicesed2 = true
+                    }
+                }
+                .alert("VIP BLACK CARD", isPresented: $blockServicesed2) {
+                    
+                } message: {
+                    Text("VIP Black Card sahibi ol.")
+                }
+            } else {
+                blockServiesView
+            }
+        } else {
+            blockServiesView
+        }
+    }
+    var blockServiesView: some View {
+        ZStack {
             
             general.backgroundColor.edgesIgnoringSafeArea(.all)
             VStack{
@@ -265,7 +319,6 @@ struct BlockServices: View {
                                     .padding(.bottom)
                                 }
                             }
-                            
                         }
                     }
                 }
@@ -306,9 +359,9 @@ struct BlockServices: View {
             } label: {
                 Text("OK")
             }
-        }
-
     }
+    }
+    
     //MARK: AngelMaker -
     var angelMaker: some View {
         ZStack{
