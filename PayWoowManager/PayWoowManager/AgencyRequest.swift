@@ -464,6 +464,18 @@ struct AgencyRequestContent : View {
             "myAgencyId":""
         ])
         
+        ref.collection("Users").document(docID).collection("AgencyApplicationQuestion").getDocuments { snap, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            guard let docs = snap?.documents else { return }
+            
+            for doc in docs {
+                doc.reference.delete()
+            }
+        }
+        
         ref.collection("AgencyRequests").document(docID).collection("Streamers").getDocuments { snap, error in
             if let error = error {
                 print(error.localizedDescription)
