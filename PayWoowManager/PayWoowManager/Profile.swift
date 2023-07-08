@@ -258,7 +258,7 @@ struct Profile: View {
                                 RoundedRectangle(cornerRadius: 6)
                                     .fill(Color.black.opacity(0.2))
                                 
-                                HStack{
+                                HStack {
                                     
                                     Image(systemName: "crown")
                                         .foregroundColor(.white)
