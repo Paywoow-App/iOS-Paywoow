@@ -133,20 +133,61 @@ struct PaymentSalary: View {
 //            }
 //            .padding(.horizontal)
                         
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack{
+                    ForEach(general.yearList, id: \.self){ item in
+                        Button {
+                            self.selectedYear = item
+                        } label: {
+                            if self.selectedYear == item {
+                                Text(item)
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 18))
+                                    .fontWeight(.medium)
+                            }
+                            else {
+                                Text(item)
+                                    .foregroundColor(.gray)
+                                    .font(.system(size: 18))
+                            }
+                        }
+
+                    }
+                }
+            }
+            .frame(height: 40)
+            .padding(.horizontal)
+            
             ScrollView(.vertical, showsIndicators: false) {
                 
                 VStack(alignment: .leading) {
+                    Text("Beklemede")
+                        .padding(.leading)
                     ForEach(salaryStore.list) { item in
                         if item.progress == 0 {
-                            Text("Beklemede")
-                                .padding(.leading)
-                            rectangleWhiteRaw(overlayRectangleText: "Maaşınız 3-7 iş günü içerisinde hesabına yatılacaktır.", price: item.price, conditionText: "Beklemede", conditionTextColor: .black.opacity(0.6), conditionTextRectangle: .gray.opacity(0.3), day: item.day, month: item.month, year: item.year)
+                            if item.year == selectedYear {
+                                rectangleWhiteRaw(overlayRectangleText: "Maaşınız 3-7 iş günü içerisinde hesabına yatılacaktır.", price: item.price, conditionText: "Beklemede", conditionTextColor: .black.opacity(0.6), conditionTextRectangle: .black.opacity(0.08), day: item.day, month: item.month, year: item.year)
+                            }
                         }
                     }
+                    
+                    Rectangle()
+                        .foregroundColor(.white.opacity(0.5))
+                        .frame(height: 1)
+                        .padding(.horizontal)
+                    
+                    Text("Tamamlandı")
+                        .padding(.leading)
+                    ForEach(salaryStore.list) { item in
+                        if item.progress == 1 {
+                            if item.year == selectedYear {
+                                rectangleWhiteRaw(overlayRectangleText: "Maaşınız hesabınıza başarılı bir şekilde tanımlanmıştır.", price: item.price, conditionText: "Başarılı", conditionTextColor: .init(hex: "6FEDDA"), conditionTextRectangle: .init(hex: "6FEDDA").opacity(0.12), day: item.day, month: item.month, year: item.year)
+                            }
+                       }
+                    }
                 }
-                
-                
-                
+                .frame(width: UIScreen.main.bounds.width)
+                                
                 
 //                ForEach(salaryStore.list){ item in
 //                    if self.selectedProgress == item.progress{
@@ -186,14 +227,14 @@ struct rectangleWhiteRaw: View {
                 .foregroundColor(.white)
                 .overlay {
                     HStack {
-                        VStack(spacing: 10){
+                        VStack(alignment: .leading, spacing: 14){
                             Text(overlayRectangleText)
                                 .foregroundColor(.black)
-                                .fontWeight(.regular)
-                                .font(.caption2)
+                                .fontWeight(.thin)
+                                .font(.caption)
                                 .multilineTextAlignment(.leading)
                             
-                            RoundedRectangle(cornerRadius: 15)
+                            RoundedRectangle(cornerRadius: 5)
                                 .foregroundColor(conditionTextRectangle)
                                 .overlay {
                                     Text(conditionText)
@@ -201,28 +242,29 @@ struct rectangleWhiteRaw: View {
                                         .font(.caption)
                                         .fontWeight(.regular)
                                 }
-                                .frame(height: 20)
-                                .padding(.horizontal, UIScreen.main.bounds.width * 0.1)
+                                .frame(height: 30)
+                                .padding(.trailing, UIScreen.main.bounds.width * 0.2)
                         }
-                        .frame(width: UIScreen.main.bounds.width * 0.5)
+                        .frame(width: UIScreen.main.bounds.width * 0.48)
+                        .padding(.leading, 15)
                         
-                        VStack(spacing: 5) {
+                        VStack(alignment: .center , spacing: 23) {
                             Text("\(day).\(month).\(year)")
                                 .font(.caption)
-                                .foregroundColor(.black)
+                                .foregroundColor(.black.opacity(0.8))
                                 .fontWeight(.light)
                             
                             Text("\(price)$")
                                 .foregroundColor(.black)
-                                .fontWeight(.black)
-                                .font(.title3)
+                                .fontWeight(.regular)
+                                .font(.title)
                         }
-                        .frame(width: UIScreen.main.bounds.width * 0.3)
-                        Spacer()
+                        .multilineTextAlignment(.center)
+                        .frame(width: UIScreen.main.bounds.width * 0.28)
                     }
-                    .padding(.horizontal)
+                    .padding(.trailing,15)
                 }
-                .frame(width: UIScreen.main.bounds.width * 0.9, height: 90, alignment: .center)
+                .frame(width: UIScreen.main.bounds.width * 0.9, height: 110, alignment: .center)
         }
         .padding(.horizontal)
     }

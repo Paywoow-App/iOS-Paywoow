@@ -53,28 +53,10 @@ struct BlockServices: View {
     @State private var blockServicesed: Bool = false
     @State private var blockServicesed2: Bool = false
     
-    @State private var isAnAngel: Bool = false
+    @Binding var isAmIAngel: Bool
+    @Binding var isAmIDevil: Bool
         
-    func checkUserDevilsService() {
-
-        let currentsUids = Auth.auth().currentUser!.uid
-
-        Firestore.firestore().collection("Angels").getDocuments { snap, error in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-
-            guard let docs = snap?.documents else { return }
-
-            for doc in docs {
-                if currentsUids == doc.documentID {
-                    self.isAnAngel = false
-                } else {
-                    self.isAnAngel = true
-                }
-            }
-        }
-    }
+ 
     
 //    func checkUserAngelsService()  {
 //
@@ -100,6 +82,7 @@ struct BlockServices: View {
 //    }
     
     var body : some View {
+        ZStack {
         if userStore.accountLevel == 0 {
             if userStore.streamerAgencyID.isEmpty {
                 ZStack(content: {
@@ -112,16 +95,16 @@ struct BlockServices: View {
                         })
                         .disabled(true)
                 })
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 ) {
-                            blockServicesed = true
-                        }
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 ) {
+                        blockServicesed = true
                     }
-                    .alert("Dikkat", isPresented: $blockServicesed) {
-                        
-                    } message: {
-                        Text("Bu özelliği kullanabilmek için lütfen bir ajansta bağlı kalınız.")
-                    }
+                }
+                .alert("Dikkat", isPresented: $blockServicesed) {
+                    
+                } message: {
+                    Text("Bu özelliği kullanabilmek için lütfen bir ajansta bağlı kalınız.")
+                }
             } else if  !(userStore.vipType == "VIPBLACK") && !(userStore.vipType == "VIPGOLD") {
                 ZStack {
                     blockServiesView
@@ -149,6 +132,7 @@ struct BlockServices: View {
         } else {
             blockServiesView
         }
+    }
     }
     
     var blockServiesView: some View {
@@ -264,7 +248,7 @@ struct BlockServices: View {
                             
                             Spacer(minLength: 0)
                             
-                            if isAnAngel && isAnDevil {
+                            if isAmIAngel && isAmIDevil {
                                 Button {
                                     showAngelMaker.toggle()
                                     self.showBottomBar = false
@@ -322,7 +306,7 @@ struct BlockServices: View {
                             
                             Spacer(minLength: 0)
                             
-                            if isAnAngel && isAnDevil {
+                            if isAmIAngel && isAmIDevil {
                                 Button {
                                     showDevilMaker.toggle()
                                     self.showBottomBar = false

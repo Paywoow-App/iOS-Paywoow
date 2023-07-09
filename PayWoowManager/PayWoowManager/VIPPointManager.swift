@@ -71,6 +71,7 @@ struct VIPPointManager: View {
                     ScrollView(.vertical, showsIndicators: false) {
                         ForEach(list, id: \.self){ item in
                             VIPointUserContent(userID: item, currentYear: $currentYears, currentMonth: $currentMonth, attack: $attack, nextMonth: $nextMonth, complatedList: $complatedList, selection: $selection)
+                            
                         }
                     }
 
@@ -176,7 +177,7 @@ struct VIPointUserContent: View {
     
     @State private var requiredSelectin : Int = 1
     var body: some View {
-        ZStack{
+            ZStack{
             if currentUpload != 0 && self.lock == false && !self.list.contains(where: {$0.month == nextMonth}) {
                 ZStack{
                     RoundedRectangle(cornerRadius: 8)
@@ -335,7 +336,7 @@ struct VIPointUserContent: View {
                     self.currentUpload = 0
                     if let currentUpload = doc?.get("\(currentMonth)") as? Int {
                         print("printttts = \(userID)")
-                        if currentUpload > 1000 {
+                       if currentUpload > 29999 {
                             let k = currentUpload / 1000
                             self.currentUpload = k
                             

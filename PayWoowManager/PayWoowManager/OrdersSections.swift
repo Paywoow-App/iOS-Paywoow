@@ -271,6 +271,9 @@ struct OrderContent: View {
                         .font(.system(size: 14))
                 }
             }
+            .onTapGesture {
+                print(getCurrentMonthDia(docIDs: userID))
+            }
             
             HStack{
                 Text(timeStamp)
@@ -392,6 +395,60 @@ struct OrderContent: View {
         
         print("TODO: Sipariş onayından sonra gerekli bayiden ürünü azalt")
         
+    }
+    
+    func getCurrentMonthDia(docIDs: String) -> Int {
+        var currentMoney: Int = 0
+        ref.collection("Users").document(docIDs).collection("UserStatics").document("SoldDiamond").collection("Years").document("2023").addSnapshotListener { snap, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            guard let doc = snap else { return }
+            
+            let money = doc.get(checkMonth()) as? Int? ?? 0
+            guard let detectedMoney = money else { return }
+            print(detectedMoney)
+            currentMoney = detectedMoney
+        }
+        return currentMoney
+    }
+    
+    func checkMonth() -> String {
+        let currentMonthNumber = Calendar.current.component(.month, from: Date())
+                let monthName: String
+
+                switch currentMonthNumber {
+                case 1:
+                    monthName = "Ocak"
+                case 2:
+                    monthName = "Şubat"
+                case 3:
+                    monthName = "Mart"
+                case 4:
+                    monthName = "Nisan"
+                case 5:
+                    monthName = "Mayıs"
+                case 6:
+                    monthName = "Haziran"
+                case 7:
+                    monthName = "Temmuz"
+                case 8:
+                    monthName = "Ağustos"
+                case 9:
+                    monthName = "Eylül"
+                case 10:
+                    monthName = "Ekim"
+                case 11:
+                    monthName = "Kasım"
+                case 12:
+                    monthName = "Aralık"
+                default:
+                    monthName = "Geçersiz ay"
+                }
+
+                print("Şu anki ay: \(monthName)")
+        return monthName
     }
     
     func rejectResult(){

@@ -103,12 +103,61 @@ struct MainTabView: View {
     
     @State private var internetProblem : Bool = false
     
+    @State private var isAmIAngel: Bool = true
+    @State private var isAmIDevil: Bool = true
+    
     var userLatitude: String {
         return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
     }
     
     var userLongitude: String {
         return "\(locationManager.lastLocation?.coordinate.longitude ?? 0)"
+    }
+    
+    func checkUserAngelsService() {
+
+        let currentsUids = Auth.auth().currentUser!.uid
+
+        Firestore.firestore().collection("Angels").getDocuments { snap, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+
+            guard let docs = snap?.documents else { return }
+
+            for doc in docs {
+                if currentsUids == doc.documentID {
+                    self.isAmIAngel = false
+                    print("I am Angel")
+                } else {
+                    self.isAmIAngel = true
+                    print("I am not Angel")
+                }
+            }
+        }
+    }
+    
+    func checkUserDevilsService() {
+
+        let currentsUids = Auth.auth().currentUser!.uid
+
+        Firestore.firestore().collection("Devils").getDocuments { snap, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+
+            guard let docs = snap?.documents else { return }
+
+            for doc in docs {
+                if currentsUids == doc.documentID {
+                    self.isAmIDevil = false
+                    print("I am Devil")
+                } else {
+                    self.isAmIDevil = true
+                    print("I am not Devil")
+                }
+            }
+        }
     }
     
     var body: some View {
@@ -126,7 +175,7 @@ struct MainTabView: View {
                         Swap(showBottomBar: $showBottomBar)
                     }
                     else if selection == 2 {
-                        BlockServices(store: angelStore, showBottomBar: $showBottomBar)
+                        BlockServices(store: angelStore, showBottomBar: $showBottomBar, isAmIAngel: $isAmIAngel , isAmIDevil: $isAmIDevil )
                     }
                     else if selection == 3{
                         VStack{
@@ -161,7 +210,7 @@ struct MainTabView: View {
                         Swap(showBottomBar: $showBottomBar)
                     }
                     else if selection == 2 {
-                        BlockServices(store: angelStore, showBottomBar: $showBottomBar)
+                        BlockServices(store: angelStore, showBottomBar: $showBottomBar, isAmIAngel: $isAmIAngel , isAmIDevil: $isAmIDevil  )
                     }
                     else if selection == 3{
                         VStack{
@@ -197,7 +246,7 @@ struct MainTabView: View {
                         BankInformation(forTabView: false)
                     }
                     else if selection == 2 {
-                        BlockServices(store: angelStore, showBottomBar: $showBottomBar)
+                        BlockServices(store: angelStore, showBottomBar: $showBottomBar, isAmIAngel: $isAmIAngel , isAmIDevil: $isAmIDevil  )
                     }
                     else if selection == 3 {
                         Top50()
@@ -498,6 +547,8 @@ struct MainTabView: View {
             }
         }
         .onAppear {
+            self.checkUserDevilsService()
+            self.checkUserAngelsService()
             self.orderWriterBayiId = ""
             self.toOrderWriter = false
             self.selection = 0

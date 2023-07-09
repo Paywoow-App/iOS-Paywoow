@@ -314,6 +314,7 @@ struct AgencyRequestContent : View {
                             Button {
                                 // New notification
                                 isUserSureAbout.toggle()
+                                print(docID)
                             } label: {
                                 ZStack{
                                     RoundedRectangle(cornerRadius: 6)
@@ -370,7 +371,6 @@ struct AgencyRequestContent : View {
                 }
                 ForEach(streamers, id: \.self) { item in
                     AgencyRequestStreamerContent(model: AgencyRequestStreamerContentModel(userID: item))
-                    
                 }
             }
         }
@@ -759,6 +759,11 @@ struct AgencyCompletedContent : View {
     @State private var blur : Bool = false
     @State private var isUserSureAbout: Bool = false
     
+    
+    func getDocs(agencyID: String) {
+        print("Bu neğ \(agencyID)")
+    }
+    
     var body: some View {
         VStack(spacing: 15){
             HStack{
@@ -904,7 +909,6 @@ struct AgencyCompletedContent : View {
                                         .font(.system(size: 15))
                                 }
                             }
-                            
                             Button {
                                 self.showStreamers.toggle()
                             } label: {
