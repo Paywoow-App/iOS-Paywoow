@@ -189,6 +189,7 @@ struct DevilContent: View {
     @State private var alertTitle : String = ""
     @State private var alertBody : String = ""
     @State private var showAlert : Bool = false
+    @State private var isItDevilPermision: Bool = false
     
     var body : some View {
         HStack{
@@ -209,7 +210,6 @@ struct DevilContent: View {
                         .shadow(radius: 11)
                 }
 
-                
                 LottieView(name: "angel_red", loopMode: .loop, speed: 2.0)
                     .scaleEffect(1.5)
                     .frame(width: 95, height: 95)
@@ -226,7 +226,7 @@ struct DevilContent: View {
             .padding(.leading, -10)
             
             VStack(alignment: .leading, spacing: 10){
-                HStack{
+                HStack {
                     Text(nickname)
                         .foregroundColor(.white)
                         .font(.system(size: 15))
@@ -245,9 +245,10 @@ struct DevilContent: View {
                         .font(.system(size: 12))
                     
                     Spacer(minLength: 0)
-                    
-                    if self.userID != Auth.auth().currentUser!.uid {
+                    //
+                    if isItDevilPermision {
                         Button {
+                            
                             if self.iAmAngel {
                                 self.selectedUserID = userID
                                 self.selectedClass = classTitle
@@ -277,6 +278,7 @@ struct DevilContent: View {
                             .frame(width: 110, height: 30, alignment: Alignment.center)
                         }
                     }
+                    //
                 }
             }
             .padding(.leading, -10)
@@ -307,7 +309,25 @@ struct DevilContent: View {
         }
     }
     
-    func listenAngel(){
+    func isItDevil() {
+        Firestore.firestore().collection("Devils").addSnapshotListener { snap, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            guard let docs = snap?.documentChanges else { return }
+            
+            for doc in docs {
+                if doc.document.isEqual(Auth.auth().currentUser?.uid) {
+                    self.isItDevilPermision = false
+                } else {
+                    self.isItDevilPermision = true
+                }
+            }
+        }
+    }
+    
+    func listenAngel() {
         let ref = Firestore.firestore()
         ref.collection("Devils").document(userID).addSnapshotListener { doc, err in
             if err == nil {

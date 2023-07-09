@@ -52,32 +52,52 @@ struct BlockServices: View {
     
     @State private var blockServicesed: Bool = false
     @State private var blockServicesed2: Bool = false
+    
+    @State private var isAnAngel: Bool = false
         
-    func checkUserBlockServicer() -> Bool {
-        
-        var isBlockServied = true
-        
-        Firestore.firestore().collection("Devils").document(Auth.auth().currentUser!.uid).getDocument { snap, error in
+    func checkUserDevilsService() {
+
+        let currentsUids = Auth.auth().currentUser!.uid
+
+        Firestore.firestore().collection("Angels").getDocuments { snap, error in
             if let error = error {
                 print(error.localizedDescription)
             }
-            
-            guard snap != nil else { print("not devil"); isBlockServied = true ; return }
-            isBlockServied = false
-        }
-        
-        Firestore.firestore().collection("Angels").document(Auth.auth().currentUser!.uid).getDocument { snap, error in
-            if let error = error {
-                print(error.localizedDescription)
+
+            guard let docs = snap?.documents else { return }
+
+            for doc in docs {
+                if currentsUids == doc.documentID {
+                    self.isAnAngel = false
+                } else {
+                    self.isAnAngel = true
+                }
             }
-            
-            guard snap != nil else { print("not evil"); isBlockServied = true; return }
-            isBlockServied = false
         }
-        
-        return isBlockServied
-        
     }
+    
+//    func checkUserAngelsService()  {
+//
+//        let currentsUids = Auth.auth().currentUser!.uid
+//
+//        Firestore.firestore().collection("Angels").getDocuments { snap, error in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            }
+//
+//            guard let docs = snap?.documents else { return }
+//
+//            for doc in docs {
+//                if currentsUids == doc.documentID {
+//                    isBlockServised = false
+//                    print(" I am workin ")
+//                } else {
+//                    isBlockServised = true
+//                    print(" I am  not workin ")
+//                }
+//            }
+//        }
+//    }
     
     var body : some View {
         if userStore.accountLevel == 0 {
@@ -97,12 +117,12 @@ struct BlockServices: View {
                             blockServicesed = true
                         }
                     }
-                    .alert("Ajansa Bağlı Kal", isPresented: $blockServicesed) {
+                    .alert("Dikkat", isPresented: $blockServicesed) {
                         
                     } message: {
-                        Text("Ajansda olman gerekiyor.")
+                        Text("Bu özelliği kullanabilmek için lütfen bir ajansta bağlı kalınız.")
                     }
-            } else if  !(userStore.vipType == "VIPBLACK") {
+            } else if  !(userStore.vipType == "VIPBLACK") && !(userStore.vipType == "VIPGOLD") {
                 ZStack {
                     blockServiesView
                         .overlay {
@@ -118,18 +138,19 @@ struct BlockServices: View {
                         blockServicesed2 = true
                     }
                 }
-                .alert("VIP BLACK CARD", isPresented: $blockServicesed2) {
+                .alert("Dikkat", isPresented: $blockServicesed2) {
                     
                 } message: {
-                    Text("VIP Black Card sahibi ol.")
+                    Text("Bu özelliği kullanabilmeniz için VIP BLACK veya VIP GOLD sahip olmalısınız.")
                 }
-            } else {
+            } else  {
                 blockServiesView
             }
         } else {
             blockServiesView
         }
     }
+    
     var blockServiesView: some View {
         ZStack {
             
@@ -243,7 +264,7 @@ struct BlockServices: View {
                             
                             Spacer(minLength: 0)
                             
-                            if checkUserBlockServicer() {
+                            if isAnAngel && isAnDevil {
                                 Button {
                                     showAngelMaker.toggle()
                                     self.showBottomBar = false
@@ -301,7 +322,7 @@ struct BlockServices: View {
                             
                             Spacer(minLength: 0)
                             
-                            if checkUserBlockServicer() {
+                            if isAnAngel && isAnDevil {
                                 Button {
                                     showDevilMaker.toggle()
                                     self.showBottomBar = false

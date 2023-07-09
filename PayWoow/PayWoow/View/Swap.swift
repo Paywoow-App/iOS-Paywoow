@@ -62,10 +62,10 @@ struct Swap: View {
                             self.isAlreadyAgency = true
                         }
                     }
-                    .alert("Bir Ajansta Ol", isPresented: $isAlreadyAgency) {
+                    .alert("Dikkat", isPresented: $isAlreadyAgency) {
                         
                     } message: {
-                        Text("Lütfen Bir ajansta olun")
+                        Text("Bu özelliği kullanabilmek için lütfen bir ajansta olmalısınız.")
                     }
             }
         } else {

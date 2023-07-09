@@ -22,6 +22,7 @@ class AngelStore: ObservableObject {
     
     func getAngels() {
         ref.collection("Angels").getDocuments { snapchat, error in
+            self.angels = []
             if let error = error {
                 print("Error getting documents: \(error.localizedDescription)")
             }else {
@@ -33,6 +34,7 @@ class AngelStore: ObservableObject {
                     
                     DispatchQueue.main.async {
                         let angelData = AngelModel(userID: document.documentID, timeStamp: timeStamp)
+                        print("eproper \(document.documentID)")
                         self.angels.append(angelData)
                     }
                 }
@@ -43,6 +45,7 @@ class AngelStore: ObservableObject {
     //++++++++++++++++++++++++++++++ Devils ++++++++++++++++++++++++++++++++//
     func getDevils() {
         ref.collection("Devils").getDocuments { snapchat, error in
+            self.devils = []
             if let error = error {
                 print("Error getting documents: \(error.localizedDescription)")
             } else {

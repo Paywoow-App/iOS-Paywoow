@@ -51,6 +51,8 @@ struct PaymentSalary: View {
                         }
                 }.padding([.top, .horizontal])
                     salaryBody
+                
+                
             }
         }
         .fullScreenCover(isPresented: $toTaxFreeApplications) {
@@ -72,115 +74,85 @@ struct PaymentSalary: View {
             SalaryBankCreater()
         }
     }
-    
-    //MARK: Check IBAN IS THERE ? func
-    
-//    func checkBankInfo() {
-//        Firestore.firestore().collection("Users").document((Auth.auth().currentUser?.uid)!).collection("BankInformations").getDocuments { snap, error in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            }
-//
-//            guard let docs = snap?.documents else { return }
-//
-//            for doc in docs {
-//                if doc.documentID == self.userStore.bigoId {
-//                    isBeforeAdded = true
-//                } else {
-//                    isBeforeAdded = false
-//                }
-//            }
-//        }
-//    }
+
     
     var salaryBody : some View {
         VStack{
-            HStack{
-                Button {
-                    selectedProgress = 0
-                } label: {
-                    if self.selectedProgress == 0{
-                        Text("Beklemede")
-                            .foregroundColor(.white)
-                            .font(.system(size: 18))
-                            .fontWeight(.medium)
-                    }
-                    else {
-                        Text("Beklemede")
-                            .foregroundColor(.gray)
-                            .font(.system(size: 18))
-                    }
-                }
-                
-                Button {
-                    selectedProgress = 1
-                } label: {
-                    if self.selectedProgress == 1 {
-                        Text("Tamamlandı")
-                            .foregroundColor(.white)
-                            .font(.system(size: 18))
-                            .fontWeight(.medium)
-                    }
-                    else {
-                        Text("Tamamlandı")
-                            .foregroundColor(.gray)
-                            .font(.system(size: 18))
-                    }
-                }
-                
-                
-                Button {
-                    selectedProgress = 2
-                } label: {
-                    if self.selectedProgress == 2{
-                        Text("Reddedildi")
-                            .foregroundColor(.white)
-                            .font(.system(size: 18))
-                            .fontWeight(.medium)
-                    }
-                    else {
-                        Text("Reddedildi")
-                            .foregroundColor(.gray)
-                            .font(.system(size: 18))
-                    }
-                }
-                
-                Spacer(minLength: 0)
-
-            }
-            .padding(.horizontal)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack{
-                    ForEach(general.yearList, id: \.self){ item in
-                        Button {
-                            self.selectedYear = item
-                        } label: {
-                            if self.selectedYear == item {
-                                Text(item)
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 18))
-                                    .fontWeight(.medium)
-                            }
-                            else {
-                                Text(item)
-                                    .foregroundColor(.gray)
-                                    .font(.system(size: 18))
-                            }
-                        }
-
-                    }
-                }
-            }
-            .frame(height: 40)
-            .padding(.horizontal)
-            
+//            HStack{
+//                Button {
+//                    selectedProgress = 0
+//                } label: {
+//                    if self.selectedProgress == 0{
+//                        Text("Beklemede")
+//                            .foregroundColor(.white)
+//                            .font(.system(size: 18))
+//                            .fontWeight(.medium)
+//                    }
+//                    else {
+//                        Text("Beklemede")
+//                            .foregroundColor(.gray)
+//                            .font(.system(size: 18))
+//                    }
+//                }
+//
+//                Button {
+//                    selectedProgress = 1
+//                } label: {
+//                    if self.selectedProgress == 1 {
+//                        Text("Tamamlandı")
+//                            .foregroundColor(.white)
+//                            .font(.system(size: 18))
+//                            .fontWeight(.medium)
+//                    }
+//                    else {
+//                        Text("Tamamlandı")
+//                            .foregroundColor(.gray)
+//                            .font(.system(size: 18))
+//                    }
+//                }
+//
+//
+//                Button {
+//                    selectedProgress = 2
+//                } label: {
+//                    if self.selectedProgress == 2{
+//                        Text("Reddedildi")
+//                            .foregroundColor(.white)
+//                            .font(.system(size: 18))
+//                            .fontWeight(.medium)
+//                    }
+//                    else {
+//                        Text("Reddedildi")
+//                            .foregroundColor(.gray)
+//                            .font(.system(size: 18))
+//                    }
+//                }
+//
+//                Spacer(minLength: 0)
+//
+//            }
+//            .padding(.horizontal)
+                        
             ScrollView(.vertical, showsIndicators: false) {
-                ForEach(salaryStore.list){ item in
-                    if item.year == selectedYear && self.selectedProgress == item.progress{
-                        SalaryContent(userID: item.userID, bankName: item.bankName, IBAN: item.IBAN, timeStamp: item.timeStamp, month: item.month, year: item.year, day: item.day, progress: item.progress, price: item.price, currency: item.currency)
+                
+                VStack(alignment: .leading) {
+                    ForEach(salaryStore.list) { item in
+                        if item.progress == 0 {
+                            Text("Beklemede")
+                                .padding(.leading)
+                            rectangleWhiteRaw(overlayRectangleText: "Maaşınız 3-7 iş günü içerisinde hesabına yatılacaktır.", price: item.price, conditionText: "Beklemede", conditionTextColor: .black.opacity(0.6), conditionTextRectangle: .gray.opacity(0.3), day: item.day, month: item.month, year: item.year)
+                        }
                     }
                 }
+                
+                
+                
+                
+//                ForEach(salaryStore.list){ item in
+//                    if self.selectedProgress == item.progress{
+//                        SalaryContent(userID: item.userID, bankName: item.bankName, IBAN: item.IBAN, timeStamp: item.timeStamp, month: item.month, year: item.year, day: item.day, progress: item.progress, price: item.price, currency: item.currency)
+//                    }
+//                }
             }
         }
     }
@@ -195,6 +167,66 @@ struct PaymentSalary: View {
             }
         }
     }
+}
+
+struct rectangleWhiteRaw: View {
+    
+    var overlayRectangleText: String
+    var price: Int
+    var conditionText: String
+    var conditionTextColor: Color
+    var conditionTextRectangle: Color
+    var day: String
+    var month: String
+    var year: String
+    
+    var body: some View {
+        VStack {
+            RoundedRectangle(cornerRadius: 15)
+                .foregroundColor(.white)
+                .overlay {
+                    HStack {
+                        VStack(spacing: 10){
+                            Text(overlayRectangleText)
+                                .foregroundColor(.black)
+                                .fontWeight(.regular)
+                                .font(.caption2)
+                                .multilineTextAlignment(.leading)
+                            
+                            RoundedRectangle(cornerRadius: 15)
+                                .foregroundColor(conditionTextRectangle)
+                                .overlay {
+                                    Text(conditionText)
+                                        .foregroundColor(conditionTextColor)
+                                        .font(.caption)
+                                        .fontWeight(.regular)
+                                }
+                                .frame(height: 20)
+                                .padding(.horizontal, UIScreen.main.bounds.width * 0.1)
+                        }
+                        .frame(width: UIScreen.main.bounds.width * 0.5)
+                        
+                        VStack(spacing: 5) {
+                            Text("\(day).\(month).\(year)")
+                                .font(.caption)
+                                .foregroundColor(.black)
+                                .fontWeight(.light)
+                            
+                            Text("\(price)$")
+                                .foregroundColor(.black)
+                                .fontWeight(.black)
+                                .font(.title3)
+                        }
+                        .frame(width: UIScreen.main.bounds.width * 0.3)
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                }
+                .frame(width: UIScreen.main.bounds.width * 0.9, height: 90, alignment: .center)
+        }
+        .padding(.horizontal)
+    }
+    
 }
 
 struct SalaryContent : View {

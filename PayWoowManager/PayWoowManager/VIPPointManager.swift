@@ -309,8 +309,6 @@ struct VIPointUserContent: View {
             } label: {
                 Text("Puanı geri al")
             }
-            
-            
         }
         .onAppear{
             let ref = Firestore.firestore()

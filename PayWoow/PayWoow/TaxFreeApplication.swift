@@ -31,6 +31,7 @@ struct TaxFreeApplication: View {
     @State private var alertTitle : String = ""
     @State private var alertBody : String = ""
     @State private var showAlert : Bool = false
+    @State private var showAlerti: Bool = false
     
     @State private var progres : Int = 0
     
@@ -93,23 +94,22 @@ struct TaxFreeApplication: View {
                 }
                     // BURAĞISSS
                 if self.userStore.taxapplicationId == "" {
-                    if userStore.accountLevel == 0 && self.userStore.myAgencyId.isEmpty {
+                    if userStore.accountLevel == 0 && self.userStore.streamerAgencyID.isEmpty {
                         applicationBody
                             .disabled(true)
                             .opacity(0.4)
                             .onAppear {
-                                self.showAlert.toggle()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    self.showAlerti.toggle()
+                                }
                             }
-                            .alert(Text("Dikkat"), isPresented: $showAlert) {
+                            .alert(Text("Dikkat"), isPresented: $showAlerti) {
                                 Button("Tamam") {
                                     present.wrappedValue.dismiss()
                                 }
                             } message: {
                                 Text("Bu özelliği kullanabilmek için herhangi bir ajansa bağlı olabilmeniz gerekmektedir.")
                             }
-
-                            
-                            
                     } else {
                         applicationBody
                     }
@@ -137,6 +137,11 @@ struct TaxFreeApplication: View {
                     }
                 }
             }
+        }
+        .onAppear {
+            self.tcNo = userStore.tcNo
+            self.addres = userStore.adress
+            self.phoneNumber = userStore.phoneNumber
         }
         .alert(isPresented: $showAlert) {
             Alert(title: Text(alertTitle), message: Text(alertBody), dismissButton: Alert.Button.default(Text("Ok")))
@@ -262,7 +267,7 @@ struct TaxFreeApplication: View {
                     RoundedRectangle(cornerRadius: 8)
                         .fill(Color.black.opacity(0.2))
                     
-                    TextField("Telefon Numarası", text: $phoneNumber)
+                    TextField("Telefon Numarası", text: $phoneNumber.limit(12))
                         .foregroundColor(.white)
                         .font(.system(size: 15))
                         .padding(.horizontal)

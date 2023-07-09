@@ -387,24 +387,27 @@ struct AgencyApplication: View {
 //
 //                                }
                                 
-                                 if true {
-                                        if finder.accountLevel != 2 {
-                                            let data = SelectedStreamerModel(id: finder.id, firstName: finder.firstName, lastName: finder.lastName, pfImage: finder.pfImage, level: finder.level, token: finder.token, platformID: finder.platformID, userId: finder.userId, nickname: finder.nickname, accountLevel: finder.accountLevel)
-                                        self.selectedStremers.append(data)
-                                        self.selectedStremersUserIDList.append(finder.id)
-                                            print("Count \(selectedStremersUserIDList.count)")
-                                            print("streamer ID \(finder.id)")
-                                        self.selectedStremersToken.append(finder.token)
-                                        self.search = ""
-                                
-//                                        self.finder.userId = ""
-                                        print("I am Added")
-                                        } else {
-                                            alertBody = "Bu bir ajans kurucusu olduğundan ekleyemezsiniz."
-                                            alertTitle = "Dikkat"
-                                            showAlert.toggle()
-                                            alertFunc = 1
-                                        }
+                                if !(finder.nickname == userStore.nickname) {
+                                    if finder.accountLevel != 2 {
+                                        let data = SelectedStreamerModel(id: finder.id, firstName: finder.firstName, lastName: finder.lastName, pfImage: finder.pfImage, level: finder.level, token: finder.token, platformID: finder.platformID, userId: finder.userId, nickname: finder.nickname, accountLevel: finder.accountLevel)
+                                    self.selectedStremers.append(data)
+                                    self.selectedStremersUserIDList.append(finder.id)
+                                        print("Count \(selectedStremersUserIDList.count)")
+                                        print("streamer ID \(finder.id)")
+                                    self.selectedStremersToken.append(finder.token)
+                                    self.search = ""
+                                    
+    //                                   self.finder.userId = ""
+                                    print("I am Added")
+                                    } else {
+                                        alertBody = "Bu bir ajans kurucusu olduğundan ekleyemezsiniz."
+                                        alertTitle = "Dikkat"
+                                        showAlert.toggle()
+                                    }
+                                } else {
+                                    alertBody = "Kendini ekleyemezsin."
+                                    alertTitle = "HATTA"
+                                    showAlert.toggle()
                                 }
                             } label: {
                                 Text("Ekle")
@@ -422,7 +425,7 @@ struct AgencyApplication: View {
                             .fontWeight(.medium)
 
                         ForEach(selectedStremers) { item in
-                            SelectedStreamerContent(firstName: item.firstName, lastName: item.lastName, pfImage: item.pfImage, level: item.level, token: item.token, platformID: item.platformID, userId: item.userId, list: $selectedStremers)
+                            SelectedStreamerContent(pfImage: item.pfImage, level: item.level, token: item.token, platformID: item.platformID, userId: item.userId, nickname: item.nickname, list: $selectedStremers)
                         }
                     }
 
@@ -505,13 +508,13 @@ struct AgencyApplication: View {
 }
 
 struct SelectedStreamerContent: View {
-    @State var firstName : String
-    @State var lastName : String
+
     @State var pfImage : String
     @State var level : Int
     @State var token : String
     @State var platformID : String
     @State var userId : String
+    @State var nickname: String
     @Binding var list : [SelectedStreamerModel]
     var body : some View {
         ZStack{
@@ -527,7 +530,7 @@ struct SelectedStreamerContent: View {
                 
                 VStack(alignment: .leading, spacing: 10){
                     
-                    Text("\(firstName) \(lastName)")
+                    Text("\(nickname)")
                         .foregroundColor(.white)
                         .font(.system(size: 15))
                         .bold()
