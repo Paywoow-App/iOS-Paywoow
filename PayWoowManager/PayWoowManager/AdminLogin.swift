@@ -112,8 +112,8 @@ struct AdminLogin: View {
                             else {
                                 self.showingAlert.toggle()
                                 checkUserPhone(bayiName: bayiiId)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                    authManager.verifyPhoneNumber(phoneNumber: phoneNumber)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    authManager.getOTPCode(phoneNumber: phoneNumber)
                                 }
                                 //                                self.toPanel.toggle()
                             }
@@ -163,7 +163,7 @@ struct AdminLogin: View {
                         VStack {
                             Text("Güvenlik için telefonuzua yollanan sms giriniz")
                                 .multilineTextAlignment(.center)
-                            TextField("SMS Code", text: $authManager.verificationCode)
+                            TextField("SMS Code", text: $authManager.otpCode.limit(6))
                                 .foregroundColor(.black)
                                 .keyboardType(.numberPad)
                                 .padding(.horizontal)
@@ -177,7 +177,7 @@ struct AdminLogin: View {
                             HStack {
                                 Spacer()
                                 Button("Giriş") {
-                                    authManager.verifyCode()
+                                    authManager.verifyOTPCode()
                                 }
                                 Spacer()
                                 Button("İptal") {
@@ -198,41 +198,18 @@ struct AdminLogin: View {
             })
             
         }
-        //        .alert("SMS Kodu Giriniz", isPresented: $showingAlert) {
-        //            TextField("SMS Kodu Giriniz", text: $codeText )
-        //            Button("Giriş") {
-        //                authManager.verifyCode()
-        //                print("\(authManager.verificationCode)")
-        //                if authManager.verificationCode == codeText {
-        //
-        //                } else {
-        //                    print("ERORRR THEREES")
-        //                }
-        //            }
-        ////            Button("İptal") {
-        ////                showingAlert = false
-        ////            }
-        //        } message: {
-        //            Text("1 dakika içinde SMS yolu ile kod gelecektir.")
-        //        }
         
-  
         .alert(isPresented: $showAlert) {
             Alert(title: Text(alertTitle), message: Text(alertBody), dismissButton: Alert.Button.default(Text("Tamam")))
         }
         .fullScreenCover(isPresented: $authManager.isSignedIn) {
-            MainTabView(dealler: self.bayiiId, oldPassword: isActiveSecureCode)
-                .onAppear{
-                    secureAuth()
-                }
+            MainTabView(dealler: self.bayiiId, oldPassword: isActiveSecureCode,verificationCode: authManager.otpCode)
                 .environmentObject(userStore)
         }
         .onAppear{
             if self.storeNick.count > 6 {
                 authenticate()
             }
-            bayiiId = "FerinaValentino"
-            password = "123456"
         }
         
     }
@@ -251,8 +228,7 @@ struct AdminLogin: View {
                 if success {
                     DispatchQueue.main.async {
                         if success {
-                            self.toPanel.toggle()
-                            
+                            authManager.isSignedIn.toggle()
                         } else {
                             
                         }
@@ -269,74 +245,7 @@ struct AdminLogin: View {
         }
     }
     
-    func checkAuthisNill(completion: @escaping (Bool) -> Void) {
-        Firestore.firestore().collection("bayii").document(storeNick).collection("isBeforeSignIn").getDocuments { snap, error in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            
-            guard let docs = snap?.documents else { return }
-            
-            for doc in docs {
-                let phone = doc.get("whoSignInPhone") as? String
-                
-                if !(phone == "") {
-                    completion(true)
-                } else {
-                    completion(false)
-                }
-            }
-        }
-    }
     
-    func secureAuth() {
-        checkAuthisNill { isNil in
-            if !isNil {
-                
-            } else {
-                let phone = getDeviceModel()
-                
-                let data : [String: Any] = [
-                    "whoSignInPhone" : phone
-                ]
-                Firestore.firestore().collection("bayii").document(storeNick).collection("isBeforeSignIn").setValuesForKeys(data)
-            }
-        }
-    }
-    
-    func getDeviceModel() -> String {
-        let device = UIDevice.current
-        var deviceModel = ""
-        
-        if device.userInterfaceIdiom == .phone {
-            switch UIScreen.main.nativeBounds.height {
-            case 1136:
-                deviceModel = "iPhone 5 or 5S or 5C"
-            case 1334:
-                deviceModel = "iPhone 6/6S/7/8"
-            case 1920, 2208:
-                deviceModel = "iPhone 6+/6S+/7+/8+"
-            case 2436:
-                deviceModel = "iPhone X/XS/11 Pro"
-            case 2688:
-                deviceModel = "iPhone XS Max/11 Pro Max"
-            case 1792:
-                deviceModel = "iPhone XR/11"
-            case 2340:
-                deviceModel = "iPhone 12/12 Pro"
-            case 2532:
-                deviceModel = "iPhone 12 Mini/13 Mini"
-            case 2778:
-                deviceModel = "iPhone 12 Pro Max/13 Pro Max"
-            default:
-                deviceModel = "Unknown"
-            }
-        } else {
-            deviceModel = "Not an iPhone"
-        }
-        
-        return deviceModel
-    }
     
     func getDeallerData(bayiiID: String){
         if bayiiID != "" {
@@ -419,41 +328,55 @@ import SwiftUI
 import Firebase
 
 class FirebaseAuthManager: ObservableObject {
-    @Published var verificationID: String?
-    @Published var verificationCode: String = ""
-    @Published var error: String?
+    @Published var CLIENT_CODE: String?
+    @Published var otpCode: String = ""
     @Published var isSignedIn = false
     
-    func verifyPhoneNumber(phoneNumber: String) {
-        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
-            if let error = error {
-                print("Hataaa \(error.localizedDescription)")
-            } else {
-                self.verificationID = verificationID
-                print("VerificationID \(verificationID)")
+   
+    func getOTPCode(phoneNumber: String) {
+        Task {
+            do {
+                Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+                
+                let code = try? await PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil)
+                
+                await MainActor.run {
+                    print("sended NUmber \(phoneNumber)")
+                    print("Bu Codedur \(code)")
+                    self.CLIENT_CODE = code
+                }
             }
         }
     }
     
-    func verifyCode() {
-        guard let verificationID = self.verificationID else {
-            self.error = "Verification ID is missing"
-            return
-        }
-        print("Code \(verificationCode)")
-        print("ID \(verificationID)")
-
-        let credential = PhoneAuthProvider.provider().credential(
-            withVerificationID: verificationID,
-            verificationCode: verificationCode
-        )
-        
-        Auth.auth().signIn(with: credential) { (authResult, error) in
-            if let error = error {
-                self.error = error.localizedDescription
-            } else {
-                self.isSignedIn = true
+    func verifyOTPCode() {
+        Task {
+            do {
+                guard let code = CLIENT_CODE else { return }
+                
+                let credential = PhoneAuthProvider.provider().credential(withVerificationID: code, verificationCode: otpCode)
+                
+                try await Auth.auth().signIn(with: credential)
+                DispatchQueue.main.async {
+                    self.isSignedIn = true
+                }
             }
         }
     }
+    
+}
+
+extension Binding where Value == String {
+    
+    /// Set doc
+    func limit(_ lenght: Int) -> Self {
+        if self.wrappedValue.count > lenght {
+            DispatchQueue.main.async {
+                self.wrappedValue = String(self.wrappedValue.prefix(lenght))
+            }
+        }
+        return self
+    }
+    
+    
 }

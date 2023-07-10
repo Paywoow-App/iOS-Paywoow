@@ -85,6 +85,7 @@ struct MainTabView: View {
     @State var oldPassword : String = ""
     @State private var careMode = false
     @State private var toPasswordChager = false
+    @State var verificationCode : String
     @EnvironmentObject var userStore: UserStore
     
 
@@ -501,7 +502,7 @@ struct MainTabView: View {
             if formatter.string(from: date) == "Aralık" {
                 self.careMode = true
             }
-            print("HAYYY \(counting)")
+            print("Haayye \(verificationCode)")
         }
         .onChange(of: mainStore.isActiveSecure) { val in
             if val == true {
