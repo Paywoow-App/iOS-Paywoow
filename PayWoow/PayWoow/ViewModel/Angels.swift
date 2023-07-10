@@ -304,6 +304,7 @@ struct DevilContent: View {
         .padding(.horizontal)
         .onAppear{
             listenAngel()
+            isItDevil()
         }
         .contextMenu{
             if self.userID == Auth.auth().currentUser!.uid {
@@ -332,13 +333,16 @@ struct DevilContent: View {
                 print(error.localizedDescription)
             }
             
-            guard let docs = snap?.documentChanges else { return }
+            guard let docs = snap?.documents else { return }
             
             for doc in docs {
-                if doc.document.isEqual(Auth.auth().currentUser?.uid) {
+                if doc.documentID.isEqual(Auth.auth().currentUser?.uid) {
                     self.isItDevilPermision = false
+                    
+                    print("BU \(isItDevilPermision.description) \(doc.documentID)")
                 } else {
                     self.isItDevilPermision = true
+                    print("BU \(isItDevilPermision.description) \(doc.documentID)")
                 }
             }
         }

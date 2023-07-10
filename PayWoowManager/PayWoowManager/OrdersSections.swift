@@ -164,7 +164,7 @@ struct OrdersSections: View {
     var proccesedOrders : some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack{
-                ForEach(orderStore.list, id: \.timeStamp) { item in
+                ForEach(orderStore.list.sorted { $0.timeStamp > $1.timeStamp }, id: \.timeStamp) { item in
                     if item.result == 1 {
                         OrderContent(userID: item.userID, platformID: item.platformID, platform: item.platform, price: item.price, timeStamp: item.timeStamp, transferType: item.transferType, signatureURL: item.signatureURL, hexCodeTop: item.hexCodeTop, hexCodeBottom: item.hexCodeBottom, refCode: item.refCode, result: item.result, product: item.product, streamerGivenGift: item.streamerGivenGift, month: item.month, year: item.year, deallerID: item.deallerID, docID: item.docId)
                     }
@@ -176,7 +176,7 @@ struct OrdersSections: View {
     var acceptedOrders : some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack{
-                ForEach(orderStore.list, id: \.timeStamp) { item in
+                ForEach(orderStore.list.sorted { $0.timeStamp > $1.timeStamp }, id: \.timeStamp) { item in
                     if item.result == 2 {
                         OrderContent(userID: item.userID, platformID: item.platformID, platform: item.platform, price: item.price, timeStamp: item.timeStamp, transferType: item.transferType, signatureURL: item.signatureURL, hexCodeTop: item.hexCodeTop, hexCodeBottom: item.hexCodeBottom, refCode: item.refCode, result: item.result, product: item.product, streamerGivenGift: item.streamerGivenGift, month: item.month, year: item.year, deallerID: item.deallerID, docID: item.docId)
                     }
@@ -188,7 +188,7 @@ struct OrdersSections: View {
     var declinedOrders : some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack{
-                ForEach(orderStore.list, id: \.timeStamp) { item in
+                ForEach(orderStore.list.sorted { $0.timeStamp > $1.timeStamp }, id: \.timeStamp) { item in
                     if item.result == 3 {
                         OrderContent(userID: item.userID, platformID: item.platformID, platform: item.platform, price: item.price, timeStamp: item.timeStamp, transferType: item.transferType, signatureURL: item.signatureURL, hexCodeTop: item.hexCodeTop, hexCodeBottom: item.hexCodeBottom, refCode: item.refCode, result: item.result, product: item.product, streamerGivenGift: item.streamerGivenGift, month: item.month, year: item.year, deallerID: item.deallerID, docID: item.docId)
                     }
@@ -217,6 +217,7 @@ struct OrderContent: View {
     @State var year : String = ""
     @State var deallerID : String = ""
     @State var docID : String
+    @State var currentMoney: Int = 0
     
     @State private var firstName : String = ""
     @State private var lastName : String = ""
@@ -332,6 +333,7 @@ struct OrderContent: View {
         .cornerRadius(8)
         .padding(.horizontal)
         .onAppear{
+            getCurrentMonthDia(docIDs: userID)
             let ref = Firestore.firestore()
             ref.collection("Users").document(userID).addSnapshotListener { doc, err in
                 if let firstName = doc?.get("firstName") as? String {
@@ -388,7 +390,10 @@ struct OrderContent: View {
             "totalSoldDiamond" : totalSoldDiamond + product,
             "gift" : gift + (price / 100)
         ], merge: true)
-        
+        print("İlk \(currentMoney)")
+        currentMoney += product
+        print("Son \(currentMoney)")
+        productsComplete(userID: userID, money: currentMoney)
         sendPushNotify(title: "Yüklemeniz Tamamlandı! 🥳", body: "Siparişini \(platform) uygulamasındaki hesabına yüklendi!", userToken: token, sound: "pay.mp3")
         
         ref.collection("Orders").document(docID).setData(["result" : 2], merge: true)
@@ -396,9 +401,20 @@ struct OrderContent: View {
         print("TODO: Sipariş onayından sonra gerekli bayiden ürünü azalt")
         
     }
+        
+    func productsComplete(userID: String, money: Int) {
+        
+        let data : [String : Any] = [
+            checkMonth() : money
+        ]
+        
+        print("Bu neymiş \(data) \(userID)")
+        
+        ref.collection("Users").document(userID).collection("UserStatics").document("SoldDiamond").collection("Years").document("2023").setData(data, merge: true)
+        print("productsComplete WOrked")
+    }
     
-    func getCurrentMonthDia(docIDs: String) -> Int {
-        var currentMoney: Int = 0
+    func getCurrentMonthDia(docIDs: String) {
         ref.collection("Users").document(docIDs).collection("UserStatics").document("SoldDiamond").collection("Years").document("2023").addSnapshotListener { snap, error in
             if let error = error {
                 print(error.localizedDescription)
@@ -406,12 +422,11 @@ struct OrderContent: View {
             
             guard let doc = snap else { return }
             
-            let money = doc.get(checkMonth()) as? Int? ?? 0
-            guard let detectedMoney = money else { return }
-            print(detectedMoney)
-            currentMoney = detectedMoney
+            let money = doc.get(checkMonth()) as! Int
+            self.currentMoney = money
+            print("I am WOrkedded \(money)")
         }
-        return currentMoney
+        print("getCurrentMonthDia WOrked")
     }
     
     func checkMonth() -> String {

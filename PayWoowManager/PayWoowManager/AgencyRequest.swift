@@ -404,6 +404,7 @@ struct AgencyRequestContent : View {
                     .scaledToFit()
                     .padding(.horizontal)
                     
+                //Request here
                 VStack(spacing: 20) {
                     Text("Ajansı kaldırmayı onaylıyor musunuz ?")
                         .foregroundColor(.white)
@@ -455,14 +456,28 @@ struct AgencyRequestContent : View {
         }
     }
     
-    func deleteRequest(){
+    func deleteRequest() {
         let ref = Firestore.firestore()
-        let usersCollection = ref.collection("Users").document(docID)
-        usersCollection.updateData([
+        //MARK: AgencyRequestContent deleteRequest(Delete who send request agency)
+        ref.collection("Users").document(docID).updateData([
             "isSentAgencyApplication": false,
             "agencyApplicationUserId":"",
             "myAgencyId":""
         ])
+        
+        for streamer in streamers {
+            //MARK: AgencyRequestContent deleteRequest(Delete AgencyApplicationQuestion from Streamers)
+            ref.collection("Users").document(streamer).collection("AgencyApplicationQuestion").document(docID).delete()
+            //MARK: AgencyRequestContent deleteRequest(Delete Set nil from Streamers)
+            ref.collection("Users").document(docID).updateData([
+                "isSentAgencyApplication": false,
+                "agencyApplicationUserId":"",
+                "myAgencyId":""
+            ])
+        }
+     
+        //MARK: AgencyRequestContent deleteRequest(Delete request from collection)
+        ref.collection("AgencyRequests").document(docID).delete()
         
         ref.collection("Users").document(docID).collection("AgencyApplicationQuestion").getDocuments { snap, error in
             if let error = error {
@@ -475,6 +490,7 @@ struct AgencyRequestContent : View {
                 doc.reference.delete()
             }
         }
+        
         
         ref.collection("AgencyRequests").document(docID).collection("Streamers").getDocuments { snap, error in
             if let error = error {
@@ -489,13 +505,10 @@ struct AgencyRequestContent : View {
                       "agencyApplicationUserId": ""]
                 )
                 
-                doc.reference.delete()
+                
             }
         }
-        
-        ref.collection("AgencyRequests").document(docID).delete()
-        print("debuggg \(docID)")
-        
+    
         self.alertTitle = "Ajans Reddedildi"
         self.alertBody = "Bu ajans kurulumu reddedildi. Ajans isteklerinden silindi. "
         self.showAlert.toggle()
