@@ -125,12 +125,12 @@ struct BlockTransactionContent: View {
                         }
                         else if step == 1{
                             Text("İşlemde")
-                                .foregroundColor(.black)
+                                .foregroundColor(.white)
                                 .font(.system(size: 15))
                                 .padding(.horizontal)
                                 .padding(.vertical, 5)
                                 .frame(width: 130)
-                                .background(Color.white)
+                                .background(Color.init(hex: "9D8F5B"))
                                 .cornerRadius(4)
                         }
                         else if step == 2 || step == 3 {
@@ -253,12 +253,12 @@ struct BlockTransactionContent: View {
                         }
                         else if step == 1{
                             Text("İşlemde")
-                                .foregroundColor(.black)
+                                .foregroundColor(.white)
                                 .font(.system(size: 15))
                                 .padding(.horizontal)
                                 .padding(.vertical, 5)
                                 .frame(width: 130)
-                                .background(Color.white)
+                                .background(Color.init(hex: "9D8F5B"))
                                 .cornerRadius(4)
                         }
                         else if step == 2 || step == 3 {

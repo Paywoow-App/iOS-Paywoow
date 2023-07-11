@@ -142,9 +142,6 @@ struct PlatformsSelector: View {
                         }
                     }
                     
-                    
-                   
-                    
                     VStack(spacing: 10){
                         Text("The platform you choose in this panel; All transactions you make through the Paywoow application will be processed for that platform. Make sure you choose the correct platform when uploading.")
                             .foregroundColor(.white.opacity(0.6))

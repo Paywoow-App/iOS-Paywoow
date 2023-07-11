@@ -34,6 +34,20 @@ struct AdminLogin: View {
     @State private var callbackPassword : String = ""
     @State private var callbackPhoneNumber : String = ""
     
+    var code = ""
+    
+    init(alertTitle: String = "",
+         alertBody: String = "",
+         showAlert: Bool = false) {
+        self.alertTitle = alertTitle
+        self.alertBody = alertBody
+        self.showAlert = showAlert
+        
+        self.code = UserDefaults.standard.string(forKey: "code") ?? ""
+        
+    }
+    
+    
     func checkUserPhone(bayiName: String) {
         Firestore.firestore().collection("Bayii").document(bayiName).getDocument { snap, error in
             if let error = error {
@@ -178,6 +192,7 @@ struct AdminLogin: View {
                                 Spacer()
                                 Button("Giriş") {
                                     authManager.verifyOTPCode()
+                                    UserDefaults.standard.set(authManager.otpCode, forKey: "code")
                                 }
                                 Spacer()
                                 Button("İptal") {
@@ -198,18 +213,27 @@ struct AdminLogin: View {
             })
             
         }
-        
+        .onAppear {
+            
+        }
         .alert(isPresented: $showAlert) {
             Alert(title: Text(alertTitle), message: Text(alertBody), dismissButton: Alert.Button.default(Text("Tamam")))
         }
         .fullScreenCover(isPresented: $authManager.isSignedIn) {
-            MainTabView(dealler: self.bayiiId, oldPassword: isActiveSecureCode,verificationCode: authManager.otpCode)
+            MainTabView(dealler: self.bayiiId, oldPassword: isActiveSecureCode)
+                .onAppear {
+                    self.storeNick = bayiiId
+                }
                 .environmentObject(userStore)
+
         }
         .onAppear{
             if self.storeNick.count > 6 {
                 authenticate()
             }
+            self.bayiiId = "FerinaValentino"
+            self.password = "123456"
+            print("PayWoowManagerSystem: isHave Before twofactor \(self.code == "" ? false : true)")
         }
         
     }

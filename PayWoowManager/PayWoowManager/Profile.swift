@@ -492,6 +492,8 @@ struct SelectedAppsDetails: View {
         .onAppear{
             self.selectedAppListen = storeSelectedApp
             getData()
+            
+            print("----CONTROL----  \nBuğ StoreNickDir \(storeNick)\n Buğ selectedAppListenDır \(selectedAppListen)\n----CONTROL----")
         }
         .onChange(of: self.storeSelectedApp) { item in
             self.selectedAppListen = item
@@ -511,49 +513,94 @@ struct SelectedAppsDetails: View {
         }
     }
     
+    func callError() {
+        
+    }
+    
+   // Burayı kontrol et
     func getData(){
         let ref = Firestore.firestore()
-        ref.collection("Bayii").document(storeNick).collection("Apps").document(selectedAppListen).addSnapshotListener { doc, err in
-            if let platformName = doc?.get("platformName") as? String {
-                if let platformImage = doc?.get("platformImage") as? String {
-                    if let productTotal = doc?.get("productTotal") as? Int {
-                        if let dollar = doc?.get("dollar") as? Double {
-                            if let maxLimit = doc?.get("maxLimit") as? Int {
-                                if let boughtPrice = doc?.get("boughtPrice") as? Int {
-                                    if let sellPrice = doc?.get("sellPrice") as? Int {
-                                        if let balance = doc?.get("balance") as? Int {
-                                            if let productType = doc?.get("productType") as? String {
-                                                if let isActive = doc?.get("isActive") as? Bool {
-                                                    if let giftDiamond = doc?.get("giftDiamond") as? Int {
-                                                        if let coverImage = doc?.get("coverImage") as? String {
-                                                            if let deallerName = doc?.get("deallerName") as? String {
-                                                                self.platformName = platformName
-                                                                self.platformImage = platformImage
-                                                                self.productTotal = productTotal
-                                                                self.dollar = dollar
-                                                                self.maxLimit = maxLimit
-                                                                self.boughtPrice = boughtPrice
-                                                                self.sellPrice = sellPrice
-                                                                self.balance = balance
-                                                                self.productType = productType
-                                                                self.isActive = isActive
-                                                                self.coverImage = coverImage
-                                                                self.deallerName = deallerName
-                                                                self.giftDiamond = giftDiamond
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+
+        print("PayWoowManagerSystem: This is selectedApp \(selectedAppListen)")
+        print("PayWoowManagerSystem: This is storeNick \(storeNick)")
+
+        ref.collection("Bayii").document(storeNick).collection("Apps").document(selectedAppListen).addSnapshotListener { snap, err in
+            
+            if let error = err {
+                print(error.localizedDescription)
             }
+            
+            guard let doc = snap else { return }
+            let platformName = doc.get("platformName") as? String ?? ""
+            let platformImage = doc.get("platformImage") as? String ?? ""
+            let productTotal = doc.get("productTotal") as? Int ?? 0
+            let dollar = doc.get("dollar") as? Double ?? 0.0
+            let maxLimit = doc.get("maxLimit") as? Int ?? 0
+            let boughtPrice = doc.get("boughtPrice") as? Int ?? 0
+            let sellPrice = doc.get("sellPrice") as? Int ?? 0
+            let balance = doc.get("balance") as? Int ?? 0
+            let productType = doc.get("productType") as? String ?? ""
+            let isActive = doc.get("isActive") as? Bool ?? false
+            let giftDiamond = doc.get("giftDiamond") as? Int ?? 0
+            let coverImage = doc.get("coverImage") as? String ?? ""
+            let deallerName = doc.get("deallerName") as? String ?? ""
+            
+            self.platformName = platformName
+            self.platformImage = platformImage
+            self.productTotal = productTotal
+            self.dollar = dollar
+            self.maxLimit = maxLimit
+            self.boughtPrice = boughtPrice
+            self.sellPrice = sellPrice
+            self.balance = balance
+            self.productType = productType
+            self.isActive = isActive
+            self.coverImage = coverImage
+            self.deallerName = deallerName
+            self.giftDiamond = giftDiamond
         }
+        
+//        ref.collection("Bayii").document(storeNick).collection("Apps").document(selectedAppListen).addSnapshotListener { doc, err in
+//            if let platformName = doc?.get("platformName") as? String {
+//                if let platformImage = doc?.get("platformImage") as? String {
+//                    if let productTotal = doc?.get("productTotal") as? Int {
+//                        if let dollar = doc?.get("dollar") as? Double {
+//                            if let maxLimit = doc?.get("maxLimit") as? Int {
+//                                if let boughtPrice = doc?.get("boughtPrice") as? Int {
+//                                    if let sellPrice = doc?.get("sellPrice") as? Int {
+//                                        if let balance = doc?.get("balance") as? Int {
+//                                            if let productType = doc?.get("productType") as? String {
+//                                                if let isActive = doc?.get("isActive") as? Bool {
+//                                                    if let giftDiamond = doc?.get("giftDiamond") as? Int {
+//                                                        if let coverImage = doc?.get("coverImage") as? String {
+//                                                            if let deallerName = doc?.get("deallerName") as? String {
+//                                                                self.platformName = platformName
+//                                                                self.platformImage = platformImage
+//                                                                self.productTotal = productTotal
+//                                                                self.dollar = dollar
+//                                                                self.maxLimit = maxLimit
+//                                                                self.boughtPrice = boughtPrice
+//                                                                self.sellPrice = sellPrice
+//                                                                self.balance = balance
+//                                                                self.productType = productType
+//                                                                self.isActive = isActive
+//                                                                self.coverImage = coverImage
+//                                                                self.deallerName = deallerName
+//                                                                self.giftDiamond = giftDiamond
+//                                                            }
+//                                                        }
+//                                                    }
+//                                                }
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
     
     func calculate(){
@@ -1126,6 +1173,8 @@ struct AccountManager: View {
                         storeNick = ""
                         storePassword = ""
                         isNavigateToLogin.toggle()
+                        UserDefaults.standard.setValue("", forKey: "code")
+                        
                     } label: {
                         ZStack{
                             RoundedRectangle(cornerRadius: 6)

@@ -81,15 +81,23 @@ struct MainTabView: View {
     @StateObject var mainStore = DeallerStore()
     @State var counting = 0
     @State private var selection = 5
-    @State var dealler : String = ""
-    @State var oldPassword : String = ""
+    @State var dealler : String
+    @State var oldPassword : String
     @State private var careMode = false
     @State private var toPasswordChager = false
-    @State var verificationCode : String
     @EnvironmentObject var userStore: UserStore
+    let code: String
+    @State var turnToLogin = false
     
+    @AppStorage("storeNick") var storeNick : String = ""
+    @AppStorage("storePassword") var storePassword : String = ""
+    
+    init(dealler: String = "", oldPassword: String = "") {
+        self.dealler = dealler
+        self.oldPassword = oldPassword
+        self.code = UserDefaults.standard.string(forKey: "code")!
+    }
 
-    
     
     
     var body: some View {
@@ -494,6 +502,9 @@ struct MainTabView: View {
                 }
             }
         }
+        .fullScreenCover(isPresented: $turnToLogin, content: {
+            AdminLogin()
+        })
         .onAppear{
             let date = Date()
             let formatter = DateFormatter()
@@ -502,7 +513,7 @@ struct MainTabView: View {
             if formatter.string(from: date) == "Aralık" {
                 self.careMode = true
             }
-            print("Haayye \(verificationCode)")
+            twoFactor(code: code)
         }
         .onChange(of: mainStore.isActiveSecure) { val in
             if val == true {
@@ -510,7 +521,33 @@ struct MainTabView: View {
             }
         }
     }
+    // Two Factor
+    func twoFactor(code: String) {
+        let dataloski = Firestore.firestore().collection("Bayii").document("FerinaValentino")
+        dataloski.getDocument { snap, error in
+            if let error = error{
+                print(error.localizedDescription)
+            }
+            guard let doc = snap else { return }
+            let twoFactorName = doc.get("twoFactorSecretCode") as? String ?? "No Data"
+            print("PayWoowManagerSystem: twoFactor: \(twoFactorName)")
+            if twoFactorName == "Account is clear" {
+                dataloski.updateData(["twoFactorSecretCode" : code])
+                print("PayWoowManagerSystem: twoFactor success updated // User can use app")
+            } else if twoFactorName == code {
+                
+                print("PayWoowManagerSystem: twoFactor enabled // same user is sign in  ")
+            } else if twoFactorName != code {
+                self.storeNick = ""
+                self.storePassword = ""
+                UserDefaults.standard.set("", forKey: "code")
+                self.turnToLogin.toggle()
+            }
+        }
+    }
 }
+
+
 
 /*
  if self.selection == 0 {

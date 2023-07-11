@@ -261,7 +261,7 @@ struct DevilContent: View {
                                 .fontWeight(.regular)
                         }
                         .frame(width: 110, height: 30, alignment: Alignment.center)
-                    } else if isItDevilPermision {
+                    } else if !isItDevilPermision {
                         Button {
                             
                             if self.iAmAngel {
@@ -292,10 +292,7 @@ struct DevilContent: View {
                             }
                             .frame(width: 110, height: 30, alignment: Alignment.center)
                         }
-                    }
-                    
-                    
-                    //
+                    }                    
                 }
             }
             .padding(.leading, -10)
@@ -336,13 +333,9 @@ struct DevilContent: View {
             guard let docs = snap?.documents else { return }
             
             for doc in docs {
-                if doc.documentID.isEqual(Auth.auth().currentUser?.uid) {
-                    self.isItDevilPermision = false
-                    
-                    print("BU \(isItDevilPermision.description) \(doc.documentID)")
-                } else {
+                if doc.documentID == Auth.auth().currentUser?.uid {
                     self.isItDevilPermision = true
-                    print("BU \(isItDevilPermision.description) \(doc.documentID)")
+                    print("I am fucling devil")
                 }
             }
         }
@@ -350,21 +343,36 @@ struct DevilContent: View {
     
     func listenAngel() {
         let ref = Firestore.firestore()
+//        ref.collection("Devils").document(userID).addSnapshotListener { doc, err in
+//            if err == nil {
+//                if let classTitle = doc?.get("class") as? String {
+//                    if let point = doc?.get("point") as? Int {
+//                        if let timeStamp = doc?.get("timeStamp") as? Int {
+//                            if let title = doc?.get("title") as? String {
+//                                self.classTitle = classTitle
+//                                self.point = point
+//                                self.timeStamp = timeStamp
+//                                self.request = title
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+        
         ref.collection("Devils").document(userID).addSnapshotListener { doc, err in
-            if err == nil {
-                if let classTitle = doc?.get("class") as? String {
-                    if let point = doc?.get("point") as? Int {
-                        if let timeStamp = doc?.get("timeStamp") as? Int {
-                            if let title = doc?.get("title") as? String {
-                                self.classTitle = classTitle
-                                self.point = point
-                                self.timeStamp = timeStamp
-                                self.request = title
-                            }
-                        }
-                    }
-                }
+            if let error = err {
+                print(error.localizedDescription)
+            } else {
+                classTitle = doc?.get("class") as? String ?? ""
+                point = doc?.get("point") as? Int ?? 0
+                timeStamp = doc?.get("timeStamp") as? Int ?? 0
+                request = doc?.get("title") as? String ?? ""
+                
+                
             }
+            
+            
         }
         
         

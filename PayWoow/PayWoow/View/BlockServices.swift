@@ -15,7 +15,7 @@ struct BlockServices: View {
     
     @StateObject var general = GeneralStore()
     @StateObject var userStore = UserInfoStore()
-    @StateObject var store : AngelStore
+    @StateObject var store = AngelStore()
     @Binding var showBottomBar : Bool
     @State private var angelSelection : Int = 0
     @State private var devilTabSelector : Int = 0
@@ -53,33 +53,61 @@ struct BlockServices: View {
     @State private var blockServicesed: Bool = false
     @State private var blockServicesed2: Bool = false
     
-    @Binding var isAmIAngel: Bool
-    @Binding var isAmIDevil: Bool
-        
- 
+    @State private var isAmIAngel: Bool = true
+    @State private var isAmIDevil: Bool = true
     
-//    func checkUserAngelsService()  {
-//
-//        let currentsUids = Auth.auth().currentUser!.uid
-//
-//        Firestore.firestore().collection("Angels").getDocuments { snap, error in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            }
-//
-//            guard let docs = snap?.documents else { return }
-//
-//            for doc in docs {
-//                if currentsUids == doc.documentID {
-//                    isBlockServised = false
-//                    print(" I am workin ")
-//                } else {
-//                    isBlockServised = true
-//                    print(" I am  not workin ")
-//                }
-//            }
-//        }
-//    }
+    @State private var checkedIsAmIAngel: Bool = false
+    @State private var checkedIsAmIDevil: Bool = false
+    
+    init(showBottomBar: Binding<Bool>) {
+        _showBottomBar = showBottomBar
+    }
+    
+    func checkUserAngelsService() {
+
+        let currentsUids = Auth.auth().currentUser!.uid
+
+        guard !checkedIsAmIAngel else { return }
+        
+        Firestore.firestore().collection("Angels").getDocuments { snap, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+
+            guard let docs = snap?.documents else { return }
+
+            for doc in docs {
+                if currentsUids == doc.documentID {
+                    self.isAmIAngel = false
+                    print("I am Angel")
+                }
+            }
+        }
+        checkedIsAmIAngel = true
+    }
+    
+    func checkUserDevilsService() {
+
+        let currentsUids = Auth.auth().currentUser!.uid
+
+        guard !checkedIsAmIDevil else { return }
+        
+        Firestore.firestore().collection("Devils").getDocuments { snap, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+
+            guard let docs = snap?.documents else { return }
+
+            for doc in docs {
+                if currentsUids == doc.documentID {
+                    self.isAmIDevil = false
+                    print("I am Devil")
+                }
+            }
+        }
+        checkedIsAmIDevil = true
+    }
     
     var body : some View {
         ZStack {
@@ -133,6 +161,13 @@ struct BlockServices: View {
             blockServiesView
         }
     }
+       // Buraya bkaılacak
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
+                self.checkUserDevilsService()
+                self.checkUserAngelsService()
+            }
+        }
     }
     
     var blockServiesView: some View {
@@ -427,31 +462,31 @@ struct BlockServices: View {
                             .padding(.horizontal, 50)
                         
                         Button {
-                            
-                            if self.userStore.vipType != "Casper" && self.userStore.vipType != "VIPSILVER" {
-                                if inputAngelPoint == "" {
-                                    self.alertTitle = "Hata"
-                                    self.alertBody = "En az 25 puan kullanabilirsiniz. Girdiğiniz değer çok az."
-                                    self.showAlert.toggle()
-                                }
-                                else if Int(inputAngelPoint)! == 0 || Int(inputAngelPoint)! < 25 {
-                                    self.alertTitle = "Hata"
-                                    self.alertBody = "En az 25 puan kullanabilirsiniz. Girdiğiniz değer çok az"
-                                    self.showAlert.toggle()
-                                }
-                                else if Int(self.userStore.totalSoldDiamond / 50) < Int(inputAngelPoint)! {
-                                    self.alertTitle = "Hata"
-                                    self.alertBody = "Limitinizin üstünde bir değer girdiniz"
-                                    self.showAlert.toggle()
-                                }
-                                else if Int(self.userStore.totalSoldDiamond / 50) > Int(inputAngelPoint)! {
+                            // Melek Ol buttonu
+//                            if self.userStore.vipType != "Casper" && self.userStore.vipType != "VIPSILVER" {
+//                                if inputAngelPoint == "" {
+//                                    self.alertTitle = "Hata"
+//                                    self.alertBody = "En az 25 puan kullanabilirsiniz. Girdiğiniz değer çok az."
+//                                    self.showAlert.toggle()
+//                                }
+//                                else if Int(inputAngelPoint)! == 0 || Int(inputAngelPoint)! < 25 {
+//                                    self.alertTitle = "Hata"
+//                                    self.alertBody = "En az 25 puan kullanabilirsiniz. Girdiğiniz değer çok az"
+//                                    self.showAlert.toggle()
+//                                }
+//                                else if Int(self.userStore.totalSoldDiamond / 50) < Int(inputAngelPoint)! {
+//                                    self.alertTitle = "Hata"
+//                                    self.alertBody = "Limitinizin üstünde bir değer girdiniz"
+//                                    self.showAlert.toggle()
+//                                }
+//                                else if Int(self.userStore.totalSoldDiamond / 50) > Int(inputAngelPoint)! {
                                     makeAngel()
-                                }
-                            }
-                            else {
-                                self.alertBody = "Melek olabilmek için öncelikle VIPBLACK veya VIPGOLD Olmalısınız"
-                                self.showAlert = true
-                            }
+//                                }
+//                            }
+//                            else {
+//                                self.alertBody = "Melek olabilmek için öncelikle VIPBLACK veya VIPGOLD Olmalısınız"
+//                                self.showAlert = true
+//                            }
                             
                             
                         } label: {

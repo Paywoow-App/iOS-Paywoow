@@ -323,7 +323,7 @@ struct VIPointUserContent: View {
                                     self.lastName = lastName
                                     self.platformID = platformID
                                     self.pfImage = pfImage
-                                    print("printttt = \(doc?.documentID)")
+                                    print("docID mı iasdkjasd = \(platformID)")
                                 }
                             }
                         }
@@ -389,10 +389,12 @@ struct VIPointUserContent: View {
             }
             
         }
+        // Send VIP POint ile ilgili
         .onChange(of: attack) { val in
             if currentUpload != 0 && self.lock == false && !self.list.contains(where: {$0.month == nextMonth}){
                 let ref = Firestore.firestore()
                 let timeStamp = Date().timeIntervalSince1970
+                print("-BuğUaserIDDDSSSS- \n\(userID)\n\(nextMonth)\n\(currentYear)\n\(timeStamp)\n\(point)-BuğUaserIDDDSSSS-")
                 ref.collection("Users").document(userID).collection("SentVipPoint").document("\(Int(timeStamp))").setData([
                     "sentForMonth" : nextMonth,
                     "sentForYear" : currentYear,
