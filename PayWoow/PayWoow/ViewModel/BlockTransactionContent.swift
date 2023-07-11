@@ -186,7 +186,6 @@ struct BlockTransactionContent: View {
                                 .shadow(radius: 11)
                         }
                         
-                        
                         LottieView(name: "angel_red", loopMode: .loop, speed: 2.0)
                             .scaleEffect(1.5)
                             .frame(width: 95, height: 95)
@@ -200,6 +199,9 @@ struct BlockTransactionContent: View {
                     }
                     .scaleEffect(0.7)
                     .padding(.trailing, -10)
+                }
+                .onTapGesture {
+                    print("DevilID : \(devilID)\nAngelID : \(angelID)")
                 }
             }
             else {
@@ -685,7 +687,7 @@ struct BlockTransactionContent: View {
                 
                 HStack{
                     Button {
-                        ihlalBildir()
+                        ihlalBildir(userID: userStore.bigoId)
                     } label: {
                         ZStack{
                             RoundedRectangle(cornerRadius: 6)
@@ -748,7 +750,7 @@ struct BlockTransactionContent: View {
         }
     }
     
-    func ihlalBildir(){ // 0
+    func ihlalBildir(userID: String){ // 0
         let ref = Firestore.firestore()
         let date = Date()
         let formatter = DateFormatter()
@@ -759,6 +761,7 @@ struct BlockTransactionContent: View {
             [
                 "step" : 5,
                 "step5Time" : timeDate,
+                "whoPressedIhlal": userID
             ]
             , merge: true)
     }
@@ -816,7 +819,8 @@ struct BlockTransactionContent: View {
                 "step" : 4,
                 "step0Time" : timeDate,
                 "step1Time" : timeDate,
-                "step4Time" : timeDate
+                "step4Time" : timeDate,
+                "blockStatus" : "Ban Kaldırmadı"
             ]
             , merge: true)
         
@@ -837,7 +841,8 @@ struct BlockTransactionContent: View {
         ref.collection("BlockTransactions").document(docID).setData(
             [
                 "step" : 2,
-                "step2Time" : timeDate
+                "step2Time" : timeDate,
+                "blockStatus" : "Ban Kaldırdı"
             ]
             , merge: true)
         
@@ -856,7 +861,8 @@ struct BlockTransactionContent: View {
                 "step" : 4,
                 "step0Time" : timeDate,
                 "step1Time" : timeDate,
-                "step4Time" : timeDate
+                "step4Time" : timeDate,
+                "isSayingLie" : "Hayır"
             ]
             , merge: true)
         
@@ -877,7 +883,8 @@ struct BlockTransactionContent: View {
         ref.collection("BlockTransactions").document(docID).setData(
             [
                 "step" : 3,
-                "step3Time" : timeDate
+                "step3Time" : timeDate,
+                "isSayingLie" : "Evet"
             ]
             , merge: true)
         

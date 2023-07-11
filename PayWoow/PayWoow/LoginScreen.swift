@@ -65,7 +65,8 @@ struct LoginScreen: View {
     
     @State private var signout : Bool = false
     @State private var kullaniciVar : Bool = false
-    
+    @State private var verificationedMail : Bool = false
+
     //geo
     var userLatitude: String {
         return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
@@ -629,6 +630,8 @@ struct LoginScreen: View {
             }
             else if self.registerStep == 6 {
                 register6
+            } else if self.registerStep == 7 {
+                register7
             }
         }
     }
@@ -1055,9 +1058,6 @@ struct LoginScreen: View {
                             .foregroundColor(.white)
                             .font(.system(size: 15))
                             .fontWeight(.medium)
-                        
-                        
-                    
                     
                     Spacer(minLength: 0)
                 }
@@ -1128,6 +1128,7 @@ struct LoginScreen: View {
         }
     }
     
+
     var register6 : some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 15){
@@ -1208,10 +1209,99 @@ struct LoginScreen: View {
                                 print(err!.localizedDescription)
                             }
                             else {
+                                Auth.auth().currentUser?.sendEmailVerification(completion: { error in
+                                    if let error = error {
+                                        print(error.localizedDescription)
+                                    } else {
+                                        
+                                    }
+                                    
+                                    
+                                })
                                 register(email: email, password: password, firstName: firstName, lastName: lastName, appleId: "", token: userDeviceToken, device: "\(Device.current)", nickname: nickname, signInMethod: "Email")
                                 self.lastSignIn = "EmailOrPhone"
                             }
                         }
+                    }
+                } label: {
+                    ZStack{
+                        Capsule()
+                            .fill(Color.init(hex: "#00CBC3"))
+                        
+                        Text("Devam")
+                            .foregroundColor(.white)
+                            .font(.system(size: 20))
+                    }
+                    .frame(height: 43)
+                    .padding(.horizontal, 30)
+                }
+                
+                Spacer(minLength: 0)
+            }
+        }
+    }
+    
+    var register7 : some View {
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(spacing: 15){
+                Spacer()
+                VStack(alignment: .leading) {
+                    HStack(spacing: 20) {
+                            Text("Maili Doğrulayalım!")
+                                .foregroundColor(.white)
+                                .font(.system(size: 18))
+                                .fontWeight(.medium)
+                    }
+                        Text("M")
+                            .foregroundColor(.white)
+                            .font(.system(size: 15))
+                            .fontWeight(.medium)
+                }
+                .padding(.horizontal, 30)
+                .padding(.top)
+
+                ZStack{
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.black.opacity(0.2))
+                    
+                    HStack{
+                        if showPassword {
+                            TextField("Şifre oluştur", text: $password)
+                                .foregroundColor(.white)
+                                .font(.system(size: 18))
+                                .colorScheme(.dark)
+                        }
+                        else {
+                            SecureField("Şifre oluştur", text: $password)
+                                .foregroundColor(.white)
+                                .font(.system(size: 18))
+                                .colorScheme(.dark)
+                        }
+                        
+                        Button {
+                            self.showPassword.toggle()
+                        } label: {
+                            Image(systemName: showPassword ? "eyes" : "eyebrow")
+                                .foregroundColor(.white)
+                                .font(.system(size: 20))
+                        }
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal, 15)
+                }
+                .frame(height: 45)
+                .padding(.horizontal, 30)
+                
+                Button {
+                    if password.count < 5 {
+                        self.alertTitle = "Eksik Alan!"
+                        self.alertBody = "En az 6 karakter şifre oluşturmalısın"
+                        self.showAlert = true
+                    }
+                    else {
+                            register(email: email, password: password, firstName: firstName, lastName: lastName, appleId: "", token: userDeviceToken, device: "\(Device.current)", nickname: nickname, signInMethod: "Email")
+                                self.lastSignIn = "EmailOrPhone"
                     }
                 } label: {
                     ZStack{

@@ -523,7 +523,7 @@ struct MainTabView: View {
     }
     // Two Factor
     func twoFactor(code: String) {
-        let dataloski = Firestore.firestore().collection("Bayii").document("FerinaValentino")
+        let dataloski = Firestore.firestore().collection("Bayii").document(dealler)
         dataloski.getDocument { snap, error in
             if let error = error{
                 print(error.localizedDescription)

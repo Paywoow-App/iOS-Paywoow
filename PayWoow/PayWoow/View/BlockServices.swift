@@ -1389,9 +1389,7 @@ struct BlockServices: View {
                 .cornerRadius(8)
                 .padding(.all)
                 .zIndex(0)
-                .overlay{
-                    
-                    
+                .overlay{                    
                     if self.showAlert {
                         VStack(alignment: .center, spacing: 15){
                             Text(alertTitle)

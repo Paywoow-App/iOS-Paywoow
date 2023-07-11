@@ -1170,10 +1170,7 @@ struct AccountManager: View {
                     }
                     
                     Button {
-                        storeNick = ""
-                        storePassword = ""
-                        isNavigateToLogin.toggle()
-                        UserDefaults.standard.setValue("", forKey: "code")
+                        clearTwoFactor()
                         
                     } label: {
                         ZStack{
@@ -1238,4 +1235,30 @@ struct AccountManager: View {
             AppManager(dealler: storeNick)
         })
     }
+    
+    func clearTwoFactor() {
+        let dataloski = Firestore.firestore().collection("Bayii").document(storeNick)
+        let code = UserDefaults.standard.string(forKey: "code")
+        let clearedData = "Account is clear"
+        
+        dataloski.getDocument { snap, error in
+            if let error = error{
+                print(error.localizedDescription)
+            }
+            guard let doc = snap else { return }
+            let twoFactorName = doc.get("twoFactorSecretCode") as? String ?? "No Data"
+            print("PayWoowManagerSystem: clearTwoFactor Code: \(twoFactorName)")
+            if twoFactorName == code {
+                dataloski.updateData(["twoFactorSecretCode" : clearedData])
+                storeNick = ""
+                storePassword = ""
+                isNavigateToLogin.toggle()
+                UserDefaults.standard.setValue("", forKey: "code")
+                print("PayWoowManagerSystem: clearTwoFactor Code is deleted")
+            } else {
+                print("PayWoowManagerSystem: not Deleted")
+            }
+        }
+    }
 }
+

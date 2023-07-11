@@ -76,7 +76,21 @@ struct AngelContent: View {
                     
                     Spacer(minLength: 0)
                     
-                    if !iAmAngel {
+                    if userID == Auth.auth().currentUser!.uid {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(LinearGradient(colors: [
+                                    Color.init(red: 131 / 255, green: 243 / 255, blue: 227 / 255),
+                                    Color.init(red: 86 / 255, green: 180 / 255, blue: 203 / 255)
+                                ], startPoint: .leading, endPoint: .trailing))
+                            
+                            Text("Finding")
+                                .foregroundColor(.white)
+                                .font(.system(size: 15))
+                                .fontWeight(.regular)
+                        }
+                        .frame(width: 110, height: 30, alignment: Alignment.center)
+                    } else if !iAmAngel {
                         if self.userID != Auth.auth().currentUser!.uid {
                             Button {
                                 self.selectedUserID = userID
@@ -98,14 +112,10 @@ struct AngelContent: View {
                                 .frame(width: 110, height: 30, alignment: Alignment.center)
                             }
                         }
-                        
-                        
-                        
                     }
                 }
             }
             .padding(.leading, -10)
-
         }
         .padding(.horizontal)
         .onAppear{
@@ -292,7 +302,7 @@ struct DevilContent: View {
                             }
                             .frame(width: 110, height: 30, alignment: Alignment.center)
                         }
-                    }                    
+                    }
                 }
             }
             .padding(.leading, -10)
