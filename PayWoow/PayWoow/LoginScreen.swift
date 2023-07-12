@@ -67,6 +67,9 @@ struct LoginScreen: View {
     @State private var kullaniciVar : Bool = false
     @State private var verificationedMail : Bool = false
 
+    @State private var isSendedCode: Bool = false
+    @State private var emailVerification: String = ""
+    
     //geo
     var userLatitude: String {
         return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
@@ -630,8 +633,6 @@ struct LoginScreen: View {
             }
             else if self.registerStep == 6 {
                 register6
-            } else if self.registerStep == 7 {
-                register7
             }
         }
     }
@@ -1008,6 +1009,7 @@ struct LoginScreen: View {
                         self.showAlert.toggle()
                     }
                     else {
+                        //MERK: Burada kod gönder
                         self.registerStep = 5
                     }
                 } label: {
@@ -1058,16 +1060,21 @@ struct LoginScreen: View {
                             .foregroundColor(.white)
                             .font(.system(size: 15))
                             .fontWeight(.medium)
-                    
+                    +
+                        Text(" sana bir kod gönderdik")
+                            .foregroundColor(isSendedCode ? .white : .clear)
+                            .font(.system(size: 15))
+                            .fontWeight(.medium)
+
                     Spacer(minLength: 0)
                 }
                 .padding(.horizontal, 30)
                 .padding(.top)
                 
+                if !isSendedCode {
                 ZStack{
                     RoundedRectangle(cornerRadius: 8)
                         .fill(Color.black.opacity(0.2))
-                    
                     HStack{
                         TextField("Mail adresin", text: $email)
                             .foregroundColor(.white)
@@ -1079,7 +1086,6 @@ struct LoginScreen: View {
                                 }
                             }
                         
-                        
                         if self.canUseEmail && email.contains("@") && email.contains(".com"){
                             Image(systemName: "checkmark")
                                 .foregroundColor(.green)
@@ -1090,37 +1096,113 @@ struct LoginScreen: View {
                 }
                 .frame(height: 45)
                 .padding(.horizontal, 30)
+                } else {
+                    LazyVStack(alignment: .leading) {
+                        HStack {
+                            Text(email.prefix(2))
+                                
+                            +
+                            Text("******")
+                            +
+                            Text(email.suffix(10))
+                        }
+                    }
+                    .foregroundColor(.white)
+                    .font(.system(size: 20))
+                    .padding(.bottom,7)
+                    .frame(width: UIScreen.main.bounds.width * 0.85)
+                }
+
                 
-                Button {
-                    if self.email == "" {
-                        self.alertTitle = "Boş alan!"
-                        self.alertBody = "Email oluşturmadan devam edemezsiniz"
-                        self.showAlert = true
+                if !isSendedCode {
+                    Button {
+                        if self.email == "" {
+                            self.alertTitle = "Boş alan!"
+                            self.alertBody = "Email oluşturmadan devam edemezsiniz"
+                            self.showAlert = true
+                        }
+                        else if !self.email.contains("@"){
+                            self.alertTitle = "Boş alan!"
+                            self.alertBody = "Email adresinizi doğru girdiğinizden emin olun!"
+                            self.showAlert = true
+                        }
+                        else if self.canUseEmail == false {
+                            self.alertTitle = "Zaten var olan bir mail adresi!"
+                            self.alertBody = "Email adresinizi doğru girdiğinizden emin olun!"
+                            self.showAlert = true
+                        }
+                        else {
+                            //MERK: Burada kod gönder
+                            isSendedCode = true
+                        }
+                    } label: {
+                        ZStack{
+                            Capsule()
+                                .fill(Color.init(hex: "#00CBC3"))
+                            
+                            Text("Devam")
+                                .foregroundColor(.white)
+                                .font(.system(size: 20))
+                        }
+                        .frame(height: 43)
+                        .padding(.horizontal, 30)
                     }
-                    else if !self.email.contains("@"){
-                        self.alertTitle = "Boş alan!"
-                        self.alertBody = "Email adresinizi doğru girdiğinizden emin olun!"
-                        self.showAlert = true
+                } else {
+                    VStack(alignment: .leading, content: {
+                        TextField("Kodu Giriniz", text: $emailVerification.limit(6))
+                            .padding(.leading)
+                            .background {
+                                Rectangle()
+                                    .stroke(.white)
+                                    .frame(height: 55)
+                            }
+                            .padding(.bottom)
+                        Button {
+                            //MERK: Burada kod tekrar gönder
+                        } label: {
+                            Text("Tekrar Gönder")
+                        }
+                        .foregroundColor(.white.opacity(0.5))
+                        .font(.system(size: 12.8))
+                        .frame(height: 10)
+                        .padding(.top,5)
+
+                    })
+                        .frame(width: UIScreen.main.bounds.width * 0.85, height: 75)
+                }
+                
+                if isSendedCode {
+                    withAnimation {
+                        Button {
+                            if self.emailVerification == "" {
+                                self.alertTitle = "DİKKAT "
+                                self.alertBody = "Bu alan boş bırakılamaz!"
+                                self.showAlert = true
+                            } else if self.emailVerification.count < 6 {
+                                self.alertTitle = "DİKKAT"
+                                self.alertBody = "Eksik kod girdiniz!"
+                                self.showAlert = true
+                            } else if self.emailVerification != "313131" {
+                                self.alertTitle = "DİKKAT"
+                                self.alertBody = "Yanlış kod girdiniz mailinizi tekrar kontrol edin!"
+                                self.showAlert = true
+                            } else {
+                                //MERK: Burada kod doğrula
+                                self.registerStep = 6
+                            }
+                        } label: {
+                            ZStack{
+                                Capsule()
+                                    .fill(Color.init(hex: "#00CBC3"))
+                                
+                                Text("Onay")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 20))
+                            }
+                            .frame(height: 43)
+                            .padding(.horizontal, 30)
+                        }
                     }
-                    else if self.canUseEmail == false {
-                        self.alertTitle = "Zaten var olan bir mail adresi!"
-                        self.alertBody = "Email adresinizi doğru girdiğinizden emin olun!"
-                        self.showAlert = true
-                    }
-                    else {
-                        self.registerStep = 6
-                    }
-                } label: {
-                    ZStack{
-                        Capsule()
-                            .fill(Color.init(hex: "#00CBC3"))
-                        
-                        Text("Devam")
-                            .foregroundColor(.white)
-                            .font(.system(size: 20))
-                    }
-                    .frame(height: 43)
-                    .padding(.horizontal, 30)
                 }
                 
                 Spacer(minLength: 0)
@@ -1128,7 +1210,7 @@ struct LoginScreen: View {
         }
     }
     
-
+    
     var register6 : some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 15){
@@ -1222,86 +1304,6 @@ struct LoginScreen: View {
                                 self.lastSignIn = "EmailOrPhone"
                             }
                         }
-                    }
-                } label: {
-                    ZStack{
-                        Capsule()
-                            .fill(Color.init(hex: "#00CBC3"))
-                        
-                        Text("Devam")
-                            .foregroundColor(.white)
-                            .font(.system(size: 20))
-                    }
-                    .frame(height: 43)
-                    .padding(.horizontal, 30)
-                }
-                
-                Spacer(minLength: 0)
-            }
-        }
-    }
-    
-    var register7 : some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack(spacing: 15){
-                Spacer()
-                VStack(alignment: .leading) {
-                    HStack(spacing: 20) {
-                            Text("Maili Doğrulayalım!")
-                                .foregroundColor(.white)
-                                .font(.system(size: 18))
-                                .fontWeight(.medium)
-                    }
-                        Text("M")
-                            .foregroundColor(.white)
-                            .font(.system(size: 15))
-                            .fontWeight(.medium)
-                }
-                .padding(.horizontal, 30)
-                .padding(.top)
-
-                ZStack{
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.black.opacity(0.2))
-                    
-                    HStack{
-                        if showPassword {
-                            TextField("Şifre oluştur", text: $password)
-                                .foregroundColor(.white)
-                                .font(.system(size: 18))
-                                .colorScheme(.dark)
-                        }
-                        else {
-                            SecureField("Şifre oluştur", text: $password)
-                                .foregroundColor(.white)
-                                .font(.system(size: 18))
-                                .colorScheme(.dark)
-                        }
-                        
-                        Button {
-                            self.showPassword.toggle()
-                        } label: {
-                            Image(systemName: showPassword ? "eyes" : "eyebrow")
-                                .foregroundColor(.white)
-                                .font(.system(size: 20))
-                        }
-                        
-                        Spacer()
-                    }
-                    .padding(.horizontal, 15)
-                }
-                .frame(height: 45)
-                .padding(.horizontal, 30)
-                
-                Button {
-                    if password.count < 5 {
-                        self.alertTitle = "Eksik Alan!"
-                        self.alertBody = "En az 6 karakter şifre oluşturmalısın"
-                        self.showAlert = true
-                    }
-                    else {
-                            register(email: email, password: password, firstName: firstName, lastName: lastName, appleId: "", token: userDeviceToken, device: "\(Device.current)", nickname: nickname, signInMethod: "Email")
-                                self.lastSignIn = "EmailOrPhone"
                     }
                 } label: {
                     ZStack{

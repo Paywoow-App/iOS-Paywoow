@@ -24,6 +24,7 @@ struct AdminLogin: View {
     @State private var toPanel = false
     @AppStorage("storeNick") var storeNick : String = "Nil"
     @AppStorage("storePassword") var storePassword : String = "Nil"
+    @AppStorage("storeSelectedApp") var storeSelectedApp : String = ""
     @State private var isActiveSecureCode = ""
     @StateObject var userStore = UserStore()
     @State var showingAlert : Bool = false
@@ -33,6 +34,9 @@ struct AdminLogin: View {
     
     @State private var callbackPassword : String = ""
     @State private var callbackPhoneNumber : String = ""
+    
+    @State var value = true
+
     
     var code = ""
     
@@ -127,7 +131,7 @@ struct AdminLogin: View {
                                 self.showingAlert.toggle()
                                 checkUserPhone(bayiName: bayiiId)
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                    authManager.getOTPCode(phoneNumber: phoneNumber)
+                                    authManager.phoneAuther(phoneNumber: phoneNumber)
                                 }
                                 //                                self.toPanel.toggle()
                             }
@@ -171,50 +175,60 @@ struct AdminLogin: View {
             .overlay(content: {
                 if showingAlert {
                     ZStack {
-                        RoundedRectangle(cornerRadius: 14)
-                            .stroke(.white, lineWidth: 2)
-                            .background(Color.black)
-                        VStack {
-                            Text("Güvenlik için telefonuzua yollanan sms giriniz")
+                        RoundedRectangle(cornerRadius: 13)
+                            .foregroundColor(Color.black)
+                        VStack(alignment: .center,spacing: 30) {
+                            Text("Güvenlik için telefenunuza gelen SMS KODU alana giriniz")
+                                .foregroundColor(.white)
+                                .font(.callout)
                                 .multilineTextAlignment(.center)
-                            TextField("SMS Code", text: $authManager.otpCode.limit(6))
-                                .foregroundColor(.black)
+                            TextField("", text: $authManager.otpCode.limit(6))
+                                .tint(.white)
                                 .keyboardType(.numberPad)
+                                .foregroundColor(.white)
                                 .padding(.horizontal)
-                                .background {
-                                    Color.white
-                                        .cornerRadius(5)
+                                .frame(width: 120, height: 36)
+                                .background {  Color.gray.cornerRadius(6).padding(.horizontal).frame(width: 230, height: 36)}
+                                .multilineTextAlignment(.center)
+                                .overlay {
+                                    if value {
+                                        Color.white.mask {
+                                            Text("SMS CODE")
+                                        }
+                                        .onTapGesture {
+                                            value = false
+                                        }
+                                    }
                                 }
-                                .padding(.horizontal, UIScreen.main.bounds.width * 0.24)
-                                .frame(height: 10)
-                                .padding(.vertical)
+                                .onChange(of: authManager.otpCode) { newValue in
+                                    if newValue.count > 0 {
+                                        value = false
+                                    }
+                                }
                             HStack {
-                                Spacer()
-                                Button("Giriş") {
-                                    authManager.verifyOTPCode()
-                                    UserDefaults.standard.set(authManager.otpCode, forKey: "code")
-                                }
                                 Spacer()
                                 Button("İptal") {
                                     showingAlert.toggle()
                                 }
+                                .foregroundColor(.white)
+                                Spacer()
+                                Button("Giriş") {
+                                    print("Stored \(authManager.otpCode)")
+                                    authManager.checkTrueOTP()
+                                    UserDefaults.standard.set(authManager.otpCode, forKey: "code")
+                                }
+                                .foregroundColor(.white)
                                 Spacer()
                             }
-                            .tint(.white)
                         }
                     }
-                    .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.4)
-                    .background {
-                        Rectangle()
-                            .foregroundColor(.black).opacity(0.3)
-                            .ignoresSafeArea()
-                    }
+                    .frame(width: 267, height: 231)
                 }
             })
             
         }
         .onAppear {
-            
+
         }
         .alert(isPresented: $showAlert) {
             Alert(title: Text(alertTitle), message: Text(alertBody), dismissButton: Alert.Button.default(Text("Tamam")))
@@ -231,9 +245,8 @@ struct AdminLogin: View {
             if self.storeNick.count > 6 {
                 authenticate()
             }
-            self.bayiiId = "FerinaValentino"
-            self.password = "123456"
             print("PayWoowManagerSystem: isHave Before twofactor \(self.code == "" ? false : true)")
+            print("PayWoowManagerSystem: isHave Before twofactor platformName: \(bayiiId) app: \(storeSelectedApp)")
         }
         
     }
@@ -352,42 +365,34 @@ import SwiftUI
 import Firebase
 
 class FirebaseAuthManager: ObservableObject {
-    @Published var CLIENT_CODE: String?
+    @Published var VERIFICATION_ID: String = ""
     @Published var otpCode: String = ""
     @Published var isSignedIn = false
     
    
-    func getOTPCode(phoneNumber: String) {
-        Task {
-            do {
-                Auth.auth().settings?.isAppVerificationDisabledForTesting = true
-                
-                let code = try? await PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil)
-                
-                await MainActor.run {
-                    print("sended NUmber \(phoneNumber)")
-                    print("Bu Codedur \(code)")
-                    self.CLIENT_CODE = code
-                }
+    func phoneAuther(phoneNumber: String) {
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verifyID, error in
+            if let error = error {
+                print(error.localizedDescription)
             }
+            
+            guard let verificationID = verifyID else { return }
+            
+            self.VERIFICATION_ID = verificationID
+            
         }
     }
     
-    func verifyOTPCode() {
-        Task {
-            do {
-                guard let code = CLIENT_CODE else { return }
-                
-                let credential = PhoneAuthProvider.provider().credential(withVerificationID: code, verificationCode: otpCode)
-                
-                try await Auth.auth().signIn(with: credential)
-                DispatchQueue.main.async {
-                    self.isSignedIn = true
-                }
+    func checkTrueOTP() {
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: VERIFICATION_ID, verificationCode: self.otpCode)
+        Auth.auth().signIn(with: credential) { result, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                self.isSignedIn = true
             }
         }
     }
-    
 }
 
 extension Binding where Value == String {
@@ -401,6 +406,5 @@ extension Binding where Value == String {
         }
         return self
     }
-    
     
 }

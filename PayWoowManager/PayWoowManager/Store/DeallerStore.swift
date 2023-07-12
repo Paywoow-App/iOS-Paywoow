@@ -20,28 +20,26 @@ class DeallerStore: ObservableObject {
     
     init(){
         if self.storeNick.count > 6{
+                        
             
             ref.collection("Bayii").document(storeNick).addSnapshotListener { doc, err in
-                if err == nil {
-                    if let isActiveSecure = doc?.get("isActiveSecure") as? Bool {
-                        if let isLive = doc?.get("isLive") as? Bool {
-                            if let password = doc?.get("password") as? String {
-                                if let phoneNumber = doc?.get("phoneNumber") as? String {
-                                    if let token = doc?.get("token") as? String {
-                                        if let selectedApp = doc?.get("selectedApp") as? String {
-                                            self.isActiveSecure = isActiveSecure
-                                            self.isLive = isLive
-                                            self.password = password
-                                            self.phoneNumber = phoneNumber
-                                            self.token = token
-                                            self.storeSelectedApp = selectedApp
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                if let error = err {
+                    print(error.localizedDescription)
                 }
+                
+                let isActiveSecure = doc?.get("isActiveSecure") as! Bool
+                let isLive = doc?.get("isLive") as! Bool
+                let password = doc?.get("password") as! String
+                let phoneNumber = doc?.get("phoneNumber") as! String
+                let token = doc?.get("token") as! String
+                let selectedApp = doc?.get("selectedApp") as! String
+                
+                self.isActiveSecure = isActiveSecure
+                self.isLive = isLive
+                self.password = password
+                self.phoneNumber = phoneNumber
+                self.token = token
+                self.storeSelectedApp = selectedApp
             }
         }
     }

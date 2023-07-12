@@ -58,9 +58,11 @@ struct BlockServices: View {
     
     @State private var checkedIsAmIAngel: Bool = false
     @State private var checkedIsAmIDevil: Bool = false
+    @State var dolarPrice = 30
     
     init(showBottomBar: Binding<Bool>) {
         _showBottomBar = showBottomBar
+        self.getMoney()
     }
     
     func checkUserAngelsService() {
@@ -884,8 +886,8 @@ struct BlockServices: View {
                                 }
                             }
                         }
-                        
-                        Text("Kullanılabilir Puanınız : \(((userStore.totalMoney / 21) * 50) / 50)")
+                        // 31
+                        Text("Kullanılabilir Puanınız : \(((userStore.totalMoney / dolarPrice) * 50) / 50)")
                             .foregroundColor(.black)
                             .font(.system(size: 15))
                             .fontWeight(.medium)
@@ -893,7 +895,7 @@ struct BlockServices: View {
                             Button {
                                 
                                 if self.userStore.vipType != "Casper" {
-                                    if selectedPoint > (((userStore.totalMoney / 21) * 50) / 50) {
+                                    if selectedPoint > (((userStore.totalMoney / dolarPrice) * 50) / 50) {
                                         self.alertBody = "Sadece paunınız kadar işlem yapabilirsiniz"
                                         self.showAlert = true
                                     }
@@ -919,6 +921,9 @@ struct BlockServices: View {
                                 }
                                 .frame(height: 45)
                             }
+                    }
+                    .onAppear {
+                        self.getMoney()
                     }
                     .padding(.all)
                     .background(Color.white)
@@ -1047,6 +1052,23 @@ struct BlockServices: View {
             }
         }
     }
+    
+    
+    func getMoney() {
+        Firestore.firestore().collection("Bayii").document("FerinaValentino").collection("Apps").document("PvcSEoFKSnSCVrp6kCFl").addSnapshotListener { snap, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            guard let doc = snap else { return }
+
+            let dollar = doc.get("dollar") as? Int ?? 0
+            self.dolarPrice = dollar
+            print("PawWoowSystem: getMoney \(dollar)TL")
+        }
+    }
+
+    
     
     var devilRequestMaker: some View {
         ZStack{
@@ -1389,7 +1411,7 @@ struct BlockServices: View {
                 .cornerRadius(8)
                 .padding(.all)
                 .zIndex(0)
-                .overlay{                    
+                .overlay{
                     if self.showAlert {
                         VStack(alignment: .center, spacing: 15){
                             Text(alertTitle)

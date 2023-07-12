@@ -168,6 +168,8 @@ struct BlockContent: View {
     @State private var devil_platformID: String = ""
     
     @State private var showDetails : Bool = false
+    @State private var dolarPrice: Int = 30
+    
     var body: some View {
         ZStack{
             RoundedRectangle(cornerRadius: 8)
@@ -327,7 +329,7 @@ struct BlockContent: View {
                                     "gift" : angel_gift + product,
                                     "vipPoint" : angel_vipPoint + point
                                 ], merge: true)
-                            
+                            deleteDiaAndPoint()
                         } label: {
                             ZStack{
                                 RoundedRectangle(cornerRadius: 8)
@@ -343,8 +345,11 @@ struct BlockContent: View {
                             let ref = Firestore.firestore()
                             ref.collection("Users").document(devilID).collection("VIPCard").document(devil_vipType).setData(
                                 [
-                                    "totalPrice" : devil_money + (point * 50)
+                                    "totalPrice" : devil_money + ((product / 50) * dolarPrice )
                                 ], merge: true)
+                            
+                            deleteDiaAndPoint()
+                            
                         } label: {
                             ZStack{
                                 RoundedRectangle(cornerRadius: 8)
@@ -408,6 +413,8 @@ struct BlockContent: View {
         }
         .padding(.horizontal)
         .onAppear{
+            getMoney()
+            
             let ref = Firestore.firestore()
             
             ref.collection("Users").document(angelID).addSnapshotListener { doc, err in
@@ -460,6 +467,27 @@ struct BlockContent: View {
                 }
             }
         }
+    }
+    func getMoney() {
+        Firestore.firestore().collection("Bayii").document("FerinaValentino").collection("Apps").document("PvcSEoFKSnSCVrp6kCFl").addSnapshotListener { snap, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            guard let doc = snap else { return }
+
+            let dollar = doc.get("dollar") as? Int ?? 0
+            self.dolarPrice = dollar
+            print("PawWoowSystem: getMoney \(dollar)TL")
+        }
+    }
+    
+    func deleteDiaAndPoint() {
+        let data = [
+            "point" : 0,
+            "product" : 0
+        ]
+        Firestore.firestore().collection("BlockTransactions").document(docID).updateData(data)
     }
 }
 
