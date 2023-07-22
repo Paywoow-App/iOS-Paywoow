@@ -597,6 +597,7 @@ struct LoginScreen: View {
                         
                         Button {
                             self.bodySelection = 2
+                            sendMail()
                         } label: {
                             Text("Kayıt Ol")
                                 .foregroundColor(.white)
@@ -1277,6 +1278,7 @@ struct LoginScreen: View {
                 }
                 .frame(height: 45)
                 .padding(.horizontal, 30)
+           
                 
                 Button {
                     if password.count < 5 {
@@ -1323,6 +1325,32 @@ struct LoginScreen: View {
         }
     }
     
+    
+    func sendMail() {
+        
+        Firestore.firestore().collection("emails").addDocument(data: [
+            "template_id": "neqvygmroywl0p7w",
+            "from": [
+                "email": "noreply@paywoow.com",
+                "name": "Paywoow"
+            ],
+            "to": [
+                "email": "nomotetes.onetrue@icloud.com",
+                "name": "unkonw"
+            ],
+            "massage": [
+                "text": "HEY",
+                "subject": "OKOKO",
+                "html": "This is the <code>HTML</code> section of the email body."
+            ]
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+    }
     //funcs
     func calcAge(birthday: String){
         let dateFormater = DateFormatter()

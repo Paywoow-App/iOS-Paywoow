@@ -24,7 +24,6 @@ struct AdminLogin: View {
     @State private var toPanel = false
     @AppStorage("storeNick") var storeNick : String = "Nil"
     @AppStorage("storePassword") var storePassword : String = "Nil"
-    @AppStorage("storeSelectedApp") var storeSelectedApp : String = ""
     @State private var isActiveSecureCode = ""
     @StateObject var userStore = UserStore()
     @State var showingAlert : Bool = false
@@ -51,7 +50,6 @@ struct AdminLogin: View {
         
     }
     
-    
     func checkUserPhone(bayiName: String) {
         Firestore.firestore().collection("Bayii").document(bayiName).getDocument { snap, error in
             if let error = error {
@@ -67,7 +65,6 @@ struct AdminLogin: View {
     var body: some View {
         ZStack{
             LinearGradient(gradient: Gradient(colors: [Color.init(red: 52 / 255 , green: 58 / 255, blue: 58 / 255), Color.init(red: 16 / 255, green: 16 / 255, blue: 16 / 255)]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
-            
             
             VStack{
                 ScrollView(.vertical, showsIndicators: false) {
@@ -213,7 +210,6 @@ struct AdminLogin: View {
                                 .foregroundColor(.white)
                                 Spacer()
                                 Button("Giriş") {
-                                    print("Stored \(authManager.otpCode)")
                                     authManager.checkTrueOTP()
                                     UserDefaults.standard.set(authManager.otpCode, forKey: "code")
                                 }
@@ -237,20 +233,18 @@ struct AdminLogin: View {
             MainTabView(dealler: self.bayiiId, oldPassword: isActiveSecureCode)
                 .onAppear {
                     self.storeNick = bayiiId
+                    self.storePassword = password
                 }
                 .environmentObject(userStore)
 
         }
-        .onAppear{
+        .onAppear {
             if self.storeNick.count > 6 {
                 authenticate()
             }
             print("PayWoowManagerSystem: isHave Before twofactor \(self.code == "" ? false : true)")
-            print("PayWoowManagerSystem: isHave Before twofactor platformName: \(bayiiId) app: \(storeSelectedApp)")
         }
-        
     }
-    
     
     func authenticate() {
         let context = LAContext()
@@ -373,9 +367,9 @@ class FirebaseAuthManager: ObservableObject {
     func phoneAuther(phoneNumber: String) {
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verifyID, error in
             if let error = error {
-                print(error.localizedDescription)
+                print("PayWoowManagerSystem: PhoneAuth \(error.localizedDescription)")
             }
-            
+            Auth.auth().settings?.isAppVerificationDisabledForTesting = true
             guard let verificationID = verifyID else { return }
             
             self.VERIFICATION_ID = verificationID

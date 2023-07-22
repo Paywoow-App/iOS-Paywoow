@@ -493,7 +493,6 @@ struct SelectedAppsDetails: View {
             self.selectedAppListen = storeSelectedApp
             getData()
             
-            print("----CONTROL----  \nBuğ StoreNickDir \(storeNick)\n Buğ selectedAppListenDır \(selectedAppListen)\n----CONTROL----")
         }
         .onChange(of: self.storeSelectedApp) { item in
             self.selectedAppListen = item
@@ -524,7 +523,7 @@ struct SelectedAppsDetails: View {
         print("PayWoowManagerSystem: This is selectedApp \(selectedAppListen)")
         print("PayWoowManagerSystem: This is storeNick \(storeNick)")
 
-        ref.collection("Bayii").document(storeNick).collection("Apps").document(selectedAppListen).addSnapshotListener { snap, err in
+        ref.collection("Bayii").document(storeNick).collection("Apps").document("PvcSEoFKSnSCVrp6kCFl").addSnapshotListener { snap, err in
             
             if let error = err {
                 print(error.localizedDescription)
@@ -559,48 +558,6 @@ struct SelectedAppsDetails: View {
             self.deallerName = deallerName
             self.giftDiamond = giftDiamond
         }
-        
-//        ref.collection("Bayii").document(storeNick).collection("Apps").document(selectedAppListen).addSnapshotListener { doc, err in
-//            if let platformName = doc?.get("platformName") as? String {
-//                if let platformImage = doc?.get("platformImage") as? String {
-//                    if let productTotal = doc?.get("productTotal") as? Int {
-//                        if let dollar = doc?.get("dollar") as? Double {
-//                            if let maxLimit = doc?.get("maxLimit") as? Int {
-//                                if let boughtPrice = doc?.get("boughtPrice") as? Int {
-//                                    if let sellPrice = doc?.get("sellPrice") as? Int {
-//                                        if let balance = doc?.get("balance") as? Int {
-//                                            if let productType = doc?.get("productType") as? String {
-//                                                if let isActive = doc?.get("isActive") as? Bool {
-//                                                    if let giftDiamond = doc?.get("giftDiamond") as? Int {
-//                                                        if let coverImage = doc?.get("coverImage") as? String {
-//                                                            if let deallerName = doc?.get("deallerName") as? String {
-//                                                                self.platformName = platformName
-//                                                                self.platformImage = platformImage
-//                                                                self.productTotal = productTotal
-//                                                                self.dollar = dollar
-//                                                                self.maxLimit = maxLimit
-//                                                                self.boughtPrice = boughtPrice
-//                                                                self.sellPrice = sellPrice
-//                                                                self.balance = balance
-//                                                                self.productType = productType
-//                                                                self.isActive = isActive
-//                                                                self.coverImage = coverImage
-//                                                                self.deallerName = deallerName
-//                                                                self.giftDiamond = giftDiamond
-//                                                            }
-//                                                        }
-//                                                    }
-//                                                }
-//                                            }
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
     }
     
     func calculate(){

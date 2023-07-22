@@ -70,13 +70,19 @@ struct VIPPointManager: View {
                 TabView(selection: $selection){
                     ScrollView(.vertical, showsIndicators: false) {
                         ForEach(list, id: \.self){ item in
-                            VIPointUserContent(userID: item, currentYear: $currentYears, currentMonth: $currentMonth, attack: $attack, nextMonth: $nextMonth, complatedList: $complatedList, selection: $selection)
-                            
+                            Group {
+                                VIPointUserContent(userID: item,
+                                                   currentYear: $currentYears,
+                                                   currentMonth: $currentMonth,
+                                                   attack: $attack,
+                                                   nextMonth: $nextMonth,
+                                                   complatedList: $complatedList,
+                                                   selection: $selection)
+                            }
                         }
                     }
 
                     VStack{
-                        
                         DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
                             .padding(.horizontal)
                             .datePickerStyle(.graphical)
@@ -138,7 +144,6 @@ struct VIPPointManager: View {
             if err == nil {
                 self.list.removeAll()
                 for doc in snap!.documents {
-                    print("I amworkinggss")
                     self.list.append(doc.documentID)
                     
                 }
@@ -174,6 +179,8 @@ struct VIPointUserContent: View {
     @State private var platformID : String = ""
     @State private var collectID : String = ""
     @State private var block : Bool = false
+    @State private var vipPoint: Int = 0
+    @State private var isSendedPoint: Bool = false
     
     @State private var requiredSelectin : Int = 1
     var body: some View {
@@ -230,6 +237,17 @@ struct VIPointUserContent: View {
                     }
                     .padding(.all, 15)
                 }
+                .overlay(content: {
+                    if isSendedPoint {
+                        ZStack {
+                            Rectangle()
+                                .opacity(0.2)
+                            Text("TAMAMDIR")
+                                .fontWeight(.black)
+                                .foregroundColor(.green)
+                        }
+                    }
+                })
                 .padding(.horizontal)
                 .padding(.bottom)
                 .onAppear{
@@ -237,75 +255,10 @@ struct VIPointUserContent: View {
                     complatedList.append(false)
                 }
             }
-            else if currentUpload != 0 && self.lock == false && self.list.contains(where: {$0.month == nextMonth}) {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.black.opacity(0.2))
-                    
-                    VStack{
-                        HStack{
-                            AsyncImage(url: URL(string: pfImage)) { img in
-                                img
-                                    .resizable()
-                                    .scaledToFill()
-                                    .clipShape(Circle())
-                                    .frame(width: 60, height: 60)
-                            } placeholder: {
-                                Image("defRefPF")
-                                    .resizable()
-                                    .scaledToFill()
-                                    .clipShape(Circle())
-                                    .frame(width: 60, height: 60)
-                            }
-                            
-                            VStack(spacing: 10){
-                                HStack{
-                                    Text("\(firstName) \(lastName)")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                        .fontWeight(.medium)
-                                    
-                                    Spacer(minLength: 0)
-                                    
-                                    Text("\(currentUpload)K")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                }
-                                
-                                HStack{
-                                    Text("PID: \(platformID)")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                        .fontWeight(.medium)
-                                    
-                                    Spacer(minLength: 0)
-                                    
-                                    Text("\(point)p")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                }
-                            }
-                        }
-                    }
-                    .padding(.all, 15)
-                    .opacity(0.5)
-                    
-                    Text("Tamamlandı")
-                        .foregroundColor(.green)
-                        .font(.system(.title2))
-                        .bold()
-                        .rotationEffect(.degrees(-20))
-                }
-                .padding(.horizontal)
-                .padding(.bottom)
-                .onAppear{
-                    self.complatedList.removeAll()
-                    complatedList.append(true)
-                }
-            }
         }
         .contextMenu{
             Button {
+                self.isSendedPoint = false
                 getAgainThePoints()
             } label: {
                 Text("Puanı geri al")
@@ -319,17 +272,21 @@ struct VIPointUserContent: View {
                         if let lastName = doc?.get("lastName") as? String {
                             if let pfImage = doc?.get("pfImage") as? String {
                                 if let platformID = doc?.get("platformID") as? String {
-                                    self.firstName = firstName
-                                    self.lastName = lastName
-                                    self.platformID = platformID
-                                    self.pfImage = pfImage
-                                    print("docID mı iasdkjasd = \(platformID)")
+                                    if let vipPoint = doc?.get("vipPoint") as? Int {
+                                        self.firstName = firstName
+                                        self.lastName = lastName
+                                        self.platformID = platformID
+                                        self.pfImage = pfImage
+                                        self.vipPoint = vipPoint
+                                        print("docID mı iasdkjasd = \(platformID)")
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
+            
             
             ref.collection("Users").document(userID).collection("UserStatics").document("SoldDiamond").collection("Years").document(currentYear).addSnapshotListener { doc, err in
                 if err == nil {
@@ -368,48 +325,30 @@ struct VIPointUserContent: View {
                     }
                 }
             }
-            
-            ref.collection("Users").document(userID).collection("SentVipPoint").addSnapshotListener { snap, err in
-                if err == nil {
-                    self.list.removeAll()
-                    for doc in snap!.documents {
-                        if let month = doc.get("sentForMonth") as? String {
-                            if let year = doc.get("sentForYear") as? String {
-                                if let point = doc.get("point") as? Int {
-                                    if month == nextMonth && currentYear == year {
-                                        let data = ControlPointModel(month: month, year: year, point: point)
-                                        self.list.append(data)
-                                        self.collectID = doc.documentID
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+        }
+        .onChange(of: vipPoint) { isPoint in
+            if vipPoint == isPoint {
+                self.isSendedPoint = true
+                print("isSame \(vipPoint)")
             }
-            
         }
         // Send VIP POint ile ilgili
         .onChange(of: attack) { val in
             if currentUpload != 0 && self.lock == false && !self.list.contains(where: {$0.month == nextMonth}){
                 let ref = Firestore.firestore()
                 let timeStamp = Date().timeIntervalSince1970
-                print("-BuğUaserIDDDSSSS- \n\(userID)\n\(nextMonth)\n\(currentYear)\n\(timeStamp)\n\(point)-BuğUaserIDDDSSSS-")
-                ref.collection("Users").document(userID).collection("SentVipPoint").document("\(Int(timeStamp))").setData([
-                    "sentForMonth" : nextMonth,
-                    "sentForYear" : currentYear,
-                    "timeStamp" : Int(timeStamp),
-                    "point" : point,
+                print("BUĞĞ \(userID) \(point)")
+                ref.collection("Users").document(userID).setData([
+                    "vipPoint" : point
                 ], merge: true)
                 self.attack = false
-                
             }
         }
     }
-    
-    
     func getAgainThePoints(){
         let ref = Firestore.firestore()
-        ref.collection("Users").document(userID).collection("SentVipPoint").document(collectID).delete()
+        ref.collection("Users").document(userID).setData([
+            "vipPoint" : 0
+        ], merge: true)
     }
 }

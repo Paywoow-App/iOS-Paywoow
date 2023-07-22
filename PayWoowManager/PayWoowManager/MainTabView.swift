@@ -95,7 +95,7 @@ struct MainTabView: View {
     init(dealler: String = "", oldPassword: String = "") {
         self.dealler = dealler
         self.oldPassword = oldPassword
-        self.code = UserDefaults.standard.string(forKey: "code")!
+        self.code = UserDefaults.standard.string(forKey: "code") ?? "00000"
     }
 
     

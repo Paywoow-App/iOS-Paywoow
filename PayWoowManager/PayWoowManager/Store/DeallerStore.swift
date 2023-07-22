@@ -27,13 +27,13 @@ class DeallerStore: ObservableObject {
                     print(error.localizedDescription)
                 }
                 
-                let isActiveSecure = doc?.get("isActiveSecure") as! Bool
-                let isLive = doc?.get("isLive") as! Bool
-                let password = doc?.get("password") as! String
-                let phoneNumber = doc?.get("phoneNumber") as! String
-                let token = doc?.get("token") as! String
-                let selectedApp = doc?.get("selectedApp") as! String
-                
+                let isActiveSecure = doc?.get("isActiveSecure") as? Bool ?? false
+                let isLive = doc?.get("isLive") as? Bool ?? false
+                let password = doc?.get("password") as? String ?? ""
+                let phoneNumber = doc?.get("phoneNumber") as? String ?? ""
+                let token = doc?.get("token") as? String ?? ""
+                let selectedApp = doc?.get("selectedApp") as? String ?? ""
+                print("PayWoowManagerSystem: OBOOĞ \(selectedApp)")
                 self.isActiveSecure = isActiveSecure
                 self.isLive = isLive
                 self.password = password
