@@ -1,0 +1,9 @@
+${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/DigisignBase.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/OpenCVTechsign.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/id_card_detection_ios.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/id_card_detection_ios_cnn.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/RKYC_iOS.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/id_card_detection_ios_wrapper.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/openssl_techsign.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/passport_reader.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/face_mesh_detection.framework

@@ -179,11 +179,27 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/CreditCardReader/CreditCardReader.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/NSFWDetector/NSFWDetector.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/DigisignBase.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/id_card_detection_ios.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/id_card_detection_ios_cnn.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/RKYC_iOS.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/id_card_detection_ios_wrapper.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/openssl_techsign.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/passport_reader.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/face_mesh_detection.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/CreditCardReader/CreditCardReader.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/NSFWDetector/NSFWDetector.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/DigisignBase.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/id_card_detection_ios.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/id_card_detection_ios_cnn.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/RKYC_iOS.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/id_card_detection_ios_wrapper.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/openssl_techsign.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/passport_reader.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/face_mesh_detection.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

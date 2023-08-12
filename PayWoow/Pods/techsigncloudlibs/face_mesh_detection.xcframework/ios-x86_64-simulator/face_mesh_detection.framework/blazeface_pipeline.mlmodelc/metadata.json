@@ -1,0 +1,110 @@
+[
+  {
+    "metadataOutputVersion" : "3.0",
+    "storagePrecision" : "Float32",
+    "outputSchema" : [
+      {
+        "dataType" : "Double",
+        "hasShapeFlexibility" : "1",
+        "isOptional" : "0",
+        "shapeFlexibility" : "0... × 1",
+        "shapeRange" : "[[0, -1], [1, 1]]",
+        "formattedType" : "MultiArray (Double 0 × 1)",
+        "type" : "MultiArray",
+        "shape" : "[0, 1]",
+        "name" : "confidence",
+        "shortDescription" : ""
+      },
+      {
+        "dataType" : "Double",
+        "hasShapeFlexibility" : "1",
+        "isOptional" : "0",
+        "shapeFlexibility" : "0... × 4",
+        "shapeRange" : "[[0, -1], [4, 4]]",
+        "formattedType" : "MultiArray (Double 0 × 4)",
+        "type" : "MultiArray",
+        "shape" : "[0, 4]",
+        "name" : "coordinates",
+        "shortDescription" : ""
+      }
+    ],
+    "modelParameters" : [
+
+    ],
+    "specificationVersion" : 1,
+    "computePrecision" : "Float16",
+    "isUpdatable" : "0",
+    "availability" : {
+      "macOS" : "10.13",
+      "tvOS" : "11.0",
+      "watchOS" : "4.0",
+      "iOS" : "11.0",
+      "macCatalyst" : "11.0"
+    },
+    "modelType" : {
+      "name" : "MLModelType_pipeline",
+      "structure" : [
+        {
+          "name" : "MLModelType_neuralNetwork"
+        },
+        {
+          "name" : "MLModelType_nonMaximumSuppression"
+        }
+      ]
+    },
+    "userDefinedMetadata" : {
+      "coremltoolsVersion" : "3.4"
+    },
+    "classLabels" : [
+      "face"
+    ],
+    "generatedClassName" : "blazeface_pipeline",
+    "inputSchema" : [
+      {
+        "height" : "128",
+        "colorspace" : "RGB",
+        "isOptional" : "0",
+        "width" : "128",
+        "isColor" : "1",
+        "formattedType" : "Image (Color 128 × 128)",
+        "hasSizeFlexibility" : "0",
+        "type" : "Image",
+        "shortDescription" : "",
+        "name" : "input_image"
+      },
+      {
+        "isOptional" : "1",
+        "formattedType" : "Double?",
+        "type" : "Double",
+        "name" : "iouThreshold",
+        "shortDescription" : ""
+      },
+      {
+        "isOptional" : "1",
+        "formattedType" : "Double?",
+        "type" : "Double",
+        "name" : "confidenceThreshold",
+        "shortDescription" : ""
+      }
+    ],
+    "neuralNetworkLayerTypeHistogram" : {
+      "AddBroadcastable" : 4,
+      "Convolution" : 37,
+      "MaxBroadcastable" : 1,
+      "ActivationSigmoid" : 1,
+      "ReshapeStatic" : 6,
+      "LoadConstantND" : 17,
+      "Transpose" : 4,
+      "ConstantPad" : 11,
+      "PoolingMax" : 3,
+      "MinBroadcastable" : 1,
+      "Squeeze" : 2,
+      "SliceStatic" : 7,
+      "Add" : 16,
+      "Multiply" : 6,
+      "ConcatND" : 4,
+      "ActivationReLU" : 17
+    },
+    "method" : "predict"
+  }
+]

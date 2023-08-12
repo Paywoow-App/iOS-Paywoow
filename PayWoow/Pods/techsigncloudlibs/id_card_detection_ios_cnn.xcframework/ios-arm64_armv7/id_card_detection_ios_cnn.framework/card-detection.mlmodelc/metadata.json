@@ -1,0 +1,78 @@
+[
+  {
+    "metadataOutputVersion" : "3.0",
+    "storagePrecision" : "Float32",
+    "outputSchema" : [
+      {
+        "hasShapeFlexibility" : "0",
+        "isOptional" : "0",
+        "dataType" : "Float32",
+        "formattedType" : "MultiArray (Float32)",
+        "shortDescription" : "",
+        "shape" : "[]",
+        "name" : "classifier",
+        "type" : "MultiArray"
+      },
+      {
+        "hasShapeFlexibility" : "0",
+        "isOptional" : "0",
+        "dataType" : "Float32",
+        "formattedType" : "MultiArray (Float32)",
+        "shortDescription" : "",
+        "shape" : "[]",
+        "name" : "locator",
+        "type" : "MultiArray"
+      }
+    ],
+    "modelParameters" : [
+
+    ],
+    "specificationVersion" : 4,
+    "computePrecision" : "Float16",
+    "isUpdatable" : "0",
+    "availability" : {
+      "macOS" : "10.15",
+      "tvOS" : "13.0",
+      "watchOS" : "6.0",
+      "iOS" : "13.0",
+      "macCatalyst" : "13.0"
+    },
+    "neuralNetworkLayerTypeHistogram" : {
+      "InnerProduct" : 3,
+      "UnaryThreshold" : 27,
+      "Convolution" : 56,
+      "Transpose" : 2,
+      "ReshapeStatic" : 2,
+      "PaddingConstant" : 4,
+      "Add" : 25,
+      "Multiply" : 55,
+      "SoftmaxND" : 1,
+      "ActivationLinear" : 54,
+      "ActivationReLU" : 41,
+      "PoolingAverage" : 10
+    },
+    "modelType" : {
+      "name" : "MLModelType_neuralNetwork"
+    },
+    "userDefinedMetadata" : {
+      "com.github.apple.coremltools.version" : "5.2.0",
+      "com.github.apple.coremltools.source" : "tensorflow==2.8.0"
+    },
+    "generatedClassName" : "card_detection",
+    "inputSchema" : [
+      {
+        "height" : "384",
+        "colorspace" : "RGB",
+        "isOptional" : "0",
+        "width" : "384",
+        "isColor" : "1",
+        "formattedType" : "Image (Color 384 × 384)",
+        "hasSizeFlexibility" : "0",
+        "type" : "Image",
+        "shortDescription" : "",
+        "name" : "input_2"
+      }
+    ],
+    "method" : "predict"
+  }
+]

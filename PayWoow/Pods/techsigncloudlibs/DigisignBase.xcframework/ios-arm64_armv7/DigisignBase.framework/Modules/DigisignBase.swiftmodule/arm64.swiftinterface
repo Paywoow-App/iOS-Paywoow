@@ -1,0 +1,196 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
+// swift-module-flags: -target arm64-apple-ios8.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name DigisignBase
+@_exported import DigisignBase
+import Foundation
+import Swift
+import UIKit
+import _Concurrency
+public protocol BiometricAndOCRDelegate {
+  func invokeOCRDialog()
+  func invokeBiometricDialog()
+}
+public protocol RemoteSignerTokenHandler {
+  func tokenInserted()
+  func tokenRemoved()
+}
+public enum Result<T, Error> : DigisignBase.ResultProtocol, Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible where Error : Swift.Error {
+  case success(T)
+  case failure(Error)
+  public init(value: T)
+  public init(error: Error)
+  public init(_ value: T?, failWith: @autoclosure () -> Error)
+  public init(_ f: @autoclosure () throws -> T)
+  public init(attempt f: () throws -> T)
+  public func dematerialize() throws -> T
+  public func analysis<Result>(ifSuccess: (T) -> Result, ifFailure: (Error) -> Result) -> Result
+  public static var errorDomain: Swift.String {
+    get
+  }
+  public static var functionKey: Swift.String {
+    get
+  }
+  public static var fileKey: Swift.String {
+    get
+  }
+  public static var lineKey: Swift.String {
+    get
+  }
+  public static func error(_ message: Swift.String? = nil, function: Swift.String = #function, file: Swift.String = #file, line: Swift.Int = #line) -> Foundation.NSError
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public typealias Value = T
+}
+public func materialize<T>(_ f: () throws -> T) -> DigisignBase.Result<T, DigisignBase.AnyError>
+public func materialize<T>(_ f: @autoclosure () throws -> T) -> DigisignBase.Result<T, DigisignBase.AnyError>
+@available(*, deprecated, message: "Use the overload which returns `Result<T, AnyError>` instead")
+public func materialize<T>(_ f: () throws -> T) -> DigisignBase.Result<T, Foundation.NSError>
+@available(*, deprecated, message: "Use the overload which returns `Result<T, AnyError>` instead")
+public func materialize<T>(_ f: @autoclosure () throws -> T) -> DigisignBase.Result<T, Foundation.NSError>
+public func `try`<T>(_ function: Swift.String = #function, file: Swift.String = #file, line: Swift.Int = #line, try: (Foundation.NSErrorPointer) -> T?) -> DigisignBase.Result<T, Foundation.NSError>
+public func `try`(_ function: Swift.String = #function, file: Swift.String = #file, line: Swift.Int = #line, try: (Foundation.NSErrorPointer) -> Swift.Bool) -> DigisignBase.Result<(), Foundation.NSError>
+extension Foundation.NSError : DigisignBase.ErrorConvertible {
+  public static func error(from error: Swift.Error) -> Self
+}
+public enum NoError : Swift.Error, Swift.Equatable {
+  public static func == (lhs: DigisignBase.NoError, rhs: DigisignBase.NoError) -> Swift.Bool
+}
+public struct AnyError : Swift.Error {
+  public let error: Swift.Error
+  public init(_ error: Swift.Error)
+}
+extension DigisignBase.AnyError : DigisignBase.ErrorConvertible {
+  public static func error(from error: Swift.Error) -> DigisignBase.AnyError
+}
+extension DigisignBase.AnyError : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension DigisignBase.AnyError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+  public var helpAnchor: Swift.String? {
+    get
+  }
+  public var recoverySuggestion: Swift.String? {
+    get
+  }
+}
+extension DigisignBase.Result {
+  @available(*, unavailable, renamed: "success")
+  public static func Success(_: T) -> DigisignBase.Result<T, Error>
+  @available(*, unavailable, renamed: "failure")
+  public static func Failure(_: Error) -> DigisignBase.Result<T, Error>
+}
+extension Foundation.NSError {
+  @available(*, unavailable, renamed: "error(from:)")
+  public static func errorFromErrorType(_ error: Swift.Error) -> Self
+}
+public protocol ResultProtocol {
+  associatedtype Value
+  associatedtype Error : Swift.Error
+  init(value: Self.Value)
+  init(error: Self.Error)
+  func analysis<U>(ifSuccess: (Self.Value) -> U, ifFailure: (Self.Error) -> U) -> U
+  var value: Self.Value? { get }
+  var error: Self.Error? { get }
+}
+extension DigisignBase.ResultProtocol {
+  public var value: Self.Value? {
+    get
+  }
+  public var error: Self.Error? {
+    get
+  }
+  public func map<U>(_ transform: (Self.Value) -> U) -> DigisignBase.Result<U, Self.Error>
+  public func flatMap<U>(_ transform: (Self.Value) -> DigisignBase.Result<U, Self.Error>) -> DigisignBase.Result<U, Self.Error>
+  public func fanout<R>(_ other: @autoclosure () -> R) -> DigisignBase.Result<(Self.Value, R.Value), Self.Error> where R : DigisignBase.ResultProtocol, Self.Error == R.Error
+  public func mapError<Error2>(_ transform: (Self.Error) -> Error2) -> DigisignBase.Result<Self.Value, Error2> where Error2 : Swift.Error
+  public func flatMapError<Error2>(_ transform: (Self.Error) -> DigisignBase.Result<Self.Value, Error2>) -> DigisignBase.Result<Self.Value, Error2> where Error2 : Swift.Error
+  public func bimap<U, Error2>(success: (Self.Value) -> U, failure: (Self.Error) -> Error2) -> DigisignBase.Result<U, Error2> where Error2 : Swift.Error
+}
+extension DigisignBase.ResultProtocol {
+  public func recover(_ value: @autoclosure () -> Self.Value) -> Self.Value
+  public func recover(with result: @autoclosure () -> Self) -> Self
+}
+public protocol ErrorConvertible : Swift.Error {
+  static func error(from error: Swift.Error) -> Self
+}
+extension DigisignBase.ResultProtocol where Self.Error : DigisignBase.ErrorConvertible {
+  public func tryMap<U>(_ transform: (Self.Value) throws -> U) -> DigisignBase.Result<U, Self.Error>
+}
+infix operator &&& : LogicalConjunctionPrecedence
+@available(*, deprecated, renamed: "ResultProtocol.fanout(self:_:)")
+public func &&& <L, R>(left: L, right: R) -> DigisignBase.Result<(L.Value, R.Value), L.Error> where L : DigisignBase.ResultProtocol, R : DigisignBase.ResultProtocol, L.Error == R.Error
+precedencegroup ChainingPrecedence {
+  associativity: left
+  higherThan: TernaryPrecedence
+}
+infix operator >>- : ChainingPrecedence
+@available(*, deprecated, renamed: "ResultProtocol.flatMap(self:_:)")
+public func >>- <T, U>(result: T, transform: (T.Value) -> DigisignBase.Result<U, T.Error>) -> DigisignBase.Result<U, T.Error> where T : DigisignBase.ResultProtocol
+public func == <T>(left: T, right: T) -> Swift.Bool where T : DigisignBase.ResultProtocol, T.Error : Swift.Equatable, T.Value : Swift.Equatable
+public func != <T>(left: T, right: T) -> Swift.Bool where T : DigisignBase.ResultProtocol, T.Error : Swift.Equatable, T.Value : Swift.Equatable
+public func ?? <T>(left: T, right: @autoclosure () -> T.Value) -> T.Value where T : DigisignBase.ResultProtocol
+public func ?? <T>(left: T, right: @autoclosure () -> T) -> T where T : DigisignBase.ResultProtocol
+@available(*, unavailable, renamed: "ResultProtocol")
+public typealias ResultType = DigisignBase.ResultProtocol
+@available(*, unavailable, renamed: "Error")
+public typealias ResultErrorType = Swift.Error
+@available(*, unavailable, renamed: "ErrorConvertible")
+public typealias ErrorTypeConvertible = DigisignBase.ErrorConvertible
+@available(*, deprecated, renamed: "ErrorConvertible")
+public protocol ErrorProtocolConvertible : DigisignBase.ErrorConvertible {
+}
+extension DigisignBase.ResultProtocol {
+  @available(*, unavailable, renamed: "recover(with:)")
+  public func recoverWith(_ result: @autoclosure () -> Self) -> Self
+}
+extension DigisignBase.ErrorConvertible {
+  @available(*, unavailable, renamed: "error(from:)")
+  public static func errorFromErrorType(_ error: Swift.Error) -> Self
+}
+public class IDCardModel {
+  public init()
+  public var cardImage: UIKit.UIImage?
+  public var name: Swift.String?
+  public var surname: Swift.String?
+  public var idNo: Swift.String?
+  public var birthYear: Swift.String?
+  public var birthDate: Swift.String?
+  public var expireDate: Swift.String?
+  public var documentNo: Swift.String?
+  public var isDocumentNoValid: Swift.Bool
+  public var isExpireDateValid: Swift.Bool
+  public var isBirthDateValid: Swift.Bool
+  public var isPersonalNumberValid: Swift.Bool
+  @objc deinit
+}
+public protocol CardReaderEventListener : AnyObject {
+  func cardReaderAttached()
+  func cardReaderDetached()
+  func cardInserted()
+  func cardRemoved()
+}
+public class SigningCertificateHolder {
+  public init(publicKey: Swift.String, certificateChain: [Swift.String])
+  public func getPublicKey() -> Swift.String
+  public func getCertificateChain() -> [Swift.String]
+  @objc deinit
+}
+public protocol PdfRemoteSigner {
+  func readCertificates(completion: @escaping (DigisignBase.Result<DigisignBase.SigningCertificateHolder, Foundation.NSError>) -> Swift.Void)
+  func sign(data: Foundation.Data, completion: @escaping (DigisignBase.Result<Foundation.Data, Foundation.NSError>) -> Swift.Void)
+  func isTokenAvailable() -> Swift.Bool
+  func setTokenHandler(tokenHandler: DigisignBase.RemoteSignerTokenHandler)
+  func clearTokenHandler()
+}

@@ -1,0 +1,11 @@
+framework module face_mesh_detection {
+  umbrella header "face_mesh_detection.h"
+
+  export *
+  module * { export * }
+}
+
+module face_mesh_detection.Swift {
+    header "face_mesh_detection-Swift.h"
+    requires objc
+}

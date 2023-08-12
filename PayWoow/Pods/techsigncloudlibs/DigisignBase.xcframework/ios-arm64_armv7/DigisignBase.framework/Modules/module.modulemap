@@ -1,0 +1,11 @@
+framework module DigisignBase {
+  umbrella header "DigisignBase.h"
+
+  export *
+  module * { export * }
+}
+
+module DigisignBase.Swift {
+    header "DigisignBase-Swift.h"
+    requires objc
+}

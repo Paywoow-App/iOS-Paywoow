@@ -1,0 +1,405 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
+// swift-module-flags: -target armv7-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name id_card_detection_ios_cnn
+import AVFoundation
+import CoreImage
+import CoreML
+import Foundation
+import Swift
+import UIKit
+import Vision
+import _Concurrency
+@available(iOS 13.0, *)
+public class IDCardTypeChecker {
+  public init(idCardTypeDelegate: id_card_detection_ios_cnn.IDCardTypeControllerDelegate?)
+  public func check(image: UIKit.UIImage, cardType: id_card_detection_ios_cnn.CardType)
+  @objc deinit
+}
+public protocol IDCardTypeControllerDelegate : AnyObject {
+  func onTypeControlled(image: UIKit.UIImage, result: id_card_detection_ios_cnn.TypeControlResultModel)
+}
+public class Point {
+  final public let x: Swift.Float
+  final public let y: Swift.Float
+  public init(x: Swift.Float, y: Swift.Float)
+  @objc deinit
+}
+@available(iOS 13.0, *)
+public class CardDetectionResultModel {
+  final public let points: id_card_detection_ios_cnn.CardLocationPoints
+  final public let detectedCardType: id_card_detection_ios_cnn.DetectedCardType
+  final public let cardTypeScore: Swift.Float
+  public init(points: id_card_detection_ios_cnn.CardLocationPoints, detectedCardType: id_card_detection_ios_cnn.DetectedCardType, cardTypeScore: Swift.Float)
+  @objc deinit
+}
+@available(iOS 13.0, *)
+public class IDCardOCROperator {
+  public init(idCardOCROperatorDelegate: id_card_detection_ios_cnn.IDCardOCROperatorDelegate?, cardPhoto: UIKit.UIImage, typeControlResult: Swift.Bool, isReverse: Swift.Bool, detectedCardType: id_card_detection_ios_cnn.CardType)
+  @objc deinit
+}
+public protocol IDCardOCROperatorDelegate : AnyObject {
+  func onOCRCompleted(model: id_card_detection_ios_cnn.OcrResultModel)
+}
+@available(iOS 13.0, *)
+public class CardLocationPoints {
+  final public let leftTop: id_card_detection_ios_cnn.Point?
+  final public let rightTop: id_card_detection_ios_cnn.Point?
+  final public let leftBottom: id_card_detection_ios_cnn.Point?
+  final public let rightBottom: id_card_detection_ios_cnn.Point?
+  public init(leftTop: id_card_detection_ios_cnn.Point, rightTop: id_card_detection_ios_cnn.Point, leftBottom: id_card_detection_ios_cnn.Point, rightBottom: id_card_detection_ios_cnn.Point)
+  public init(cardLocationLines: id_card_detection_ios_cnn.CardLocationLines)
+  @objc deinit
+}
+public class IDCardDetectionConfiguration {
+  public static let CAMERA_RATIO: CoreGraphics.CGFloat
+  final public let FRAME_RATE: Swift.Int
+  public var hintStrokeWidth: CoreGraphics.CGFloat
+  public var preHintRatio: CoreGraphics.CGFloat
+  public var hintColor: CoreGraphics.CGColor
+  public var hintBackgroundColor: CoreGraphics.CGColor
+  public var overlayBackgroundColor: CoreGraphics.CGColor
+  public var hintDisplayRatio: CoreGraphics.CGFloat
+  public var isMrzActive: Swift.Bool
+  public var checkCardType: Swift.Bool
+  public var turnIfReverse: Swift.Bool
+  public var doOcr: Swift.Bool
+  public var captureOnlyInHint: Swift.Bool
+  public var isHintHidden: Swift.Bool
+  public var minFocusScore: Swift.Float
+  public var eligibleFocusScoreCount: Swift.Int
+  public var capturedColor: CoreGraphics.CGColor
+  public var uncapturedColor: CoreGraphics.CGColor
+  public var cardTypeList: [id_card_detection_ios_cnn.CardType]? {
+    get
+    set
+  }
+  public var capturedStyle: CoreGraphics.CGPathDrawingMode
+  public var capturedStrokeWidth: CoreGraphics.CGFloat
+  public var detectedCardTypeList: [id_card_detection_ios_cnn.DetectedCardType] {
+    get
+  }
+  public var minImageCorrectionScore: Swift.Float
+  public var focusScoreThreshold: Swift.Float
+  public var isFocusScoreThresholdActive: Swift.Bool
+  public var captureOnlyInHintMargin: CoreGraphics.CGFloat
+  public var disableFourPointTransformation: Swift.Bool
+  public var disableCardDetection: Swift.Bool
+  public var flashToggleAvailable: Swift.Bool
+  public var flashOn: Swift.Bool
+  public var cardDetectionMargin: Swift.Float?
+  public init()
+  @objc deinit
+}
+public class OcrResultModel {
+  public var idInformation: id_card_detection_ios_cnn.IDInformationModel
+  public var cardPhoto: UIKit.UIImage
+  public var typeControlResult: Swift.Bool?
+  public var isReverse: Swift.Bool
+  public var detectedCardType: id_card_detection_ios_cnn.CardType
+  public init(idInformation: id_card_detection_ios_cnn.IDInformationModel, cardPhoto: UIKit.UIImage, typeControlResult: Swift.Bool?, isReverse: Swift.Bool, detectedCardType: id_card_detection_ios_cnn.CardType)
+  @objc deinit
+}
+public class CardLocationLines {
+  final public let top: id_card_detection_ios_cnn.Line
+  final public let bottom: id_card_detection_ios_cnn.Line
+  final public let left: id_card_detection_ios_cnn.Line
+  final public let right: id_card_detection_ios_cnn.Line
+  public init(top: id_card_detection_ios_cnn.Line, bottom: id_card_detection_ios_cnn.Line, left: id_card_detection_ios_cnn.Line, right: id_card_detection_ios_cnn.Line)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13.0, *)
+@_Concurrency.MainActor(unsafe) public class GuideView : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public var hintWidth: CoreGraphics.CGFloat?
+  @_Concurrency.MainActor(unsafe) public var hintHeight: CoreGraphics.CGFloat?
+  @_Concurrency.MainActor(unsafe) public var isHintHidden: Swift.Bool?
+  @_Concurrency.MainActor(unsafe) public var strokeWidth: CoreGraphics.CGFloat?
+  @_Concurrency.MainActor(unsafe) public var hintColor: CoreGraphics.CGColor?
+  @_Concurrency.MainActor(unsafe) public var capturedColor: CoreGraphics.CGColor?
+  @_Concurrency.MainActor(unsafe) public var uncapturedColor: CoreGraphics.CGColor?
+  @_Concurrency.MainActor(unsafe) public var cardLocationPoints: id_card_detection_ios_cnn.CardLocationPoints?
+  @_Concurrency.MainActor(unsafe) public var capturedStyle: CoreGraphics.CGPathDrawingMode?
+  @_Concurrency.MainActor(unsafe) public var capturedStrokeWidth: CoreGraphics.CGFloat?
+  @_Concurrency.MainActor(unsafe) public var overlayBackgroundColor: CoreGraphics.CGColor?
+  @_Concurrency.MainActor(unsafe) public var hintBackgroundColor: CoreGraphics.CGColor?
+  @_Concurrency.MainActor(unsafe) public var errorRatio: Swift.Float?
+  @objc deinit
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func draw(_ rect: CoreGraphics.CGRect)
+}
+@_inheritsConvenienceInitializers @objc(MRZTD1) open class MRZTD1 : id_card_detection_ios_cnn.MRZParser {
+  @objc public var documentType: Swift.String
+  @objc public var documentSubType: Swift.String
+  @objc public var countryCode: Swift.String
+  @objc public var passportNumber: Swift.String
+  @objc public var dateOfBirth: Foundation.Date?
+  @objc public var sex: Swift.String
+  @objc public var expirationDate: Foundation.Date?
+  @objc public var nationality: Swift.String
+  @objc public var lastName: Swift.String
+  @objc public var firstName: Swift.String
+  public var idNo: Swift.String
+  @objc override public func data() -> Swift.Dictionary<Swift.String, Any>
+  @objc override dynamic open var description: Swift.String {
+    @objc get
+  }
+  @objc override public init(scan: Swift.String, debug: Swift.Bool = false)
+  @objc deinit
+}
+public enum DetectedCardType : Swift.Int, Swift.CaseIterable {
+  case NO_CARD, UNKNOWN, PASSPORT, PAPER, TURKISH_ID_FRONT, TURKISH_ID_BACK, TURKISH_DRIVER_LICENSE_FRONT, TURKISH_DRIVER_LICENSE_BACK, TURKISH_OLD_ID_FRONT, TURKISH_OLD_ID_BACK
+  public static func fromValue(value: Swift.Int) -> id_card_detection_ios_cnn.DetectedCardType
+  public init?(rawValue: Swift.Int)
+  public typealias AllCases = [id_card_detection_ios_cnn.DetectedCardType]
+  public typealias RawValue = Swift.Int
+  public static var allCases: [id_card_detection_ios_cnn.DetectedCardType] {
+    get
+  }
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public class TypeControlResultModel {
+  public var detectedType: id_card_detection_ios_cnn.CardType
+  public var typeControlResult: Swift.Bool?
+  public init(detectedType: id_card_detection_ios_cnn.CardType, typeControlResult: Swift.Bool?)
+  @objc deinit
+}
+@available(iOS 13.0, *)
+public class ImageCorrectionCNN {
+  public init() throws
+  public func correct(pivot: UIKit.UIImage, source: UIKit.UIImage, completion: @escaping (Swift.Result<id_card_detection_ios_cnn.ImageCorrectionResult, Swift.Error>) -> Swift.Void)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class Util {
+  public static func levenshtein(first: Swift.String, second: Swift.String) -> Swift.Int
+  @objc deinit
+}
+public enum DeviceModel : Swift.String {
+  case simulator, iPod1, iPod2, iPod3, iPod4, iPod5, iPod6, iPod7, iPad2, iPad3, iPad4, iPadAir, iPadAir2, iPadAir3, iPadAir4, iPadAir5, iPad5, iPad6, iPad7, iPad8, iPad9, iPadMini, iPadMini2, iPadMini3, iPadMini4, iPadMini5, iPadMini6, iPadPro9_7, iPadPro10_5, iPadPro11, iPadPro2_11, iPadPro3_11, iPadPro12_9, iPadPro2_12_9, iPadPro3_12_9, iPadPro4_12_9, iPadPro5_12_9, iPhone4, iPhone4S, iPhone5, iPhone5S, iPhone5C, iPhone6, iPhone6Plus, iPhone6S, iPhone6SPlus, iPhoneSE, iPhone7, iPhone7Plus, iPhone8, iPhone8Plus, iPhoneX, iPhoneXS, iPhoneXSMax, iPhoneXR, iPhone11, iPhone11Pro, iPhone11ProMax, iPhoneSE2, iPhone12Mini, iPhone12, iPhone12Pro, iPhone12ProMax, iPhone13Mini, iPhone13, iPhone13Pro, iPhone13ProMax, iPhoneSE3, iPhone14, iPhone14Plus, iPhone14Pro, iPhone14ProMax, AppleWatch1, AppleWatchS1, AppleWatchS2, AppleWatchS3, AppleWatchS4, AppleWatchS5, AppleWatchSE, AppleWatchS6, AppleWatchS7, AppleTV1, AppleTV2, AppleTV3, AppleTV4, AppleTV_4K, AppleTV2_4K, unrecognized
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension UIKit.UIDevice {
+  @_Concurrency.MainActor(unsafe) public var deviceType: id_card_detection_ios_cnn.DeviceModel {
+    get
+  }
+}
+public protocol ViewDelegate : AnyObject {
+  func onViewDrawn(mainRect: CoreGraphics.CGRect)
+}
+public class Line {
+  final public let p1: id_card_detection_ios_cnn.Point
+  final public let p2: id_card_detection_ios_cnn.Point
+  public init(p1: id_card_detection_ios_cnn.Point, p2: id_card_detection_ios_cnn.Point)
+  @objc deinit
+}
+@objc(MRZParser) open class MRZParser : ObjectiveC.NSObject {
+  @objc public var parsedMRZ: Swift.String
+  @objc public init(scan: Swift.String, debug: Swift.Bool = false)
+  @objc public func data() -> Swift.Dictionary<Swift.String, Any>
+  @objc deinit
+}
+public class CardType : Swift.Equatable {
+  public static let LANDSCAPE_CARD_WIDTH: CoreGraphics.CGFloat
+  public static let LANDSCAPE_CARD_HEIGHT: CoreGraphics.CGFloat
+  public static let PASSPORT_CARD_WIDTH: CoreGraphics.CGFloat
+  public static let PASSPORT_CARD_HEIGHT: CoreGraphics.CGFloat
+  public static let PDF_A4_WIDTH: CoreGraphics.CGFloat
+  public static let PDF_A4_HEIGHT: CoreGraphics.CGFloat
+  public static let FOREIGN_ID_NEW_WIDTH: CoreGraphics.CGFloat
+  public static let FOREIGN_ID_NEW_HEIGHT: CoreGraphics.CGFloat
+  public static let PORTRAIT_CARD_WIDTH: CoreGraphics.CGFloat
+  public static let PORTRAIT_CARD_HEIGHT: CoreGraphics.CGFloat
+  public static let OLD_ID: id_card_detection_ios_cnn.CardType
+  public static let OLD_ID_BACK: id_card_detection_ios_cnn.CardType
+  public static let BLUE_CARD: id_card_detection_ios_cnn.CardType
+  public static let NEW_ID: id_card_detection_ios_cnn.CardType
+  public static let NEW_ID_BACK: id_card_detection_ios_cnn.CardType
+  public static let NEW_DRIVER: id_card_detection_ios_cnn.CardType
+  public static let DRIVER_BACK: id_card_detection_ios_cnn.CardType
+  public static let FOREIGN_ID: id_card_detection_ios_cnn.CardType
+  public static let GERMAN_ID: id_card_detection_ios_cnn.CardType
+  public static let NEW_BLUE_CARD: id_card_detection_ios_cnn.CardType
+  public static let FOREIGN_ID_PORTRAIT: id_card_detection_ios_cnn.CardType
+  public static let PASSPORT: id_card_detection_ios_cnn.CardType
+  public static let PDF_A4: id_card_detection_ios_cnn.CardType
+  public static let NO_CARD: id_card_detection_ios_cnn.CardType
+  public static let UNKNOWN: id_card_detection_ios_cnn.CardType
+  public var width: CoreGraphics.CGFloat
+  public var height: CoreGraphics.CGFloat
+  public var cardEnum: id_card_detection_ios_cnn.CardType.CardEnum
+  required public init(_ width: CoreGraphics.CGFloat, _ height: CoreGraphics.CGFloat, _ cardEnum: id_card_detection_ios_cnn.CardType.CardEnum)
+  public static func == (lhs: id_card_detection_ios_cnn.CardType, rhs: id_card_detection_ios_cnn.CardType) -> Swift.Bool
+  public static func to(_ cardType: id_card_detection_ios_cnn.CardType) -> id_card_detection_ios_cnn.DetectedCardType
+  public static func from(_ detectedCardType: id_card_detection_ios_cnn.DetectedCardType) -> id_card_detection_ios_cnn.CardType
+  public static func cardTypeListHaveDifferentSizes(cardTypeList: [id_card_detection_ios_cnn.CardType]) -> Swift.Bool
+  @available(iOS 13.0, *)
+  public static func findSimilarType(possibleCardTypes: [id_card_detection_ios_cnn.CardType], points: id_card_detection_ios_cnn.CardLocationPoints) -> id_card_detection_ios_cnn.CardType
+  public enum CardEnum {
+    case OLD_ID
+    case NEW_ID
+    case NEW_ID_BACK
+    case NEW_DRIVER
+    case PASSPORT
+    case OLD_ID_BACK
+    case DRIVER_BACK
+    case FOREIGN_ID
+    case PDF_A4
+    case FOREIGN_ID_PORTRAIT
+    case BLUE_CARD
+    case GERMAN_ID
+    case NEW_BLUE_CARD
+    case UNKNOWN
+    case NO_CARD
+    public static func == (a: id_card_detection_ios_cnn.CardType.CardEnum, b: id_card_detection_ios_cnn.CardType.CardEnum) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  @objc deinit
+}
+public class IDInformationModel {
+  public var tckn: Swift.String
+  public var name: Swift.String
+  public var surname: Swift.String
+  public var birthYear: Swift.String
+  public var birthDate: Swift.String
+  public var docNumber: Swift.String
+  public var expireDate: Swift.String
+  public var gender: Swift.String
+  public var nationality: Swift.String
+  public var motherName: Swift.String
+  public var fatherName: Swift.String
+  public var issuingAuthority: Swift.String
+  public var passportNo: Swift.String
+  public var serialNo: Swift.String
+  public var issueDate: Swift.String
+  public var cardType: id_card_detection_ios_cnn.CardType
+  public init(cardType: id_card_detection_ios_cnn.CardType)
+  @objc deinit
+}
+@available(iOS 13.0, *)
+public class BlurDetectionCNN {
+  public init() throws
+  public func predict(image: UIKit.UIImage, completion: @escaping (Swift.Result<Swift.Float, Swift.Error>) -> Swift.Void)
+  @objc deinit
+}
+@available(iOS 13.0, *)
+public class CardDetectionCNN {
+  public init() throws
+  public func predict(image: UIKit.UIImage, completion: @escaping (Swift.Result<id_card_detection_ios_cnn.CardDetectionResultModel, Swift.Error>) -> Swift.Void)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13.0, *)
+@_Concurrency.MainActor(unsafe) public class IDCardDetectionView : UIKit.UIView, AVFoundation.AVCaptureVideoDataOutputSampleBufferDelegate, AVFoundation.AVCapturePhotoCaptureDelegate, id_card_detection_ios_cnn.IDCardTypeControllerDelegate, id_card_detection_ios_cnn.IDCardOCROperatorDelegate {
+  @_Concurrency.MainActor(unsafe) public static var START_STOP_PREVIEW_WITH_CAPTURE: Swift.Bool
+  @_Concurrency.MainActor(unsafe) public static var IS_PORTRAIT: Swift.Bool?
+  @_Concurrency.MainActor(unsafe) public static var IS_TRADEMARK_LOGO_ON: Swift.Bool
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @_Concurrency.MainActor(unsafe) public func setConfiguration(_ configuration: id_card_detection_ios_cnn.IDCardDetectionConfiguration)
+  @_Concurrency.MainActor(unsafe) public func setViewDelegate(_ delegate: id_card_detection_ios_cnn.ViewDelegate?)
+  @_Concurrency.MainActor(unsafe) public func setDelegate(_ delegate: id_card_detection_ios_cnn.IDCardDetectionDelegate?)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func didMoveToSuperview()
+  @objc deinit
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func willRemoveSubview(_ subview: UIKit.UIView)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func willMove(toSuperview newSuperview: UIKit.UIView?)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func layoutSubviews()
+  @_Concurrency.MainActor(unsafe) public func startCapture()
+  @_Concurrency.MainActor(unsafe) public func stopCapture()
+  @_Concurrency.MainActor(unsafe) @objc public func captureOutput(_ output: AVFoundation.AVCaptureOutput, didOutput sampleBuffer: CoreMedia.CMSampleBuffer, from connection: AVFoundation.AVCaptureConnection)
+  @_Concurrency.MainActor(unsafe) public func onOCRCompleted(model: id_card_detection_ios_cnn.OcrResultModel)
+  @_Concurrency.MainActor(unsafe) public func onTypeControlled(image: UIKit.UIImage, result: id_card_detection_ios_cnn.TypeControlResultModel)
+}
+public class CardDetectionErrorsModel {
+  final public let cardType: id_card_detection_ios_cnn.CardType
+  final public let xPerspectiveErrorRatio: Swift.Float
+  final public let isXPerspectiveEligible: Swift.Bool
+  final public let yPerspectiveErrorRatio: Swift.Float
+  final public let isYPerspectiveEligible: Swift.Bool
+  final public let widthHeightErrorRatio: Swift.Float
+  final public let isWidthHeightRatioEligible: Swift.Bool
+  final public let areaErrorRatio: Swift.Float
+  final public let isAreaRatioEligible: Swift.Bool
+  final public let imageSharpnessErrorRatio: Swift.Float
+  final public let isImageSharpnessRatioEligible: Swift.Bool
+  final public let isInsideOfHint: Swift.Bool
+  final public let isImageSharpnessCountEligible: Swift.Bool
+  convenience public init(cardType: id_card_detection_ios_cnn.CardType)
+  convenience public init(cardType: id_card_detection_ios_cnn.CardType, xPerspectiveErrorRatio: Swift.Float, isXPerspectiveEligible: Swift.Bool, yPerspectiveErrorRatio: Swift.Float, isYPerspectiveEligible: Swift.Bool, widthHeightErrorRatio: Swift.Float, isWidthHeightRatioEligible: Swift.Bool, areaErrorRatio: Swift.Float, isAreaRatioEligible: Swift.Bool, isInsideOfHint: Swift.Bool)
+  public init(cardType: id_card_detection_ios_cnn.CardType, xPerspectiveErrorRatio: Swift.Float, isXPerspectiveEligible: Swift.Bool, yPerspectiveErrorRatio: Swift.Float, isYPerspectiveEligible: Swift.Bool, widthHeightErrorRatio: Swift.Float, isWidthHeightRatioEligible: Swift.Bool, areaErrorRatio: Swift.Float, isAreaRatioEligible: Swift.Bool, imageSharpnessErrorRatio: Swift.Float, isImageSharpnessRatioEligible: Swift.Bool, isInsideOfHint: Swift.Bool, isImageSharpnessCountEligible: Swift.Bool)
+  @objc deinit
+}
+public protocol IDCardDetectionDelegate : AnyObject {
+  func cardDetected(image: UIKit.UIImage, cardType: id_card_detection_ios_cnn.CardType)
+  func cardDetectionFailed(cardDetectionErrorsModel: id_card_detection_ios_cnn.CardDetectionErrorsModel)
+  func cardOcrCompleted(ocrResultModel: id_card_detection_ios_cnn.OcrResultModel)
+}
+@_hasMissingDesignatedInitializers @available(iOS 13.0, *)
+public class CNNUtil {
+  public static var ACCEPTABLE_TOP_BOTTOM_LINE_ERROR_RATIO: Swift.Float
+  public static var ACCEPTABLE_RIGHT_LEFT_LINE_ERROR_RATIO: Swift.Float
+  public static var ACCEPTABLE_WIDTH_HEIGHT_ERROR_RATIO: Swift.Float
+  public static var ACCEPTABLE_AREA_ERROR_RATIO: Swift.Float
+  public static var ACCEPTABLE_SHAKE_RATIO: Swift.Float
+  public static var BLUR_MAX_WIDTH_OR_HEIGHT: CoreGraphics.CGFloat
+  public static func resizeImage(image: UIKit.UIImage, targetSize: CoreGraphics.CGSize) -> UIKit.UIImage?
+  public static func calculateSizeForBlur(image: UIKit.UIImage) -> CoreGraphics.CGSize
+  public static func cropImage(image: UIKit.UIImage, cropRect: CoreGraphics.CGRect) -> UIKit.UIImage?
+  public static func mlMultiArray2DFloat32ToArray(multiArray: CoreML.MLMultiArray) -> [[Swift.Float]]
+  public static func argmax(values: [Swift.Float]) -> Swift.Int
+  public static func computeIntersect(x1: Swift.Float, y1: Swift.Float, x2: Swift.Float, y2: Swift.Float, x3: Swift.Float, y3: Swift.Float, x4: Swift.Float, y4: Swift.Float) -> id_card_detection_ios_cnn.Point?
+  public static func distance(_ p1: id_card_detection_ios_cnn.Point, _ p2: id_card_detection_ios_cnn.Point) -> Swift.Float
+  public static func yPerspectiveErrorRatio(_ points: id_card_detection_ios_cnn.CardLocationPoints) -> Swift.Float
+  public static func isYPerspectiveEligible(_ points: id_card_detection_ios_cnn.CardLocationPoints) -> Swift.Bool
+  public static func xPerspectiveErrorRatio(_ points: id_card_detection_ios_cnn.CardLocationPoints) -> Swift.Float
+  public static func isXPerspectiveEligible(_ points: id_card_detection_ios_cnn.CardLocationPoints) -> Swift.Bool
+  public static func widthHeightErrorRatio(_ points: id_card_detection_ios_cnn.CardLocationPoints, _ expectedWidthHeightRatio: Swift.Float) -> Swift.Float
+  public static func isWidthHeightRatioEligible(_ points: id_card_detection_ios_cnn.CardLocationPoints, _ expectedWidthHeightRatio: Swift.Float) -> Swift.Bool
+  public static func areaRatio(_ points: id_card_detection_ios_cnn.CardLocationPoints, _ expectedWidth: Swift.Float, _ expectedHeight: Swift.Float) -> Swift.Float
+  public static func isAreaRatioEligible(_ points: id_card_detection_ios_cnn.CardLocationPoints, _ expectedWidth: Swift.Float, _ expectedHeight: Swift.Float) -> Swift.Bool
+  public static func isDetectionEligible(_ points: id_card_detection_ios_cnn.CardLocationPoints, _ expectedWidth: Swift.Float, _ expectedHeight: Swift.Float) -> Swift.Bool
+  public static func isShakeEligibleForLocation(_ src: id_card_detection_ios_cnn.CardLocationPoints, _ target: id_card_detection_ios_cnn.CardLocationPoints) -> Swift.Bool
+  public static func isShakeEligibleForPoint(_ src: id_card_detection_ios_cnn.Point, _ target: id_card_detection_ios_cnn.Point) -> Swift.Bool
+  public static func isShakeEligibleForValue(_ i: Swift.Float, _ j: Swift.Float) -> Swift.Bool
+  public static func fourPointTransformation(_ source: UIKit.UIImage, _ points: id_card_detection_ios_cnn.CardLocationPoints) -> UIKit.UIImage
+  public static func combineImages(p: UIKit.UIImage, s: UIKit.UIImage) -> UIKit.UIImage
+  public static func getPivotForCardType(_ cardEnum: id_card_detection_ios_cnn.CardType.CardEnum, _ isFirst: Swift.Bool) -> UIKit.UIImage?
+  @objc deinit
+}
+@available(iOS 13.0, *)
+public class ImageCorrectionResult {
+  public var points: id_card_detection_ios_cnn.CardLocationPoints
+  public var correctionScore: Swift.Float
+  public init(points: id_card_detection_ios_cnn.CardLocationPoints, correctionScore: Swift.Float)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(MRZTD3) open class MRZTD3 : id_card_detection_ios_cnn.MRZParser {
+  @objc public var documentType: Swift.String
+  @objc public var documentSubType: Swift.String
+  @objc public var countryCode: Swift.String
+  @objc public var lastName: Swift.String
+  @objc public var firstName: Swift.String
+  @objc public var passportNumber: Swift.String
+  @objc public var nationality: Swift.String
+  @objc public var dateOfBirth: Foundation.Date?
+  @objc public var sex: Swift.String
+  @objc public var expirationDate: Foundation.Date?
+  @objc public var personalNumber: Swift.String
+  @objc override public func data() -> Swift.Dictionary<Swift.String, Any>
+  @objc override dynamic open var description: Swift.String {
+    @objc get
+  }
+  @objc override public init(scan: Swift.String, debug: Swift.Bool = false)
+  @objc deinit
+}
+extension id_card_detection_ios_cnn.DetectedCardType : Swift.Equatable {}
+extension id_card_detection_ios_cnn.DetectedCardType : Swift.Hashable {}
+extension id_card_detection_ios_cnn.DetectedCardType : Swift.RawRepresentable {}
+extension id_card_detection_ios_cnn.DeviceModel : Swift.Equatable {}
+extension id_card_detection_ios_cnn.DeviceModel : Swift.Hashable {}
+extension id_card_detection_ios_cnn.DeviceModel : Swift.RawRepresentable {}
+extension id_card_detection_ios_cnn.CardType.CardEnum : Swift.Equatable {}
+extension id_card_detection_ios_cnn.CardType.CardEnum : Swift.Hashable {}

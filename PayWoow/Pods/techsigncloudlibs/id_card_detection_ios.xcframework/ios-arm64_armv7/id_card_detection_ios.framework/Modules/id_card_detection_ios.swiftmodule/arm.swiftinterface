@@ -1,0 +1,294 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
+// swift-module-flags: -target armv7-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name id_card_detection_ios
+import AVFoundation
+import DigisignBase
+import Foundation
+import OpenCVTechsign
+import Swift
+import UIKit
+import Vision
+import _Concurrency
+@_exported import id_card_detection_ios
+@available(iOS 13.0, *)
+public class IDCardTypeChecker {
+  public static var LEVENSHTEIN_THRESHOLD: Swift.Double
+  public init(idCardTypeDelegate: id_card_detection_ios.IDCardTypeControllerDelegate?)
+  public func check(image: UIKit.UIImage, cardType: id_card_detection_ios.IDCardType)
+  @objc deinit
+}
+public protocol IDCardTypeControllerDelegate : AnyObject {
+  func onTypeControlled(result: id_card_detection_ios.TypeControlResultModel)
+}
+public enum DeviceModel : Swift.String {
+  case simulator, iPod1, iPod2, iPod3, iPod4, iPod5, iPod6, iPod7, iPad2, iPad3, iPad4, iPadAir, iPadAir2, iPadAir3, iPadAir4, iPadAir5, iPad5, iPad6, iPad7, iPad8, iPad9, iPadMini, iPadMini2, iPadMini3, iPadMini4, iPadMini5, iPadMini6, iPadPro9_7, iPadPro10_5, iPadPro11, iPadPro2_11, iPadPro3_11, iPadPro12_9, iPadPro2_12_9, iPadPro3_12_9, iPadPro4_12_9, iPadPro5_12_9, iPhone4, iPhone4S, iPhone5, iPhone5S, iPhone5C, iPhone6, iPhone6Plus, iPhone6S, iPhone6SPlus, iPhoneSE, iPhone7, iPhone7Plus, iPhone8, iPhone8Plus, iPhoneX, iPhoneXS, iPhoneXSMax, iPhoneXR, iPhone11, iPhone11Pro, iPhone11ProMax, iPhoneSE2, iPhone12Mini, iPhone12, iPhone12Pro, iPhone12ProMax, iPhone13Mini, iPhone13, iPhone13Pro, iPhone13ProMax, iPhoneSE3, iPhone14, iPhone14Plus, iPhone14Pro, iPhone14ProMax, AppleWatch1, AppleWatchS1, AppleWatchS2, AppleWatchS3, AppleWatchS4, AppleWatchS5, AppleWatchSE, AppleWatchS6, AppleWatchS7, AppleTV1, AppleTV2, AppleTV3, AppleTV4, AppleTV_4K, AppleTV2_4K, unrecognized
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension UIKit.UIDevice {
+  @_Concurrency.MainActor(unsafe) public var deviceType: id_card_detection_ios.DeviceModel {
+    get
+  }
+}
+public class Point {
+  public init(x: Swift.Int, y: Swift.Int)
+  public func getX() -> Swift.Int
+  public func getY() -> Swift.Int
+  public func shiftBy(width: Swift.Int, height: Swift.Int)
+  public func scaleBy(factor: Swift.Double)
+  @objc deinit
+}
+public class IDCardDetectionConfiguration {
+  public static let CAMERA_RATIO: CoreGraphics.CGFloat
+  final public let FRAME_RATE: Swift.Int
+  public static let LANDSCAPE_CARD_WIDTH: CoreGraphics.CGFloat
+  public static let LANDSCAPE_CARD_HEIGHT: CoreGraphics.CGFloat
+  public static let PASSPORT_CARD_WIDTH: CoreGraphics.CGFloat
+  public static let PASSPORT_CARD_HEIGHT: CoreGraphics.CGFloat
+  public static let PDF_A4_WIDTH: CoreGraphics.CGFloat
+  public static let PDF_A4_HEIGHT: CoreGraphics.CGFloat
+  public static let FOREIGN_ID_NEW_WIDTH: CoreGraphics.CGFloat
+  public static let FOREIGN_ID_NEW_HEIGHT: CoreGraphics.CGFloat
+  public static let PORTRAIT_CARD_WIDTH: CoreGraphics.CGFloat
+  public static let PORTRAIT_CARD_HEIGHT: CoreGraphics.CGFloat
+  public static var DEFAULT_MIN_FOCUS_SCORE: Swift.Double
+  public static var DEFAULT_PDF_MIN_FOCUS_SCORE: Swift.Double
+  public static var DEFAULT_MARGIN_RATIO: Swift.Double
+  public static var PDF_A4_MARGIN_RATIO: Swift.Double
+  public static var OLD_ID_MARGIN_RATIO: Swift.Double
+  public var hintStrokeWidth: CoreGraphics.CGFloat
+  public var preHintRatio: CoreGraphics.CGFloat
+  public var hintColor: CoreGraphics.CGColor
+  public var capturedHintColor: CoreGraphics.CGColor
+  public var hintBackgroundColor: UIKit.UIColor
+  public var overlayBackgroundColor: UIKit.UIColor
+  public var captureType: id_card_detection_ios.CaptureType
+  public var cardType: id_card_detection_ios.IDCardType?
+  public var idPhotoHint: Swift.Bool?
+  public var hintDisplayRatio: CoreGraphics.CGFloat
+  public var forceTakePicture: Swift.Bool
+  public var skipOcr: Swift.Bool
+  public var isMrzActive: Swift.Bool
+  public var checkCardType: Swift.Bool
+  public var checkCardDistance: Swift.Bool
+  public static var DEFAULT_ANGLE_ERROR_RATIO: Swift.Double
+  public static var DEFAULT_LINE_ERROR_RATIO: Swift.Double
+  public static var PDF_A4_ANGLE_ERROR_RATIO: Swift.Double
+  public static var PDF_A4_LINE_ERROR_RATIO: Swift.Double
+  public static var PASSPORT_ANGLE_ERROR_RATIO: Swift.Double
+  public static var PASSPORT_LINE_ERROR_RATIO: Swift.Double
+  public static var DOES_USE_PROBABILISTIC_ALGORITHM: Swift.Bool
+  public static var PROBABILISTIC_MIN_LENGTH_RATIO: Swift.Double
+  public static var PROBABILISTIC_MAX_GAP_RATIO: Swift.Double
+  public var turnIfReverse: Swift.Bool
+  public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class OverlayView : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public var overlayColor: CoreGraphics.CGColor?
+  @_Concurrency.MainActor(unsafe) public var capturedHintColor: CoreGraphics.CGColor?
+  @_Concurrency.MainActor(unsafe) public var rectangleLines: id_card_detection_ios.RectangleLines?
+  @_Concurrency.MainActor(unsafe) public var captureType: id_card_detection_ios.CaptureType?
+  @_Concurrency.MainActor(unsafe) public var cardType: id_card_detection_ios.IDCardType?
+  @_Concurrency.MainActor(unsafe) public var idPhotoHint: Swift.Bool?
+  @_Concurrency.MainActor(unsafe) public var hintWidth: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public var hintHeight: CoreGraphics.CGFloat
+  @objc deinit
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func draw(_ rect: CoreGraphics.CGRect)
+}
+public enum CaptureType {
+  case DEFAULT
+  case DASHED
+  public static func == (a: id_card_detection_ios.CaptureType, b: id_card_detection_ios.CaptureType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public class IDCardTypeControlModel {
+  public var idCardModel: DigisignBase.IDCardModel
+  public var typeControlResult: Swift.Bool?
+  public var isReverse: Swift.Bool?
+  public var detectedCardType: id_card_detection_ios.IDCardType
+  public init(idCardModel: DigisignBase.IDCardModel, typeControlResult: Swift.Bool?, isReverse: Swift.Bool?, detectedCardType: id_card_detection_ios.IDCardType)
+  public init(idCardModel: DigisignBase.IDCardModel, typeControlResult: Swift.Bool?, isReverse: Swift.Bool?)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class HintView : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public var strokeWidth: CoreGraphics.CGFloat?
+  @_Concurrency.MainActor(unsafe) public var preHintRatio: CoreGraphics.CGFloat?
+  @_Concurrency.MainActor(unsafe) public var hintColor: CoreGraphics.CGColor?
+  @_Concurrency.MainActor(unsafe) public var capturedHintColor: CoreGraphics.CGColor?
+  @_Concurrency.MainActor(unsafe) public var rectangleLines: id_card_detection_ios.RectangleLines?
+  @_Concurrency.MainActor(unsafe) public var captureType: id_card_detection_ios.CaptureType?
+  @_Concurrency.MainActor(unsafe) public var cardType: id_card_detection_ios.IDCardType?
+  @_Concurrency.MainActor(unsafe) public var idPhotoHint: Swift.Bool?
+  @_Concurrency.MainActor(unsafe) public var photoHintFrame: CoreGraphics.CGRect?
+  @objc deinit
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func draw(_ rect: CoreGraphics.CGRect)
+}
+@_inheritsConvenienceInitializers @objc(MRZTD1) open class MRZTD1 : id_card_detection_ios.MRZParser {
+  @objc public var documentType: Swift.String
+  @objc public var documentSubType: Swift.String
+  @objc public var countryCode: Swift.String
+  @objc public var passportNumber: Swift.String
+  @objc public var dateOfBirth: Foundation.Date?
+  @objc public var sex: Swift.String
+  @objc public var expirationDate: Foundation.Date?
+  @objc public var nationality: Swift.String
+  @objc public var lastName: Swift.String
+  @objc public var firstName: Swift.String
+  public var idNo: Swift.String
+  @objc override public func data() -> Swift.Dictionary<Swift.String, Any>
+  @objc override dynamic open var description: Swift.String {
+    @objc get
+  }
+  @objc override public init(scan: Swift.String, debug: Swift.Bool = false)
+  @objc deinit
+}
+public class TypeControlResultModel {
+  public var detectedType: id_card_detection_ios.IDCardType
+  public var typeControlResult: Swift.Bool?
+  public init(detectedType: id_card_detection_ios.IDCardType, typeControlResult: Swift.Bool?)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class Util {
+  public static func levenshtein(first: Swift.String, second: Swift.String) -> Swift.Int
+  @objc deinit
+}
+public protocol ViewDelegate : AnyObject {
+  func onViewDrawn(mainRect: CoreGraphics.CGRect, photoRect: CoreGraphics.CGRect)
+}
+public class FrameProcessor {
+  public init(cardWidthRatio: Swift.Double, cardHeightRatio: Swift.Double)
+  public init(cardWidthRatio: Swift.Double, cardHeightRatio: Swift.Double, minFocusScore: Swift.Double)
+  public init(cardWidthRatio: Swift.Double, cardHeightRatio: Swift.Double, minFocusScore: Swift.Double, marginRatio: Swift.Double, angleErrorRatio: Swift.Double, lineErrorRatio: Swift.Double)
+  public init(cardWidthRatio: Swift.Double, cardHeightRatio: Swift.Double, minFocusScore: Swift.Double, marginRatio: Swift.Double, angleErrorRatio: Swift.Double, lineErrorRatio: Swift.Double, isProbabilistic: Swift.Bool, probabilisticMinLengthRatio: Swift.Double, probabilisticMaxGapRatio: Swift.Double)
+  public func process(frame: UIKit.UIImage, cropCard: Swift.Bool) -> id_card_detection_ios.ProcessedFrameModel
+  public func process(frame: OpenCVTechsign.Mat, cropCard: Swift.Bool) -> id_card_detection_ios.ProcessedFrameModel
+  public func getFocusScore(frame: OpenCVTechsign.Mat) -> Swift.Double
+  @objc deinit
+}
+public class Line {
+  public init(p1: id_card_detection_ios.Point, p2: id_card_detection_ios.Point)
+  public func getP1() -> id_card_detection_ios.Point
+  public func getP2() -> id_card_detection_ios.Point
+  public func shiftBy(width: Swift.Int, height: Swift.Int)
+  public func scaleBy(factor: Swift.Double)
+  @objc deinit
+}
+@objc(MRZParser) open class MRZParser : ObjectiveC.NSObject {
+  @objc public var parsedMRZ: Swift.String
+  @objc public init(scan: Swift.String, debug: Swift.Bool = false)
+  @objc public func data() -> Swift.Dictionary<Swift.String, Any>
+  @objc deinit
+}
+public enum IDCardType {
+  case UNKNOWN
+  case PASSPORT
+  case NEW_TC_ID
+  case OLD_TC_ID
+  case OLD_TC_DRIVER_LICENSE
+  case DRIVER_LICENSE
+  case NEW_TC_ID_BACK
+  case DRIVER_BACK
+  case FOREIGN_ID
+  case OLD_TC_ID_BACK
+  case PDF_A4
+  case FOREIGN_ID_PORTRAIT
+  case BLUE_CARD
+  case GERMAN_ID
+  case NEW_BLUE_CARD
+  public static func == (a: id_card_detection_ios.IDCardType, b: id_card_detection_ios.IDCardType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@available(iOS 13.0, *)
+public class IDCardDistanceChecker {
+  public init(delegate: id_card_detection_ios.IDCardDetectionDelegate?)
+  public func check(image: UIKit.UIImage, cardType: id_card_detection_ios.IDCardType, ratio: CoreGraphics.CGFloat)
+  @objc deinit
+}
+public class ProcessedFrameModel {
+  public init(card: OpenCVTechsign.Mat?, rectangleLines: id_card_detection_ios.RectangleLines, focusScore: Swift.Double)
+  public func getCard() -> OpenCVTechsign.Mat?
+  public func getCardAsUIImage() -> UIKit.UIImage?
+  public func getRectangleLines() -> id_card_detection_ios.RectangleLines
+  public func getRectanglePoints() -> id_card_detection_ios.RectanglePoints
+  public func getFocusScore() -> Swift.Double
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class IDCardDetectionView : UIKit.UIView, AVFoundation.AVCaptureVideoDataOutputSampleBufferDelegate, AVFoundation.AVCapturePhotoCaptureDelegate, id_card_detection_ios.IDCardTypeControllerDelegate {
+  @_Concurrency.MainActor(unsafe) public static var START_STOP_PREVIEW_WITH_CAPTURE: Swift.Bool
+  @_Concurrency.MainActor(unsafe) public static var IS_TRADEMARK_LOGO_ON: Swift.Bool
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @_Concurrency.MainActor(unsafe) public func setConfiguration(_ configuration: id_card_detection_ios.IDCardDetectionConfiguration)
+  @_Concurrency.MainActor(unsafe) public func setViewDelegate(_ delegate: id_card_detection_ios.ViewDelegate?)
+  @_Concurrency.MainActor(unsafe) public func setDelegate(_ delegate: id_card_detection_ios.IDCardDetectionDelegate?)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func didMoveToSuperview()
+  @objc deinit
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func willRemoveSubview(_ subview: UIKit.UIView)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func willMove(toSuperview newSuperview: UIKit.UIView?)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func layoutSubviews()
+  @_Concurrency.MainActor(unsafe) public func startCapture()
+  @_Concurrency.MainActor(unsafe) public func stopCapture()
+  @_Concurrency.MainActor(unsafe) @objc public func captureOutput(_ output: AVFoundation.AVCaptureOutput, didOutput sampleBuffer: CoreMedia.CMSampleBuffer, from connection: AVFoundation.AVCaptureConnection)
+  @_Concurrency.MainActor(unsafe) @objc public func photoOutput(_ output: AVFoundation.AVCapturePhotoOutput, willBeginCaptureFor resolvedSettings: AVFoundation.AVCaptureResolvedPhotoSettings)
+  @_Concurrency.MainActor(unsafe) @objc public func photoOutput(_ output: AVFoundation.AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CoreMedia.CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CoreMedia.CMSampleBuffer?, resolvedSettings: AVFoundation.AVCaptureResolvedPhotoSettings, bracketSettings: AVFoundation.AVCaptureBracketedStillImageSettings?, error: Swift.Error?)
+  @_Concurrency.MainActor(unsafe) public func onTypeControlled(result: id_card_detection_ios.TypeControlResultModel)
+}
+public protocol IDCardDetectionDelegate : AnyObject {
+  func cardDetected()
+  func cardScanCompleted(idCardTypeControlModel: id_card_detection_ios.IDCardTypeControlModel)
+  func cardDetectionFailure(isAway: Swift.Bool)
+  func cardDetectionIdle()
+}
+public class RectanglePoints {
+  public init(rectangleLines: id_card_detection_ios.RectangleLines)
+  public func getLeftTop() -> id_card_detection_ios.Point?
+  public func getRightTop() -> id_card_detection_ios.Point?
+  public func getLeftBottom() -> id_card_detection_ios.Point?
+  public func getRightBottom() -> id_card_detection_ios.Point?
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(MRZTD3) open class MRZTD3 : id_card_detection_ios.MRZParser {
+  @objc public var documentType: Swift.String
+  @objc public var documentSubType: Swift.String
+  @objc public var countryCode: Swift.String
+  @objc public var lastName: Swift.String
+  @objc public var firstName: Swift.String
+  @objc public var passportNumber: Swift.String
+  @objc public var nationality: Swift.String
+  @objc public var dateOfBirth: Foundation.Date?
+  @objc public var sex: Swift.String
+  @objc public var expirationDate: Foundation.Date?
+  @objc public var personalNumber: Swift.String
+  @objc override public func data() -> Swift.Dictionary<Swift.String, Any>
+  @objc override dynamic open var description: Swift.String {
+    @objc get
+  }
+  @objc override public init(scan: Swift.String, debug: Swift.Bool = false)
+  @objc deinit
+}
+public class RectangleLines {
+  public init(top: id_card_detection_ios.Line?, bottom: id_card_detection_ios.Line?, left: id_card_detection_ios.Line?, right: id_card_detection_ios.Line?)
+  public func getTop() -> id_card_detection_ios.Line?
+  public func getBottom() -> id_card_detection_ios.Line?
+  public func getLeft() -> id_card_detection_ios.Line?
+  public func getRight() -> id_card_detection_ios.Line?
+  public func isCompleted() -> Swift.Bool
+  public func scaleBy(factor: Swift.Double)
+  @objc deinit
+}
+extension id_card_detection_ios.DeviceModel : Swift.Equatable {}
+extension id_card_detection_ios.DeviceModel : Swift.Hashable {}
+extension id_card_detection_ios.DeviceModel : Swift.RawRepresentable {}
+extension id_card_detection_ios.CaptureType : Swift.Equatable {}
+extension id_card_detection_ios.CaptureType : Swift.Hashable {}
+extension id_card_detection_ios.IDCardType : Swift.Equatable {}
+extension id_card_detection_ios.IDCardType : Swift.Hashable {}

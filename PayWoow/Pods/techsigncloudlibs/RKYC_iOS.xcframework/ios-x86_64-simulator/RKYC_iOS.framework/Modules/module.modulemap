@@ -1,0 +1,11 @@
+framework module RKYC_iOS {
+  umbrella header "RKYC_iOS.h"
+
+  export *
+  module * { export * }
+}
+
+module RKYC_iOS.Swift {
+    header "RKYC_iOS-Swift.h"
+    requires objc
+}

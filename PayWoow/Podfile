@@ -7,6 +7,7 @@ target 'PayWoow' do
 pod 'CreditCardReader/SwiftUI'
 pod 'lottie-ios'
 pod 'NSFWDetector'
+pod 'techsigncloudlibs', '1.7.8-wrapper', :source => 'https://github.com/Techsign/PODSPECS.git'
   # Pods for PayWoow
 
 end

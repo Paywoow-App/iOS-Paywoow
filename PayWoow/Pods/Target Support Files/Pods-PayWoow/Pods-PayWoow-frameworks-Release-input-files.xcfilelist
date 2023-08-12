@@ -2,3 +2,11 @@ ${PODS_ROOT}/Target Support Files/Pods-PayWoow/Pods-PayWoow-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/CreditCardReader/CreditCardReader.framework
 ${BUILT_PRODUCTS_DIR}/NSFWDetector/NSFWDetector.framework
 ${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/DigisignBase.framework/DigisignBase
+${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/id_card_detection_ios.framework/id_card_detection_ios
+${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/id_card_detection_ios_cnn.framework/id_card_detection_ios_cnn
+${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/RKYC_iOS.framework/RKYC_iOS
+${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/id_card_detection_ios_wrapper.framework/id_card_detection_ios_wrapper
+${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/openssl_techsign.framework/openssl_techsign
+${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/passport_reader.framework/passport_reader
+${PODS_XCFRAMEWORKS_BUILD_DIR}/techsigncloudlibs/face_mesh_detection.framework/face_mesh_detection

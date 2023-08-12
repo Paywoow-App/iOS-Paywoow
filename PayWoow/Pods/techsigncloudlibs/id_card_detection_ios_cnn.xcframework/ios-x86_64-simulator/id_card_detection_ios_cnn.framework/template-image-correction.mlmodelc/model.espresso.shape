@@ -1,0 +1,1775 @@
+{
+  "layer_shapes" : {
+    "model\/MobilenetV3small\/re_lu_23\/Relu6" : {
+      "k" : 288,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_27\/Relu6__relu6_neg__" : {
+      "k" : 576,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/expanded_conv_9\/squeeze_excite\/Mul\/mul" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_18\/Relu6__relu6_threshold6__" : {
+      "k" : 120,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_24\/Relu6__relu6_threshold6__" : {
+      "k" : 288,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/multiply_13\/mul" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/expanded_conv_4\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_3\/project\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 40,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_30\/Relu6__relu6_threshold6__" : {
+      "k" : 576,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_9\/Relu6__relu6_relu__" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_29\/Relu6__relu6_threshold6__" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_11\/Relu6" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_9\/squeeze_excite\/Relu\/Relu" : {
+      "k" : 144,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_18\/Mul" : {
+      "k" : 288,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_24\/Relu6" : {
+      "k" : 288,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/expanded_conv_2\/Add\/add" : {
+      "k" : 24,
+      "w" : 80,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 40
+    },
+    "model\/MobilenetV3small\/expanded_conv_10\/squeeze_excite\/Relu\/Relu" : {
+      "k" : 144,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_20\/Relu6__relu6_neg__" : {
+      "k" : 144,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_7\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 144,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_6\/squeeze_excite\/Relu\/Relu" : {
+      "k" : 32,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_11\/Mul" : {
+      "k" : 120,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_29\/Relu6__relu6_neg__" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_12\/Relu6" : {
+      "k" : 240,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/tf.__operators__.add\/AddV2" : {
+      "k" : 16,
+      "w" : 320,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 160
+    },
+    "model\/MobilenetV3small\/re_lu_25\/Relu6" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_7\/Relu6__relu6_neg__" : {
+      "k" : 96,
+      "w" : 80,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 40
+    },
+    "model\/MobilenetV3small\/multiply_7\/mul" : {
+      "k" : 120,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_8\/squeeze_excite\/AvgPool\/Mean" : {
+      "k" : 288,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/expanded_conv_3\/squeeze_excite\/Relu\/Relu" : {
+      "k" : 24,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/Conv\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 16,
+      "w" : 320,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 160
+    },
+    "model\/MobilenetV3small\/re_lu_4\/Relu" : {
+      "k" : 72,
+      "w" : 80,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 40
+    },
+    "model\/MobilenetV3small\/re_lu_24\/Relu6__relu6_relu__" : {
+      "k" : 288,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_14\/Relu6__relu6_threshold6__" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_8\/Mul" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_17\/Relu6__relu6_neg__" : {
+      "k" : 120,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_3\/squeeze_excite\/Mul\/mul" : {
+      "k" : 96,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_20\/Relu6__relu6_threshold6__" : {
+      "k" : 144,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_27\/Relu6__relu6_relu__" : {
+      "k" : 576,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_19\/Relu6__relu6_threshold6__" : {
+      "k" : 144,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_4\/Add\/add" : {
+      "k" : 40,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_25\/Relu6__relu6_threshold6__" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_21\/Mul" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/multiply_16\/mul" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_13\/Relu6" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_22\/Relu6__relu6_neg__" : {
+      "k" : 288,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_31\/Relu6__relu6_threshold6__" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_8\/Relu6__relu6_relu__" : {
+      "k" : 96,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_2\/project\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 24,
+      "w" : 80,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 40
+    },
+    "model\/MobilenetV3small\/re_lu_26\/Relu6" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/corrector_before\/BiasAdd" : {
+      "k" : 1,
+      "w" : 32,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_6\/Mul" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/multiply_4\/mul" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_10\/Relu6__relu6_neg__" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_6\/expand\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 120,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_9\/expand\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/tf.__operators__.add_6\/AddV2" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_9\/project\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 96,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_4\/Mul" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_14\/Relu6" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_27\/Relu6" : {
+      "k" : 576,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_14\/Mul" : {
+      "k" : 144,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_11\/Relu6__relu6_relu__" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_19\/Relu6__relu6_neg__" : {
+      "k" : 144,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/multiply_1\/mul" : {
+      "k" : 96,
+      "w" : 80,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 40
+    },
+    "can_correct" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/tf.__operators__.add_9\/AddV2" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_24\/Relu6__relu6_neg__" : {
+      "k" : 288,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/expanded_conv_5\/Add\/add" : {
+      "k" : 40,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_2\/Mul" : {
+      "k" : 96,
+      "w" : 80,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 40
+    },
+    "model\/MobilenetV3small\/re_lu_10\/Relu6__relu6_threshold6__" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_7\/squeeze_excite\/AvgPool\/Mean" : {
+      "k" : 144,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/multiply_11\/mul" : {
+      "k" : 288,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_15\/Relu6" : {
+      "k" : 240,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_15\/Relu6__relu6_threshold6__" : {
+      "k" : 240,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/expanded_conv\/squeeze_excite\/AvgPool\/Mean" : {
+      "k" : 16,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_21\/Relu6__relu6_threshold6__" : {
+      "k" : 144,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_28\/Relu6" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/expanded_conv_6\/squeeze_excite\/AvgPool\/Mean" : {
+      "k" : 120,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_24\/Mul" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu\/Relu6__relu6_neg__" : {
+      "k" : 16,
+      "w" : 320,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 160
+    },
+    "model\/MobilenetV3small\/re_lu_12\/Relu6__relu6_neg__" : {
+      "k" : 240,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/tf.__operators__.add_3\/AddV2" : {
+      "k" : 96,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "transpose_155" : {
+      "k" : 10,
+      "w" : 576,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_7\/Relu6__relu6_relu__" : {
+      "k" : 96,
+      "w" : 80,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 40
+    },
+    "model\/MobilenetV3small\/tf.__operators__.add_18\/AddV2" : {
+      "k" : 288,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_3\/Relu" : {
+      "k" : 72,
+      "w" : 160,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 80
+    },
+    "model\/MobilenetV3small\/expanded_conv_1\/project\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 24,
+      "w" : 80,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 40
+    },
+    "corrector" : {
+      "k" : 1,
+      "w" : 8,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "transpose_154" : {
+      "k" : 2,
+      "w" : 16,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 12
+    },
+    "model\/MobilenetV3small\/expanded_conv_3\/expand\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 96,
+      "w" : 80,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 40
+    },
+    "model\/MobilenetV3small\/re_lu_16\/Relu6" : {
+      "k" : 120,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_10\/expand\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/separable_conv2d_1\/separable_conv2d\/depthwisex" : {
+      "k" : 16,
+      "w" : 12,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 2
+    },
+    "model\/can_correct\/BiasAdd" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_29\/Relu6" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/multiply\/mul" : {
+      "k" : 16,
+      "w" : 320,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 160
+    },
+    "model\/MobilenetV3small\/expanded_conv_7\/Add\/add" : {
+      "k" : 48,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_8\/Relu6__relu6_threshold6__" : {
+      "k" : 96,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.__operators__.add_15\/AddV2" : {
+      "k" : 144,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_8\/project\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 96,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_17\/Mul" : {
+      "k" : 288,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_4\/squeeze_excite\/Mul\/mul" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_14\/Relu6__relu6_relu__" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_17\/Relu6__relu6_relu__" : {
+      "k" : 120,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_17\/Relu6" : {
+      "k" : 120,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_14\/Relu6__relu6_neg__" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_22\/Relu6__relu6_relu__" : {
+      "k" : 288,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_11\/Relu6__relu6_threshold6__" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_10\/Mul" : {
+      "k" : 240,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_25\/Relu6__relu6_relu__" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/separable_conv2d\/BiasAdd" : {
+      "k" : 16,
+      "w" : 16,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 6
+    },
+    "model\/MobilenetV3small\/multiply_14\/mul" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/flatten\/Reshape" : {
+      "k" : 1,
+      "w" : 384,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_26\/Relu6__relu6_threshold6__" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/expanded_conv_5\/squeeze_excite\/AvgPool\/Mean" : {
+      "k" : 240,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/expanded_conv_3\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 96,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_9\/Add\/add" : {
+      "k" : 96,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_18\/Relu6" : {
+      "k" : 120,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu\/Relu6__relu6_relu__" : {
+      "k" : 16,
+      "w" : 320,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 160
+    },
+    "model\/MobilenetV3small\/re_lu_2\/Relu6__relu6_threshold6__" : {
+      "k" : 16,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/expanded_conv_8\/squeeze_excite\/Relu\/Relu" : {
+      "k" : 72,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/multiply_8\/mul" : {
+      "k" : 120,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_20\/Mul" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_26\/Relu6__relu6_neg__" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/expanded_conv_8\/expand\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 288,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_5\/squeeze_excite\/Mul\/mul" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.__operators__.add_24\/AddV2" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/expanded_conv_6\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 120,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_16\/Relu6__relu6_neg__" : {
+      "k" : 120,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_5\/squeeze_excite\/Relu\/Relu" : {
+      "k" : 64,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/expanded_conv_10\/Add\/add" : {
+      "k" : 96,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_31\/Relu6__relu6_neg__" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/expanded_conv_7\/project\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 48,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_8\/Relu6__relu6_neg__" : {
+      "k" : 96,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_19\/Relu6" : {
+      "k" : 144,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "MobilenetV3small_input" : {
+      "k" : 3,
+      "w" : 640,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 320
+    },
+    "model\/MobilenetV3small\/multiply_5\/mul" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.math.multiply\/Mul" : {
+      "k" : 16,
+      "w" : 320,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 160
+    },
+    "model\/MobilenetV3small\/tf.__operators__.add_12\/AddV2" : {
+      "k" : 120,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_13\/Mul" : {
+      "k" : 120,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_16\/Relu6__relu6_threshold6__" : {
+      "k" : 120,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.__operators__.add_21\/AddV2" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_28\/Relu6__relu6_relu__" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/expanded_conv_9\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_30\/Relu6__relu6_relu__" : {
+      "k" : 576,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_22\/Relu6__relu6_threshold6__" : {
+      "k" : 288,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/multiply_17\/mul" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/multiply_2\/mul" : {
+      "k" : 96,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_4\/squeeze_excite\/AvgPool\/Mean" : {
+      "k" : 240,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/expanded_conv\/squeeze_excite\/Relu\/Relu" : {
+      "k" : 8,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_28\/Relu6__relu6_neg__" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_2\/Relu6__relu6_neg__" : {
+      "k" : 16,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu\/Relu6__relu6_threshold6__" : {
+      "k" : 16,
+      "w" : 320,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 160
+    },
+    "model\/MobilenetV3small\/expanded_conv_5\/expand\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_6\/squeeze_excite\/Mul\/mul" : {
+      "k" : 120,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_23\/Mul" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/expanded_conv\/squeeze_excite\/Mul\/mul" : {
+      "k" : 16,
+      "w" : 160,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 80
+    },
+    "model\/MobilenetV3small\/expanded_conv_10\/squeeze_excite\/Mul\/mul" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_12\/Relu6__relu6_relu__" : {
+      "k" : 240,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_21\/Relu6__relu6_neg__" : {
+      "k" : 144,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_9\/Mul" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/rescaling\/add" : {
+      "k" : 3,
+      "w" : 640,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 320
+    },
+    "model\/MobilenetV3small\/re_lu_15\/Relu6__relu6_relu__" : {
+      "k" : 240,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/Conv_1\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/expanded_conv_6\/project\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 48,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_9\/Relu6__relu6_threshold6__" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "conv_0" : {
+      "k" : 16,
+      "w" : 12,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 2
+    },
+    "model\/MobilenetV3small\/expanded_conv_10\/squeeze_excite\/AvgPool\/Mean" : {
+      "k" : 576,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_1\/Relu" : {
+      "k" : 16,
+      "w" : 160,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 80
+    },
+    "model\/MobilenetV3small\/re_lu_12\/Relu6__relu6_threshold6__" : {
+      "k" : 240,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_16\/Mul" : {
+      "k" : 144,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/multiply_12\/mul" : {
+      "k" : 288,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/expanded_conv\/project\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 16,
+      "w" : 160,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 80
+    },
+    "model\/MobilenetV3small\/re_lu_7\/Relu6" : {
+      "k" : 96,
+      "w" : 80,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 40
+    },
+    "model\/MobilenetV3small\/re_lu_27\/Relu6__relu6_threshold6__" : {
+      "k" : 576,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_7\/Mul" : {
+      "k" : 240,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/flatten_1\/Reshape" : {
+      "k" : 1,
+      "w" : 115200,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu\/Relu6" : {
+      "k" : 16,
+      "w" : 320,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 160
+    },
+    "model\/MobilenetV3small\/tf.__operators__.add_17\/AddV2" : {
+      "k" : 288,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_18\/Relu6__relu6_neg__" : {
+      "k" : 120,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/expanded_conv_3\/squeeze_excite\/AvgPool\/Mean" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_30\/Relu6" : {
+      "k" : 576,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_5\/Mul" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_26\/Mul" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_23\/Relu6__relu6_neg__" : {
+      "k" : 288,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/expanded_conv_7\/squeeze_excite\/Relu\/Relu" : {
+      "k" : 40,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/tf.__operators__.add_14\/AddV2" : {
+      "k" : 144,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_3\/Mul" : {
+      "k" : 96,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/separable_conv2d\/separable_conv2d\/depthwisex" : {
+      "k" : 576,
+      "w" : 16,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 6
+    },
+    "model\/MobilenetV3small\/re_lu_11\/Relu6__relu6_neg__" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_18\/Relu6__relu6_relu__" : {
+      "k" : 120,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/expanded_conv_4\/squeeze_excite\/Relu\/Relu" : {
+      "k" : 64,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_20\/Relu6__relu6_relu__" : {
+      "k" : 144,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_5\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_31\/Relu6" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/expanded_conv_5\/project\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 40,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_23\/Relu6__relu6_relu__" : {
+      "k" : 288,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/multiply_9\/mul" : {
+      "k" : 144,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_17\/Relu6__relu6_threshold6__" : {
+      "k" : 120,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_19\/Mul" : {
+      "k" : 288,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_26\/Relu6__relu6_relu__" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_1\/Mul" : {
+      "k" : 16,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_23\/Relu6__relu6_threshold6__" : {
+      "k" : 288,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/multiply_15\/mul" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_29\/Relu6__relu6_relu__" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/tf.__operators__.add_11\/AddV2" : {
+      "k" : 120,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_31\/Relu6__relu6_relu__" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/expanded_conv_7\/squeeze_excite\/Mul\/mul" : {
+      "k" : 144,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_8\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 288,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_6\/Relu" : {
+      "k" : 88,
+      "w" : 80,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 40
+    },
+    "model\/MobilenetV3small\/re_lu_8\/Relu6" : {
+      "k" : 96,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_12\/Mul" : {
+      "k" : 120,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.__operators__.add_26\/AddV2" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/multiply_6\/mul" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_2\/Relu6__relu6_relu__" : {
+      "k" : 16,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/expanded_conv_7\/expand\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 144,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_10\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/expanded_conv_10\/project\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 96,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_13\/Relu6__relu6_neg__" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_9\/Relu6__relu6_neg__" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_20\/Relu6" : {
+      "k" : 144,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.__operators__.add_23\/AddV2" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/multiply_3\/mul" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_22\/Mul" : {
+      "k" : 576,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/multiply_10\/mul" : {
+      "k" : 144,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_13\/Relu6__relu6_threshold6__" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/expanded_conv_4\/project\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 40,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_21\/Relu6" : {
+      "k" : 144,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_28\/Relu6__relu6_threshold6__" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/expanded_conv_8\/squeeze_excite\/Mul\/mul" : {
+      "k" : 288,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/tf.__operators__.add_5\/AddV2" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_2\/Relu6" : {
+      "k" : 16,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/tf.__operators__.add_20\/AddV2" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_25\/Relu6__relu6_neg__" : {
+      "k" : 576,
+      "w" : 20,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 10
+    },
+    "model\/MobilenetV3small\/re_lu_15\/Relu6__relu6_neg__" : {
+      "k" : 240,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_15\/Mul" : {
+      "k" : 144,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_30\/Relu6__relu6_neg__" : {
+      "k" : 576,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/expanded_conv_4\/expand\/BatchNorm\/FusedBatchNormV3_nchw" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/rescaling\/mul" : {
+      "k" : 3,
+      "w" : 640,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 320
+    },
+    "model\/MobilenetV3small\/tf.__operators__.add_8\/AddV2" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_7\/Relu6__relu6_threshold6__" : {
+      "k" : 96,
+      "w" : 80,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 40
+    },
+    "model\/MobilenetV3small\/re_lu_9\/Relu6" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_22\/Relu6" : {
+      "k" : 288,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_5\/Relu" : {
+      "k" : 88,
+      "w" : 80,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 40
+    },
+    "model\/MobilenetV3small\/re_lu_10\/Relu6__relu6_relu__" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.__operators__.add_2\/AddV2" : {
+      "k" : 96,
+      "w" : 80,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 40
+    },
+    "model\/MobilenetV3small\/re_lu_13\/Relu6__relu6_relu__" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/tf.math.multiply_25\/Mul" : {
+      "k" : 576,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/expanded_conv_9\/squeeze_excite\/AvgPool\/Mean" : {
+      "k" : 576,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/MobilenetV3small\/re_lu_16\/Relu6__relu6_relu__" : {
+      "k" : 120,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_10\/Relu6" : {
+      "k" : 240,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_19\/Relu6__relu6_relu__" : {
+      "k" : 144,
+      "w" : 40,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 20
+    },
+    "model\/MobilenetV3small\/re_lu_21\/Relu6__relu6_relu__" : {
+      "k" : 144,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    }
+  }
+}

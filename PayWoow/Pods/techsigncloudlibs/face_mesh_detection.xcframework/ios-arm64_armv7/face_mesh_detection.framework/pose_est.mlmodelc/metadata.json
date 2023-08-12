@@ -1,0 +1,80 @@
+[
+  {
+    "metadataOutputVersion" : "3.0",
+    "storagePrecision" : "Float32",
+    "outputSchema" : [
+      {
+        "hasShapeFlexibility" : "0",
+        "isOptional" : "0",
+        "dataType" : "Float32",
+        "formattedType" : "MultiArray (Float32)",
+        "shortDescription" : "",
+        "shape" : "[]",
+        "name" : "Identity",
+        "type" : "MultiArray"
+      }
+    ],
+    "modelParameters" : [
+
+    ],
+    "specificationVersion" : 5,
+    "computePrecision" : "Float16",
+    "isUpdatable" : "0",
+    "availability" : {
+      "macOS" : "11.0",
+      "tvOS" : "14.0",
+      "watchOS" : "7.0",
+      "iOS" : "14.0",
+      "macCatalyst" : "14.0"
+    },
+    "neuralNetworkLayerTypeHistogram" : {
+      "ConcatND" : 9,
+      "Branch" : 3,
+      "Copy" : 6,
+      "Gather" : 6,
+      "AddBroadcastable" : 1,
+      "Multiply" : 175,
+      "ReduceMean" : 1,
+      "Squeeze" : 92,
+      "SubtractBroadcastable" : 1,
+      "Transpose" : 3,
+      "UnarySqrt" : 95,
+      "Add" : 41,
+      "SliceStatic" : 106,
+      "BatchedMatmul" : 114,
+      "LoadConstantND" : 16,
+      "ExpandDims" : 6,
+      "ReshapeStatic" : 186,
+      "Stack" : 6,
+      "DivideBroadcastable" : 95,
+      "LessThan" : 3,
+      "MultiplyBroadcastable" : 7,
+      "ActivationLinear" : 35,
+      "ReduceSum" : 98,
+      "TopK" : 3
+    },
+    "modelType" : {
+      "name" : "MLModelType_neuralNetwork"
+    },
+    "userDefinedMetadata" : {
+      "com.github.apple.coremltools.version" : "6.3.0",
+      "com.github.apple.coremltools.source" : "tensorflow==2.10.1"
+    },
+    "generatedClassName" : "pose_est",
+    "inputSchema" : [
+      {
+        "dataType" : "Float32",
+        "hasShapeFlexibility" : "1",
+        "isOptional" : "0",
+        "shapeFlexibility" : "1... × 3 × 468",
+        "shapeRange" : "[[1, -1], [3, 3], [468, 468]]",
+        "formattedType" : "MultiArray (Float32 1 × 3 × 468)",
+        "type" : "MultiArray",
+        "shape" : "[1, 3, 468]",
+        "name" : "args_0",
+        "shortDescription" : ""
+      }
+    ],
+    "method" : "predict"
+  }
+]

@@ -1,0 +1,6 @@
+framework module openssl_techsign {
+  umbrella header "openssl_techsign.h"
+
+  export *
+  module * { export * }
+}

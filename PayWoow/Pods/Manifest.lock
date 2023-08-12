@@ -2,13 +2,17 @@ PODS:
   - CreditCardReader/SwiftUI (1.0.0)
   - lottie-ios (4.2.0)
   - NSFWDetector (1.1.2)
+  - techsigncloudlibs (1.7.8-wrapper)
 
 DEPENDENCIES:
   - CreditCardReader/SwiftUI
   - lottie-ios
   - NSFWDetector
+  - techsigncloudlibs (= 1.7.8-wrapper)
 
 SPEC REPOS:
+  https://github.com/Techsign/PODSPECS.git:
+    - techsigncloudlibs
   trunk:
     - CreditCardReader
     - lottie-ios
@@ -18,7 +22,8 @@ SPEC CHECKSUMS:
   CreditCardReader: c16af1df03b274e1add365b32699c745eb044509
   lottie-ios: 809ecf2d460ed650a6aed7aa88b2ec45fab4779c
   NSFWDetector: d6eca9759743b5e43778818078d53711576e929f
+  techsigncloudlibs: ec81cd7a96f3a2804a57347c378893f23f11884b
 
-PODFILE CHECKSUM: e65fe5ee2c5053a4caec4e038bda9cc427de9775
+PODFILE CHECKSUM: 5735125ec96a1a3984d141173f5f0891c1c5d291
 
 COCOAPODS: 1.12.1

@@ -1,0 +1,152 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
+// swift-module-flags: -target x86_64-apple-ios10.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name id_card_detection_ios_wrapper
+import Foundation
+import Swift
+import UIKit
+import _Concurrency
+import id_card_detection_ios
+import id_card_detection_ios_cnn
+@_exported import id_card_detection_ios_wrapper
+public protocol IDCardDetectionWrapperViewDelegate : AnyObject {
+  func onViewDrawn(mainRect: CoreGraphics.CGRect, photoRect: CoreGraphics.CGRect?)
+}
+public class WrapperOcrResultModel {
+  public var cardPhoto: UIKit.UIImage
+  public var typeControlResult: Swift.Bool?
+  public var isReverse: Swift.Bool?
+  public var detectedCardType: id_card_detection_ios_wrapper.WrapperCardType
+  public init(cardPhoto: UIKit.UIImage, typeControlResult: Swift.Bool?, isReverse: Swift.Bool?, detectedCardType: id_card_detection_ios_wrapper.WrapperCardType)
+  @objc deinit
+}
+public class WrapperErrorsModel {
+  final public let cardType: id_card_detection_ios_wrapper.WrapperCardType
+  final public let xPerspectiveErrorRatio: Swift.Float
+  final public let isXPerspectiveEligible: Swift.Bool
+  final public let yPerspectiveErrorRatio: Swift.Float
+  final public let isYPerspectiveEligible: Swift.Bool
+  final public let widthHeightErrorRatio: Swift.Float
+  final public let isWidthHeightRatioEligible: Swift.Bool
+  final public let areaErrorRatio: Swift.Float
+  final public let isAreaRatioEligible: Swift.Bool
+  final public let imageSharpnessErrorRatio: Swift.Float
+  final public let isImageSharpnessRatioEligible: Swift.Bool
+  final public let isInsideOfHint: Swift.Bool
+  final public let isImageSharpnessCountEligible: Swift.Bool
+  convenience public init(cardType: id_card_detection_ios_wrapper.WrapperCardType)
+  convenience public init(cardType: id_card_detection_ios_wrapper.WrapperCardType, xPerspectiveErrorRatio: Swift.Float, isXPerspectiveEligible: Swift.Bool, yPerspectiveErrorRatio: Swift.Float, isYPerspectiveEligible: Swift.Bool, widthHeightErrorRatio: Swift.Float, isWidthHeightRatioEligible: Swift.Bool, areaErrorRatio: Swift.Float, isAreaRatioEligible: Swift.Bool, isInsideOfHint: Swift.Bool)
+  public init(cardType: id_card_detection_ios_wrapper.WrapperCardType, xPerspectiveErrorRatio: Swift.Float, isXPerspectiveEligible: Swift.Bool, yPerspectiveErrorRatio: Swift.Float, isYPerspectiveEligible: Swift.Bool, widthHeightErrorRatio: Swift.Float, isWidthHeightRatioEligible: Swift.Bool, areaErrorRatio: Swift.Float, isAreaRatioEligible: Swift.Bool, imageSharpnessErrorRatio: Swift.Float, isImageSharpnessRatioEligible: Swift.Bool, isInsideOfHint: Swift.Bool, isImageSharpnessCountEligible: Swift.Bool)
+  @objc deinit
+}
+public enum WrapperCardType : Swift.Equatable {
+  case OLD_ID
+  case NEW_ID
+  case NEW_ID_BACK
+  case NEW_DRIVER
+  case PASSPORT
+  case OLD_ID_BACK
+  case DRIVER_BACK
+  case FOREIGN_ID
+  case PDF_A4
+  case FOREIGN_ID_PORTRAIT
+  case BLUE_CARD
+  case GERMAN_ID
+  case NEW_BLUE_CARD
+  case UNKNOWN
+  case CUSTOM(width: CoreGraphics.CGFloat, height: CoreGraphics.CGFloat)
+  case NO_CARD
+  public static func toCnn(_ cardType: id_card_detection_ios_wrapper.WrapperCardType) -> id_card_detection_ios_cnn.CardType
+  public static func toBelow13(_ cardType: id_card_detection_ios_wrapper.WrapperCardType) -> id_card_detection_ios.IDCardType
+  public static func fromCnn(_ cardType: id_card_detection_ios_cnn.CardType) -> id_card_detection_ios_wrapper.WrapperCardType
+  public static func fromBelow13(_ cardType: id_card_detection_ios.IDCardType) -> id_card_detection_ios_wrapper.WrapperCardType
+  public static func isSameSize(_ cardTypes: [id_card_detection_ios_wrapper.WrapperCardType]) -> Swift.Bool
+  public static func == (a: id_card_detection_ios_wrapper.WrapperCardType, b: id_card_detection_ios_wrapper.WrapperCardType) -> Swift.Bool
+}
+@_hasMissingDesignatedInitializers public class LSBUtil {
+  public static func encode(image: UIKit.UIImage, message: Swift.String) throws -> UIKit.UIImage
+  public static func check(image: UIKit.UIImage, message: Swift.String) -> Swift.Bool
+  public enum EncodingError : Swift.Error {
+    case runtimeError(Swift.String)
+  }
+  @objc deinit
+}
+public protocol IDCardDetectionWrapperDelegate : AnyObject {
+  func cardDetected(image: UIKit.UIImage, cardType: id_card_detection_ios_wrapper.WrapperCardType)
+  func cardDetectionFailed(wrapperErrorsModel: id_card_detection_ios_wrapper.WrapperErrorsModel)
+}
+@_hasMissingDesignatedInitializers public class IDCardDetectionWrapper : id_card_detection_ios_cnn.IDCardDetectionDelegate, id_card_detection_ios.IDCardDetectionDelegate, id_card_detection_ios_cnn.ViewDelegate, id_card_detection_ios.ViewDelegate {
+  convenience public init(frame: CoreGraphics.CGRect)
+  public func getView() -> UIKit.UIView?
+  public func setConfiguration(conf: id_card_detection_ios_wrapper.IDCardDetectionWrapperConfiguration)
+  public func setDelegate(delegate: id_card_detection_ios_wrapper.IDCardDetectionWrapperDelegate)
+  public func setViewDelegate(delegate: id_card_detection_ios_wrapper.IDCardDetectionWrapperViewDelegate)
+  public func startCapture()
+  public func stopCapture()
+  public func cardDetected(image: UIKit.UIImage, cardType: id_card_detection_ios_cnn.CardType)
+  public func cardDetectionFailed(cardDetectionErrorsModel: id_card_detection_ios_cnn.CardDetectionErrorsModel)
+  public func cardOcrCompleted(ocrResultModel: id_card_detection_ios_cnn.OcrResultModel)
+  public func cardDetected()
+  public func cardScanCompleted(idCardTypeControlModel: id_card_detection_ios.IDCardTypeControlModel)
+  public func cardDetectionFailure(isAway: Swift.Bool)
+  public func cardDetectionIdle()
+  public func onViewDrawn(mainRect: CoreGraphics.CGRect)
+  public func onViewDrawn(mainRect: CoreGraphics.CGRect, photoRect: CoreGraphics.CGRect)
+  @available(iOS 13, *)
+  public func convertConfigurationCnn() -> id_card_detection_ios_cnn.IDCardDetectionConfiguration
+  public func convertConfigurationBelow13() -> id_card_detection_ios.IDCardDetectionConfiguration
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class WrapperUtil {
+  public static func resizeImage(image: UIKit.UIImage, targetSize: CoreGraphics.CGSize) -> UIKit.UIImage?
+  public static func compressImage(_ image: UIKit.UIImage, to maxBytes: Swift.Int) -> UIKit.UIImage
+  @objc deinit
+}
+public enum WrapperCaptureType {
+  case DEFAULT
+  case DASHED
+  public static func to(_ wrapperCaptureType: id_card_detection_ios_wrapper.WrapperCaptureType) -> id_card_detection_ios.CaptureType
+  public static func == (a: id_card_detection_ios_wrapper.WrapperCaptureType, b: id_card_detection_ios_wrapper.WrapperCaptureType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public class IDCardDetectionWrapperConfiguration {
+  public var isHintHidden: Swift.Bool
+  public var minFocusScore: Swift.Float
+  public var capturedColor: CoreGraphics.CGColor
+  public var uncapturedColor: CoreGraphics.CGColor
+  public var capturedStyle: CoreGraphics.CGPathDrawingMode
+  public var capturedStrokeWidth: CoreGraphics.CGFloat
+  public var checkCardType: Swift.Bool
+  public var turnIfReverse: Swift.Bool
+  public var isMrzActive: Swift.Bool
+  public var eligibleFocusScoreCount: Swift.Int
+  public var captureOnlyInHint: Swift.Bool
+  public var minImageCorrectionScore: Swift.Float
+  public var focusScoreThreshold: Swift.Float
+  public var isFocusScoreThresholdActive: Swift.Bool
+  public var captureOnlyInHintMargin: CoreGraphics.CGFloat
+  public var disableFourPointTransformation: Swift.Bool
+  public var flashToggleAvailable: Swift.Bool
+  public var flashOn: Swift.Bool
+  public var disableCardDetection: Swift.Bool
+  public var cardDetectionMargin: Swift.Float?
+  public var capturedHintColor: CoreGraphics.CGColor
+  public var captureType: id_card_detection_ios_wrapper.WrapperCaptureType
+  public var idPhotoHint: Swift.Bool
+  public var preHintRatio: CoreGraphics.CGFloat
+  public var cardTypeList: [id_card_detection_ios_wrapper.WrapperCardType]
+  public var hintStrokeWidth: CoreGraphics.CGFloat
+  public var hintColor: CoreGraphics.CGColor
+  public var hintBackgroundColor: UIKit.UIColor
+  public var overlayBackgroundColor: UIKit.UIColor
+  public var hintDisplayRatio: CoreGraphics.CGFloat
+  public var isTrademarkLogoOn: Swift.Bool
+  public var messageToEncrypt: Swift.String?
+  public var maxOutputImageSizeInBytes: Swift.Int?
+  public init()
+  @objc deinit
+}
+extension id_card_detection_ios_wrapper.WrapperCaptureType : Swift.Equatable {}
+extension id_card_detection_ios_wrapper.WrapperCaptureType : Swift.Hashable {}

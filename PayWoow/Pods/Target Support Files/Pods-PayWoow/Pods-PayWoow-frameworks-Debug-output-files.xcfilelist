@@ -1,3 +1,11 @@
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CreditCardReader.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSFWDetector.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DigisignBase.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/id_card_detection_ios.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/id_card_detection_ios_cnn.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RKYC_iOS.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/id_card_detection_ios_wrapper.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_techsign.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/passport_reader.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/face_mesh_detection.framework

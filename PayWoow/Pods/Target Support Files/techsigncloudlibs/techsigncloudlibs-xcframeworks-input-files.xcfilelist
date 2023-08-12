@@ -1,0 +1,10 @@
+${PODS_ROOT}/Target Support Files/techsigncloudlibs/techsigncloudlibs-xcframeworks.sh
+${PODS_ROOT}/techsigncloudlibs/DigisignBase.xcframework
+${PODS_ROOT}/techsigncloudlibs/OpenCVTechsign.xcframework
+${PODS_ROOT}/techsigncloudlibs/id_card_detection_ios.xcframework
+${PODS_ROOT}/techsigncloudlibs/id_card_detection_ios_cnn.xcframework
+${PODS_ROOT}/techsigncloudlibs/RKYC_iOS.xcframework
+${PODS_ROOT}/techsigncloudlibs/id_card_detection_ios_wrapper.xcframework
+${PODS_ROOT}/techsigncloudlibs/openssl_techsign.xcframework
+${PODS_ROOT}/techsigncloudlibs/passport_reader.xcframework
+${PODS_ROOT}/techsigncloudlibs/face_mesh_detection.xcframework

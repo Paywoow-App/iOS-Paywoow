@@ -1,0 +1,4 @@
+framework module id_card_detection_ios_cnn {
+  header "id_card_detection_ios_cnn-Swift.h"
+  requires objc
+}

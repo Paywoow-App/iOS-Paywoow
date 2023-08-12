@@ -1,0 +1,4314 @@
+{
+  "layers" : [
+    {
+      "bottom" : "input_1",
+      "alpha" : 0.0078431377187371254,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/rescaling\/mul",
+      "top" : "model\/rescaling\/mul",
+      "type" : "elementwise",
+      "name" : "model\/rescaling\/mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/rescaling\/mul",
+      "alpha" : -1,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/rescaling\/add",
+      "top" : "model\/rescaling\/add",
+      "type" : "elementwise",
+      "name" : "model\/rescaling\/add",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/Conv\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/Conv\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 3,
+      "K" : 3,
+      "blob_biases" : 1,
+      "stride_x" : 2,
+      "name" : "model\/Conv\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "stride_y" : 2,
+      "has_biases" : 1,
+      "C" : 16,
+      "bottom" : "model\/rescaling\/add",
+      "weights" : {
+
+      },
+      "Nx" : 3,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/Conv\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 3,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.__operators__.add\/AddV2",
+      "top" : "model\/tf.__operators__.add\/AddV2",
+      "type" : "elementwise",
+      "name" : "model\/tf.__operators__.add\/AddV2",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/tf.__operators__.add\/AddV2",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "debug_info" : "model\/re_lu\/Relu6__relu6_relu__",
+      "top" : "model\/re_lu\/Relu6__relu6_relu__",
+      "type" : "activation",
+      "name" : "model\/re_lu\/Relu6__relu6_relu__"
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu\/Relu6",
+      "top" : "model\/re_lu\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply\/Mul",
+      "top" : "model\/tf.math.multiply\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/Conv\/BatchNorm\/FusedBatchNormV3_nchw,model\/tf.math.multiply\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/multiply\/mul",
+      "top" : "model\/multiply\/mul",
+      "type" : "elementwise",
+      "name" : "model\/multiply\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 0,
+      "top" : "model\/re_lu_1\/Relu",
+      "blob_weights" : 7,
+      "K" : 16,
+      "blob_biases" : 5,
+      "stride_x" : 2,
+      "name" : "model\/expanded_conv\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 16,
+      "pad_t" : 0,
+      "stride_y" : 2,
+      "has_biases" : 1,
+      "C" : 16,
+      "bottom" : "model\/multiply\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 3,
+      "pad_mode" : 0,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "debug_info" : "model\/expanded_conv\/squeeze_excite\/AvgPool\/Mean",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "size_x" : 40,
+      "is_global" : 1,
+      "top" : "model\/expanded_conv\/squeeze_excite\/AvgPool\/Mean",
+      "top_shape_style" : 0,
+      "stride_x" : 1,
+      "avg_or_max" : 0,
+      "average_count_exclude_padding" : 1,
+      "type" : "pool",
+      "name" : "model\/expanded_conv\/squeeze_excite\/AvgPool\/Mean",
+      "pad_t" : 0,
+      "stride_y" : 1,
+      "bottom" : "model\/re_lu_1\/Relu",
+      "weights" : {
+
+      },
+      "pad_mode" : 2,
+      "size_y" : 40,
+      "pad_value" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv\/squeeze_excite\/Conv\/BiasAdd",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv\/squeeze_excite\/Relu\/Relu",
+      "blob_weights" : 11,
+      "K" : 16,
+      "blob_biases" : 9,
+      "name" : "model\/expanded_conv\/squeeze_excite\/Conv\/BiasAdd",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 8,
+      "bottom" : "model\/expanded_conv\/squeeze_excite\/AvgPool\/Mean",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/tf.__operators__.add_1\/AddV2",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/re_lu_2\/Relu6__relu6_relu__",
+      "blob_weights" : 15,
+      "K" : 8,
+      "blob_biases" : 13,
+      "name" : "model\/tf.__operators__.add_1\/AddV2",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 16,
+      "bottom" : "model\/expanded_conv\/squeeze_excite\/Relu\/Relu",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_2\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_2\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_2\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_2\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_2\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_2\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_2\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_2\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_2\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_2\/Relu6",
+      "top" : "model\/re_lu_2\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_2\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_2\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_1\/Mul",
+      "top" : "model\/tf.math.multiply_1\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_1\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_1\/Relu,model\/tf.math.multiply_1\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/expanded_conv\/squeeze_excite\/Mul\/mul",
+      "top" : "model\/expanded_conv\/squeeze_excite\/Mul\/mul",
+      "type" : "elementwise",
+      "name" : "model\/expanded_conv\/squeeze_excite\/Mul\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 19,
+      "K" : 16,
+      "blob_biases" : 17,
+      "name" : "model\/expanded_conv\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 16,
+      "bottom" : "model\/expanded_conv\/squeeze_excite\/Mul\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_1\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/re_lu_3\/Relu",
+      "blob_weights" : 23,
+      "K" : 16,
+      "blob_biases" : 21,
+      "name" : "model\/expanded_conv_1\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 72,
+      "bottom" : "model\/expanded_conv\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_1\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 0,
+      "top" : "model\/re_lu_4\/Relu",
+      "blob_weights" : 27,
+      "K" : 72,
+      "blob_biases" : 25,
+      "stride_x" : 2,
+      "name" : "model\/expanded_conv_1\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 72,
+      "pad_t" : 0,
+      "stride_y" : 2,
+      "has_biases" : 1,
+      "C" : 72,
+      "bottom" : "model\/re_lu_3\/Relu",
+      "weights" : {
+
+      },
+      "Nx" : 3,
+      "pad_mode" : 0,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_1\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_1\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 31,
+      "K" : 72,
+      "blob_biases" : 29,
+      "name" : "model\/expanded_conv_1\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 24,
+      "bottom" : "model\/re_lu_4\/Relu",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_2\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/re_lu_5\/Relu",
+      "blob_weights" : 35,
+      "K" : 24,
+      "blob_biases" : 33,
+      "name" : "model\/expanded_conv_2\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 88,
+      "bottom" : "model\/expanded_conv_1\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_2\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/re_lu_6\/Relu",
+      "blob_weights" : 39,
+      "K" : 88,
+      "blob_biases" : 37,
+      "name" : "model\/expanded_conv_2\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 88,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 88,
+      "bottom" : "model\/re_lu_5\/Relu",
+      "weights" : {
+
+      },
+      "Nx" : 3,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_2\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_2\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 43,
+      "K" : 88,
+      "blob_biases" : 41,
+      "name" : "model\/expanded_conv_2\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 24,
+      "bottom" : "model\/re_lu_6\/Relu",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_1\/project\/BatchNorm\/FusedBatchNormV3_nchw,model\/expanded_conv_2\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 1,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/expanded_conv_2\/Add\/add",
+      "top" : "model\/expanded_conv_2\/Add\/add",
+      "type" : "elementwise",
+      "name" : "model\/expanded_conv_2\/Add\/add",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_3\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_3\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 47,
+      "K" : 24,
+      "blob_biases" : 45,
+      "name" : "model\/expanded_conv_3\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 96,
+      "bottom" : "model\/expanded_conv_2\/Add\/add",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_3\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 3,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.__operators__.add_2\/AddV2",
+      "top" : "model\/tf.__operators__.add_2\/AddV2",
+      "type" : "elementwise",
+      "name" : "model\/tf.__operators__.add_2\/AddV2",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/tf.__operators__.add_2\/AddV2",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "debug_info" : "model\/re_lu_7\/Relu6__relu6_relu__",
+      "top" : "model\/re_lu_7\/Relu6__relu6_relu__",
+      "type" : "activation",
+      "name" : "model\/re_lu_7\/Relu6__relu6_relu__"
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_7\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_7\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_7\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_7\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_7\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_7\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_7\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_7\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_7\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_7\/Relu6",
+      "top" : "model\/re_lu_7\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_7\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_7\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_2\/Mul",
+      "top" : "model\/tf.math.multiply_2\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_2\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/expanded_conv_3\/expand\/BatchNorm\/FusedBatchNormV3_nchw,model\/tf.math.multiply_2\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/multiply_1\/mul",
+      "top" : "model\/multiply_1\/mul",
+      "type" : "elementwise",
+      "name" : "model\/multiply_1\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 2,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_3\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 2,
+      "pad_l" : 1,
+      "top" : "model\/expanded_conv_3\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 51,
+      "K" : 96,
+      "blob_biases" : 49,
+      "stride_x" : 2,
+      "name" : "model\/expanded_conv_3\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 96,
+      "pad_t" : 1,
+      "stride_y" : 2,
+      "has_biases" : 1,
+      "C" : 96,
+      "bottom" : "model\/multiply_1\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 5,
+      "pad_mode" : 0,
+      "pad_value" : 0,
+      "Ny" : 5,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_3\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 3,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.__operators__.add_3\/AddV2",
+      "top" : "model\/tf.__operators__.add_3\/AddV2",
+      "type" : "elementwise",
+      "name" : "model\/tf.__operators__.add_3\/AddV2",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/tf.__operators__.add_3\/AddV2",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "debug_info" : "model\/re_lu_8\/Relu6__relu6_relu__",
+      "top" : "model\/re_lu_8\/Relu6__relu6_relu__",
+      "type" : "activation",
+      "name" : "model\/re_lu_8\/Relu6__relu6_relu__"
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_8\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_8\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_8\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_8\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_8\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_8\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_8\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_8\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_8\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_8\/Relu6",
+      "top" : "model\/re_lu_8\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_8\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_8\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_3\/Mul",
+      "top" : "model\/tf.math.multiply_3\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_3\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/expanded_conv_3\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw,model\/tf.math.multiply_3\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/multiply_2\/mul",
+      "top" : "model\/multiply_2\/mul",
+      "type" : "elementwise",
+      "name" : "model\/multiply_2\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "debug_info" : "model\/expanded_conv_3\/squeeze_excite\/AvgPool\/Mean",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "size_x" : 10,
+      "is_global" : 1,
+      "top" : "model\/expanded_conv_3\/squeeze_excite\/AvgPool\/Mean",
+      "top_shape_style" : 0,
+      "stride_x" : 1,
+      "avg_or_max" : 0,
+      "average_count_exclude_padding" : 1,
+      "type" : "pool",
+      "name" : "model\/expanded_conv_3\/squeeze_excite\/AvgPool\/Mean",
+      "pad_t" : 0,
+      "stride_y" : 1,
+      "bottom" : "model\/multiply_2\/mul",
+      "weights" : {
+
+      },
+      "pad_mode" : 2,
+      "size_y" : 10,
+      "pad_value" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_3\/squeeze_excite\/Conv\/BiasAdd",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_3\/squeeze_excite\/Relu\/Relu",
+      "blob_weights" : 55,
+      "K" : 96,
+      "blob_biases" : 53,
+      "name" : "model\/expanded_conv_3\/squeeze_excite\/Conv\/BiasAdd",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 24,
+      "bottom" : "model\/expanded_conv_3\/squeeze_excite\/AvgPool\/Mean",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/tf.__operators__.add_4\/AddV2",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/re_lu_9\/Relu6__relu6_relu__",
+      "blob_weights" : 59,
+      "K" : 24,
+      "blob_biases" : 57,
+      "name" : "model\/tf.__operators__.add_4\/AddV2",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 96,
+      "bottom" : "model\/expanded_conv_3\/squeeze_excite\/Relu\/Relu",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_9\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_9\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_9\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_9\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_9\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_9\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_9\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_9\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_9\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_9\/Relu6",
+      "top" : "model\/re_lu_9\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_9\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_9\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_4\/Mul",
+      "top" : "model\/tf.math.multiply_4\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_4\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/multiply_2\/mul,model\/tf.math.multiply_4\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/expanded_conv_3\/squeeze_excite\/Mul\/mul",
+      "top" : "model\/expanded_conv_3\/squeeze_excite\/Mul\/mul",
+      "type" : "elementwise",
+      "name" : "model\/expanded_conv_3\/squeeze_excite\/Mul\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_3\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_3\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 63,
+      "K" : 96,
+      "blob_biases" : 61,
+      "name" : "model\/expanded_conv_3\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 40,
+      "bottom" : "model\/expanded_conv_3\/squeeze_excite\/Mul\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_4\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_4\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 67,
+      "K" : 40,
+      "blob_biases" : 65,
+      "name" : "model\/expanded_conv_4\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 240,
+      "bottom" : "model\/expanded_conv_3\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_4\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 3,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.__operators__.add_5\/AddV2",
+      "top" : "model\/tf.__operators__.add_5\/AddV2",
+      "type" : "elementwise",
+      "name" : "model\/tf.__operators__.add_5\/AddV2",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/tf.__operators__.add_5\/AddV2",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "debug_info" : "model\/re_lu_10\/Relu6__relu6_relu__",
+      "top" : "model\/re_lu_10\/Relu6__relu6_relu__",
+      "type" : "activation",
+      "name" : "model\/re_lu_10\/Relu6__relu6_relu__"
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_10\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_10\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_10\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_10\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_10\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_10\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_10\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_10\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_10\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_10\/Relu6",
+      "top" : "model\/re_lu_10\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_10\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_10\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_5\/Mul",
+      "top" : "model\/tf.math.multiply_5\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_5\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/expanded_conv_4\/expand\/BatchNorm\/FusedBatchNormV3_nchw,model\/tf.math.multiply_5\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/multiply_3\/mul",
+      "top" : "model\/multiply_3\/mul",
+      "type" : "elementwise",
+      "name" : "model\/multiply_3\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_4\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_4\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 71,
+      "K" : 240,
+      "blob_biases" : 69,
+      "name" : "model\/expanded_conv_4\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 240,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 240,
+      "bottom" : "model\/multiply_3\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 5,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 5,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_4\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 3,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.__operators__.add_6\/AddV2",
+      "top" : "model\/tf.__operators__.add_6\/AddV2",
+      "type" : "elementwise",
+      "name" : "model\/tf.__operators__.add_6\/AddV2",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/tf.__operators__.add_6\/AddV2",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "debug_info" : "model\/re_lu_11\/Relu6__relu6_relu__",
+      "top" : "model\/re_lu_11\/Relu6__relu6_relu__",
+      "type" : "activation",
+      "name" : "model\/re_lu_11\/Relu6__relu6_relu__"
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_11\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_11\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_11\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_11\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_11\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_11\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_11\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_11\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_11\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_11\/Relu6",
+      "top" : "model\/re_lu_11\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_11\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_11\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_6\/Mul",
+      "top" : "model\/tf.math.multiply_6\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_6\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/expanded_conv_4\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw,model\/tf.math.multiply_6\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/multiply_4\/mul",
+      "top" : "model\/multiply_4\/mul",
+      "type" : "elementwise",
+      "name" : "model\/multiply_4\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "debug_info" : "model\/expanded_conv_4\/squeeze_excite\/AvgPool\/Mean",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "size_x" : 10,
+      "is_global" : 1,
+      "top" : "model\/expanded_conv_4\/squeeze_excite\/AvgPool\/Mean",
+      "top_shape_style" : 0,
+      "stride_x" : 1,
+      "avg_or_max" : 0,
+      "average_count_exclude_padding" : 1,
+      "type" : "pool",
+      "name" : "model\/expanded_conv_4\/squeeze_excite\/AvgPool\/Mean",
+      "pad_t" : 0,
+      "stride_y" : 1,
+      "bottom" : "model\/multiply_4\/mul",
+      "weights" : {
+
+      },
+      "pad_mode" : 2,
+      "size_y" : 10,
+      "pad_value" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_4\/squeeze_excite\/Conv\/BiasAdd",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_4\/squeeze_excite\/Relu\/Relu",
+      "blob_weights" : 75,
+      "K" : 240,
+      "blob_biases" : 73,
+      "name" : "model\/expanded_conv_4\/squeeze_excite\/Conv\/BiasAdd",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 64,
+      "bottom" : "model\/expanded_conv_4\/squeeze_excite\/AvgPool\/Mean",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/tf.__operators__.add_7\/AddV2",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/re_lu_12\/Relu6__relu6_relu__",
+      "blob_weights" : 79,
+      "K" : 64,
+      "blob_biases" : 77,
+      "name" : "model\/tf.__operators__.add_7\/AddV2",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 240,
+      "bottom" : "model\/expanded_conv_4\/squeeze_excite\/Relu\/Relu",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_12\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_12\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_12\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_12\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_12\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_12\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_12\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_12\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_12\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_12\/Relu6",
+      "top" : "model\/re_lu_12\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_12\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_12\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_7\/Mul",
+      "top" : "model\/tf.math.multiply_7\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_7\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/multiply_4\/mul,model\/tf.math.multiply_7\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/expanded_conv_4\/squeeze_excite\/Mul\/mul",
+      "top" : "model\/expanded_conv_4\/squeeze_excite\/Mul\/mul",
+      "type" : "elementwise",
+      "name" : "model\/expanded_conv_4\/squeeze_excite\/Mul\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_4\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_4\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 83,
+      "K" : 240,
+      "blob_biases" : 81,
+      "name" : "model\/expanded_conv_4\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 40,
+      "bottom" : "model\/expanded_conv_4\/squeeze_excite\/Mul\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_3\/project\/BatchNorm\/FusedBatchNormV3_nchw,model\/expanded_conv_4\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 1,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/expanded_conv_4\/Add\/add",
+      "top" : "model\/expanded_conv_4\/Add\/add",
+      "type" : "elementwise",
+      "name" : "model\/expanded_conv_4\/Add\/add",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_5\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_5\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 87,
+      "K" : 40,
+      "blob_biases" : 85,
+      "name" : "model\/expanded_conv_5\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 240,
+      "bottom" : "model\/expanded_conv_4\/Add\/add",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_5\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 3,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.__operators__.add_8\/AddV2",
+      "top" : "model\/tf.__operators__.add_8\/AddV2",
+      "type" : "elementwise",
+      "name" : "model\/tf.__operators__.add_8\/AddV2",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/tf.__operators__.add_8\/AddV2",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "debug_info" : "model\/re_lu_13\/Relu6__relu6_relu__",
+      "top" : "model\/re_lu_13\/Relu6__relu6_relu__",
+      "type" : "activation",
+      "name" : "model\/re_lu_13\/Relu6__relu6_relu__"
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_13\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_13\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_13\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_13\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_13\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_13\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_13\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_13\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_13\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_13\/Relu6",
+      "top" : "model\/re_lu_13\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_13\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_13\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_8\/Mul",
+      "top" : "model\/tf.math.multiply_8\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_8\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/expanded_conv_5\/expand\/BatchNorm\/FusedBatchNormV3_nchw,model\/tf.math.multiply_8\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/multiply_5\/mul",
+      "top" : "model\/multiply_5\/mul",
+      "type" : "elementwise",
+      "name" : "model\/multiply_5\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_5\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_5\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 91,
+      "K" : 240,
+      "blob_biases" : 89,
+      "name" : "model\/expanded_conv_5\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 240,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 240,
+      "bottom" : "model\/multiply_5\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 5,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 5,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_5\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 3,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.__operators__.add_9\/AddV2",
+      "top" : "model\/tf.__operators__.add_9\/AddV2",
+      "type" : "elementwise",
+      "name" : "model\/tf.__operators__.add_9\/AddV2",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/tf.__operators__.add_9\/AddV2",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "debug_info" : "model\/re_lu_14\/Relu6__relu6_relu__",
+      "top" : "model\/re_lu_14\/Relu6__relu6_relu__",
+      "type" : "activation",
+      "name" : "model\/re_lu_14\/Relu6__relu6_relu__"
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_14\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_14\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_14\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_14\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_14\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_14\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_14\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_14\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_14\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_14\/Relu6",
+      "top" : "model\/re_lu_14\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_14\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_14\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_9\/Mul",
+      "top" : "model\/tf.math.multiply_9\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_9\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/expanded_conv_5\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw,model\/tf.math.multiply_9\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/multiply_6\/mul",
+      "top" : "model\/multiply_6\/mul",
+      "type" : "elementwise",
+      "name" : "model\/multiply_6\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "debug_info" : "model\/expanded_conv_5\/squeeze_excite\/AvgPool\/Mean",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "size_x" : 10,
+      "is_global" : 1,
+      "top" : "model\/expanded_conv_5\/squeeze_excite\/AvgPool\/Mean",
+      "top_shape_style" : 0,
+      "stride_x" : 1,
+      "avg_or_max" : 0,
+      "average_count_exclude_padding" : 1,
+      "type" : "pool",
+      "name" : "model\/expanded_conv_5\/squeeze_excite\/AvgPool\/Mean",
+      "pad_t" : 0,
+      "stride_y" : 1,
+      "bottom" : "model\/multiply_6\/mul",
+      "weights" : {
+
+      },
+      "pad_mode" : 2,
+      "size_y" : 10,
+      "pad_value" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_5\/squeeze_excite\/Conv\/BiasAdd",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_5\/squeeze_excite\/Relu\/Relu",
+      "blob_weights" : 95,
+      "K" : 240,
+      "blob_biases" : 93,
+      "name" : "model\/expanded_conv_5\/squeeze_excite\/Conv\/BiasAdd",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 64,
+      "bottom" : "model\/expanded_conv_5\/squeeze_excite\/AvgPool\/Mean",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/tf.__operators__.add_10\/AddV2",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/re_lu_15\/Relu6__relu6_relu__",
+      "blob_weights" : 99,
+      "K" : 64,
+      "blob_biases" : 97,
+      "name" : "model\/tf.__operators__.add_10\/AddV2",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 240,
+      "bottom" : "model\/expanded_conv_5\/squeeze_excite\/Relu\/Relu",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_15\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_15\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_15\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_15\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_15\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_15\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_15\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_15\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_15\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_15\/Relu6",
+      "top" : "model\/re_lu_15\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_15\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_15\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_10\/Mul",
+      "top" : "model\/tf.math.multiply_10\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_10\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/multiply_6\/mul,model\/tf.math.multiply_10\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/expanded_conv_5\/squeeze_excite\/Mul\/mul",
+      "top" : "model\/expanded_conv_5\/squeeze_excite\/Mul\/mul",
+      "type" : "elementwise",
+      "name" : "model\/expanded_conv_5\/squeeze_excite\/Mul\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_5\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_5\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 103,
+      "K" : 240,
+      "blob_biases" : 101,
+      "name" : "model\/expanded_conv_5\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 40,
+      "bottom" : "model\/expanded_conv_5\/squeeze_excite\/Mul\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_4\/Add\/add,model\/expanded_conv_5\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 1,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/expanded_conv_5\/Add\/add",
+      "top" : "model\/expanded_conv_5\/Add\/add",
+      "type" : "elementwise",
+      "name" : "model\/expanded_conv_5\/Add\/add",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_6\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_6\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 107,
+      "K" : 40,
+      "blob_biases" : 105,
+      "name" : "model\/expanded_conv_6\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 120,
+      "bottom" : "model\/expanded_conv_5\/Add\/add",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_6\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 3,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.__operators__.add_11\/AddV2",
+      "top" : "model\/tf.__operators__.add_11\/AddV2",
+      "type" : "elementwise",
+      "name" : "model\/tf.__operators__.add_11\/AddV2",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/tf.__operators__.add_11\/AddV2",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "debug_info" : "model\/re_lu_16\/Relu6__relu6_relu__",
+      "top" : "model\/re_lu_16\/Relu6__relu6_relu__",
+      "type" : "activation",
+      "name" : "model\/re_lu_16\/Relu6__relu6_relu__"
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_16\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_16\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_16\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_16\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_16\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_16\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_16\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_16\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_16\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_16\/Relu6",
+      "top" : "model\/re_lu_16\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_16\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_16\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_11\/Mul",
+      "top" : "model\/tf.math.multiply_11\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_11\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/expanded_conv_6\/expand\/BatchNorm\/FusedBatchNormV3_nchw,model\/tf.math.multiply_11\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/multiply_7\/mul",
+      "top" : "model\/multiply_7\/mul",
+      "type" : "elementwise",
+      "name" : "model\/multiply_7\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_6\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_6\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 111,
+      "K" : 120,
+      "blob_biases" : 109,
+      "name" : "model\/expanded_conv_6\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 120,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 120,
+      "bottom" : "model\/multiply_7\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 5,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 5,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_6\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 3,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.__operators__.add_12\/AddV2",
+      "top" : "model\/tf.__operators__.add_12\/AddV2",
+      "type" : "elementwise",
+      "name" : "model\/tf.__operators__.add_12\/AddV2",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/tf.__operators__.add_12\/AddV2",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "debug_info" : "model\/re_lu_17\/Relu6__relu6_relu__",
+      "top" : "model\/re_lu_17\/Relu6__relu6_relu__",
+      "type" : "activation",
+      "name" : "model\/re_lu_17\/Relu6__relu6_relu__"
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_17\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_17\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_17\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_17\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_17\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_17\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_17\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_17\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_17\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_17\/Relu6",
+      "top" : "model\/re_lu_17\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_17\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_17\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_12\/Mul",
+      "top" : "model\/tf.math.multiply_12\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_12\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/expanded_conv_6\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw,model\/tf.math.multiply_12\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/multiply_8\/mul",
+      "top" : "model\/multiply_8\/mul",
+      "type" : "elementwise",
+      "name" : "model\/multiply_8\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "debug_info" : "model\/expanded_conv_6\/squeeze_excite\/AvgPool\/Mean",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "size_x" : 10,
+      "is_global" : 1,
+      "top" : "model\/expanded_conv_6\/squeeze_excite\/AvgPool\/Mean",
+      "top_shape_style" : 0,
+      "stride_x" : 1,
+      "avg_or_max" : 0,
+      "average_count_exclude_padding" : 1,
+      "type" : "pool",
+      "name" : "model\/expanded_conv_6\/squeeze_excite\/AvgPool\/Mean",
+      "pad_t" : 0,
+      "stride_y" : 1,
+      "bottom" : "model\/multiply_8\/mul",
+      "weights" : {
+
+      },
+      "pad_mode" : 2,
+      "size_y" : 10,
+      "pad_value" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_6\/squeeze_excite\/Conv\/BiasAdd",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_6\/squeeze_excite\/Relu\/Relu",
+      "blob_weights" : 115,
+      "K" : 120,
+      "blob_biases" : 113,
+      "name" : "model\/expanded_conv_6\/squeeze_excite\/Conv\/BiasAdd",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 32,
+      "bottom" : "model\/expanded_conv_6\/squeeze_excite\/AvgPool\/Mean",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/tf.__operators__.add_13\/AddV2",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/re_lu_18\/Relu6__relu6_relu__",
+      "blob_weights" : 119,
+      "K" : 32,
+      "blob_biases" : 117,
+      "name" : "model\/tf.__operators__.add_13\/AddV2",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 120,
+      "bottom" : "model\/expanded_conv_6\/squeeze_excite\/Relu\/Relu",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_18\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_18\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_18\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_18\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_18\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_18\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_18\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_18\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_18\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_18\/Relu6",
+      "top" : "model\/re_lu_18\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_18\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_18\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_13\/Mul",
+      "top" : "model\/tf.math.multiply_13\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_13\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/multiply_8\/mul,model\/tf.math.multiply_13\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/expanded_conv_6\/squeeze_excite\/Mul\/mul",
+      "top" : "model\/expanded_conv_6\/squeeze_excite\/Mul\/mul",
+      "type" : "elementwise",
+      "name" : "model\/expanded_conv_6\/squeeze_excite\/Mul\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_6\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_6\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 123,
+      "K" : 120,
+      "blob_biases" : 121,
+      "name" : "model\/expanded_conv_6\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 48,
+      "bottom" : "model\/expanded_conv_6\/squeeze_excite\/Mul\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_7\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_7\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 127,
+      "K" : 48,
+      "blob_biases" : 125,
+      "name" : "model\/expanded_conv_7\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 144,
+      "bottom" : "model\/expanded_conv_6\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_7\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 3,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.__operators__.add_14\/AddV2",
+      "top" : "model\/tf.__operators__.add_14\/AddV2",
+      "type" : "elementwise",
+      "name" : "model\/tf.__operators__.add_14\/AddV2",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/tf.__operators__.add_14\/AddV2",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "debug_info" : "model\/re_lu_19\/Relu6__relu6_relu__",
+      "top" : "model\/re_lu_19\/Relu6__relu6_relu__",
+      "type" : "activation",
+      "name" : "model\/re_lu_19\/Relu6__relu6_relu__"
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_19\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_19\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_19\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_19\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_19\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_19\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_19\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_19\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_19\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_19\/Relu6",
+      "top" : "model\/re_lu_19\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_19\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_19\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_14\/Mul",
+      "top" : "model\/tf.math.multiply_14\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_14\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/expanded_conv_7\/expand\/BatchNorm\/FusedBatchNormV3_nchw,model\/tf.math.multiply_14\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/multiply_9\/mul",
+      "top" : "model\/multiply_9\/mul",
+      "type" : "elementwise",
+      "name" : "model\/multiply_9\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_7\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_7\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 131,
+      "K" : 144,
+      "blob_biases" : 129,
+      "name" : "model\/expanded_conv_7\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 144,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 144,
+      "bottom" : "model\/multiply_9\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 5,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 5,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_7\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 3,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.__operators__.add_15\/AddV2",
+      "top" : "model\/tf.__operators__.add_15\/AddV2",
+      "type" : "elementwise",
+      "name" : "model\/tf.__operators__.add_15\/AddV2",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/tf.__operators__.add_15\/AddV2",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "debug_info" : "model\/re_lu_20\/Relu6__relu6_relu__",
+      "top" : "model\/re_lu_20\/Relu6__relu6_relu__",
+      "type" : "activation",
+      "name" : "model\/re_lu_20\/Relu6__relu6_relu__"
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_20\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_20\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_20\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_20\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_20\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_20\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_20\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_20\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_20\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_20\/Relu6",
+      "top" : "model\/re_lu_20\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_20\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_20\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_15\/Mul",
+      "top" : "model\/tf.math.multiply_15\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_15\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/expanded_conv_7\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw,model\/tf.math.multiply_15\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/multiply_10\/mul",
+      "top" : "model\/multiply_10\/mul",
+      "type" : "elementwise",
+      "name" : "model\/multiply_10\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "debug_info" : "model\/expanded_conv_7\/squeeze_excite\/AvgPool\/Mean",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "size_x" : 10,
+      "is_global" : 1,
+      "top" : "model\/expanded_conv_7\/squeeze_excite\/AvgPool\/Mean",
+      "top_shape_style" : 0,
+      "stride_x" : 1,
+      "avg_or_max" : 0,
+      "average_count_exclude_padding" : 1,
+      "type" : "pool",
+      "name" : "model\/expanded_conv_7\/squeeze_excite\/AvgPool\/Mean",
+      "pad_t" : 0,
+      "stride_y" : 1,
+      "bottom" : "model\/multiply_10\/mul",
+      "weights" : {
+
+      },
+      "pad_mode" : 2,
+      "size_y" : 10,
+      "pad_value" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_7\/squeeze_excite\/Conv\/BiasAdd",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_7\/squeeze_excite\/Relu\/Relu",
+      "blob_weights" : 135,
+      "K" : 144,
+      "blob_biases" : 133,
+      "name" : "model\/expanded_conv_7\/squeeze_excite\/Conv\/BiasAdd",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 40,
+      "bottom" : "model\/expanded_conv_7\/squeeze_excite\/AvgPool\/Mean",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/tf.__operators__.add_16\/AddV2",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/re_lu_21\/Relu6__relu6_relu__",
+      "blob_weights" : 139,
+      "K" : 40,
+      "blob_biases" : 137,
+      "name" : "model\/tf.__operators__.add_16\/AddV2",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 144,
+      "bottom" : "model\/expanded_conv_7\/squeeze_excite\/Relu\/Relu",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_21\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_21\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_21\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_21\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_21\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_21\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_21\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_21\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_21\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_21\/Relu6",
+      "top" : "model\/re_lu_21\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_21\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_21\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_16\/Mul",
+      "top" : "model\/tf.math.multiply_16\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_16\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/multiply_10\/mul,model\/tf.math.multiply_16\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/expanded_conv_7\/squeeze_excite\/Mul\/mul",
+      "top" : "model\/expanded_conv_7\/squeeze_excite\/Mul\/mul",
+      "type" : "elementwise",
+      "name" : "model\/expanded_conv_7\/squeeze_excite\/Mul\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_7\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_7\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 143,
+      "K" : 144,
+      "blob_biases" : 141,
+      "name" : "model\/expanded_conv_7\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 48,
+      "bottom" : "model\/expanded_conv_7\/squeeze_excite\/Mul\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_6\/project\/BatchNorm\/FusedBatchNormV3_nchw,model\/expanded_conv_7\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 1,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/expanded_conv_7\/Add\/add",
+      "top" : "model\/expanded_conv_7\/Add\/add",
+      "type" : "elementwise",
+      "name" : "model\/expanded_conv_7\/Add\/add",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_8\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_8\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 147,
+      "K" : 48,
+      "blob_biases" : 145,
+      "name" : "model\/expanded_conv_8\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 288,
+      "bottom" : "model\/expanded_conv_7\/Add\/add",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_8\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 3,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.__operators__.add_17\/AddV2",
+      "top" : "model\/tf.__operators__.add_17\/AddV2",
+      "type" : "elementwise",
+      "name" : "model\/tf.__operators__.add_17\/AddV2",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/tf.__operators__.add_17\/AddV2",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "debug_info" : "model\/re_lu_22\/Relu6__relu6_relu__",
+      "top" : "model\/re_lu_22\/Relu6__relu6_relu__",
+      "type" : "activation",
+      "name" : "model\/re_lu_22\/Relu6__relu6_relu__"
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_22\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_22\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_22\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_22\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_22\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_22\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_22\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_22\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_22\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_22\/Relu6",
+      "top" : "model\/re_lu_22\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_22\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_22\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_17\/Mul",
+      "top" : "model\/tf.math.multiply_17\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_17\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/expanded_conv_8\/expand\/BatchNorm\/FusedBatchNormV3_nchw,model\/tf.math.multiply_17\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/multiply_11\/mul",
+      "top" : "model\/multiply_11\/mul",
+      "type" : "elementwise",
+      "name" : "model\/multiply_11\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 2,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_8\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 2,
+      "pad_l" : 1,
+      "top" : "model\/expanded_conv_8\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 151,
+      "K" : 288,
+      "blob_biases" : 149,
+      "stride_x" : 2,
+      "name" : "model\/expanded_conv_8\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 288,
+      "pad_t" : 1,
+      "stride_y" : 2,
+      "has_biases" : 1,
+      "C" : 288,
+      "bottom" : "model\/multiply_11\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 5,
+      "pad_mode" : 0,
+      "pad_value" : 0,
+      "Ny" : 5,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_8\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 3,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.__operators__.add_18\/AddV2",
+      "top" : "model\/tf.__operators__.add_18\/AddV2",
+      "type" : "elementwise",
+      "name" : "model\/tf.__operators__.add_18\/AddV2",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/tf.__operators__.add_18\/AddV2",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "debug_info" : "model\/re_lu_23\/Relu6__relu6_relu__",
+      "top" : "model\/re_lu_23\/Relu6__relu6_relu__",
+      "type" : "activation",
+      "name" : "model\/re_lu_23\/Relu6__relu6_relu__"
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_23\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_23\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_23\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_23\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_23\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_23\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_23\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_23\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_23\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_23\/Relu6",
+      "top" : "model\/re_lu_23\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_23\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_23\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_18\/Mul",
+      "top" : "model\/tf.math.multiply_18\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_18\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/expanded_conv_8\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw,model\/tf.math.multiply_18\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/multiply_12\/mul",
+      "top" : "model\/multiply_12\/mul",
+      "type" : "elementwise",
+      "name" : "model\/multiply_12\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "debug_info" : "model\/expanded_conv_8\/squeeze_excite\/AvgPool\/Mean",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "size_x" : 5,
+      "is_global" : 1,
+      "top" : "model\/expanded_conv_8\/squeeze_excite\/AvgPool\/Mean",
+      "top_shape_style" : 0,
+      "stride_x" : 1,
+      "avg_or_max" : 0,
+      "average_count_exclude_padding" : 1,
+      "type" : "pool",
+      "name" : "model\/expanded_conv_8\/squeeze_excite\/AvgPool\/Mean",
+      "pad_t" : 0,
+      "stride_y" : 1,
+      "bottom" : "model\/multiply_12\/mul",
+      "weights" : {
+
+      },
+      "pad_mode" : 2,
+      "size_y" : 5,
+      "pad_value" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_8\/squeeze_excite\/Conv\/BiasAdd",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_8\/squeeze_excite\/Relu\/Relu",
+      "blob_weights" : 155,
+      "K" : 288,
+      "blob_biases" : 153,
+      "name" : "model\/expanded_conv_8\/squeeze_excite\/Conv\/BiasAdd",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 72,
+      "bottom" : "model\/expanded_conv_8\/squeeze_excite\/AvgPool\/Mean",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/tf.__operators__.add_19\/AddV2",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/re_lu_24\/Relu6__relu6_relu__",
+      "blob_weights" : 159,
+      "K" : 72,
+      "blob_biases" : 157,
+      "name" : "model\/tf.__operators__.add_19\/AddV2",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 288,
+      "bottom" : "model\/expanded_conv_8\/squeeze_excite\/Relu\/Relu",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_24\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_24\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_24\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_24\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_24\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_24\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_24\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_24\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_24\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_24\/Relu6",
+      "top" : "model\/re_lu_24\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_24\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_24\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_19\/Mul",
+      "top" : "model\/tf.math.multiply_19\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_19\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/multiply_12\/mul,model\/tf.math.multiply_19\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/expanded_conv_8\/squeeze_excite\/Mul\/mul",
+      "top" : "model\/expanded_conv_8\/squeeze_excite\/Mul\/mul",
+      "type" : "elementwise",
+      "name" : "model\/expanded_conv_8\/squeeze_excite\/Mul\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_8\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_8\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 163,
+      "K" : 288,
+      "blob_biases" : 161,
+      "name" : "model\/expanded_conv_8\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 96,
+      "bottom" : "model\/expanded_conv_8\/squeeze_excite\/Mul\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_9\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_9\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 167,
+      "K" : 96,
+      "blob_biases" : 165,
+      "name" : "model\/expanded_conv_9\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 576,
+      "bottom" : "model\/expanded_conv_8\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_9\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 3,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.__operators__.add_20\/AddV2",
+      "top" : "model\/tf.__operators__.add_20\/AddV2",
+      "type" : "elementwise",
+      "name" : "model\/tf.__operators__.add_20\/AddV2",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/tf.__operators__.add_20\/AddV2",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "debug_info" : "model\/re_lu_25\/Relu6__relu6_relu__",
+      "top" : "model\/re_lu_25\/Relu6__relu6_relu__",
+      "type" : "activation",
+      "name" : "model\/re_lu_25\/Relu6__relu6_relu__"
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_25\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_25\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_25\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_25\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_25\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_25\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_25\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_25\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_25\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_25\/Relu6",
+      "top" : "model\/re_lu_25\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_25\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_25\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_20\/Mul",
+      "top" : "model\/tf.math.multiply_20\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_20\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/expanded_conv_9\/expand\/BatchNorm\/FusedBatchNormV3_nchw,model\/tf.math.multiply_20\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/multiply_13\/mul",
+      "top" : "model\/multiply_13\/mul",
+      "type" : "elementwise",
+      "name" : "model\/multiply_13\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_9\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_9\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 171,
+      "K" : 576,
+      "blob_biases" : 169,
+      "name" : "model\/expanded_conv_9\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 576,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 576,
+      "bottom" : "model\/multiply_13\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 5,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 5,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_9\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 3,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.__operators__.add_21\/AddV2",
+      "top" : "model\/tf.__operators__.add_21\/AddV2",
+      "type" : "elementwise",
+      "name" : "model\/tf.__operators__.add_21\/AddV2",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/tf.__operators__.add_21\/AddV2",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "debug_info" : "model\/re_lu_26\/Relu6__relu6_relu__",
+      "top" : "model\/re_lu_26\/Relu6__relu6_relu__",
+      "type" : "activation",
+      "name" : "model\/re_lu_26\/Relu6__relu6_relu__"
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_26\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_26\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_26\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_26\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_26\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_26\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_26\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_26\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_26\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_26\/Relu6",
+      "top" : "model\/re_lu_26\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_26\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_26\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_21\/Mul",
+      "top" : "model\/tf.math.multiply_21\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_21\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/expanded_conv_9\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw,model\/tf.math.multiply_21\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/multiply_14\/mul",
+      "top" : "model\/multiply_14\/mul",
+      "type" : "elementwise",
+      "name" : "model\/multiply_14\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "debug_info" : "model\/expanded_conv_9\/squeeze_excite\/AvgPool\/Mean",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "size_x" : 5,
+      "is_global" : 1,
+      "top" : "model\/expanded_conv_9\/squeeze_excite\/AvgPool\/Mean",
+      "top_shape_style" : 0,
+      "stride_x" : 1,
+      "avg_or_max" : 0,
+      "average_count_exclude_padding" : 1,
+      "type" : "pool",
+      "name" : "model\/expanded_conv_9\/squeeze_excite\/AvgPool\/Mean",
+      "pad_t" : 0,
+      "stride_y" : 1,
+      "bottom" : "model\/multiply_14\/mul",
+      "weights" : {
+
+      },
+      "pad_mode" : 2,
+      "size_y" : 5,
+      "pad_value" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_9\/squeeze_excite\/Conv\/BiasAdd",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_9\/squeeze_excite\/Relu\/Relu",
+      "blob_weights" : 175,
+      "K" : 576,
+      "blob_biases" : 173,
+      "name" : "model\/expanded_conv_9\/squeeze_excite\/Conv\/BiasAdd",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 144,
+      "bottom" : "model\/expanded_conv_9\/squeeze_excite\/AvgPool\/Mean",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/tf.__operators__.add_22\/AddV2",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/re_lu_27\/Relu6__relu6_relu__",
+      "blob_weights" : 179,
+      "K" : 144,
+      "blob_biases" : 177,
+      "name" : "model\/tf.__operators__.add_22\/AddV2",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 576,
+      "bottom" : "model\/expanded_conv_9\/squeeze_excite\/Relu\/Relu",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_27\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_27\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_27\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_27\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_27\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_27\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_27\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_27\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_27\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_27\/Relu6",
+      "top" : "model\/re_lu_27\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_27\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_27\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_22\/Mul",
+      "top" : "model\/tf.math.multiply_22\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_22\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/multiply_14\/mul,model\/tf.math.multiply_22\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/expanded_conv_9\/squeeze_excite\/Mul\/mul",
+      "top" : "model\/expanded_conv_9\/squeeze_excite\/Mul\/mul",
+      "type" : "elementwise",
+      "name" : "model\/expanded_conv_9\/squeeze_excite\/Mul\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_9\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_9\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 183,
+      "K" : 576,
+      "blob_biases" : 181,
+      "name" : "model\/expanded_conv_9\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 96,
+      "bottom" : "model\/expanded_conv_9\/squeeze_excite\/Mul\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_8\/project\/BatchNorm\/FusedBatchNormV3_nchw,model\/expanded_conv_9\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 1,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/expanded_conv_9\/Add\/add",
+      "top" : "model\/expanded_conv_9\/Add\/add",
+      "type" : "elementwise",
+      "name" : "model\/expanded_conv_9\/Add\/add",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_10\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_10\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 187,
+      "K" : 96,
+      "blob_biases" : 185,
+      "name" : "model\/expanded_conv_10\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 576,
+      "bottom" : "model\/expanded_conv_9\/Add\/add",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_10\/expand\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 3,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.__operators__.add_23\/AddV2",
+      "top" : "model\/tf.__operators__.add_23\/AddV2",
+      "type" : "elementwise",
+      "name" : "model\/tf.__operators__.add_23\/AddV2",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/tf.__operators__.add_23\/AddV2",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "debug_info" : "model\/re_lu_28\/Relu6__relu6_relu__",
+      "top" : "model\/re_lu_28\/Relu6__relu6_relu__",
+      "type" : "activation",
+      "name" : "model\/re_lu_28\/Relu6__relu6_relu__"
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_28\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_28\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_28\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_28\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_28\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_28\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_28\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_28\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_28\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_28\/Relu6",
+      "top" : "model\/re_lu_28\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_28\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_28\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_23\/Mul",
+      "top" : "model\/tf.math.multiply_23\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_23\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/expanded_conv_10\/expand\/BatchNorm\/FusedBatchNormV3_nchw,model\/tf.math.multiply_23\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/multiply_15\/mul",
+      "top" : "model\/multiply_15\/mul",
+      "type" : "elementwise",
+      "name" : "model\/multiply_15\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_10\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_10\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 191,
+      "K" : 576,
+      "blob_biases" : 189,
+      "name" : "model\/expanded_conv_10\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 576,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 576,
+      "bottom" : "model\/multiply_15\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 5,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 5,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_10\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 3,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.__operators__.add_24\/AddV2",
+      "top" : "model\/tf.__operators__.add_24\/AddV2",
+      "type" : "elementwise",
+      "name" : "model\/tf.__operators__.add_24\/AddV2",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/tf.__operators__.add_24\/AddV2",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "debug_info" : "model\/re_lu_29\/Relu6__relu6_relu__",
+      "top" : "model\/re_lu_29\/Relu6__relu6_relu__",
+      "type" : "activation",
+      "name" : "model\/re_lu_29\/Relu6__relu6_relu__"
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_29\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_29\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_29\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_29\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_29\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_29\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_29\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_29\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_29\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_29\/Relu6",
+      "top" : "model\/re_lu_29\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_29\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_29\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_24\/Mul",
+      "top" : "model\/tf.math.multiply_24\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_24\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/expanded_conv_10\/depthwise\/BatchNorm\/FusedBatchNormV3_nchw,model\/tf.math.multiply_24\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/multiply_16\/mul",
+      "top" : "model\/multiply_16\/mul",
+      "type" : "elementwise",
+      "name" : "model\/multiply_16\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "debug_info" : "model\/expanded_conv_10\/squeeze_excite\/AvgPool\/Mean",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "size_x" : 5,
+      "is_global" : 1,
+      "top" : "model\/expanded_conv_10\/squeeze_excite\/AvgPool\/Mean",
+      "top_shape_style" : 0,
+      "stride_x" : 1,
+      "avg_or_max" : 0,
+      "average_count_exclude_padding" : 1,
+      "type" : "pool",
+      "name" : "model\/expanded_conv_10\/squeeze_excite\/AvgPool\/Mean",
+      "pad_t" : 0,
+      "stride_y" : 1,
+      "bottom" : "model\/multiply_16\/mul",
+      "weights" : {
+
+      },
+      "pad_mode" : 2,
+      "size_y" : 5,
+      "pad_value" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_10\/squeeze_excite\/Conv\/BiasAdd",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_10\/squeeze_excite\/Relu\/Relu",
+      "blob_weights" : 195,
+      "K" : 576,
+      "blob_biases" : 193,
+      "name" : "model\/expanded_conv_10\/squeeze_excite\/Conv\/BiasAdd",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 144,
+      "bottom" : "model\/expanded_conv_10\/squeeze_excite\/AvgPool\/Mean",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/tf.__operators__.add_25\/AddV2",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/re_lu_30\/Relu6__relu6_relu__",
+      "blob_weights" : 199,
+      "K" : 144,
+      "blob_biases" : 197,
+      "name" : "model\/tf.__operators__.add_25\/AddV2",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 576,
+      "bottom" : "model\/expanded_conv_10\/squeeze_excite\/Relu\/Relu",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_30\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_30\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_30\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_30\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_30\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_30\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_30\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_30\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_30\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_30\/Relu6",
+      "top" : "model\/re_lu_30\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_30\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_30\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_25\/Mul",
+      "top" : "model\/tf.math.multiply_25\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_25\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/multiply_16\/mul,model\/tf.math.multiply_25\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/expanded_conv_10\/squeeze_excite\/Mul\/mul",
+      "top" : "model\/expanded_conv_10\/squeeze_excite\/Mul\/mul",
+      "type" : "elementwise",
+      "name" : "model\/expanded_conv_10\/squeeze_excite\/Mul\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/expanded_conv_10\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/expanded_conv_10\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 203,
+      "K" : 576,
+      "blob_biases" : 201,
+      "name" : "model\/expanded_conv_10\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 96,
+      "bottom" : "model\/expanded_conv_10\/squeeze_excite\/Mul\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/expanded_conv_9\/Add\/add,model\/expanded_conv_10\/project\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 1,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/expanded_conv_10\/Add\/add",
+      "top" : "model\/expanded_conv_10\/Add\/add",
+      "type" : "elementwise",
+      "name" : "model\/expanded_conv_10\/Add\/add",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/Conv_1\/BatchNorm\/FusedBatchNormV3_nchw",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/Conv_1\/BatchNorm\/FusedBatchNormV3_nchw",
+      "blob_weights" : 207,
+      "K" : 96,
+      "blob_biases" : 205,
+      "name" : "model\/Conv_1\/BatchNorm\/FusedBatchNormV3_nchw",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 576,
+      "bottom" : "model\/expanded_conv_10\/Add\/add",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "bottom" : "model\/Conv_1\/BatchNorm\/FusedBatchNormV3_nchw",
+      "alpha" : 3,
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.__operators__.add_26\/AddV2",
+      "top" : "model\/tf.__operators__.add_26\/AddV2",
+      "type" : "elementwise",
+      "name" : "model\/tf.__operators__.add_26\/AddV2",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/tf.__operators__.add_26\/AddV2",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "debug_info" : "model\/re_lu_31\/Relu6__relu6_relu__",
+      "top" : "model\/re_lu_31\/Relu6__relu6_relu__",
+      "type" : "activation",
+      "name" : "model\/re_lu_31\/Relu6__relu6_relu__"
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_31\/Relu6__relu6_relu__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_31\/Relu6__relu6_neg__",
+      "top" : "model\/re_lu_31\/Relu6__relu6_neg__",
+      "type" : "activation",
+      "name" : "model\/re_lu_31\/Relu6__relu6_neg__",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_31\/Relu6__relu6_neg__",
+      "alpha" : -6,
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/re_lu_31\/Relu6__relu6_threshold6__",
+      "top" : "model\/re_lu_31\/Relu6__relu6_threshold6__",
+      "type" : "elementwise",
+      "name" : "model\/re_lu_31\/Relu6__relu6_threshold6__",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "model\/re_lu_31\/Relu6__relu6_threshold6__",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "debug_info" : "model\/re_lu_31\/Relu6",
+      "top" : "model\/re_lu_31\/Relu6",
+      "type" : "activation",
+      "name" : "model\/re_lu_31\/Relu6",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/re_lu_31\/Relu6",
+      "alpha" : 0.1666666716337204,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/tf.math.multiply_26\/Mul",
+      "top" : "model\/tf.math.multiply_26\/Mul",
+      "type" : "elementwise",
+      "name" : "model\/tf.math.multiply_26\/Mul",
+      "beta" : 0
+    },
+    {
+      "bottom" : "model\/Conv_1\/BatchNorm\/FusedBatchNormV3_nchw,model\/tf.math.multiply_26\/Mul",
+      "alpha" : 1,
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "debug_info" : "model\/multiply_17\/mul",
+      "top" : "model\/multiply_17\/mul",
+      "type" : "elementwise",
+      "name" : "model\/multiply_17\/mul",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/separable_conv2d\/separable_conv2d\/depthwisex",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/separable_conv2d\/separable_conv2d\/depthwisex",
+      "blob_weights" : 209,
+      "K" : 576,
+      "name" : "model\/separable_conv2d\/separable_conv2d\/depthwisex",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 576,
+      "pad_t" : 0,
+      "has_biases" : 0,
+      "C" : 576,
+      "bottom" : "model\/multiply_17\/mul",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 0,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "debug_info" : "model\/separable_conv2d\/BiasAdd",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "model\/separable_conv2d\/BiasAdd",
+      "blob_weights" : 213,
+      "K" : 576,
+      "blob_biases" : 211,
+      "name" : "model\/separable_conv2d\/BiasAdd",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 64,
+      "bottom" : "model\/separable_conv2d\/separable_conv2d\/depthwisex",
+      "weights" : {
+
+      },
+      "Nx" : 1,
+      "pad_mode" : 0,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "debug_info" : "max_pool_0",
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "size_x" : 5,
+      "top" : "max_pool_0",
+      "top_shape_style" : 0,
+      "stride_x" : 5,
+      "avg_or_max" : 1,
+      "average_count_exclude_padding" : 1,
+      "type" : "pool",
+      "name" : "max_pool_0",
+      "pad_t" : 0,
+      "stride_y" : 5,
+      "bottom" : "model\/separable_conv2d\/BiasAdd",
+      "weights" : {
+
+      },
+      "pad_mode" : 2,
+      "size_y" : 5,
+      "pad_value" : 0
+    },
+    {
+      "axis_h" : 0,
+      "axis_w" : 2,
+      "bottom" : "max_pool_0",
+      "axis_k" : 1,
+      "axis_n" : 3,
+      "axis_seq" : 4,
+      "weights" : {
+
+      },
+      "debug_info" : "transpose_148",
+      "top" : "transpose_148",
+      "type" : "transpose",
+      "name" : "transpose_148"
+    },
+    {
+      "name" : "model\/flatten\/Reshape",
+      "weights" : {
+
+      },
+      "dst_w" : 64,
+      "version" : 1,
+      "dst_n" : 1,
+      "dst_nd_rank" : 2,
+      "type" : "reshape",
+      "dst_h" : -1,
+      "mode" : 0,
+      "dynamic_shape" : false,
+      "bottom" : "transpose_148",
+      "debug_info" : "model\/flatten\/Reshape",
+      "dst_seq" : 1,
+      "dst_k" : 1,
+      "top" : "model\/flatten\/Reshape"
+    },
+    {
+      "nB" : 64,
+      "top" : "model\/classifier\/BiasAdd",
+      "has_biases" : 1,
+      "weights" : {
+
+      },
+      "nC" : 2,
+      "blob_weights" : 217,
+      "type" : "inner_product",
+      "has_relu" : 0,
+      "bottom" : "model\/flatten\/Reshape",
+      "blob_biases" : 215,
+      "has_tanh" : 0,
+      "debug_info" : "model\/classifier\/BiasAdd",
+      "name" : "model\/classifier\/BiasAdd",
+      "has_prelu" : 0
+    },
+    {
+      "bottom" : "model\/classifier\/BiasAdd",
+      "weights" : {
+
+      },
+      "nd_axis" : -1,
+      "debug_info" : "model\/classifier\/Softmax",
+      "top" : "classifier",
+      "type" : "softmax_nd",
+      "name" : "model\/classifier\/Softmax",
+      "attributes" : {
+        "is_output" : 1
+      }
+    }
+  ],
+  "transform_params" : {
+    "input_1" : {
+      "bias_a" : 0,
+      "bias_g" : 0,
+      "bias_r" : 0,
+      "bias_b" : 0,
+      "center_mean" : 0,
+      "is_network_bgr" : 0,
+      "scale" : 1
+    }
+  },
+  "storage" : "model.espresso.weights",
+  "metadata_in_weights" : [
+
+  ],
+  "properties" : {
+
+  },
+  "analyses" : {
+
+  },
+  "format_version" : 200
+}

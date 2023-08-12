@@ -1,0 +1,11 @@
+framework module passport_reader {
+  umbrella header "passport_reader.h"
+
+  export *
+  module * { export * }
+}
+
+module passport_reader.Swift {
+    header "passport_reader-Swift.h"
+    requires objc
+}

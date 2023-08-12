@@ -1,0 +1,111 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
+// swift-module-flags: -target x86_64-apple-ios10.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name face_mesh_detection
+import CoreML
+import Foundation
+import Swift
+import UIKit
+import Vision
+import _Concurrency
+@_exported import face_mesh_detection
+public class Point2D {
+  public var x: Swift.Float
+  public var y: Swift.Float
+  public init(x: Swift.Float, y: Swift.Float)
+  @objc deinit
+}
+public class FaceMeshModel {
+  public var points: [face_mesh_detection.Point3D]
+  public var confidence: Swift.Double
+  public init(points: [face_mesh_detection.Point3D], confidence: Swift.Double)
+  @objc deinit
+}
+@available(iOS 14.0, *)
+public class PoseEstimator {
+  public init() throws
+  public func estimate(points: [face_mesh_detection.Point3D]) -> (Swift.Float, Swift.Float, Swift.Float)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @available(iOS 13.0, *)
+public class FaceMeshCNN {
+  public static var HEAD_GESTURE_MIN_DEGREE_THRESHOLD: Swift.Float
+  public static var HEAD_GESTURE_MAX_DEGREE_THRESHOLD: Swift.Float
+  public static var HEAD_GESTURE_MIDDLE_POS_THRESHOLD: Swift.Float
+  public static var DESIRED_POSITION: face_mesh_detection.Position
+  public static var HORIZONTAL_HEAD_CENTER_ANGLE: Swift.Float
+  public static var VERTICAL_HEAD_CENTER_ANGLE: Swift.Float
+  public static func load() -> Swift.Bool
+  public static func detect(faceDetectionResult: face_mesh_detection.FaceDetectionResult, completion: @escaping (Swift.Result<face_mesh_detection.FaceMeshModel, Swift.Error>) -> Swift.Void)
+  public static func detectPosition(fromAngles angles: (Swift.Float, Swift.Float, Swift.Float)) -> face_mesh_detection.Position
+  public static func detectVertical(_ angle: Swift.Float) -> (face_mesh_detection.VerticalPosition, Swift.Bool)
+  public static func detectHorizontal(_ angle: Swift.Float) -> (face_mesh_detection.HorizontalPosition, Swift.Bool)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class FaceMeshUtil {
+  @available(iOS 14.0, *)
+  public static var POSE_ESTIMATOR: face_mesh_detection.PoseEstimator?
+  public static var BLUR_MAX_WIDTH_OR_HEIGHT: CoreGraphics.CGFloat
+  @available(iOS 14.0, *)
+  public static func load() -> Swift.Bool
+  @available(iOS 14.0, *)
+  public static func calculateAngles(_ points: [face_mesh_detection.Point3D]) -> (Swift.Float, Swift.Float, Swift.Float)
+  public static func resizeImage(image: UIKit.UIImage, targetSize: CoreGraphics.CGSize) -> UIKit.UIImage?
+  public static func cropImage(image: UIKit.UIImage, cropRect: CoreGraphics.CGRect) -> UIKit.UIImage?
+  @objc deinit
+}
+public class FaceDetectionResult {
+  public var roi: CoreGraphics.CGRect
+  public var inputImage: UIKit.UIImage
+  public init(roi: CoreGraphics.CGRect, inputImage: UIKit.UIImage)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @available(iOS 13.0, *)
+public class FaceDetectionCNN {
+  public static func load() -> Swift.Bool
+  public static func detect(inputImage: UIKit.UIImage, completion: @escaping (Swift.Result<[face_mesh_detection.FaceDetectionResult], Swift.Error>) -> Swift.Void)
+  @objc deinit
+}
+public class Point3D {
+  public var x: Swift.Float
+  public var y: Swift.Float
+  public var z: Swift.Float
+  public init(x: Swift.Float, y: Swift.Float, z: Swift.Float)
+  @objc deinit
+}
+@objc public class Position : ObjectiveC.NSObject {
+  public var horizontal: face_mesh_detection.HorizontalPosition
+  public var vertical: face_mesh_detection.VerticalPosition
+  public var horizontalMaxAngleExceeded: Swift.Bool
+  public var verticalMaxAngleExceeded: Swift.Bool
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  public init(horizontal: face_mesh_detection.HorizontalPosition, vertical: face_mesh_detection.VerticalPosition)
+  public init(horizontal: face_mesh_detection.HorizontalPosition, vertical: face_mesh_detection.VerticalPosition, horizontalMaxAngleExceeded: Swift.Bool, verticalMaxAngleExceeded: Swift.Bool)
+  public static func == (lhs: face_mesh_detection.Position, rhs: face_mesh_detection.Position) -> Swift.Bool
+  @objc deinit
+}
+public enum HorizontalPosition {
+  case LEFT
+  case MIDDLE
+  case RIGHT
+  public static func == (a: face_mesh_detection.HorizontalPosition, b: face_mesh_detection.HorizontalPosition) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum VerticalPosition {
+  case UP
+  case MIDDLE
+  case DOWN
+  public static func == (a: face_mesh_detection.VerticalPosition, b: face_mesh_detection.VerticalPosition) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension face_mesh_detection.HorizontalPosition : Swift.Equatable {}
+extension face_mesh_detection.HorizontalPosition : Swift.Hashable {}
+extension face_mesh_detection.VerticalPosition : Swift.Equatable {}
+extension face_mesh_detection.VerticalPosition : Swift.Hashable {}

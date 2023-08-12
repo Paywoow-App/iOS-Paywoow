@@ -1,0 +1,287 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
+// swift-module-flags: -target armv7-apple-ios9.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name OpenCVTechsign
+import Foundation
+@_exported import OpenCVTechsign
+import Swift
+import _Concurrency
+extension OpenCVTechsign.ByteVector {
+  public convenience init(_ array: [Swift.Int8])
+  public convenience init(_ array: [Swift.UInt8])
+  public subscript(index: Swift.Int) -> Swift.Int8 {
+    get
+  }
+  public var array: [Swift.Int8] {
+    get
+  }
+  public var unsignedArray: [Swift.UInt8] {
+    get
+  }
+}
+extension OpenCVTechsign.ByteVector : Swift.Sequence {
+  public typealias Iterator = OpenCVTechsign.ByteVectorIterator
+  public func makeIterator() -> OpenCVTechsign.ByteVectorIterator
+  public typealias Element = OpenCVTechsign.ByteVectorIterator.Element
+}
+public struct ByteVectorIterator : Swift.IteratorProtocol {
+  public typealias Element = Swift.Int8
+  public mutating func next() -> Swift.Int8?
+}
+extension OpenCVTechsign.Core {
+  @nonobjc public class func meanStdDev(src: OpenCVTechsign.Mat, mean: inout [Swift.Double], stddev: inout [Swift.Double], mask: OpenCVTechsign.Mat)
+}
+extension OpenCVTechsign.Core {
+  @nonobjc public class func meanStdDev(src: OpenCVTechsign.Mat, mean: inout [Swift.Double], stddev: inout [Swift.Double])
+}
+extension OpenCVTechsign.Core {
+  @nonobjc public class func split(m: OpenCVTechsign.Mat, mv: inout [OpenCVTechsign.Mat])
+}
+extension OpenCVTechsign.Core {
+  @nonobjc public class func mixChannels(src: [OpenCVTechsign.Mat], dst: [OpenCVTechsign.Mat], fromTo: [Swift.Int32])
+}
+extension OpenCVTechsign.CvType {
+  public static var CV_8U: Swift.Int32
+  public static var CV_8S: Swift.Int32
+  public static var CV_16U: Swift.Int32
+  public static var CV_16S: Swift.Int32
+  public static var CV_32S: Swift.Int32
+  public static var CV_32F: Swift.Int32
+  public static var CV_64F: Swift.Int32
+  public static var CV_16F: Swift.Int32
+  public static var CV_8UC1: Swift.Int32
+  public static var CV_8UC2: Swift.Int32
+  public static var CV_8UC3: Swift.Int32
+  public static var CV_8UC4: Swift.Int32
+  public static var CV_8SC1: Swift.Int32
+  public static var CV_8SC2: Swift.Int32
+  public static var CV_8SC3: Swift.Int32
+  public static var CV_8SC4: Swift.Int32
+  public static var CV_16UC1: Swift.Int32
+  public static var CV_16UC2: Swift.Int32
+  public static var CV_16UC3: Swift.Int32
+  public static var CV_16UC4: Swift.Int32
+  public static var CV_16SC1: Swift.Int32
+  public static var CV_16SC2: Swift.Int32
+  public static var CV_16SC3: Swift.Int32
+  public static var CV_16SC4: Swift.Int32
+  public static var CV_32SC1: Swift.Int32
+  public static var CV_32SC2: Swift.Int32
+  public static var CV_32SC3: Swift.Int32
+  public static var CV_32SC4: Swift.Int32
+  public static var CV_32FC1: Swift.Int32
+  public static var CV_32FC2: Swift.Int32
+  public static var CV_32FC3: Swift.Int32
+  public static var CV_32FC4: Swift.Int32
+  public static var CV_64FC1: Swift.Int32
+  public static var CV_64FC2: Swift.Int32
+  public static var CV_64FC3: Swift.Int32
+  public static var CV_64FC4: Swift.Int32
+  public static var CV_16FC1: Swift.Int32
+  public static var CV_16FC2: Swift.Int32
+  public static var CV_16FC3: Swift.Int32
+  public static var CV_16FC4: Swift.Int32
+  public static var CV_CN_MAX: Swift.Int
+  public static var CV_CN_SHIFT: Swift.Int
+  public static var CV_DEPTH_MAX: Swift.Int
+  public static func CV_8UC(_ channels: Swift.Int32) -> Swift.Int32
+  public static func CV_8SC(_ channels: Swift.Int32) -> Swift.Int32
+  public static func CV_16UC(_ channels: Swift.Int32) -> Swift.Int32
+  public static func CV_16SC(_ channels: Swift.Int32) -> Swift.Int32
+  public static func CV_32SC(_ channels: Swift.Int32) -> Swift.Int32
+  public static func CV_32FC(_ channels: Swift.Int32) -> Swift.Int32
+  public static func CV_64FC(_ channels: Swift.Int32) -> Swift.Int32
+  public static func CV_16FC(_ channels: Swift.Int32) -> Swift.Int32
+}
+extension OpenCVTechsign.DoubleVector {
+  public convenience init(_ array: [Swift.Double])
+  public subscript(index: Swift.Int) -> Swift.Double {
+    get
+  }
+  public var array: [Swift.Double] {
+    get
+  }
+}
+extension OpenCVTechsign.DoubleVector : Swift.Sequence {
+  public typealias Iterator = OpenCVTechsign.DoubleVectorIterator
+  public func makeIterator() -> OpenCVTechsign.DoubleVectorIterator
+  public typealias Element = OpenCVTechsign.DoubleVectorIterator.Element
+}
+public struct DoubleVectorIterator : Swift.IteratorProtocol {
+  public typealias Element = Swift.Double
+  public mutating func next() -> Swift.Double?
+}
+extension OpenCVTechsign.FloatVector {
+  public convenience init(_ array: [Swift.Float])
+  public subscript(index: Swift.Int) -> Swift.Float {
+    get
+  }
+  public var array: [Swift.Float] {
+    get
+  }
+}
+extension OpenCVTechsign.FloatVector : Swift.Sequence {
+  public typealias Iterator = OpenCVTechsign.FloatVectorIterator
+  public func makeIterator() -> OpenCVTechsign.FloatVectorIterator
+  public typealias Element = OpenCVTechsign.FloatVectorIterator.Element
+}
+public struct FloatVectorIterator : Swift.IteratorProtocol {
+  public typealias Element = Swift.Float
+  public mutating func next() -> Swift.Float?
+}
+extension OpenCVTechsign.IntVector {
+  public convenience init(_ array: [Swift.Int32])
+  public subscript(index: Swift.Int) -> Swift.Int32 {
+    get
+  }
+  public var array: [Swift.Int32] {
+    get
+  }
+}
+extension OpenCVTechsign.IntVector : Swift.Sequence {
+  public typealias Iterator = OpenCVTechsign.IntVectorIterator
+  public func makeIterator() -> OpenCVTechsign.IntVectorIterator
+  public typealias Element = OpenCVTechsign.IntVectorIterator.Element
+}
+public struct IntVectorIterator : Swift.IteratorProtocol {
+  public typealias Element = Swift.Int32
+  public mutating func next() -> Swift.Int32?
+}
+extension OpenCVTechsign.Mat {
+  public convenience init(rows: Swift.Int32, cols: Swift.Int32, type: Swift.Int32, data: [Swift.Int8])
+  public convenience init(rows: Swift.Int32, cols: Swift.Int32, type: Swift.Int32, data: [Swift.Int8], step: Swift.Int)
+  @discardableResult
+  public func get(indices: [Swift.Int32], data: inout [Swift.Int8]) throws -> Swift.Int32
+  @discardableResult
+  public func get(indices: [Swift.Int32], data: inout [Swift.Double]) throws -> Swift.Int32
+  @discardableResult
+  public func get(indices: [Swift.Int32], data: inout [Swift.Float]) throws -> Swift.Int32
+  @discardableResult
+  public func get(indices: [Swift.Int32], data: inout [Swift.Int32]) throws -> Swift.Int32
+  @discardableResult
+  public func get(indices: [Swift.Int32], data: inout [Swift.Int16]) throws -> Swift.Int32
+  @discardableResult
+  public func get(row: Swift.Int32, col: Swift.Int32, data: inout [Swift.Int8]) throws -> Swift.Int32
+  @discardableResult
+  public func get(row: Swift.Int32, col: Swift.Int32, data: inout [Swift.Double]) throws -> Swift.Int32
+  @discardableResult
+  public func get(row: Swift.Int32, col: Swift.Int32, data: inout [Swift.Float]) throws -> Swift.Int32
+  @discardableResult
+  public func get(row: Swift.Int32, col: Swift.Int32, data: inout [Swift.Int32]) throws -> Swift.Int32
+  @discardableResult
+  public func get(row: Swift.Int32, col: Swift.Int32, data: inout [Swift.Int16]) throws -> Swift.Int32
+  @discardableResult
+  public func put(indices: [Swift.Int32], data: [Swift.Int8]) throws -> Swift.Int32
+  @discardableResult
+  public func put(indices: [Swift.Int32], data: [Swift.Int8], offset: Swift.Int, length: Swift.Int32) throws -> Swift.Int32
+  @discardableResult
+  public func put(indices: [Swift.Int32], data: [Swift.Double]) throws -> Swift.Int32
+  @discardableResult
+  public func put(indices: [Swift.Int32], data: [Swift.Float]) throws -> Swift.Int32
+  @discardableResult
+  public func put(indices: [Swift.Int32], data: [Swift.Int32]) throws -> Swift.Int32
+  @discardableResult
+  public func put(indices: [Swift.Int32], data: [Swift.Int16]) throws -> Swift.Int32
+  @discardableResult
+  public func put(row: Swift.Int32, col: Swift.Int32, data: [Swift.Int8]) throws -> Swift.Int32
+  @discardableResult
+  public func put(row: Swift.Int32, col: Swift.Int32, data: [Swift.Int8], offset: Swift.Int, length: Swift.Int32) throws -> Swift.Int32
+  @discardableResult
+  public func put(row: Swift.Int32, col: Swift.Int32, data: [Swift.Double]) throws -> Swift.Int32
+  @discardableResult
+  public func put(row: Swift.Int32, col: Swift.Int32, data: [Swift.Float]) throws -> Swift.Int32
+  @discardableResult
+  public func put(row: Swift.Int32, col: Swift.Int32, data: [Swift.Int32]) throws -> Swift.Int32
+  @discardableResult
+  public func put(row: Swift.Int32, col: Swift.Int32, data: [Swift.Int16]) throws -> Swift.Int32
+  @discardableResult
+  public func get(row: Swift.Int32, col: Swift.Int32) -> [Swift.Double]
+  @discardableResult
+  public func get(indices: [Swift.Int32]) -> [Swift.Double]
+}
+public typealias Rect = OpenCVTechsign.Rect2i
+public typealias Point = OpenCVTechsign.Point2i
+public typealias Size = OpenCVTechsign.Size2i
+extension OpenCVTechsign.Imgcodecs {
+  @nonobjc public class func imreadmulti(filename: Swift.String, mats: inout [OpenCVTechsign.Mat], flags: Swift.Int32) -> Swift.Bool
+}
+extension OpenCVTechsign.Imgcodecs {
+  @nonobjc public class func imreadmulti(filename: Swift.String, mats: inout [OpenCVTechsign.Mat]) -> Swift.Bool
+}
+extension OpenCVTechsign.Imgcodecs {
+  @nonobjc public class func imwrite(filename: Swift.String, img: OpenCVTechsign.Mat, params: [Swift.Int32]) -> Swift.Bool
+}
+extension OpenCVTechsign.Imgcodecs {
+  @nonobjc public class func imwritemulti(filename: Swift.String, img: [OpenCVTechsign.Mat], params: [Swift.Int32]) -> Swift.Bool
+}
+extension OpenCVTechsign.Imgcodecs {
+  @nonobjc public class func imencode(ext: Swift.String, img: OpenCVTechsign.Mat, buf: inout [Swift.UInt8], params: [Swift.Int32]) -> Swift.Bool
+}
+extension OpenCVTechsign.Imgcodecs {
+  @nonobjc public class func imencode(ext: Swift.String, img: OpenCVTechsign.Mat, buf: inout [Swift.UInt8]) -> Swift.Bool
+}
+extension OpenCVTechsign.Imgproc {
+  @nonobjc public class func goodFeaturesToTrack(image: OpenCVTechsign.Mat, corners: inout [OpenCVTechsign.Point2i], maxCorners: Swift.Int32, qualityLevel: Swift.Double, minDistance: Swift.Double, mask: OpenCVTechsign.Mat, blockSize: Swift.Int32, useHarrisDetector: Swift.Bool, k: Swift.Double)
+}
+extension OpenCVTechsign.Imgproc {
+  @nonobjc public class func goodFeaturesToTrack(image: OpenCVTechsign.Mat, corners: inout [OpenCVTechsign.Point2i], maxCorners: Swift.Int32, qualityLevel: Swift.Double, minDistance: Swift.Double, mask: OpenCVTechsign.Mat, blockSize: Swift.Int32, useHarrisDetector: Swift.Bool)
+}
+extension OpenCVTechsign.Imgproc {
+  @nonobjc public class func goodFeaturesToTrack(image: OpenCVTechsign.Mat, corners: inout [OpenCVTechsign.Point2i], maxCorners: Swift.Int32, qualityLevel: Swift.Double, minDistance: Swift.Double, mask: OpenCVTechsign.Mat, blockSize: Swift.Int32)
+}
+extension OpenCVTechsign.Imgproc {
+  @nonobjc public class func goodFeaturesToTrack(image: OpenCVTechsign.Mat, corners: inout [OpenCVTechsign.Point2i], maxCorners: Swift.Int32, qualityLevel: Swift.Double, minDistance: Swift.Double, mask: OpenCVTechsign.Mat)
+}
+extension OpenCVTechsign.Imgproc {
+  @nonobjc public class func goodFeaturesToTrack(image: OpenCVTechsign.Mat, corners: inout [OpenCVTechsign.Point2i], maxCorners: Swift.Int32, qualityLevel: Swift.Double, minDistance: Swift.Double)
+}
+extension OpenCVTechsign.Imgproc {
+  @nonobjc public class func goodFeaturesToTrack(image: OpenCVTechsign.Mat, corners: inout [OpenCVTechsign.Point2i], maxCorners: Swift.Int32, qualityLevel: Swift.Double, minDistance: Swift.Double, mask: OpenCVTechsign.Mat, blockSize: Swift.Int32, gradientSize: Swift.Int32, useHarrisDetector: Swift.Bool, k: Swift.Double)
+}
+extension OpenCVTechsign.Imgproc {
+  @nonobjc public class func goodFeaturesToTrack(image: OpenCVTechsign.Mat, corners: inout [OpenCVTechsign.Point2i], maxCorners: Swift.Int32, qualityLevel: Swift.Double, minDistance: Swift.Double, mask: OpenCVTechsign.Mat, blockSize: Swift.Int32, gradientSize: Swift.Int32, useHarrisDetector: Swift.Bool)
+}
+extension OpenCVTechsign.Imgproc {
+  @nonobjc public class func goodFeaturesToTrack(image: OpenCVTechsign.Mat, corners: inout [OpenCVTechsign.Point2i], maxCorners: Swift.Int32, qualityLevel: Swift.Double, minDistance: Swift.Double, mask: OpenCVTechsign.Mat, blockSize: Swift.Int32, gradientSize: Swift.Int32)
+}
+extension OpenCVTechsign.Imgproc {
+  @nonobjc public class func calcHist(images: [OpenCVTechsign.Mat], channels: [Swift.Int32], mask: OpenCVTechsign.Mat, hist: OpenCVTechsign.Mat, histSize: [Swift.Int32], ranges: [Swift.Float], accumulate: Swift.Bool)
+}
+extension OpenCVTechsign.Imgproc {
+  @nonobjc public class func calcHist(images: [OpenCVTechsign.Mat], channels: [Swift.Int32], mask: OpenCVTechsign.Mat, hist: OpenCVTechsign.Mat, histSize: [Swift.Int32], ranges: [Swift.Float])
+}
+extension OpenCVTechsign.Imgproc {
+  @nonobjc public class func calcBackProject(images: [OpenCVTechsign.Mat], channels: [Swift.Int32], hist: OpenCVTechsign.Mat, dst: OpenCVTechsign.Mat, ranges: [Swift.Float], scale: Swift.Double)
+}
+extension OpenCVTechsign.Imgproc {
+  @nonobjc public class func findContours(image: OpenCVTechsign.Mat, contours: inout [[OpenCVTechsign.Point2i]], hierarchy: OpenCVTechsign.Mat, mode: OpenCVTechsign.RetrievalModes, method: OpenCVTechsign.ContourApproximationModes, offset: OpenCVTechsign.Point2i)
+}
+extension OpenCVTechsign.Imgproc {
+  @nonobjc public class func findContours(image: OpenCVTechsign.Mat, contours: inout [[OpenCVTechsign.Point2i]], hierarchy: OpenCVTechsign.Mat, mode: OpenCVTechsign.RetrievalModes, method: OpenCVTechsign.ContourApproximationModes)
+}
+extension OpenCVTechsign.Imgproc {
+  @nonobjc public class func approxPolyDP(curve: [OpenCVTechsign.Point2f], approxCurve: inout [OpenCVTechsign.Point2f], epsilon: Swift.Double, closed: Swift.Bool)
+}
+extension OpenCVTechsign.Imgproc {
+  @nonobjc public class func convexHull(points: [OpenCVTechsign.Point2i], hull: inout [Swift.Int32], clockwise: Swift.Bool)
+}
+extension OpenCVTechsign.Imgproc {
+  @nonobjc public class func convexHull(points: [OpenCVTechsign.Point2i], hull: inout [Swift.Int32])
+}
+extension OpenCVTechsign.Imgproc {
+  @nonobjc public class func convexityDefects(contour: [OpenCVTechsign.Point2i], convexhull: [Swift.Int32], convexityDefects: inout [OpenCVTechsign.Int4])
+}
+extension OpenCVTechsign.Imgproc {
+  @nonobjc public class func ellipse2Poly(center: OpenCVTechsign.Point2i, axes: OpenCVTechsign.Size2i, angle: Swift.Int32, arcStart: Swift.Int32, arcEnd: Swift.Int32, delta: Swift.Int32, pts: inout [OpenCVTechsign.Point2i])
+}
+extension OpenCVTechsign.Subdiv2D {
+  @nonobjc public func getEdgeList(edgeList: inout [OpenCVTechsign.Float4])
+}
+extension OpenCVTechsign.Subdiv2D {
+  @nonobjc public func getLeadingEdgeList(leadingEdgeList: inout [Swift.Int32])
+}
+extension OpenCVTechsign.Subdiv2D {
+  @nonobjc public func getTriangleList(triangleList: inout [OpenCVTechsign.Float6])
+}
+extension OpenCVTechsign.Subdiv2D {
+  @nonobjc public func getVoronoiFacetList(idx: [Swift.Int32], facetList: inout [[OpenCVTechsign.Point2f]], facetCenters: inout [OpenCVTechsign.Point2f])
+}

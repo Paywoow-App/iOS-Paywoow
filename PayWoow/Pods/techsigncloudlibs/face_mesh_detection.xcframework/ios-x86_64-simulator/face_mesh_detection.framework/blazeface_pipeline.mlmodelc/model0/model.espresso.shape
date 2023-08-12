@@ -1,0 +1,870 @@
+{
+  "layer_shapes" : {
+    "model\/tf_op_layer_Pad_9\/Pad_9\/paddings" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 4
+    },
+    "model\/tf_op_layer_Pad_2\/Pad_2" : {
+      "k" : 32,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Pad_6\/Pad_6\/paddings" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 4
+    },
+    "model\/tf_op_layer_AddV2_1\/AddV2_1" : {
+      "k" : 16,
+      "w" : 12,
+      "n" : 16,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/depthwise_conv2d_3\/depthwise" : {
+      "k" : 32,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_AddV2_3\/AddV2_3\/y" : {
+      "k" : 8,
+      "w" : 12,
+      "n" : 8,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/depthwise_conv2d_12\/depthwise" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_AddV2_2\/AddV2_2\/y" : {
+      "k" : 8,
+      "w" : 2,
+      "n" : 8,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/tf_op_layer_RealDiv_4\/RealDiv_4" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/conv2d_12\/Conv2D" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/add_8\/add" : {
+      "k" : 72,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_strided_slice_1\/strided_slice_1" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/tf_op_layer_strided_slice_4\/strided_slice_4" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/reshape_4\/Reshape" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/conv2d_2\/Conv2D" : {
+      "k" : 28,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 64
+    },
+    "model\/depthwise_conv2d_14\/depthwise" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/depthwise_conv2d_7\/depthwise" : {
+      "k" : 56,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Pad_5\/Pad_5" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/add_1\/add" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/conv2d_15\/Conv2D" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Pad\/Pad" : {
+      "k" : 24,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 64
+    },
+    "box_confidence" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "model\/concatenate_1\/concat" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/depthwise_conv2d_5\/depthwise" : {
+      "k" : 42,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/reshape_2\/Reshape" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/conv2d_3\/Conv2D" : {
+      "k" : 32,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/regressor_16\/Conv2D" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Pad_4\/Pad_4" : {
+      "k" : 42,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/regressor_8\/Conv2D_to_nhwc" : {
+      "k" : 1,
+      "w" : 32,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/add_4\/add" : {
+      "k" : 42,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/conv2d_6\/Conv2D" : {
+      "k" : 48,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/conv2d_1\/Conv2D" : {
+      "k" : 24,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 64
+    },
+    "model\/depthwise_conv2d_9\/depthwise" : {
+      "k" : 72,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/reshape\/Reshape" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Pad_3\/Pad_3\/paddings" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 4
+    },
+    "model\/depthwise_conv2d_2\/depthwise" : {
+      "k" : 28,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/conv2d_4\/Conv2D" : {
+      "k" : 36,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_AddV2\/AddV2\/y" : {
+      "k" : 16,
+      "w" : 2,
+      "n" : 16,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "boxes_pre" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Minimum\/Minimum" : {
+      "k" : 2,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_strided_slice\/strided_slice" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/max_pooling2d\/MaxPool" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/conv2d_14\/Conv2D" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/add_10\/add" : {
+      "k" : 88,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/conv2d_7\/Conv2D" : {
+      "k" : 56,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/add_12\/add" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/add_7\/add" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Pad_7\/Pad_7" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/classificator_8\/Conv2D" : {
+      "k" : 2,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Pad_1\/Pad_1" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/add_14\/add" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_AddV2_1\/AddV2_1\/y" : {
+      "k" : 16,
+      "w" : 12,
+      "n" : 16,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/tf_op_layer_strided_slice_2\/strided_slice_2" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/conv2d_5\/Conv2D" : {
+      "k" : 42,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/depthwise_conv2d_13\/depthwise" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_strided_slice_5\/strided_slice_5" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/classificator_16\/Conv2D" : {
+      "k" : 6,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_RealDiv_5\/RealDiv_5" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/max_pooling2d_2\/MaxPool" : {
+      "k" : 88,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_RealDiv_1\/RealDiv_1" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Minimum\/Minimum\/y" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "model\/conv2d_8\/Conv2D" : {
+      "k" : 64,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/depthwise_conv2d_4\/depthwise" : {
+      "k" : 36,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/concatenate_3\/concat" : {
+      "k" : 2,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/depthwise_conv2d_15\/depthwise" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Sigmoid\/Sigmoid" : {
+      "k" : 2,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/depthwise_conv2d\/depthwise" : {
+      "k" : 24,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 64
+    },
+    "model\/tf_op_layer_Pad_7\/Pad_7\/paddings" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 4
+    },
+    "model\/tf_op_layer_Pad_4\/Pad_4\/paddings" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 4
+    },
+    "model\/tf_op_layer_Maximum\/Maximum\/y" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Pad_1\/Pad_1\/paddings" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 4
+    },
+    "model\/reshape_5\/Reshape" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/add_3\/add" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/regressor_8\/Conv2D" : {
+      "k" : 32,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/conv2d_11\/Conv2D" : {
+      "k" : 88,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_RealDiv_2\/RealDiv_2" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/conv2d_9\/Conv2D" : {
+      "k" : 72,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/re_lu\/Relu" : {
+      "k" : 24,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 64
+    },
+    "model\/tf_op_layer_Pad_3\/Pad_3" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/depthwise_conv2d_11\/depthwise" : {
+      "k" : 88,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/conv2d_16\/Conv2D" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/depthwise_conv2d_6\/depthwise" : {
+      "k" : 48,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/reshape_3\/Reshape" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_AddV2_3\/AddV2_3" : {
+      "k" : 8,
+      "w" : 12,
+      "n" : 8,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/add_6\/add" : {
+      "k" : 56,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_RealDiv\/RealDiv" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "input_image" : {
+      "k" : 3,
+      "w" : 128,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 128
+    },
+    "model\/tf_op_layer_Pad_10\/Pad_10\/paddings" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 4
+    },
+    "model\/concatenate_2\/concat" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/classificator_16\/Conv2D_to_nhwc" : {
+      "k" : 1,
+      "w" : 6,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/concatenate\/concat" : {
+      "k" : 2,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Pad_6\/Pad_6" : {
+      "k" : 56,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_strided_slice_3\/strided_slice_3" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Pad_8\/Pad_8\/paddings" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 4
+    },
+    "model\/reshape_1\/Reshape" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Pad_5\/Pad_5\/paddings" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 4
+    },
+    "model\/max_pooling2d_1\/MaxPool" : {
+      "k" : 42,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Pad_2\/Pad_2\/paddings" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 4
+    },
+    "model\/add_9\/add" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/conv2d_10\/Conv2D" : {
+      "k" : 80,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_AddV2\/AddV2" : {
+      "k" : 16,
+      "w" : 2,
+      "n" : 16,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Pad_10\/Pad_10" : {
+      "k" : 88,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/depthwise_conv2d_8\/depthwise" : {
+      "k" : 64,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Maximum\/Maximum" : {
+      "k" : 2,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_AddV2_2\/AddV2_2" : {
+      "k" : 8,
+      "w" : 2,
+      "n" : 8,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "boxes" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "model\/add_2\/add" : {
+      "k" : 32,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/regressor_16\/Conv2D_to_nhwc" : {
+      "k" : 1,
+      "w" : 96,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/conv2d_13\/Conv2D" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/depthwise_conv2d_1\/depthwise" : {
+      "k" : 24,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 64
+    },
+    "model\/tf_op_layer_Pad\/Pad\/paddings" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 4
+    },
+    "model\/add_11\/add" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/add\/add" : {
+      "k" : 24,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 64
+    },
+    "model\/add_13\/add" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Pad_9\/Pad_9" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/add_15\/add" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/re_lu_9\/Relu" : {
+      "k" : 72,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/classificator_8\/Conv2D_to_nhwc" : {
+      "k" : 1,
+      "w" : 2,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/re_lu_8\/Relu" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/re_lu_7\/Relu" : {
+      "k" : 56,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/re_lu_6\/Relu" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/re_lu_16\/Relu" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/re_lu_15\/Relu" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/re_lu_5\/Relu" : {
+      "k" : 42,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/re_lu_13\/Relu" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/depthwise_conv2d_10\/depthwise" : {
+      "k" : 80,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/re_lu_12\/Relu" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/re_lu_10\/Relu" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/add_5\/add" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/re_lu_3\/Relu" : {
+      "k" : 32,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/re_lu_4\/Relu" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/re_lu_14\/Relu" : {
+      "k" : 96,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/re_lu_2\/Relu" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/re_lu_11\/Relu" : {
+      "k" : 88,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/tf_op_layer_Pad_8\/Pad_8" : {
+      "k" : 72,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "model\/re_lu_1\/Relu" : {
+      "k" : 24,
+      "w" : 64,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 64
+    },
+    "model\/tf_op_layer_RealDiv_3\/RealDiv_3" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    }
+  }
+}

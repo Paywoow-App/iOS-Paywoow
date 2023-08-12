@@ -1,0 +1,1287 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
+// swift-module-flags: -target armv7-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name RKYC_iOS
+import AVFoundation
+import Foundation
+@_exported import RKYC_iOS
+import Security
+import Swift
+import UIKit
+import _Concurrency
+import face_mesh_detection
+import id_card_detection_ios_cnn
+@_hasMissingDesignatedInitializers public class OnlyOcrReturnModel : Swift.Codable {
+  public var transactionId: Swift.String?
+  public var gestureType: Swift.String?
+  public var id: Swift.String
+  public var name: Swift.String
+  public var surname: Swift.String
+  public var birthdate: Swift.String
+  public var expiredate: Swift.String?
+  public var serialNumber: Swift.String?
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class CountryTemplateModel : Swift.Codable {
+  public var template: Swift.String
+  public var hasNfc: Swift.Bool
+  public var cardWidth: CoreGraphics.CGFloat
+  public var cardHeigth: CoreGraphics.CGFloat
+  public var cardThumbnail: Swift.String
+  public var translatedName: Swift.String
+  public var backTemplate: Swift.String?
+  public var idType: Swift.String
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class HologramDetectionTask : RKYC_iOS.TechsignRequester<RKYC_iOS.HologramDetectionInputModel> {
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class StartTransactionTask : RKYC_iOS.TechsignRequester<RKYC_iOS.TransactionStartInputModel> {
+  @objc deinit
+}
+public class SecondaryResultModel : Swift.Codable {
+  public var matchResult: Swift.Bool?
+  public var controlResults: [RKYC_iOS.ControlEntryModel]
+  public var captured: RKYC_iOS.CapturedModel
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class PassportPhotoVerificationTask : RKYC_iOS.TechsignRequester<RKYC_iOS.CheckIDModel> {
+  @objc deinit
+}
+public func decode(fromObject container: Swift.KeyedDecodingContainer<RKYC_iOS.JSONCodingKeys>) -> [Swift.String : Any]
+public func decode(fromArray container: inout Swift.UnkeyedDecodingContainer) -> [Any]
+public func encodeValue(fromObjectContainer container: inout Swift.KeyedEncodingContainer<RKYC_iOS.JSONCodingKeys>, map: [Swift.String : Any]) throws
+public func encodeValue(fromArrayContainer container: inout Swift.UnkeyedEncodingContainer, arr: [Any]) throws
+public struct JSONCodingKeys : Swift.CodingKey {
+  public var stringValue: Swift.String
+  public init(stringValue: Swift.String)
+  public var intValue: Swift.Int?
+  public init?(intValue: Swift.Int)
+}
+public class JSON : Swift.Codable {
+  public init(value: Any?)
+  required public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class UpdateCustomerTransactionByCidAndTidTask : RKYC_iOS.TechsignRequester<Foundation.Data?> {
+  @objc deinit
+}
+public class HologramDetectionInputModel : Swift.Codable {
+  public var video: Swift.String
+  public var rotate: Swift.Int
+  public var cardType: Swift.String
+  public var transactionId: Swift.String
+  public init(video: Swift.String, rotate: Swift.Int, cardType: Swift.String, transactionId: Swift.String)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class TurkishBlueCardPhotoVerificationTask : RKYC_iOS.TechsignRequester<RKYC_iOS.CheckIDModel> {
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class TechsignJSONDecoder : Foundation.JSONDecoder {
+  override public init()
+  @objc deinit
+}
+extension Foundation.DateFormatter {
+  public static let yyyyMMdd: Foundation.DateFormatter
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ValidateAndSaveIDTask : RKYC_iOS.TechsignRequester<RKYC_iOS.ValidationInputModel> {
+  @objc deinit
+}
+public let OAuthErrorDomain: Swift.String
+public let OAuthErrorInvalidRequest: Swift.Int
+public let OAuthErrorInvalidClient: Swift.Int
+public let OAuthErrorInvalidGrant: Swift.Int
+public let OAuthErrorUnauthorizedClient: Swift.Int
+public let OAuthErrorUnsupportedGrantType: Swift.Int
+public let OAuthErrorInvalidScope: Swift.Int
+public let OAuthURIErrorKey: Swift.String
+public enum OAuthErrorCode : Swift.String, Swift.Codable {
+  case InvalidRequest
+  case InvalidClient
+  case InvalidGrant
+  case UnauthorizedClient
+  case UnsupportedGrantType
+  case InvalidScope
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension RKYC_iOS.OAuthErrorCode {
+  public var intValue: Swift.Int {
+    get
+  }
+}
+extension RKYC_iOS.OAuthErrorCode {
+  public static func decode(_ json: Swift.AnyObject?) -> RKYC_iOS.OAuthErrorCode?
+}
+public class OAuthError : Swift.Codable {
+  final public let code: RKYC_iOS.OAuthErrorCode
+  final public let description: Swift.String?
+  final public let uri: Swift.String?
+  public init(code: RKYC_iOS.OAuthErrorCode, description: Swift.String? = nil, uri: Swift.String? = nil)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+extension RKYC_iOS.OAuthError {
+  public var nsError: Foundation.NSError {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class GetCountryFlagsTask : RKYC_iOS.TechsignRequester<RKYC_iOS.EmptyModel> {
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class DriverPhotoVerificationTask : RKYC_iOS.TechsignRequester<RKYC_iOS.CheckIDModel> {
+  @objc deinit
+}
+@objc public class OAuthAccessToken : ObjectiveC.NSObject, Swift.Codable {
+  final public let accessToken: Swift.String
+  final public let tokenType: Swift.String
+  final public let expiresAt: Foundation.Date?
+  final public let refreshToken: Swift.String?
+  public init(accessToken: Swift.String, tokenType: Swift.String, expiresAt: Foundation.Date? = nil, refreshToken: Swift.String? = nil)
+  public func copy(accessToken: Swift.String? = nil, tokenType: Swift.String? = nil, expiresAt: Foundation.Date?? = nil, refreshToken: Swift.String?? = nil) -> RKYC_iOS.OAuthAccessToken
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public func == (lhs: RKYC_iOS.OAuthAccessToken, rhs: RKYC_iOS.OAuthAccessToken) -> Swift.Bool
+@objc public class OAuthAccessTokenKeychainStore : ObjectiveC.NSObject, RKYC_iOS.OAuthAccessTokenStore {
+  public init(service: Swift.String = "de.rheinfabrik.heimdallr.oauth")
+  @objc public func storeAccessToken(_ accessToken: RKYC_iOS.OAuthAccessToken?)
+  @objc public func retrieveAccessToken() -> RKYC_iOS.OAuthAccessToken?
+  @objc public func storeClientInfo(cliendId: Swift.String?, clientSecret: Swift.String?)
+  @objc public func retrieveClientId() -> Swift.String?
+  @objc public func retrieveClientSecret() -> Swift.String?
+  @objc deinit
+}
+public protocol HologramDelegate : AnyObject {
+  func onVideoCaptured(videoURL: Foundation.URL, rotate: Swift.Int)
+  func onVideoStarted()
+  func onFaceDetectionSuccess()
+  func onFaceDetectionIdle()
+  func onVideoCanceled()
+}
+public class IDValidationResultModel : Swift.Codable {
+  public var dg1Valid: Swift.Bool
+  public var dg2Valid: Swift.Bool
+  public var sodValid: Swift.Bool
+  public var docSigningValid: Swift.Bool
+  public var acceptable: Swift.Bool
+  public var isNonceValid: Swift.Bool
+  public var dg15Valid: Swift.Bool
+  public var isAAValid: Swift.Bool
+  public init(dg1Valid: Swift.Bool, dg2Valid: Swift.Bool, sodValid: Swift.Bool, docSigningValid: Swift.Bool, acceptable: Swift.Bool, isNonceValid: Swift.Bool, dg15Valid: Swift.Bool, isAAValid: Swift.Bool)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class UploadEvaluationModel : Swift.Codable {
+  public var fieldName: Swift.String
+  public var evaluationFile: Foundation.Data
+  public init(evaluationFile: Foundation.Data)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class GetIDInfoTask : RKYC_iOS.TechsignRequester<RKYC_iOS.IDInfoReturnModel> {
+  @objc deinit
+}
+public class FaceVerificationModel : Swift.Codable {
+  public var transactionId: Swift.String
+  public var video: Swift.String
+  public var rotate: Swift.Int
+  public init(transactionId: Swift.String, video: Swift.String, rotate: Swift.Int)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class ResetPasswordModel : Swift.Codable {
+  public var username: Swift.String
+  public var userCaptchaResponse: Swift.String?
+  public init(username: Swift.String, userCaptchaResponse: Swift.String? = "")
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@objc public class OAuthClientCredentials : ObjectiveC.NSObject {
+  final public let id: Swift.String
+  final public let secret: Swift.String?
+  public var parameters: [Swift.String : Swift.String] {
+    get
+  }
+  public init(id: Swift.String, secret: Swift.String? = nil)
+  @objc deinit
+}
+public class AddSecondaryTemplateModel : Swift.Codable {
+  public var image: Swift.String
+  public var transactionId: Swift.String
+  public var template: Swift.String
+  public init(image: Swift.String, transactionId: Swift.String, template: Swift.String)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class VerifyMrzOcrTask : RKYC_iOS.TechsignRequester<RKYC_iOS.MrzOcrInputModel> {
+  @objc deinit
+}
+public class VerifyFaceReturnModel : Swift.Codable {
+  public var id: Swift.String
+  public var name: Swift.String
+  public var surname: Swift.String
+  public var birthdate: Swift.String
+  public var expiredate: Swift.String
+  public var picture: Swift.String
+  public var gesture: Swift.String
+  public var controlResults: [RKYC_iOS.ControlEntryModel]
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class TransactionStartReturnModel : Swift.Codable {
+  public var transactionId: Swift.String
+  public var gestureType: Swift.String?
+  public var optionalData: [Swift.String : Any]? {
+    get
+    set
+  }
+  public init(transactionId: Swift.String, gestureType: Swift.String?)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class FinalizeTransactionTask : RKYC_iOS.TechsignRequester<RKYC_iOS.TransactionIdInputModel> {
+  @objc deinit
+}
+extension UIKit.UITextField {
+  @objc @IBInspectable @_Concurrency.MainActor(unsafe) dynamic public var placeHolderColor: UIKit.UIColor? {
+    @objc get
+    @objc set
+  }
+}
+public struct EnvironmentUtil {
+  public static var UPLOAD_SIZE: Swift.Int
+  public static var UPLOAD_MILISECOND_THRESHOLD: Swift.Int64
+  public static var UPLOAD_SPEED_THRESHOLD: Swift.Double
+  public static func checkBackCamera() -> Swift.Bool
+  public static func checkFrontCamera() -> Swift.Bool
+  public static func checkInternet(completion: @escaping (Swift.Result<RKYC_iOS.InternetResult, Foundation.NSError>) -> Swift.Void)
+}
+@_hasMissingDesignatedInitializers public class InternetResult {
+  public var speed: Swift.Double?
+  public var isSufficient: Swift.Bool?
+  @objc deinit
+}
+public class NVIControlOutputModel : Swift.Codable {
+  public var result: Swift.Bool
+  public init(result: Swift.Bool)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class MrzOcrOutputModel : Swift.Codable {
+  public var id: Swift.String
+  public var name: Swift.String
+  public var surname: Swift.String
+  public var birthdate: Swift.String
+  public var expiredate: Swift.String
+  public var docNumber: Swift.String
+  public var birthDateCheckValue: Swift.Float
+  public var birthDateCheckValid: Swift.Bool
+  public var expireDateCheckValue: Swift.Float
+  public var expireDateCheckValid: Swift.Bool
+  public var docNumberCheckValue: Swift.Float
+  public var docNumberCheckValid: Swift.Bool
+  public var gender: Swift.String?
+  public var nationality: Swift.String?
+  public var mname: Swift.String?
+  public var fname: Swift.String?
+  public var auth: Swift.String?
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class CustomerModel : Swift.Codable {
+  public var id: Swift.String
+  public var name: Swift.String?
+  public var surname: Swift.String?
+  public var phoneNumber: Swift.String?
+  public var email: Swift.String?
+  public var picture: Swift.String?
+  public var verificationDate: Foundation.Date?
+  public var lastAttempt: Foundation.Date?
+  public var transactions: [RKYC_iOS.CustomerTransactionModel]?
+  public var createdAt: Foundation.Date?
+  public var _additionalData: [Swift.String : RKYC_iOS.JSON]?
+  public var additionalData: [Swift.String : Any]? {
+    get
+    set
+  }
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class CustomerTransactionModel : Swift.Codable {
+  public var tid: Swift.String
+  public var status: Swift.String
+  public init(tid: Swift.String, status: Swift.String)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class StringUtil {
+  public static func generateUUID() -> Swift.String
+  @objc deinit
+}
+@objc public protocol HeimdallrHTTPClient {
+  @objc func sendRequest(_ request: Foundation.URLRequest, completion: @escaping (_ data: Foundation.Data?, _ response: Foundation.URLResponse?, _ error: Swift.Error?) -> Swift.Void)
+}
+public protocol HologramViewDelegate : AnyObject {
+  func onViewDrawn(mainRect: CoreGraphics.CGRect)
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ForeignIdPhotoVerificationTask : RKYC_iOS.TechsignRequester<RKYC_iOS.CheckIDModel> {
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class LivenessTask : RKYC_iOS.TechsignRequester<RKYC_iOS.FaceVerificationModel> {
+  @objc deinit
+}
+public class TransactionIdInputModel : Swift.Codable {
+  public var transactionId: Swift.String
+  public var optionalData: [Swift.String : Any]? {
+    get
+    set
+  }
+  public init(transactionId: Swift.String)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class DetectHologramReturnModel : Swift.Codable {
+  public var controlResults: [RKYC_iOS.ControlEntryModel]
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class CheckIdReturnModel : Swift.Codable {
+  public var transactionId: Swift.String
+  public var gestureType: Swift.String
+  public var controlResults: [RKYC_iOS.ControlEntryModel]
+  public var captured: RKYC_iOS.CapturedModel
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class HologramController : UIKit.UIViewController, AVFoundation.AVCaptureFileOutputRecordingDelegate, AVFoundation.AVCaptureMetadataOutputObjectsDelegate, AVFoundation.AVCaptureVideoDataOutputSampleBufferDelegate {
+  @_Concurrency.MainActor(unsafe) public static var FACE_DETECTION_IDLE_LAYER: QuartzCore.CAShapeLayer
+  @_Concurrency.MainActor(unsafe) public static var FACE_DETECTION_SUCCESS_LAYER: QuartzCore.CAShapeLayer
+  @_Concurrency.MainActor(unsafe) public static var FACE_DETECTION_FAIL_LAYER: QuartzCore.CAShapeLayer
+  @_Concurrency.MainActor(unsafe) public static var ID_HINT_LAYER: QuartzCore.CAShapeLayer
+  @_Concurrency.MainActor(unsafe) public static var VIDEO_TIME_IN_SECONDS: Swift.Double
+  @_Concurrency.MainActor(unsafe) public static var FLASH_TIME_IN_SECONDS: Swift.Double
+  @_Concurrency.MainActor(unsafe) public static var FACE_DETECTION_LAYER_SHAPE: RKYC_iOS.FaceDetectionLayerShape
+  @_Concurrency.MainActor(unsafe) public static var FACE_DETECTION_IDLE_COLOR: UIKit.UIColor?
+  @_Concurrency.MainActor(unsafe) public static var FACE_DETECTION_SUCCESS_COLOR: UIKit.UIColor?
+  @_Concurrency.MainActor(unsafe) public static var FACE_DETECTION_FAIL_COLOR: UIKit.UIColor?
+  @_Concurrency.MainActor(unsafe) public static var STOP_VIDEO_WHILE_RECORDING: Swift.Bool
+  @_Concurrency.MainActor(unsafe) public static var FACE_OVER_PHOTO_HINT_RATIO: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static var CONTROL_FACE_CAPTURE: Swift.Bool
+  @_Concurrency.MainActor(unsafe) public static var MAX_OUTPUT_FILE_SIZE_IN_BYTES: Swift.Int64?
+  @_Concurrency.MainActor(unsafe) public static let LANDSCAPE_CARD_WIDTH: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static let LANDSCAPE_CARD_HEIGHT: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static let LANDSCAPE_NEW_ID_PHOTO_X_RATIO: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static let LANDSCAPE_NEW_ID_PHOTO_Y_RATIO: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static let LANDSCAPE_NEW_ID_PHOTO_WIDTH_RATIO: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static let LANDSCAPE_NEW_ID_PHOTO_HEIGHT_RATIO: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static let LANDSCAPE_DRIVER_PHOTO_X_RATIO: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static let LANDSCAPE_DRIVER_PHOTO_Y_RATIO: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static let LANDSCAPE_DRIVER_PHOTO_WIDTH_RATIO: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static let LANDSCAPE_DRIVER_PHOTO_HEIGHT_RATIO: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static let CAMERA_RATIO: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static var HINT_DISPLAY_RATIO: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static var VIDEO_CANCEL_TIME_IN_SECONDS: Swift.Double
+  @_Concurrency.MainActor(unsafe) public static var START_STOP_PREVIEW_WITH_CAPTURE: Swift.Bool
+  @_Concurrency.MainActor(unsafe) public static var USE_CARD_DETECTION: Swift.Bool
+  @_Concurrency.MainActor(unsafe) public static var MARGIN_RATIO: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static var REQUIRED_SUCCESS_COUNT: Swift.Int
+  @_Concurrency.MainActor(unsafe) public static var OUTSIDE_OF_HINT_COLOR: UIKit.UIColor?
+  @_Concurrency.MainActor(unsafe) public var cardType: RKYC_iOS.HologramCardType
+  @_Concurrency.MainActor(unsafe) public static var IS_TRADEMARK_LOGO_ON: Swift.Bool
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public var prefersStatusBarHidden: Swift.Bool {
+    @_Concurrency.MainActor(unsafe) @objc get
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+  @objc deinit
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillLayoutSubviews()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLayoutSubviews()
+  @_Concurrency.MainActor(unsafe) public func startCapture()
+  @_Concurrency.MainActor(unsafe) public func stopCapture()
+  @_Concurrency.MainActor(unsafe) @objc public func fileOutput(_ output: AVFoundation.AVCaptureFileOutput, didFinishRecordingTo outputFileURL: Foundation.URL, from connections: [AVFoundation.AVCaptureConnection], error: Swift.Error?)
+  @_Concurrency.MainActor(unsafe) @objc public func metadataOutput(_ output: AVFoundation.AVCaptureMetadataOutput, didOutput metadataObjects: [AVFoundation.AVMetadataObject], from connection: AVFoundation.AVCaptureConnection)
+  @_Concurrency.MainActor(unsafe) public func setDelegate(_ delegate: RKYC_iOS.HologramDelegate)
+  @_Concurrency.MainActor(unsafe) public func setViewDelegate(_ viewDelegate: RKYC_iOS.HologramViewDelegate)
+  @_Concurrency.MainActor(unsafe) @objc public func captureOutput(_ output: AVFoundation.AVCaptureOutput, didOutput sampleBuffer: CoreMedia.CMSampleBuffer, from connection: AVFoundation.AVCaptureConnection)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class GetCountryTemplatesTask : RKYC_iOS.TechsignRequester<RKYC_iOS.EmptyModel> {
+  @objc deinit
+}
+@objc public class HeimdallrHTTPClientURLSession : ObjectiveC.NSObject, RKYC_iOS.HeimdallrHTTPClient {
+  public init(urlSession: Foundation.URLSession = URLSession(configuration: URLSessionConfiguration.default))
+  @objc public func sendRequest(_ request: Foundation.URLRequest, completion: @escaping (_ data: Foundation.Data?, _ response: Foundation.URLResponse?, _ error: Swift.Error?) -> Swift.Void)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DateConverter {
+  public static func toDate(_ date: Swift.String) throws -> Swift.String
+  public static func toMrz(_ date: Swift.String) throws -> Swift.String
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class RegisterTask : RKYC_iOS.TechsignRequester<RKYC_iOS.RegisterModel> {
+  @objc deinit
+}
+@objc public protocol HeimdallResourceRequestAuthenticator {
+  @objc func authenticateResourceRequest(_ request: Foundation.URLRequest, accessToken: RKYC_iOS.OAuthAccessToken) -> Foundation.URLRequest
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class OldIDPhotoVerificationTask : RKYC_iOS.TechsignRequester<RKYC_iOS.CheckIDModel> {
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class NviControlTask : RKYC_iOS.TechsignRequester<RKYC_iOS.NVIControlInputModel> {
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class Authentication {
+  public static var apiKey: Swift.String?
+  public static var heimdallr: RKYC_iOS.Heimdallr
+  public static func login(username: Swift.String, password: Swift.String, completion: @escaping (Swift.Result<RKYC_iOS.UserModel, Foundation.NSError>) -> Swift.Void)
+  public static func tryAutoLogin(completion: @escaping (Swift.Result<RKYC_iOS.UserModel, Foundation.NSError>) -> Swift.Void)
+  public static func isAlreadyLoggedIn() -> Swift.Bool
+  public static func refreshToken(completion: @escaping (Swift.Result<Swift.Void, Foundation.NSError>) -> Swift.Void)
+  public static func isAutoLoginEnabled() -> Swift.Bool
+  public static func getAccessToken() -> Swift.String?
+  public static func getRefreshToken() -> Swift.String?
+  public static func getValidUntil() -> Foundation.Date?
+  public static func getUsername() -> Swift.String?
+  public static func clearSession()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class EmptyModel : Swift.Codable {
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class UserModel : Swift.Codable {
+  public var username: Swift.String, organisationId: Swift.String, name: Swift.String?, surname: Swift.String?, uid: Swift.String?, mobile: Swift.String?, language: Swift.String?, roles: [Swift.String], createdAt: Foundation.Date, createdBy: Swift.String
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ResetPasswordTask : RKYC_iOS.TechsignRequester<RKYC_iOS.ResetPasswordModel> {
+  @objc deinit
+}
+public class AMLControlInputModel : Swift.Codable {
+  public var transactionId: Swift.String
+  public init(transactionId: Swift.String)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class MetaDataModel : Swift.Codable {
+  public var ip: Swift.String
+  public var country: Swift.String
+  public var city: Swift.String
+  public var device: Swift.String
+  public var browser: Swift.String
+  public var language: Swift.String
+  public init(ip: Swift.String = "", country: Swift.String = "", city: Swift.String = "", device: Swift.String = "", browser: Swift.String = "", language: Swift.String = "")
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public enum HologramCardType {
+  case NEW_TC_ID
+  case DRIVER_LICENSE
+  public static func == (a: RKYC_iOS.HologramCardType, b: RKYC_iOS.HologramCardType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public class MrzOcrInputModel : Swift.Codable {
+  public var img: Swift.String
+  public var idType: Swift.String
+  public init(img: Swift.String, idType: Swift.String)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class CheckIDModel : Swift.Codable {
+  public var transactionId: Swift.String?
+  public var id: Swift.String?
+  public var name: Swift.String?
+  public var surname: Swift.String?
+  public var birthdate: Swift.String?
+  public var expiredate: Swift.String?
+  public var gender: Swift.String?
+  public var nationality: Swift.String?
+  public var serialNumber: Swift.String?
+  public var img: Swift.String
+  public var templateName: Swift.String?
+  public init(img: Swift.String, transactionId: Swift.String, id: Swift.String? = nil, name: Swift.String? = nil, surname: Swift.String? = nil, birthdate: Swift.String? = nil, expiredate: Swift.String? = nil, gender: Swift.String? = nil, nationality: Swift.String? = nil, serialNumber: Swift.String? = nil, templateName: Swift.String? = nil)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class UpdateGestureInputModel : Swift.Codable {
+  public var transactionId: Swift.String
+  public var gesture: Swift.String
+  public init(transactionId: Swift.String, gesture: Swift.String)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class FaceAuthorizationModel : Swift.Codable {
+  public var id: Swift.String
+  public var video: Swift.String
+  public var rotate: Swift.Int
+  public init(id: Swift.String, video: Swift.String, rotate: Swift.Int)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class LoginTask : RKYC_iOS.TechsignRequester<RKYC_iOS.FaceAuthorizationModel> {
+  @objc deinit
+}
+public protocol LivenessViewDelegate : AnyObject {
+  func onViewDrawn(mainRect: CoreGraphics.CGRect)
+}
+public class FlagModel : Swift.Codable {
+  public var country: Swift.String
+  public var flagImage: Swift.String
+  public var translatedName: Swift.String
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class AddSecondaryTemplateTask : RKYC_iOS.TechsignRequester<RKYC_iOS.AddSecondaryTemplateModel> {
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class TechsignRequester<InputType> where InputType : Swift.Decodable, InputType : Swift.Encodable {
+  @objc deinit
+}
+public class GenerateNonceReturnModel : Swift.Codable {
+  public var nonce: Swift.String
+  public init(nonce: Swift.String)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class SecondaryIDInformationModel : Swift.Codable {
+  public var image: Swift.String
+  public var transactionID: Swift.String
+  public var idType: Swift.String?
+  public init(image: Swift.String, transactionID: Swift.String)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class GDPRCheckReturnModel : Swift.Codable {
+  public var gdprList: [RKYC_iOS.GDPRInstance]
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class GDPRInstance : Swift.Codable {
+  public var gdprType: Swift.String
+  public var mandatory: Swift.Bool
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public enum HTTPAuthentication : Swift.Equatable {
+  case basicAuthentication(username: Swift.String, password: Swift.String)
+  case accessTokenAuthentication(RKYC_iOS.OAuthAccessToken)
+}
+public func == (lhs: RKYC_iOS.HTTPAuthentication, rhs: RKYC_iOS.HTTPAuthentication) -> Swift.Bool
+extension Foundation.URLRequest {
+  public var HTTPAuthorization: Swift.String? {
+    get
+  }
+  public mutating func setHTTPAuthorization(_ value: Swift.String?)
+  public mutating func setHTTPAuthorization(_ authentication: RKYC_iOS.HTTPAuthentication)
+  public mutating func setHTTPBody(parameters: [Swift.String : Swift.AnyObject]?)
+}
+extension UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) public class func displaySpinner(onView: UIKit.UIView) -> UIKit.UIView
+  @_Concurrency.MainActor(unsafe) public class func removeSpinner(spinner: UIKit.UIView)
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class UpdateCustomerByCidTask : RKYC_iOS.TechsignRequester<RKYC_iOS.CreateUpdateCustomerModel> {
+  @objc deinit
+}
+public enum CustomError : Swift.Error {
+  case dateError(Swift.String)
+}
+public protocol LivenessDelegate : AnyObject {
+  func onVideoCaptured(videoURL: Foundation.URL, rotate: Swift.Int)
+  func onVideoStarting()
+  func onVideoStarted()
+  func onVideoCanceled()
+  func onFaceDetectionFailure(isAway: Swift.Bool)
+  func onFaceDetectionSuccess()
+  func onFaceDetectionIdle()
+  func onMultiFaceDetected()
+  func positionFailed(model: RKYC_iOS.PositionFailedModel)
+  func positionSucceed(model: RKYC_iOS.PositionSuccedModel)
+  func positionCorrect()
+  func turnedTooMuch(model: RKYC_iOS.TurnedTooMuchModel)
+  func gestureFailed()
+}
+public class TurnedTooMuchModel {
+  public var vertical: Swift.Bool
+  public var horizontal: Swift.Bool
+  public init(vertical: Swift.Bool, horizontal: Swift.Bool)
+  @objc deinit
+}
+public class PositionSuccedModel {
+  public var position: face_mesh_detection.Position
+  public var next: face_mesh_detection.Position?
+  public init(position: face_mesh_detection.Position, next: face_mesh_detection.Position? = nil)
+  @objc deinit
+}
+public class PositionFailedModel {
+  public var expected: face_mesh_detection.Position
+  public var actual: face_mesh_detection.Position
+  public init(expected: face_mesh_detection.Position, actual: face_mesh_detection.Position)
+  @objc deinit
+}
+public class GDPRConfirmInputModel : Swift.Codable {
+  public var gdprType: Swift.String
+  public var operationType: Swift.String
+  public init(gdprType: Swift.String, operationType: Swift.String)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class UploadEvaluationReturnModel : Swift.Codable {
+  public var uploadedSize: Swift.Int64
+  public var uploadedTime: Swift.Int64
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class ThumbnailModel : Swift.Codable {
+  public var fileType: Swift.String
+  public var thumbnail: Swift.String
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class ServerCall {
+  public static func getSelf(completion: @escaping (Swift.Result<RKYC_iOS.UserModel, Foundation.NSError>) -> Swift.Void)
+  public static func verifyDriverPhoto(model: RKYC_iOS.CheckIDModel, completion: @escaping (Swift.Result<RKYC_iOS.CheckIdReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func verifyOldIdPhoto(model: RKYC_iOS.CheckIDModel, completion: @escaping (Swift.Result<RKYC_iOS.CheckIdReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func verifyIDPhoto(model: RKYC_iOS.CheckIDModel, completion: @escaping (Swift.Result<RKYC_iOS.CheckIdReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func verifyForeignIdPhoto(model: RKYC_iOS.CheckIDModel, completion: @escaping (Swift.Result<RKYC_iOS.CheckIdReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func login(model: RKYC_iOS.FaceAuthorizationModel, completion: @escaping (Swift.Result<RKYC_iOS.VerifyFaceReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func checkLiveness(model: RKYC_iOS.FaceVerificationModel, completion: @escaping (Swift.Result<RKYC_iOS.VerifyFaceReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func getIdInfo(id: Swift.String, completion: @escaping (Swift.Result<RKYC_iOS.IDInfoReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func getIdInfoWithTid(tid: Swift.String, completion: @escaping (Swift.Result<RKYC_iOS.IDInfoReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func saveId(model: RKYC_iOS.SaveIDModel, completion: @escaping (Swift.Result<RKYC_iOS.SaveIdReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func verifyPassportPhoto(model: RKYC_iOS.CheckIDModel, completion: @escaping (Swift.Result<RKYC_iOS.CheckIdReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func verifyMrzOcr(model: RKYC_iOS.MrzOcrInputModel, completion: @escaping (Swift.Result<RKYC_iOS.MrzOcrOutputModel, Foundation.NSError>) -> Swift.Void)
+  public static func evaluateUploadSpeed(model: RKYC_iOS.UploadEvaluationModel, completion: @escaping (Swift.Result<RKYC_iOS.UploadEvaluationReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func detectHologram(model: RKYC_iOS.HologramDetectionInputModel, completion: @escaping (Swift.Result<RKYC_iOS.DetectHologramReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func addSecondary(model: RKYC_iOS.SecondaryIDInformationModel, completion: @escaping (Swift.Result<RKYC_iOS.SecondaryResultModel, Foundation.NSError>) -> Swift.Void)
+  public static func validateAndSaveID(model: RKYC_iOS.ValidationInputModel, completion: @escaping (Swift.Result<RKYC_iOS.SaveIdReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func finalizeTransaction(model: RKYC_iOS.TransactionIdInputModel, completion: @escaping (Swift.Result<RKYC_iOS.TransactionProcessorReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func startTransaction(model: RKYC_iOS.TransactionStartInputModel, completion: @escaping (Swift.Result<RKYC_iOS.TransactionStartReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func fixCharacter(transactionId: Swift.String, completion: @escaping (Swift.Result<Swift.Bool, Foundation.NSError>) -> Swift.Void)
+  public static func generateNonce(transactionId: Swift.String, completion: @escaping (Swift.Result<RKYC_iOS.GenerateNonceReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func generateNonce(model: RKYC_iOS.NonceGeneratorModel, completion: @escaping (Swift.Result<RKYC_iOS.GenerateNonceReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func nviControl(model: RKYC_iOS.NVIControlInputModel, completion: @escaping (Swift.Result<RKYC_iOS.NVIControlOutputModel, Foundation.NSError>) -> Swift.Void)
+  public static func amlControl(model: RKYC_iOS.AMLControlInputModel, completion: @escaping (Swift.Result<RKYC_iOS.AMLControlOutputModel, Foundation.NSError>) -> Swift.Void)
+  public static func createCustomer(model: RKYC_iOS.CreateUpdateCustomerModel, completion: @escaping (Swift.Result<Swift.String, Foundation.NSError>) -> Swift.Void)
+  public static func getCustomerByCid(cid: Swift.String, completion: @escaping (Swift.Result<RKYC_iOS.CustomerModel, Foundation.NSError>) -> Swift.Void)
+  public static func updateCustomerByCid(cid: Swift.String, model: RKYC_iOS.CreateUpdateCustomerModel, completion: @escaping (Swift.Result<RKYC_iOS.SimpleMessageModel, Foundation.NSError>) -> Swift.Void)
+  public static func updateCustomerTransactionByCidAndTid(cid: Swift.String, tid: Swift.String, completion: @escaping (Swift.Result<RKYC_iOS.SimpleMessageModel, Foundation.NSError>) -> Swift.Void)
+  public static func getCustomerById(id: Swift.String, completion: @escaping (Swift.Result<Swift.String, Foundation.NSError>) -> Swift.Void)
+  public static func verifyTurkishBlueCardPhoto(model: RKYC_iOS.CheckIDModel, completion: @escaping (Swift.Result<RKYC_iOS.CheckIdReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func verifyIdFromTemplate(model: RKYC_iOS.CheckIDModel, completion: @escaping (Swift.Result<RKYC_iOS.CheckIdReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func register(model: RKYC_iOS.RegisterModel, completion: @escaping (Swift.Result<Swift.Bool, Foundation.NSError>) -> Swift.Void)
+  public static func getCountryFlags(language: Swift.String, completion: @escaping (Swift.Result<RKYC_iOS.FlagReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func getGDPRCheck(uid: Swift.String, operation: Swift.String, completion: @escaping (Swift.Result<RKYC_iOS.GDPRCheckReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func confirmGDPR(uid: Swift.String, model: RKYC_iOS.GDPRConfirmInputModel, completion: @escaping (Swift.Result<Swift.String, Foundation.NSError>) -> Swift.Void)
+  public static func resetPassword(model: RKYC_iOS.ResetPasswordModel, completion: @escaping (Swift.Result<RKYC_iOS.SimpleMessageModel, Foundation.NSError>) -> Swift.Void)
+  public static func addSecondaryTemplate(model: RKYC_iOS.AddSecondaryTemplateModel, completion: @escaping (Swift.Result<RKYC_iOS.SecondaryResultModel, Foundation.NSError>) -> Swift.Void)
+  public static func updateGesture(model: RKYC_iOS.UpdateGestureInputModel, completion: @escaping (Swift.Result<Swift.Bool, Foundation.NSError>) -> Swift.Void)
+  public static func getCountryTemplates(language: Swift.String, country: Swift.String, completion: @escaping (Swift.Result<RKYC_iOS.GetCountryTemplatesReturnModel, Foundation.NSError>) -> Swift.Void)
+  public static func getIdInfoWithTidAndLayer(tid: Swift.String, completion: @escaping (Swift.Result<RKYC_iOS.IDInfoReturnModel, Foundation.NSError>) -> Swift.Void)
+  @objc deinit
+}
+public class TransactionProcessorReturnModel : Swift.Codable {
+  public var message: Swift.String
+  public var result: Swift.Bool
+  public var optionalData: [Swift.String : Any]? {
+    get
+    set
+  }
+  public init(message: Swift.String, result: Swift.Bool, optionalData: [Swift.String : Any])
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class SaveIDModel : Swift.Codable {
+  public var id: Swift.String
+  public var name: Swift.String
+  public var surname: Swift.String
+  public var birthdate: Swift.String
+  public var expiredate: Swift.String
+  public var picture: Swift.String
+  public init(id: Swift.String, name: Swift.String, surname: Swift.String, birthdate: Swift.String, expiredate: Swift.String, picture: Swift.String)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class IDInfoReturnModel : Swift.Codable {
+  public var id: Swift.String
+  public var name: Swift.String
+  public var surname: Swift.String
+  public var birthdate: Swift.String
+  public var expiredate: Swift.String
+  public var picture: Swift.String
+  public var gesture: Swift.String
+  public var serialNumber: Swift.String
+  public var idtype: Swift.String
+  public var gender: Swift.String?
+  public var nationality: Swift.String?
+  public var birthplace: Swift.String?
+  public var createdate: Foundation.Date?
+  public var validationInformation: RKYC_iOS.IDValidationModel?
+  public var validationResults: RKYC_iOS.IDValidationResultModel?
+  public var capturedModels: [RKYC_iOS.CapturedModel]
+  public var controlResults: [RKYC_iOS.ControlEntryModel]
+  public var verificationResult: Swift.String?
+  public var availableMedia: [Swift.String]?
+  public var thumbnail: [RKYC_iOS.ThumbnailModel]?
+  public var flag: Swift.String?
+  public var additionalIdData: [RKYC_iOS.OCRTextResultModel]?
+  public var transactionId: Swift.String?
+  public var verified: Swift.Bool?
+  public var optionalData: [Swift.String : Any]? {
+    get
+    set
+  }
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class SimpleMessageModel : Swift.Codable {
+  public var message: Swift.String
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class NonceGeneratorModel : Swift.Codable {
+  public var transactionId: Swift.String?
+  public init(transactionId: Swift.String?)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class GetCustomerByIdTask : RKYC_iOS.TechsignRequester<RKYC_iOS.EmptyModel> {
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class UpdateGestureTask : RKYC_iOS.TechsignRequester<RKYC_iOS.UpdateGestureInputModel> {
+  @objc deinit
+}
+@objc public protocol OAuthAccessTokenParser {
+  @objc func parse(data: Foundation.Data) throws -> RKYC_iOS.OAuthAccessToken
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class CreateCustomerTask : RKYC_iOS.TechsignRequester<RKYC_iOS.CreateUpdateCustomerModel> {
+  @objc deinit
+}
+public class CapturedModel : Swift.Codable {
+  public var infot: Swift.String?
+  public var id: Swift.String
+  public var name: Swift.String
+  public var sname: Swift.String
+  public var gend: Swift.String
+  public var nat: Swift.String
+  public var bdat: Swift.String
+  public var bpl: Swift.String?
+  public var edat: Swift.String
+  public var sno: Swift.String
+  public var mname: Swift.String?
+  public var fname: Swift.String?
+  public var auth: Swift.String?
+  public var cid: Swift.String?
+  public var entryDate: Foundation.Date?
+  public var alternativeName: Swift.String?
+  public var alternativeSurname: Swift.String?
+  public init(infot: Swift.String?, id: Swift.String, name: Swift.String, sname: Swift.String, gend: Swift.String, nat: Swift.String, bdat: Swift.String, bpl: Swift.String?, edat: Swift.String, sno: Swift.String, mname: Swift.String?, fname: Swift.String?, auth: Swift.String?, cid: Swift.String?)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class NVIControlInputModel : Swift.Codable {
+  public var transactionId: Swift.String
+  public var controlType: Swift.String?
+  public init(transactionId: Swift.String, controlType: Swift.String?)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public enum TemplateType : Swift.Codable {
+  case Turkey
+  case Bangladesh
+  case India
+  case Indonesia
+  case Vietnam
+  case Brazil
+  case UnitedStates
+  case SouthKorea
+  case Pakistan
+  case Russia
+  case Nepal
+  case Nigeria
+  case Germany
+  case UnitedKingdom
+  case Ukraine
+  case Algeria
+  case Singapore
+  case Morocco
+  case France
+  case UAE
+  public static func == (a: RKYC_iOS.TemplateType, b: RKYC_iOS.TemplateType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public func encode(to encoder: Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: Swift.Decoder) throws
+}
+extension UIKit.UITableView {
+  @_Concurrency.MainActor(unsafe) public func registerCellClass(_ cellClass: Swift.AnyClass)
+  @_Concurrency.MainActor(unsafe) public func registerCellNib(_ cellClass: Swift.AnyClass)
+  @_Concurrency.MainActor(unsafe) public func registerHeaderFooterViewClass(_ viewClass: Swift.AnyClass)
+  @_Concurrency.MainActor(unsafe) public func registerHeaderFooterViewNib(_ viewClass: Swift.AnyClass)
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class GetSelfTask : RKYC_iOS.TechsignRequester<RKYC_iOS.EmptyModel> {
+  @objc deinit
+}
+public struct EndpointManager {
+  public static var SERVER_URL: Swift.String
+  public static func getAccessTokenEndpoint() -> Swift.String
+  public static func getGetSelfUrl() -> Swift.String
+  public static func getLoginURL() -> Swift.String
+  public static func getSaveIdURL() -> Swift.String
+  public static func getLivenessURL() -> Swift.String
+  public static func getIdDataURL(userId: Swift.String) -> Swift.String
+  public static func getIdDataWithTidURL(transactionId: Swift.String) -> Swift.String
+  public static func getIdPhotoVerifierURL() -> Swift.String
+  public static func getMrzOcrVerifierUrl() -> Swift.String
+  public static func getPassportPhotoVerifierURL() -> Swift.String
+  public static func getDriverPhotoVerifierURL() -> Swift.String
+  public static func getOldIDPhotoVerifierURL() -> Swift.String
+  public static func getHologramDetectionURL() -> Swift.String
+  public static func getEvaluateUploadURL() -> Swift.String
+  public static func getAddSecondaryURL() -> Swift.String
+  public static func getValidateAndSaveURL() -> Swift.String
+  public static func getFinalizeTransactionURL() -> Swift.String
+  public static func getStartTransactionURL() -> Swift.String
+  public static func getFixCharacterUrl() -> Swift.String
+  public static func getFixCharacterUrl(transactionId: Swift.String) -> Swift.String
+  public static func getGenerateNonceUrl() -> Swift.String
+  public static func getNviControlURL() -> Swift.String
+  public static func getAmlControlURL() -> Swift.String
+  public static func getCreateCustomerUrl() -> Swift.String
+  public static func getGetCustomerByCidUrl() -> Swift.String
+  public static func getGetCustomerByCidUrl(cid: Swift.String) -> Swift.String
+  public static func getUpdateCustomerByCidUrl() -> Swift.String
+  public static func getUpdateCustomerByCidUrl(cid: Swift.String) -> Swift.String
+  public static func getUpdateCustomerTransactionByCidAndTidUrl() -> Swift.String
+  public static func getUpdateCustomerTransactionByCidAndTidUrl(cid: Swift.String, tid: Swift.String) -> Swift.String
+  public static func getCustomerByIdUrl() -> Swift.String
+  public static func getCustomerByIdUrl(id: Swift.String) -> Swift.String
+  public static func getTurkishBlueCardPhotoVerifierUrl() -> Swift.String
+  public static func getIdFromTemplateVerifierUrl() -> Swift.String
+  public static func getRegisterUrl() -> Swift.String
+  public static func getCountryFlagsUrl() -> Swift.String
+  public static func getCountryFlagsUrl(language: Swift.String) -> Swift.String
+  public static func getGDPRCheckUrl() -> Swift.String
+  public static func getGDPRCheckUrl(uid: Swift.String, operation: Swift.String) -> Swift.String
+  public static func getGDPRConfirmUrl() -> Swift.String
+  public static func getGDPRConfirmUrl(uid: Swift.String) -> Swift.String
+  public static func getResetPasswordUrl() -> Swift.String
+  public static func getAddSecondaryTemplateURL() -> Swift.String
+  public static func getUpdateGestureURL() -> Swift.String
+  public static func getCountryTemplatesUrl() -> Swift.String
+  public static func getCountryTemplatesUrl(language: Swift.String, country: Swift.String) -> Swift.String
+  public static func getIdDataWithTidAndLayerURL(transactionId: Swift.String) -> Swift.String
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class GetGDPRCheckTask : RKYC_iOS.TechsignRequester<RKYC_iOS.GDPRCheckReturnModel> {
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class GetCustomerByCidTask : RKYC_iOS.TechsignRequester<RKYC_iOS.EmptyModel> {
+  @objc deinit
+}
+public class RegisterModel : Swift.Codable {
+  public var username: Swift.String
+  public var password: Swift.String
+  public var language: Swift.String
+  public var name: Swift.String?
+  public var surname: Swift.String?
+  public var mobile: Swift.String?
+  public var organisationName: Swift.String?
+  public init(username: Swift.String, password: Swift.String, language: Swift.String?, name: Swift.String, surname: Swift.String, mobile: Swift.String, organizationName: Swift.String)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class AddSecondaryTask : RKYC_iOS.TechsignRequester<RKYC_iOS.SecondaryIDInformationModel> {
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class GDPRConfirmTask : RKYC_iOS.TechsignRequester<RKYC_iOS.GDPRConfirmInputModel> {
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class IDPhotoVerificationTask : RKYC_iOS.TechsignRequester<RKYC_iOS.CheckIDModel> {
+  @objc deinit
+}
+public enum OAuthAuthorizationGrant {
+  case resourceOwnerPasswordCredentials(Swift.String, Swift.String)
+  case refreshToken(Swift.String)
+  case `extension`(Swift.String, [Swift.String : Swift.String])
+  public var parameters: [Swift.String : Swift.String] {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class LivenessController : UIKit.UIViewController, AVFoundation.AVCaptureFileOutputRecordingDelegate, AVFoundation.AVCaptureMetadataOutputObjectsDelegate, AVFoundation.AVCaptureVideoDataOutputSampleBufferDelegate {
+  @_Concurrency.MainActor(unsafe) public static var FACE_DETECTION_IDLE_LAYER: QuartzCore.CAShapeLayer
+  @_Concurrency.MainActor(unsafe) public static var FACE_DETECTION_SUCCESS_LAYER: QuartzCore.CAShapeLayer
+  @_Concurrency.MainActor(unsafe) public static var FACE_DETECTION_FAIL_LAYER: QuartzCore.CAShapeLayer
+  @_Concurrency.MainActor(unsafe) public static var VIDEO_TIME_IN_SECONDS: Swift.Double
+  @_Concurrency.MainActor(unsafe) public static var VIDEO_PREPARATION_TIME_IN_SECONDS: Swift.Double
+  @_Concurrency.MainActor(unsafe) public static var FACE_DETECTION_LAYER_SHAPE: RKYC_iOS.FaceDetectionLayerShape
+  @_Concurrency.MainActor(unsafe) public static var FACE_DETECTION_IDLE_COLOR: UIKit.UIColor?
+  @_Concurrency.MainActor(unsafe) public static var FACE_DETECTION_SUCCESS_COLOR: UIKit.UIColor?
+  @_Concurrency.MainActor(unsafe) public static var FACE_DETECTION_FAIL_COLOR: UIKit.UIColor?
+  @_Concurrency.MainActor(unsafe) public static var FACE_GESTURE_HINT_COLOR: UIKit.UIColor?
+  @_Concurrency.MainActor(unsafe) public static var STOP_VIDEO_WHILE_RECORDING: Swift.Bool
+  @_Concurrency.MainActor(unsafe) public static var FACE_OVER_SCREEN_RATIO: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static var MAX_NO_OF_FAILED_FRAME_FOR_PREPARATION: Swift.Int
+  @_Concurrency.MainActor(unsafe) public static var VIDEO_CANCEL_TIME_IN_SECONDS: Swift.Double
+  @_Concurrency.MainActor(unsafe) public static var FACE_AWAY_CHECK_RATIO: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static var CONTROL_FACE_CAPTURE: Swift.Bool
+  @_Concurrency.MainActor(unsafe) public static var START_STOP_PREVIEW_WITH_CAPTURE: Swift.Bool
+  @_Concurrency.MainActor(unsafe) public static var OUTSIDE_OF_HINT_COLOR: UIKit.UIColor?
+  @_Concurrency.MainActor(unsafe) public static var CONTROL_BORDER_RATIO: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static var MAX_OUTPUT_FILE_SIZE_IN_BYTES: Swift.Int64?
+  @_Concurrency.MainActor(unsafe) public static var IS_TRADEMARK_LOGO_ON: Swift.Bool
+  @_Concurrency.MainActor(unsafe) public static var IS_GESTURE_CONTROL_ENABLED: Swift.Bool
+  @_Concurrency.MainActor(unsafe) public static var GESTURE_TYPE: RKYC_iOS.GestureType?
+  @_Concurrency.MainActor(unsafe) public static var GESTURE_HINT_WIDTH: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static var GESTURE_HINT_SHADOW_ALPHA: CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) public static var ELIGIBLE_IDLE_FRAME_COUNT: Swift.Int
+  @_Concurrency.MainActor(unsafe) public var minFaceAngleCount: Swift.Int
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public var prefersStatusBarHidden: Swift.Bool {
+    @_Concurrency.MainActor(unsafe) @objc get
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidAppear(_ animated: Swift.Bool)
+  @objc deinit
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillLayoutSubviews()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLayoutSubviews()
+  @_Concurrency.MainActor(unsafe) public func startCapture()
+  @_Concurrency.MainActor(unsafe) public func stopCapture()
+  @_Concurrency.MainActor(unsafe) @objc public func captureOutput(_ output: AVFoundation.AVCaptureOutput, didOutput sampleBuffer: CoreMedia.CMSampleBuffer, from connection: AVFoundation.AVCaptureConnection)
+  @available(iOS 14.0, *)
+  @_Concurrency.MainActor(unsafe) public func checkFrame(_ cgImage: CoreGraphics.CGImage?)
+  @_Concurrency.MainActor(unsafe) @objc public func fileOutput(_ output: AVFoundation.AVCaptureFileOutput, didFinishRecordingTo outputFileURL: Foundation.URL, from connections: [AVFoundation.AVCaptureConnection], error: Swift.Error?)
+  @_Concurrency.MainActor(unsafe) @objc public func metadataOutput(_ output: AVFoundation.AVCaptureMetadataOutput, didOutput metadataObjects: [AVFoundation.AVMetadataObject], from connection: AVFoundation.AVCaptureConnection)
+  @_Concurrency.MainActor(unsafe) public func setDelegate(_ delegate: RKYC_iOS.LivenessDelegate)
+  @_Concurrency.MainActor(unsafe) public func setViewDelegate(_ viewDelegate: RKYC_iOS.LivenessViewDelegate)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+}
+public enum FaceDetectionLayerShape {
+  case RECTANGLE
+  case OVAL
+  public static func == (a: RKYC_iOS.FaceDetectionLayerShape, b: RKYC_iOS.FaceDetectionLayerShape) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum GestureType {
+  case HEAD_HORIZONTAL
+  case HEAD_VERTICAL
+  case EYE
+  case MOUTH
+  public static func == (a: RKYC_iOS.GestureType, b: RKYC_iOS.GestureType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum GestureTypes {
+  case EYE
+  case MOUTH
+  case HEAD_HORIZONTAL
+  case HEAD_VERTICAL
+  public static func == (a: RKYC_iOS.GestureTypes, b: RKYC_iOS.GestureTypes) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class SaveIDTask : RKYC_iOS.TechsignRequester<RKYC_iOS.SaveIDModel> {
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class AmlControlTask : RKYC_iOS.TechsignRequester<RKYC_iOS.AMLControlInputModel> {
+  @objc deinit
+}
+public class TransactionStartInputModel : Swift.Codable {
+  public var optionalData: [Swift.String : Any]? {
+    get
+    set
+  }
+  public init()
+  public init(optionalData: [Swift.String : Any])
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class ControlEntryModel : Swift.Codable {
+  public var entryType: Swift.String
+  public var entryScore: Swift.Double
+  public var entryInterpretation: Swift.Bool?
+  public var controlId: Swift.String?
+  public var scoreLevel: Swift.String?
+  public var entryDesc: Swift.String?
+  public var entryDate: Foundation.Date?
+  public init(entryType: Swift.String, entryScore: Swift.Double, entryInterpretation: Swift.Bool? = nil, controlId: Swift.String? = nil, scoreLevel: Swift.String? = nil, entryDesc: Swift.String? = nil, entryDate: Foundation.Date? = nil)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public enum ControlEntryTypes : Swift.String, Swift.Codable {
+  case PhotoCheatVerification
+  case HologramVerification
+  case HologramFaceVerification
+  case FaceLivenessVerification
+  case FaceVerification
+  case HiddenPhotoVerification
+  case SignaturePhotoVerification
+  case GuillocheVerification
+  case RainbowVerification
+  case NFCMRZSimilarity
+  case OCRNFCSimilarity
+  case OCRMRZSimilarity
+  case MRZOCRSimilarity
+  case MRZDocNumCheckSum
+  case MRZBirthDateCheckSum
+  case MRZExpireDateCheckSum
+  case FaceGesture
+  case FaceAI
+  case IDCardBarcode
+  case AMLValidation
+  case NVIValidation
+  case HologramIDSimilarity
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+@objc public protocol OAuthAccessTokenStore {
+  @objc func storeAccessToken(_ accessToken: RKYC_iOS.OAuthAccessToken?)
+  @objc func retrieveAccessToken() -> RKYC_iOS.OAuthAccessToken?
+  @objc func storeClientInfo(cliendId: Swift.String?, clientSecret: Swift.String?)
+  @objc func retrieveClientId() -> Swift.String?
+  @objc func retrieveClientSecret() -> Swift.String?
+}
+public class OCRTextResultModel : Swift.Codable {
+  public var label: Swift.String
+  public var value: Swift.String
+  public var score: Swift.Double
+  public var fieldMapping: Swift.String?
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public enum DeviceModel : Swift.String {
+  case simulator, iPod1, iPod2, iPod3, iPod4, iPod5, iPod6, iPod7, iPad2, iPad3, iPad4, iPadAir, iPadAir2, iPadAir3, iPadAir4, iPadAir5, iPad5, iPad6, iPad7, iPad8, iPad9, iPadMini, iPadMini2, iPadMini3, iPadMini4, iPadMini5, iPadMini6, iPadPro9_7, iPadPro10_5, iPadPro11, iPadPro2_11, iPadPro3_11, iPadPro12_9, iPadPro2_12_9, iPadPro3_12_9, iPadPro4_12_9, iPadPro5_12_9, iPhone4, iPhone4S, iPhone5, iPhone5S, iPhone5C, iPhone6, iPhone6Plus, iPhone6S, iPhone6SPlus, iPhoneSE, iPhone7, iPhone7Plus, iPhone8, iPhone8Plus, iPhoneX, iPhoneXS, iPhoneXSMax, iPhoneXR, iPhone11, iPhone11Pro, iPhone11ProMax, iPhoneSE2, iPhone12Mini, iPhone12, iPhone12Pro, iPhone12ProMax, iPhone13Mini, iPhone13, iPhone13Pro, iPhone13ProMax, iPhoneSE3, iPhone14, iPhone14Plus, iPhone14Pro, iPhone14ProMax, AppleWatch1, AppleWatchS1, AppleWatchS2, AppleWatchS3, AppleWatchS4, AppleWatchS5, AppleWatchSE, AppleWatchS6, AppleWatchS7, AppleTV1, AppleTV2, AppleTV3, AppleTV4, AppleTV_4K, AppleTV2_4K, unrecognized
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension UIKit.UIDevice {
+  @_Concurrency.MainActor(unsafe) public var deviceType: RKYC_iOS.DeviceModel {
+    get
+  }
+}
+public class ValidationInputModel : Swift.Codable {
+  public var validationInformation: RKYC_iOS.IDValidationModel
+  public var idType: Swift.String
+  public var transactionId: Swift.String?
+  public init(validationInformation: RKYC_iOS.IDValidationModel, idType: Swift.String, transactionId: Swift.String? = nil)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class FixCharacterTask : RKYC_iOS.TechsignRequester<Foundation.Data?> {
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class UploadEvaluationTask : RKYC_iOS.TechsignRequester<RKYC_iOS.UploadEvaluationModel> {
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class GenerateNonceTask : RKYC_iOS.TechsignRequester<RKYC_iOS.NonceGeneratorModel> {
+  @objc deinit
+}
+public class TranslationModel : Swift.Codable {
+  public var language: Swift.String
+  public var translation: Swift.String
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class IDFromTemplateVerificationTask : RKYC_iOS.TechsignRequester<RKYC_iOS.CheckIDModel> {
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class GetIDInfoWithTidAndLayerTask : RKYC_iOS.TechsignRequester<RKYC_iOS.IDInfoReturnModel> {
+  @objc deinit
+}
+public class CreateUpdateCustomerModel : Swift.Codable {
+  public var id: Swift.String
+  public var name: Swift.String
+  public var surname: Swift.String
+  public var phoneNumber: Swift.String
+  public var email: Swift.String
+  public var _additionalData: [Swift.String : RKYC_iOS.JSON]?
+  public var additionalData: [Swift.String : Any]? {
+    get
+    set
+  }
+  public init(id: Swift.String, name: Swift.String, surname: Swift.String, phoneNumber: Swift.String, email: Swift.String)
+  public init(id: Swift.String, name: Swift.String, surname: Swift.String, phoneNumber: Swift.String, email: Swift.String, additionalData: [Swift.String : Any])
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class FlagReturnModel : Swift.Codable {
+  public var flags: [RKYC_iOS.FlagModel]
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class GetCountryTemplatesReturnModel : Swift.Codable {
+  public var countryTemplates: [RKYC_iOS.CountryTemplateModel]
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class GetIDInfoWithTidTask : RKYC_iOS.TechsignRequester<RKYC_iOS.IDInfoReturnModel> {
+  @objc deinit
+}
+public class IDValidationModel : Swift.Codable {
+  public var dg1: Swift.String
+  public var dg2: Swift.String
+  public var sod: Swift.String
+  public var dg11: Swift.String?
+  public var dg12: Swift.String?
+  public var dg14: Swift.String?
+  public var dg15: Swift.String?
+  public var nonce: Swift.String?
+  public var signedData: Swift.String?
+  public init(dg1: Swift.String, dg2: Swift.String, sod: Swift.String, dg11: Swift.String? = nil, dg12: Swift.String? = nil, dg14: Swift.String? = nil, dg15: Swift.String? = nil, nonce: Swift.String? = nil, signedData: Swift.String? = nil)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class SaveIdReturnModel : Swift.Codable {
+  public var transactionId: Swift.String
+  public var gestureType: Swift.String
+  public var validationResult: RKYC_iOS.IDValidationResultModel?
+  public var controlResults: [RKYC_iOS.ControlEntryModel]
+  public var capturedData: RKYC_iOS.CapturedModel?
+  public var additionalIdData: [RKYC_iOS.OCRTextResultModel]?
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public class AMLControlOutputModel : Swift.Codable {
+  public var result: Swift.Bool
+  public init(result: Swift.Bool)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+public let HeimdallrErrorDomain: Swift.String
+public let HeimdallrErrorInvalidData: Swift.Int
+public let HeimdallrErrorNotAuthorized: Swift.Int
+@objc open class Heimdallr : ObjectiveC.NSObject {
+  final public let tokenURL: Foundation.URL
+  final public let resourceRequestAuthenticator: RKYC_iOS.HeimdallResourceRequestAuthenticator
+  public var hasAccessToken: Swift.Bool {
+    get
+  }
+  @objc public init(tokenURL: Foundation.URL, credentials: RKYC_iOS.OAuthClientCredentials? = nil, accessTokenStore: RKYC_iOS.OAuthAccessTokenStore = OAuthAccessTokenKeychainStore(), accessTokenParser: RKYC_iOS.OAuthAccessTokenParser = OAuthAccessTokenDefaultParser(), httpClient: RKYC_iOS.HeimdallrHTTPClient = HeimdallrHTTPClientURLSession(), resourceRequestAuthenticator: RKYC_iOS.HeimdallResourceRequestAuthenticator = HeimdallResourceRequestAuthenticatorHTTPAuthorizationHeader())
+  open func invalidateAccessToken()
+  open func clearAccessToken()
+  open func requestAccessToken(username: Swift.String, password: Swift.String, completion: @escaping (Swift.Result<Swift.Void, Foundation.NSError>) -> Swift.Void)
+  open func requestAccessToken(grantType: Swift.String, parameters: [Swift.String : Swift.String], completion: @escaping (Swift.Result<Swift.Void, Foundation.NSError>) -> Swift.Void)
+  open func authenticateRequest(_ request: Foundation.URLRequest, completion: @escaping (Swift.Result<Foundation.URLRequest, Foundation.NSError>) -> Swift.Void)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class HeimdallResourceRequestAuthenticatorHTTPAuthorizationHeader : ObjectiveC.NSObject, RKYC_iOS.HeimdallResourceRequestAuthenticator {
+  @objc override dynamic public init()
+  @objc public func authenticateResourceRequest(_ request: Foundation.URLRequest, accessToken: RKYC_iOS.OAuthAccessToken) -> Foundation.URLRequest
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class OAuthAccessTokenDefaultParser : ObjectiveC.NSObject, RKYC_iOS.OAuthAccessTokenParser {
+  @objc public func parse(data: Foundation.Data) throws -> RKYC_iOS.OAuthAccessToken
+  @objc override dynamic public init()
+  @objc deinit
+}
+public class OnlyOcrInputModel : Swift.Codable {
+  public var image: Swift.String
+  public var imageType: Swift.String
+  public init(image: Swift.String)
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+}
+extension RKYC_iOS.OAuthErrorCode : Swift.Equatable {}
+extension RKYC_iOS.OAuthErrorCode : Swift.Hashable {}
+extension RKYC_iOS.OAuthErrorCode : Swift.RawRepresentable {}
+extension RKYC_iOS.HologramCardType : Swift.Equatable {}
+extension RKYC_iOS.HologramCardType : Swift.Hashable {}
+extension RKYC_iOS.TemplateType : Swift.Equatable {}
+extension RKYC_iOS.TemplateType : Swift.Hashable {}
+extension RKYC_iOS.FaceDetectionLayerShape : Swift.Equatable {}
+extension RKYC_iOS.FaceDetectionLayerShape : Swift.Hashable {}
+extension RKYC_iOS.GestureType : Swift.Equatable {}
+extension RKYC_iOS.GestureType : Swift.Hashable {}
+extension RKYC_iOS.GestureTypes : Swift.Equatable {}
+extension RKYC_iOS.GestureTypes : Swift.Hashable {}
+extension RKYC_iOS.ControlEntryTypes : Swift.Equatable {}
+extension RKYC_iOS.ControlEntryTypes : Swift.Hashable {}
+extension RKYC_iOS.ControlEntryTypes : Swift.RawRepresentable {}
+extension RKYC_iOS.DeviceModel : Swift.Equatable {}
+extension RKYC_iOS.DeviceModel : Swift.Hashable {}
+extension RKYC_iOS.DeviceModel : Swift.RawRepresentable {}

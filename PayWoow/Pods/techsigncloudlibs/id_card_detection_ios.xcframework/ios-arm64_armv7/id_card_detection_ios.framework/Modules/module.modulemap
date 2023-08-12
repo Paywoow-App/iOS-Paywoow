@@ -1,0 +1,11 @@
+framework module id_card_detection_ios {
+  umbrella header "id_card_detection_ios.h"
+
+  export *
+  module * { export * }
+}
+
+module id_card_detection_ios.Swift {
+    header "id_card_detection_ios-Swift.h"
+    requires objc
+}
